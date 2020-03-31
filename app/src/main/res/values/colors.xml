@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="grey">#C7C7C7</color>
+    <color name="colorbul">#4b9c9b</color>
+    <color name="white">#ffffff</color>
+    <color name="colorgenn">#A9E16B</color>
+    <color name="huang_se">#FFD7AB70</color>
+    <color name="weiwancheng">#FFE1E3ED</color>
+    <color name="black">#000000</color>
+    <color name="blacks">#FF000000</color>
+    <color name="shop">#00837B</color>
+    <color name="blackmangement">#333333</color>
+    <color name="greyhous">#999999</color>
+    <color name="red">#FFEB2121</color>
+    <color name="gray">#FF5E6067</color>
+    <color name="grays">#FF75788C</color>
+    <color name="col_grays">#FF9CA0B5</color>
+    <color name="whites">#FFFFFFFF</color>
+    <color name="txt_bg">#F7F6F6</color>
+    <color name="line_grays">#FFFAFAFA</color>
+    <color name="line_gray">#ECE9E9</color>
+    <color name="beige">#FFD7AB70</color>
+    <color name="col_round_bg">#800F0F0F</color>
+    <color name="col_blue">#2196F3</color>
+    <color name="col_score">#FF0000</color>
+    <color name="col_answer_type">#E9AF5C</color>
+    <color name="col_fafa"> #FAFAFA</color>
+    <color name="col_pop_bg">#50000000</color>
+</resources>

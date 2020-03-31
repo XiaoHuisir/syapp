@@ -1,0 +1,72 @@
+<resources>
+    <string name="app_name">识缘商城</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="mine_fragment">mine</string>
+    <string name="home_fragment">home</string>
+    <string name="classify_fragment">clasify</string>
+    <string name="beyond_campus">课外学习</string>
+    <string name="training">培训课程</string>
+
+
+    //------------
+    <string name="title">中粮·京西祥云</string>
+    <string name="entrance">门禁钥匙</string>
+    <string name="property">物业管理</string>
+    <string name="cost">物业缴费</string>
+    <string name="warranty">保修服务</string>
+    <string name="smart">智能居家</string>
+    <string name="experience">智能家居体验馆一日游</string>
+    <string name="title1">请大家踊跃参加，体验智能生活</string>
+    <string name="address">通讯录</string>
+    <string name="message">消息</string>
+    <string name="passage">忘记密码</string>
+    <string name="verification">输入验证码</string>
+    <string name="warning">登陆注册表示同意《中粮智慧社区协议》</string>
+    <string name="shurushoujihao">请输入手机号</string>
+    <string name="bangding">绑定</string>
+    <string name="baixiu">报修服务</string>
+    <string name="fenlei">分类标签</string>
+    <string name="fuwudizhi">服务地址</string>
+    <string name="shijian">上门时间</string>
+    <string name="dianhua">联系电话</string>
+    <string name="jingxixiangyunxiaoqu">京西祥云小区业主问卷调查</string>
+    <string name="louhao">请输入你的楼号</string>
+    <string name="zhiye">请输入你的职业</string>
+    <string name="laifang">来访方式</string>
+    <string name="year">年</string>
+    <string name="minute">日</string>
+
+    <!--我的-->
+    <string name="myhouse">我的房屋</string>
+    <string name="addhouse">做登录用</string>
+    <string name="householdname">15栋二单元2205 </string>
+    <string name="addhouseuser">添加住户</string>
+    <string name="housemanagement">住户管理</string>
+    <string name="attestation">认证后信息不可修改</string>
+    <string name="tvhouse">为了保障社区内的住户享受高品质服务，请提供真实的信息以供物业中心进行验证</string>
+    <!--绑定房屋-->
+    <string name="bindhouse">绑定房屋</string>
+    <string name="truename">真实的姓名</string>
+    <string name="importphonenumber">请输入手机号码</string>
+    <string name="identitychoice">身份选择</string>
+    <string name="unitselection">单元选择</string>
+    <string name="roomselection">房间选择</string>
+    <string name="confirm">确定</string>
+    <string name="buildingselection">楼宇选择</string>
+    <!--楼宇选择-->
+    <string name="buildtxt">中粮京西祥云小区</string>
+    <string name="achieves">完成</string>
+    <string name="ahousingestate">中粮京西祥云小区</string>
+    <string name="unitse">15栋二单元2205</string>
+    <string name="identity">请选择身份</string>
+    <string name="enterthename">请输入姓名</string>
+    <string name="mesg">接收呼播信息</string>
+
+
+    <string name="reexercises">重新测试</string>
+
+    <string name="tips_evaluat_result">仅会保留您的最佳测试成绩</string>
+
+
+</resources>
