@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.project" >
+    <!--value的值填写你在友盟后台申请的应用Appkey  5e828f8d167edd2e0a000052-->
+
+    <!--友盟统计所需权限-->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"></uses-permission>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"></uses-permission>
 
     <application
         android:name=".app.MyApp"
@@ -20,4 +27,8 @@
         </activity>
     </application>
 
+    <!--友盟统计配置Appkey与Channel-->
+    <!--value的值填写你在友盟后台申请的应用Appkey-->
+    <!--value的值填写渠道名称，例如yingyongbao。这里设置动态渠道名称变量-->
+    <!--<meta-data android:value="${UMENG_CHANNEL_VALUE}" android:name="UMENG_CHANNEL"/>-->
 </manifest>
