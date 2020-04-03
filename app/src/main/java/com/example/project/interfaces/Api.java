@@ -1,6 +1,8 @@
 package com.example.project.interfaces;
 
 
+import com.example.project.bean.LoginBean;
+
 import java.util.Map;
 
 import io.reactivex.Flowable;
@@ -15,9 +17,9 @@ import retrofit2.http.POST;
 
 public interface Api {
 
-//    @POST("index/user/login")
-//    @FormUrlEncoded
-//    Flowable<LoginBean> login(@Field("mobile") String mobile, @Field("password") String password);
+    @POST("index/user/login")
+    @FormUrlEncoded
+    Flowable<LoginBean> login(@Field("mobile") String mobile, @Field("password") String password);
 //
 //    @POST("index/train/index")
 //    @FormUrlEncoded

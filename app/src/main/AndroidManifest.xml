@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.project" >
+    package="com.example.project">
     <!--value的值填写你在友盟后台申请的应用Appkey  5e828f8d167edd2e0a000052-->
 
     <!--友盟统计所需权限-->
@@ -14,17 +14,22 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:networkSecurityConfig="@xml/network_config"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:networkSecurityConfig="@xml/network_config"
-        android:theme="@style/AppTheme" >
-        <activity android:name=".MainActivity" >
+        android:theme="@style/AppTheme">
+        <activity android:name=".ui.activity.login.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
-
             </intent-filter>
         </activity>
+        <activity android:name=".MainActivity" />
+        <activity android:name=".ui.activity.login.LoginActivity" />
+        <activity
+            android:name=".widgets.wxapi.WXEntryActivity"
+            android:exported="true" />
+
     </application>
 
     <!--友盟统计配置Appkey与Channel-->

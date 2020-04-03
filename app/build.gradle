@@ -1,15 +1,15 @@
 apply plugin: 'com.android.application'
 
 android {
-//    //签名信息配置
-//    signingConfigs {
-//        android_studio_app {
-//            keyAlias 'key'
-//            keyPassword '111111'
-//            storeFile file('E:/CIO_TASK/shiyuanshangcheng/project/zh.jks')
-//            storePassword '111111'
-//        }
-//    }
+    //签名信息配置
+    signingConfigs {
+        android_studio_app {
+            keyAlias 'key'
+            keyPassword '111111'
+            storeFile file('E:/CIO_TASK/syapp/zh.jks')
+            storePassword '111111'
+        }
+    }
 
     compileSdkVersion 28
     buildToolsVersion "29.0.1"
@@ -94,4 +94,6 @@ dependencies {
 //友盟
     implementation 'com.umeng.sdk:common:latest.integration'
     implementation 'com.umeng.sdk:analytics:latest.integration'
+    //微信login
+    implementation 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+'
 }
