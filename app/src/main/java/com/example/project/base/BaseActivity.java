@@ -19,6 +19,7 @@ import com.example.project.interfaces.IBaseView;
 import com.example.project.utils.SystemUtils;
 
 import com.jaeger.library.StatusBarUtil;
+import com.umeng.analytics.MobclickAgent;
 
 import java.util.List;
 
@@ -105,8 +106,15 @@ public abstract class BaseActivity<V extends IBaseView, P extends IBasePresenter
         if (mPresenter != null) {
             mPresenter.attchView(this);
         }
+        MobclickAgent.onResume(this);
     }
 
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
+    }
     @Override
     protected void onDestroy() {
         super.onDestroy();
