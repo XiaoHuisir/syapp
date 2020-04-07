@@ -1,6 +1,7 @@
 package com.example.project.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -10,6 +11,8 @@ import android.widget.TextView;
 
 import com.example.project.R;
 import com.example.project.bean.InfoBean;
+import com.example.project.ui.activity.ExchangeActivity;
+import com.example.project.ui.activity.ProductDetailsActivity;
 
 import java.util.ArrayList;
 
@@ -36,7 +39,20 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHodler> {
         InfoBean infoBean = rl.get(i);
         viewHodler.img.setBackgroundResource(infoBean.getImg());
         viewHodler.tv_name.setText(infoBean.getName());
+        viewHodler.tv_id.setText("兑换");
 //        viewHodler.tv_id.setText(infoBean.getPrice());
+        viewHodler.tv_id.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+            context.startActivity(new Intent(context, ExchangeActivity.class));
+            }
+        });
+        viewHodler.img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                context.startActivity(new Intent(context, ProductDetailsActivity.class));
+            }
+        });
     }
 
 

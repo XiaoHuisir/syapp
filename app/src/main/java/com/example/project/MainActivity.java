@@ -87,7 +87,48 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void initData() {
-        super.initData();
+        int id = getIntent().getIntExtra("id", 0);
+            FragmentTransaction ftran = manager.beginTransaction();
+        if (id==1) {
+//            ftran.replace(R.id.fl,homeFragment);
+//            ftran.commit();
+            targetBottomPosition = 0;
+            if (currentBottomPosition == 0) {
+                return;
+            }
+            ftran.hide(fragmentList.get(currentBottomPosition));
+            if (!fragmentList.get(targetBottomPosition).isAdded()) {
+                ftran.add(R.id.fl, fragmentList.get(targetBottomPosition));
+            }
+            ftran.show(fragmentList.get(targetBottomPosition)).commit();
+            currentBottomPosition = 0;
+//            mTl.setClipChildren(true);
+//            mTl.getTabAt(0).select(); //默认选中某项放在加载viewpager之后
+//            mTl.setCurrentItem(2);//
+//            mTl
+//            mTl.setChecked(true);
+//            li.setVisibility(View.GONE);
+        }
+        if (id==2){
+//            FragmentTransaction ftran = manager.beginTransaction();
+//            ftran.replace(R.id.fl,classifyFragment);
+//            ftran.commit();
+////            mTl.setClipChildren(true);
+////            mTl.getTabAt(1).select();
+
+//            ftran.replace(R.id.fl,homeFragment);
+//            ftran.commit();
+            targetBottomPosition = 1;
+            if (currentBottomPosition == 1) {
+                return;
+            }
+            ftran.hide(fragmentList.get(currentBottomPosition));
+            if (!fragmentList.get(targetBottomPosition).isAdded()) {
+                ftran.add(R.id.fl, fragmentList.get(targetBottomPosition));
+            }
+            ftran.show(fragmentList.get(targetBottomPosition)).commit();
+            currentBottomPosition = 1;
+        }
     }
 
     @Override

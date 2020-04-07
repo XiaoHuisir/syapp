@@ -39,8 +39,8 @@ public class Constant {
 
     public static final int STATUS = 1;
     public static final int ZERO = 0;
-    public static final int COURSE_TYPE_1 = 1; //课外学习
-    public static final int COURSE_TYPE_2 = 2; //培训
+    public static final int ONE_TYPE_1 = 1;
+    public static final int TWO_TYPE_2 = 2;
 
     public static final int STUDY_TYPE_1 = 1; //智慧课堂
     public static final int STUDY_TYPE_2 = 2; //内部培训

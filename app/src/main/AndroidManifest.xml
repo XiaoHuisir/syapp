@@ -27,9 +27,16 @@
         <activity android:name=".MainActivity" />
         <activity android:name=".ui.activity.login.LoginActivity" />
         <activity
+            android:name=".ui.activity.ExchangeActivity"
+            android:launchMode="singleTask"
+            android:theme="@style/TopDialogStyleBottom"
+            />
+        <activity
             android:name=".widgets.wxapi.WXEntryActivity"
             android:exported="true" />
+        <activity android:name=".ui.activity.ProductDetailsActivity">
 
+        </activity>
     </application>
 
     <!--友盟统计配置Appkey与Channel-->
