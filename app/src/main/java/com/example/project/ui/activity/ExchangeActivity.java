@@ -1,6 +1,7 @@
 package com.example.project.ui.activity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.project.R;
+import com.example.project.app.Constant;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -38,7 +40,7 @@ public class ExchangeActivity extends Activity {
 
     }
 
-    @OnClick({R.id.cancel, R.id.tv_add, R.id.tv_minus})
+    @OnClick({R.id.cancel, R.id.tv_add, R.id.tv_minus, R.id.btn_exchang})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.cancel:
@@ -49,6 +51,10 @@ public class ExchangeActivity extends Activity {
                 break;
             case R.id.tv_minus:
 
+                break;
+            case R.id.btn_exchang:
+                startActivity(new Intent(ExchangeActivity.this, Submit0rdersActivity.class));
+                finish();
                 break;
         }
     }

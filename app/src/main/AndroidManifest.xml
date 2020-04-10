@@ -18,25 +18,33 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <!--登录-->
         <activity android:name=".ui.activity.login.SplashActivity">
+            <!--login: Activity-->
+            <!--<intent-filter>-->
+            <!--<action android:name="android.intent.action.MAIN" />-->
+            <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--</intent-filter>-->
+        </activity>
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" />
         <activity android:name=".ui.activity.login.LoginActivity" />
+        <!--底部弹窗-->
         <activity
             android:name=".ui.activity.ExchangeActivity"
             android:launchMode="singleTask"
-            android:theme="@style/TopDialogStyleBottom"
-            />
+            android:theme="@style/TopDialogStyleBottom" />
+        <!--微信-->
         <activity
             android:name=".widgets.wxapi.WXEntryActivity"
             android:exported="true" />
-        <activity android:name=".ui.activity.ProductDetailsActivity">
-
-        </activity>
+        <activity android:name=".ui.activity.ProductDetailsActivity"/>
+        <!--提交订单-->
+        <activity android:name=".ui.activity.Submit0rdersActivity"/>
     </application>
 
     <!--友盟统计配置Appkey与Channel-->

@@ -22,6 +22,9 @@
         app:tabGravity="fill"
         app:tabIndicatorHeight="0dp"
         app:tabMaxWidth="0dp"
-        app:tabMode="fixed" />
+        app:tabMode="fixed"
+        app:tabSelectedTextColor="#00f"
+
+    />
 
 </RelativeLayout>

@@ -4,15 +4,31 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     tools:context=".ui.activity.ProductDetailsActivity">
+
+    <LinearLayout
+        android:id="@+id/lin_beak"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal"
+        android:background="#1B82D2"
+    android:gravity="center_vertical"
+        app:layout_constraintTop_toTopOf="parent">
+<ImageView
+    android:id="@+id/im_beak"
+    android:layout_width="30dp"
+    android:layout_height="30dp"
+    android:src="@mipmap/back_hite"
+    android:layout_marginLeft="16dp"
+    />
+    </LinearLayout>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/lin_beak">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -60,23 +76,12 @@
                     android:textColor="#64505050"
                     android:textSize="19sp" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/tv_newjifei"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginTop="6dp"
-                    android:ellipsize="end"
-                    android:maxLines="2"
-                    android:text="10.00手机 K1  全球首款搭载云脑的手机，无广
-告，软件绿色，无弹窗 "
-                    android:textColor="#64505050"
-                    android:textSize="22sp" />
+
             </RelativeLayout>
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="6dp"
+                android:layout_height="1dp"
                 android:background="@color/grey" />
 
             <LinearLayout
@@ -130,6 +135,7 @@
                 android:layout_marginTop="4dp"
                 android:scaleType="fitXY"
                 android:src="@mipmap/pp21" />
+
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="196dp"
@@ -179,7 +185,7 @@
 
                         android:layout_width="24dp"
                         android:layout_height="24dp"
-                        android:src="@drawable/man_01_none" />
+                        android:src="@mipmap/home" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -201,7 +207,7 @@
 
                         android:layout_width="24dp"
                         android:layout_height="24dp"
-                        android:src="@drawable/man_01_none" />
+                        android:src="@mipmap/car" />
 
                     <TextView
                         android:layout_width="wrap_content"

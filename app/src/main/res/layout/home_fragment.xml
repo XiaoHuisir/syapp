@@ -10,20 +10,20 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:background="#642a82e4"
-            android:gravity="center">
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="45dp"-->
+            <!--android:background="#642a82e4"-->
+            <!--android:gravity="center">-->
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="识缘商城"
-                android:textColor="#64ffffff"
-                android:textSize="17sp" />
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="识缘商城"-->
+                <!--android:textColor="#64ffffff"-->
+                <!--android:textSize="17sp" />-->
 
-        </LinearLayout>
+        <!--</LinearLayout>-->
 
 
 
@@ -42,7 +42,7 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="29dp"
-                android:background="#642a82e4"
+                android:background="#FFFFFF"
 
                 >
 
@@ -52,15 +52,15 @@
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="16dp"
-                    android:text="热门销卖"
-                    android:textColor="#64ffffff"
-                    android:textSize="11sp" />
+                    android:text="热门推存"
+                    android:drawableLeft="@mipmap/hot"
+                    android:textColor="#151515"
+                    android:textSize="21sp" />
             </RelativeLayout>
 
             <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="200dp">
-
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/hot_recyler"
                     android:layout_width="match_parent"
@@ -78,7 +78,7 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="29dp"
-                android:background="#642a82e4"
+                android:background="#FFFFFF"
 
                 >
 
@@ -88,9 +88,10 @@
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="16dp"
-                    android:text="热门销卖"
-                    android:textColor="#64ffffff"
-                    android:textSize="11sp" />
+                    android:text="特价热卖"
+                    android:drawableLeft="@mipmap/hot"
+                    android:textColor="#151515"
+                    android:textSize="21sp" />
             </RelativeLayout>
 
             <ScrollView

@@ -18,12 +18,13 @@ import com.umeng.commonsdk.UMConfigure;
 public class MyApp extends Application {
     public static MyApp mApp;
     private float width;//设计图屏幕宽度 单位dp
+
     @Override
     public void onCreate() {
         super.onCreate();
         Log.e("MyApplication", "onCreate: ");
         mApp = this;
-um();
+        um();
     }
 
     private void um() {

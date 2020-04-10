@@ -105,19 +105,19 @@ public class MainActivity extends BaseActivity {
 //            mTl.setClipChildren(true);
 //            mTl.getTabAt(0).select(); //默认选中某项放在加载viewpager之后
 //            mTl.setCurrentItem(2);//
+//            mTl.setClipChildren(true);
 //            mTl
 //            mTl.setChecked(true);
-//            li.setVisibility(View.GONE);
+//            mTl.setVisibility(View.GONE);
         }
         if (id==2){
-//            FragmentTransaction ftran = manager.beginTransaction();
+////            FragmentTransaction ftran = manager.beginTransaction();
 //            ftran.replace(R.id.fl,classifyFragment);
 //            ftran.commit();
-////            mTl.setClipChildren(true);
-////            mTl.getTabAt(1).select();
+//            mTl.setClipChildren(true);
+//            mTl.getTabAt(1).select();
 
-//            ftran.replace(R.id.fl,homeFragment);
-//            ftran.commit();
+
             targetBottomPosition = 1;
             if (currentBottomPosition == 1) {
                 return;
@@ -128,6 +128,11 @@ public class MainActivity extends BaseActivity {
             }
             ftran.show(fragmentList.get(targetBottomPosition)).commit();
             currentBottomPosition = 1;
+            mTl.setSelected(true);
+//            mTl.setClipChildren(true);
+            mTl.getTabAt(1).select();
+
+
         }
     }
 
