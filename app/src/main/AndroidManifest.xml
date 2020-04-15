@@ -20,7 +20,7 @@
         android:theme="@style/AppTheme">
         <!--登录-->
         <activity android:name=".ui.activity.login.SplashActivity">
-            login: Activity
+            <!--login: Activity-->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -53,6 +53,15 @@
         <activity android:name=".ui.activity.IineItemActivity" />
         <!--完成订单-->
         <activity android:name=".ui.activity.CompleteOrderActivity" />
+        <!--个人详情（相关信息）-->
+        <activity android:name=".ui.activity.DetailsActivity" />
+        <!--提现记录列表-->
+        <activity android:name=".ui.activity.RecordListActivity" />
+        <!--购物积分提现-->
+        <activity android:name=".ui.activity.ShopWBActivity" />
+        <!--手机验证-->
+        <activity android:name=".ui.activity.VerfiyActivity" />
+
     </application>
 
     <!--友盟统计配置Appkey与Channel-->

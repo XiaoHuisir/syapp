@@ -10,7 +10,7 @@ import com.example.project.base.BaseActivity;
 import com.example.project.interfaces.IBasePresenter;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
+
 
 public class CompleteOrderActivity extends BaseActivity implements View.OnClickListener {
     @BindView(R.id.btn_view_details)
