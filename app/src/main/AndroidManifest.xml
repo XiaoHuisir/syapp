@@ -20,17 +20,17 @@
         android:theme="@style/AppTheme">
         <!--登录-->
         <activity android:name=".ui.activity.login.SplashActivity">
-            <!--login: Activity-->
-            <!--<intent-filter>-->
-            <!--<action android:name="android.intent.action.MAIN" />-->
-            <!--<category android:name="android.intent.category.LAUNCHER" />-->
-            <!--</intent-filter>-->
-        </activity>
-        <activity android:name=".MainActivity">
+            login: Activity
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".MainActivity">
+            <!--<intent-filter>-->
+            <!--<action android:name="android.intent.action.MAIN" />-->
+            <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--</intent-filter>-->
         </activity>
         <activity android:name=".ui.activity.login.LoginActivity" />
         <!--底部弹窗-->
@@ -42,9 +42,17 @@
         <activity
             android:name=".widgets.wxapi.WXEntryActivity"
             android:exported="true" />
-        <activity android:name=".ui.activity.ProductDetailsActivity"/>
+        <activity android:name=".ui.activity.ProductDetailsActivity" />
         <!--提交订单-->
-        <activity android:name=".ui.activity.Submit0rdersActivity"/>
+        <activity android:name=".ui.activity.Submit0rdersActivity" />
+        <!--（有）选中收货地址-->
+        <activity android:name=".ui.activity.SelectAddressActivity" />
+        <!--添加收货地址-->
+        <activity android:name=".ui.activity.AddressMessage" />
+        <!--订单详情-->
+        <activity android:name=".ui.activity.IineItemActivity" />
+        <!--完成订单-->
+        <activity android:name=".ui.activity.CompleteOrderActivity" />
     </application>
 
     <!--友盟统计配置Appkey与Channel-->

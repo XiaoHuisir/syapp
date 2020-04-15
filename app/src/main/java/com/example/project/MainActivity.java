@@ -1,7 +1,9 @@
 package com.example.project;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.PersistableBundle;
+import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -10,6 +12,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.PopupWindow;
 
+import com.example.project.app.Constant;
 import com.example.project.base.BaseActivity;
 import com.example.project.interfaces.IBasePresenter;
 import com.example.project.ui.fragment.ClassifyFragment;
@@ -62,6 +65,7 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void initView() {
         initFragment();
+
         manager.beginTransaction().add(R.id.fl, fragmentList.get(0)).commit();
         mTl.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
@@ -69,8 +73,6 @@ public class MainActivity extends BaseActivity {
                 int position = tab.getPosition();
                 curType = position;
                 showFragment(position);
-
-
             }
 
             @Override
@@ -83,15 +85,16 @@ public class MainActivity extends BaseActivity {
 
             }
         });
+
     }
+
 
     @Override
     protected void initData() {
+            //TODO 这里做的跳转处理 （initData 方法里的都是跳转处理）
         int id = getIntent().getIntExtra("id", 0);
-            FragmentTransaction ftran = manager.beginTransaction();
-        if (id==1) {
-//            ftran.replace(R.id.fl,homeFragment);
-//            ftran.commit();
+        FragmentTransaction ftran = manager.beginTransaction();
+        if (id == 1) {
             targetBottomPosition = 0;
             if (currentBottomPosition == 0) {
                 return;
@@ -102,21 +105,9 @@ public class MainActivity extends BaseActivity {
             }
             ftran.show(fragmentList.get(targetBottomPosition)).commit();
             currentBottomPosition = 0;
-//            mTl.setClipChildren(true);
-//            mTl.getTabAt(0).select(); //默认选中某项放在加载viewpager之后
-//            mTl.setCurrentItem(2);//
-//            mTl.setClipChildren(true);
-//            mTl
-//            mTl.setChecked(true);
-//            mTl.setVisibility(View.GONE);
-        }
-        if (id==2){
-////            FragmentTransaction ftran = manager.beginTransaction();
-//            ftran.replace(R.id.fl,classifyFragment);
-//            ftran.commit();
-//            mTl.setClipChildren(true);
-//            mTl.getTabAt(1).select();
 
+        }
+        if (id == 2) {
 
             targetBottomPosition = 1;
             if (currentBottomPosition == 1) {
@@ -159,6 +150,7 @@ public class MainActivity extends BaseActivity {
 
 
     }
+
     private void showFragment(int type) {
         FragmentTransaction fragmentTransaction = manager.beginTransaction();
         switch (type) {

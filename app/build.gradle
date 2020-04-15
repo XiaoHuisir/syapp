@@ -4,7 +4,7 @@ android {
     //签名信息配置
     signingConfigs {
         android_studio_app {
-            keyAlias 'key'
+            keyAlias 'key0'
             keyPassword '111111'
             storeFile file('E:/CIO_TASK/syapp/zh.jks')
             storePassword '111111'
@@ -91,9 +91,11 @@ dependencies {
     implementation 'com.jcodecraeer:xrecyclerview:1.5.9'
     implementation 'com.squareup.okhttp3:logging-interceptor:3.6.0'
     implementation 'com.alibaba:fastjson:1.1.68.android'
-//友盟
+    //友盟
     implementation 'com.umeng.sdk:common:latest.integration'
     implementation 'com.umeng.sdk:analytics:latest.integration'
     //微信login
     implementation 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+'
+    //年月日时分 （选中器）
+    implementation 'com.bigkoo:pickerview:2.1.1'
 }

@@ -31,11 +31,12 @@
         <item name="android:windowIsTranslucent">true</item>
     </style>
 
-    <!---->
+    <!--弹窗 ：AnimBottom-->
     <style name="AnimBottom" parent="@android:style/Animation">
         <item name="android:windowEnterAnimation">@anim/push_bottom_in</item>
         <item name="android:windowExitAnimation">@anim/push_bottom_out</item>
     </style>
+
     <style name="TopDialogStyleBottom" parent="android:Theme.Dialog">
         <item name="android:windowAnimationStyle">@style/AnimBottom</item>
         <item name="android:windowFrame">@null</item>
@@ -52,4 +53,5 @@
         <!-- 模糊 -->
         <item name="android:windowSoftInputMode">adjustPan|stateHidden</item>
     </style>
+
 </resources>

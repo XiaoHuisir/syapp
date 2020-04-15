@@ -1,6 +1,7 @@
 package com.example.project.ui.fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.icu.text.IDNA;
 import android.media.Image;
 import android.os.Bundle;
@@ -15,13 +16,17 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.example.project.R;
+import com.example.project.adapter.FragmentApader;
 import com.example.project.adapter.HomeAdapter;
+import com.example.project.adapter.ShowClassAdapter;
 import com.example.project.base.BaseFragment;
 import com.example.project.bean.InfoBean;
 import com.example.project.interfaces.IBasePresenter;
+import com.example.project.ui.activity.ProductDetailsActivity;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.Transformer;
+import com.youth.banner.listener.OnBannerListener;
 import com.youth.banner.loader.ImageLoader;
 
 import java.util.ArrayList;
@@ -42,6 +47,7 @@ public class HomeFragment extends BaseFragment {
     private ArrayList<InfoBean> rl;
     private ArrayList<Integer> list_path;
     private ArrayList<String> list_title;
+    private ShowClassAdapter showClassAdapter;
 
 
     @Override
@@ -62,19 +68,20 @@ public class HomeFragment extends BaseFragment {
         hotRecyler.setLayoutManager(layoutManager);
 
 
-        GridLayoutManager layoutManager1 = new GridLayoutManager(context,2);
+        GridLayoutManager layoutManager1 = new GridLayoutManager(context, 2);
 //        layoutManager1.setOrientation(LinearLayoutManager.v);
         saleRecyler.setLayoutManager(layoutManager1);
         rl = new ArrayList<>();
-        for (int i = 0; i <4
+        for (int i = 0; i < 4
                 ; i++) {
-            InfoBean infoBean = new InfoBean("这是商品"+i,6000,R.drawable.exhibition_bg);
+            InfoBean infoBean = new InfoBean("这是商品" + i, 6000, R.mipmap.xiao18);
             rl.add(infoBean);
         }
 
-        homeAdapter = new HomeAdapter(rl,context);
+        homeAdapter = new HomeAdapter(rl, context);
         saleRecyler.setAdapter(homeAdapter);
         hotRecyler.setAdapter(homeAdapter);
+
     }
 
     private void initbann() {
@@ -83,7 +90,7 @@ public class HomeFragment extends BaseFragment {
         //放标题的集合
         list_title = new ArrayList<>();
 
-        list_path.add(R.mipmap.home);
+        list_path.add(R.mipmap.xiao18);
         list_path.add(R.mipmap.home1);
         list_path.add(R.mipmap.home);
         list_path.add(R.mipmap.home1);
@@ -110,18 +117,24 @@ public class HomeFragment extends BaseFragment {
                 //以上内容都可写成链式布局，这是轮播图的监听。比较重要。方法在下面。
                 //必须最后调用的方法，启动轮播图。
                 .start();
+//        轮播点击事件
 
-
+        ban.setOnBannerListener(new OnBannerListener() {
+            @Override
+            public void OnBannerClick(int position) {
+                startActivity(new Intent(context, ProductDetailsActivity.class));
+                getActivity().finish();
+            }
+        });
     }
 
     //自定义的图片加载器
     private class MyLoader extends ImageLoader {
         @Override
         public void displayImage(Context context, Object path, ImageView imageView) {
-            Glide.with(context).load( path).into(imageView);
+            Glide.with(context).load(path).into(imageView);
         }
     }
-
 
 
     @Override
