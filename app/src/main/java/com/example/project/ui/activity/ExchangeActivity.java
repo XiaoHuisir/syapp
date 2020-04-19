@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -19,10 +20,10 @@ import butterknife.OnClick;
 public class ExchangeActivity extends Activity {
     @BindView(R.id.cancel)
     View cancel;
-    @BindView(R.id.tv_add)
-    TextView tvAdd;
-    @BindView(R.id.tv_minus)
-    TextView tvMinus;
+    @BindView(R.id.im_add)
+    ImageView imAdd;
+    @BindView(R.id.im_jian)
+    ImageView imMinus;
     @BindView(R.id.btn_exchang)
     Button btnExchang;
 
@@ -40,16 +41,16 @@ public class ExchangeActivity extends Activity {
 
     }
 
-    @OnClick({R.id.cancel, R.id.tv_add, R.id.tv_minus, R.id.btn_exchang})
+    @OnClick({R.id.cancel, R.id.btn_exchang, R.id.im_jian, R.id.im_add})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.cancel:
                 finish();
                 break;
-            case R.id.tv_add:
+            case R.id.im_add:
 
                 break;
-            case R.id.tv_minus:
+            case R.id.im_jian:
 
                 break;
             case R.id.btn_exchang:

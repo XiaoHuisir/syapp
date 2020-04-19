@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import com.example.project.R;
 import com.example.project.base.BaseActivity;
@@ -14,10 +15,9 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class IineItemActivity extends BaseActivity {
-    @BindView(R.id.image_back)
-    ImageView imageBack;
+
     @BindView(R.id.lin_return)
-    LinearLayout linreturn;
+    RelativeLayout linreturn;
 
     @Override
     protected IBasePresenter getPresenter() {

@@ -3,37 +3,45 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/line_gray"
+    android:background="@color/whitess"
     android:orientation="vertical"
     tools:context=".ui.activity.AddressMessage">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_50"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
+        android:layout_height="@dimen/dp_48"
+        android:background="@color/whitess">
+
+        <ImageView
+            android:layout_width="@dimen/dp_40"
+            android:layout_height="@dimen/dp_40"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dp_20"
+            android:src="@mipmap/back_hui" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/dp_16"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
             android:text="添加收货地址"
-            android:textColor="#64505050"
-            android:textSize="26sp" />
+            android:textColor="@color/blackss"
+            android:textSize="@dimen/sp_21" />
 
-    </LinearLayout>
+    </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="1dp"
         android:background="@color/white"
         android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="44dp"
-            android:layout_marginLeft="12dp"
+            android:layout_height="48dp"
+            android:layout_marginLeft="20dp"
             android:layout_marginRight="12dp"
             android:background="@color/white">
 
@@ -64,8 +72,8 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="44dp"
-            android:layout_marginLeft="12dp"
+            android:layout_height="48dp"
+            android:layout_marginLeft="20dp"
             android:layout_marginRight="12dp">
 
             <TextView
@@ -95,8 +103,8 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="44dp"
-            android:layout_marginLeft="12dp"
+            android:layout_height="48dp"
+            android:layout_marginLeft="20dp"
             android:layout_marginRight="12dp">
 
             <TextView
@@ -127,12 +135,12 @@
 
     <Button
         android:id="@+id/btn_hold_site"
-        android:layout_width="@dimen/dp_280"
-        android:layout_height="45dp"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="@dimen/dp_50"
+        android:layout_marginTop="@dimen/dp_64"
         android:background="@drawable/btn_bluess"
         android:text="保存收货地址"
-        android:textColor="@color/white"
-        android:textSize="14sp" />
+        android:textColor="#FFF"
+        android:textSize="24sp" />
 </LinearLayout>

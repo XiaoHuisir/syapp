@@ -12,6 +12,7 @@ import com.example.project.app.MyApp;
 import com.example.project.base.BaseActivity;
 import com.example.project.interfaces.IBasePresenter;
 import com.example.project.utils.SharedPreferencesUtil;
+
 //implements VersionConstract.View
 public class SplashActivity extends BaseActivity {
 
@@ -21,10 +22,11 @@ public class SplashActivity extends BaseActivity {
      * 处理初始化操作
      */
     @Override
-    public void initView(){
+    public void initView() {
 
     }
-//new VersionPersenter();
+
+    //new VersionPersenter();
     @Override
     protected IBasePresenter getPresenter() {
         return null;
@@ -39,9 +41,9 @@ public class SplashActivity extends BaseActivity {
     protected void initData() {
         String token = SharedPreferencesUtil.getToken(MyApp.mApp);
         Intent intent = new Intent();
-        if(TextUtils.isEmpty(token)){
+        if (TextUtils.isEmpty(token)) {
             intent.setClass(this, LoginActivity.class);
-        }else{
+        } else {
             Constant.token = token;
             intent.setClass(this, MainActivity.class);
         }

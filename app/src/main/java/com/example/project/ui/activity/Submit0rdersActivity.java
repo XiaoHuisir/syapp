@@ -18,9 +18,11 @@ public class Submit0rdersActivity extends BaseActivity {
 
     @BindView(R.id.re_site_ok)
     RelativeLayout reSiteOk;
+    @BindView(R.id.lin_one)
+    RelativeLayout linOne;
     @BindView(R.id.btn_exchang_ok)
     Button btnExchangOk;
-    private RelativeLayout reTime;
+
 
     @Override
     protected IBasePresenter getPresenter() {
@@ -32,19 +34,9 @@ public class Submit0rdersActivity extends BaseActivity {
         return R.layout.activity_submitorder;
     }
 
-    @Override
-    protected void initView() {
 
-
-    }
-
-    @Override
-    protected void initData() {
-
-    }
-
-
-    @OnClick({R.id.re_site_ok, R.id.btn_exchang_ok})
+    //TODO
+    @OnClick({R.id.re_site_ok, R.id.btn_exchang_ok, R.id.lin_one})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.re_site_ok: //有 地址管理
@@ -55,6 +47,9 @@ public class Submit0rdersActivity extends BaseActivity {
             case R.id.btn_exchang_ok: //有 提交订单
                 Intent intent1 = new Intent(context, CompleteOrderActivity.class);
                 startActivity(intent1);
+                finish();
+                break;
+            case R.id.lin_one:
                 finish();
                 break;
         }

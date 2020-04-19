@@ -2,6 +2,7 @@ package com.example.project.interfaces;
 
 
 import com.example.project.bean.LoginBean;
+import com.example.project.bean.LoginsBean;
 
 import java.util.Map;
 
@@ -17,10 +18,20 @@ import retrofit2.http.POST;
 
 public interface Api {
 
+    //TODO shiyuan
+    //---------------------------------------
+    @POST("doLoginByPhone_number")
+    @FormUrlEncoded
+    Flowable<LoginsBean> logins(@Field("phone_number") String mobile,@Field("password")String password);
+
+    //----------------------------------------
+
     @POST("index/user/login")
     @FormUrlEncoded
     Flowable<LoginBean> login(@Field("mobile") String mobile, @Field("password") String password);
-//
+
+
+    //
 //    @POST("index/train/index")
 //    @FormUrlEncoded
 //    Flowable<IndexBean> getIndex(@Header("x-access-token") String token, @FieldMap Map<String, String> map);

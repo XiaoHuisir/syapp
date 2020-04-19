@@ -3,26 +3,44 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#64f3f1f1"
+    android:background="@color/whitess"
     android:orientation="vertical"
     tools:context=".ui.activity.SelectAddressActivity">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_50"
-        android:orientation="horizontal"
+        android:layout_height="@dimen/dp_48"
 
-        android:textColor="@color/white">
+        android:textColor="@color/whitess">
+
+        <ImageView
+            android:id="@+id/im_break_select"
+            android:layout_width="@dimen/dp_40"
+            android:layout_height="@dimen/dp_40"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dp_20"
+            android:src="@mipmap/back_hui" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="@dimen/dp_15"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
             android:text="选择收货地址"
             android:textColor="@color/black"
-            android:textSize="16sp" />
-    </LinearLayout>
+            android:textSize="@dimen/sp_21" />
+
+        <TextView
+            android:id="@+id/tv_add_site"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/dp_20"
+            android:text="添加新地址"
+            android:textColor="@color/gray_g"
+            android:textSize="13sp" />
+    </RelativeLayout>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -36,27 +54,6 @@
             <android.support.v7.widget.RecyclerView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
-
-            <Button
-                android:id="@+id/btn_exchang"
-                android:layout_width="@dimen/dp_177"
-                android:layout_height="45dp"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="@dimen/dp_44"
-                android:background="@drawable/btn_bluess"
-                android:text="选择该收货地址"
-                android:textColor="@color/white"
-                android:textSize="16sp" />
-
-            <TextView
-                android:id="@+id/tv_add_site"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="@dimen/dp_19"
-                android:text="添加收货地址"
-                android:textColor="#64505050"
-                android:textSize="@dimen/sp_23" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

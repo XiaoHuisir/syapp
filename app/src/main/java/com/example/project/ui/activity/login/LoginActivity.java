@@ -20,9 +20,12 @@ import com.example.project.app.Constant;
 import com.example.project.app.MyApp;
 import com.example.project.base.BaseActivity;
 import com.example.project.bean.LoginBean;
+import com.example.project.bean.LoginsBean;
 import com.example.project.interfaces.IBasePresenter;
 import com.example.project.interfaces.contract.LoginContract;
+import com.example.project.interfaces.contract.LoginsContract;
 import com.example.project.presenter.login.LoginPresenter;
+import com.example.project.presenter.login.LoginsPresenter;
 import com.example.project.utils.SharedPreferencesUtil;
 import com.tencent.mm.opensdk.modelmsg.SendAuth;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
@@ -33,7 +36,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 
-public class LoginActivity extends BaseActivity implements LoginContract.View {
+public class LoginActivity extends BaseActivity implements LoginsContract.Views {
 
     @BindView(R.id.ed_phone)
     EditText edPhone;
@@ -52,10 +55,12 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
     private int code;
     IWXAPI api; //微信api
 
-    @Override
-    protected IBasePresenter getPresenter() {
-        return new LoginPresenter();
-    }
+//TODO
+
+//    @Override
+//    protected IBasePresenter getPresenter() {
+//        return new LoginPresenter();
+//    }
 
     @Override
     protected int getLayoutId() {
@@ -73,8 +78,8 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
                 edPw.setText(pw);
             }
         }
-//        edPhone.setText("18701420943");
-//        edPw.setText("18701420943");
+        edPhone.setText("18500398400");
+        edPw.setText("123456");
 //        edPhone.setFocusable(false);
 //        edPw.setFocusable(false);
 
@@ -82,12 +87,19 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
         edPw.setInputType(InputType.TYPE_TEXT_VARIATION_PASSWORD | InputType.TYPE_CLASS_TEXT);//设置密码不可见
 
     }
-@OnClick({R.id.btn_login, R.id.btn_show, R.id.ed_pw, R.id.ed_phone,R.id.wxlogin})
+
+    @Override
+    protected IBasePresenter getPresenter() {
+        return new LoginsPresenter();
+    }
+
+
+    @OnClick({R.id.btn_login, R.id.btn_show, R.id.ed_pw, R.id.ed_phone, R.id.wxlogin})
     public void onViewClicked(View view) {
         switch (view.getId()) {
-            case  R.id.wxlogin://微信登录
+            case R.id.wxlogin://微信登录
                 loginWX();
-                Toast.makeText(context,"欢迎使用微信三方登录",Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "欢迎使用微信三方登录", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.ed_pw:
 
@@ -113,10 +125,13 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
                     }
                     return;
                 }
-                if(mobile.equals("123")&&password.equals("123")){
-                    context.startActivity(new Intent(context,MainActivity.class));
-                }
-//                ((LoginPresenter) mPresenter).login(mobile, password);
+//                if (mobile.equals("123") && password.equals("123")) {
+//                    context.startActivity(new Intent(context, MainActivity.class));
+                ((LoginsPresenter) mPresenter).logins(mobile, password);
+//     TODO
+//
+//      ((LoginPresenter) mPresenter).login(mobile, password);
+
                 break;
             case R.id.btn_show:
 
@@ -136,7 +151,8 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
 
         }
     }
-    private void loginWX(){
+
+    private void loginWX() {
 
         api = WXAPIFactory.createWXAPI(this, "wxf03d722bd25a1519", true);
         SendAuth.Req req = new SendAuth.Req();
@@ -145,19 +161,27 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
         api.sendReq(req);
     }
 
+    //TODO
+//    @Override
+//    public void loginReturn(LoginBean result) {
+//        code = result.getCode();
+//        if (code == 10000) {
+//            SharedPreferencesUtil.addUserToken(context, result.getData().getUserToken());
+//            Constant.token = result.getData().getUserToken();
+//            Intent intent = new Intent();
+//            intent.setClass(this, MainActivity.class);
+//            startActivity(intent);
+//            finish();
+//        } else {
+//            Toast.makeText(context, result.getMsg(), Toast.LENGTH_SHORT).show();
+//        }
+//    }
     @Override
-    public void loginReturn(LoginBean result) {
-        code = result.getCode();
-        if (code == 10000) {
-            SharedPreferencesUtil.addUserToken(context, result.getData().getUserToken());
-            Constant.token = result.getData().getUserToken();
-            Intent intent = new Intent();
-            intent.setClass(this, MainActivity.class);
-            startActivity(intent);
-            finish();
-        } else {
-            Toast.makeText(context, result.getMsg(), Toast.LENGTH_SHORT).show();
-        }
+    public void loginsReturn(LoginsBean result) {
+        Intent intent = new Intent();
+        intent.setClass(this, MainActivity.class);
+        startActivity(intent);
+        finish();
     }
 
     //关闭指定文本输入框的软键盘
@@ -171,7 +195,6 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
         InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(edPhone.getWindowToken(), 0);
     }
-
 
 
 }

@@ -6,11 +6,13 @@
     <color name="grey">#C7C7C7</color>
     <color name="colorbul">#4b9c9b</color>
     <color name="white">#ffffff</color>
+    <color name="whitess">#F4F4F4</color>
     <color name="colorgenn">#A9E16B</color>
     <color name="huang_se">#FFD7AB70</color>
     <color name="weiwancheng">#FFE1E3ED</color>
     <color name="black">#000000</color>
     <color name="blacks">#FF000000</color>
+    <color name="blackss">#151515</color>
     <color name="shop">#00837B</color>
     <color name="blackmangement">#333333</color>
     <color name="greyhous">#999999</color>
@@ -31,4 +33,6 @@
     <color name="col_pop_bg">#50000000</color>
     <color name="main_gray">#9A9A9A</color>
     <color name="list_divider_color">#DADADA</color>
+    <color name="gray_g">#9c9c9c</color>
+
 </resources>

@@ -9,9 +9,9 @@ public class Constant {
 
     //    public static final String URl = "http://123.206.58.124:8025/index/user/login";
     public static final String URl = "http://sc.minxj.com/api/";
-    public static final String BaseUrl = "http://123.206.58.124:8025/";
+    //    public static final String BaseUr = "http://123.206.58.124:8025/"; //TODO IW
     public static final String IndexBaseUrl = "http://www.sosoapi.com/pass/mock/";
-
+    public static final String BaseUrl = "http://192.168.124.13:8080/";
     public static final String ResUrl = "http://images.ciotimes.com/"; //七牛图片地址
 
     //网络缓存的地址
@@ -19,8 +19,8 @@ public class Constant {
 
     public static final String PATH_CACHE = PATH_DATA + "/cilo";
 
-    public static final String PATH_PDF = MyApp.mApp.getFilesDir().getAbsolutePath()+"/pdfs/";
-    public static final String PATH_APK = MyApp.mApp.getFilesDir().getAbsolutePath()+"/apks/";
+    public static final String PATH_PDF = MyApp.mApp.getFilesDir().getAbsolutePath() + "/pdfs/";
+    public static final String PATH_APK = MyApp.mApp.getFilesDir().getAbsolutePath() + "/apks/";
     public static String DEFAULT_SAVE_IMAGE_PATH = Environment
             .getExternalStorageDirectory()
             + File.separator
