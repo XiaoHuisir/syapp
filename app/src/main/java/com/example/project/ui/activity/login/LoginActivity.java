@@ -178,6 +178,9 @@ public class LoginActivity extends BaseActivity implements LoginsContract.Views 
 //    }
     @Override
     public void loginsReturn(LoginsBean result) {
+        String user_name = result.getUser_name();
+        Toast.makeText(context, "" + user_name, Toast.LENGTH_SHORT).show();
+//        SharedPreferencesUtil.addUserToken(context,);// 添加保存token TODO ？？？
         Intent intent = new Intent();
         intent.setClass(this, MainActivity.class);
         startActivity(intent);
@@ -186,7 +189,6 @@ public class LoginActivity extends BaseActivity implements LoginsContract.Views 
 
     //关闭指定文本输入框的软键盘
     private void closeKeyboard() {
-
         InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(edPw.getWindowToken(), 0);
     }

@@ -11,6 +11,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.PopupWindow;
+import android.widget.Toast;
 
 import com.example.project.app.Constant;
 import com.example.project.base.BaseActivity;
@@ -64,12 +65,16 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void initView() {
+//                    Bundle arguments = getArguments();
+//                    int typeID = arguments.getInt("typeID");
         initFragment();
 
         manager.beginTransaction().add(R.id.fl, fragmentList.get(0)).commit();
         mTl.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
+
+
                 int position = tab.getPosition();
                 curType = position;
                 showFragment(position);
@@ -88,10 +93,14 @@ public class MainActivity extends BaseActivity {
 
     }
 
+    private Bundle getArguments() {
+        return getArguments();
+    }
+
 
     @Override
     protected void initData() {
-            //TODO 这里做的跳转处理 （initData 方法里的都是跳转处理）
+        //TODO 这里做的跳转处理 （initData 方法里的都是跳转处理）
         int id = getIntent().getIntExtra("id", 0);
         FragmentTransaction ftran = manager.beginTransaction();
         if (id == 1) {

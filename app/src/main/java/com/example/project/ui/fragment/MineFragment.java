@@ -1,22 +1,24 @@
 package com.example.project.ui.fragment;
 
 import android.content.Intent;
-import android.os.Bundle;
-import android.view.LayoutInflater;
+import android.os.CountDownTimer;
+import android.text.TextUtils;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.example.project.R;
+import com.example.project.app.Constant;
+import com.example.project.app.MyApp;
 import com.example.project.base.BaseFragment;
 import com.example.project.interfaces.IBasePresenter;
 import com.example.project.ui.activity.DetailsActivity;
+import com.example.project.ui.activity.login.LoginActivity;
+import com.example.project.utils.SharedPreferencesUtil;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
-import butterknife.Unbinder;
 
 public class MineFragment extends BaseFragment {
     @BindView(R.id.lin_shop)
@@ -47,9 +49,46 @@ public class MineFragment extends BaseFragment {
         return R.layout.mine_fragment;
     }
 
+
     @Override
     protected void initView() {
+        countDown();//我的模块登录状态初始化处理（判断是否登录）
 
+
+    }
+
+    /**
+     * 倒计时显示
+     */
+    private void countDown() {
+        CountDownTimer timer = new CountDownTimer(3000, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+            }
+
+            @Override
+            public void onFinish() {
+//                Toast.makeText(context, "时间就是生命", Toast.LENGTH_SHORT).show();
+                StateHandling();  //用Token进行判断用户是否是登录状态
+            }
+        }.start();
+
+
+    }
+
+    private void StateHandling() {
+        String token = SharedPreferencesUtil.getToken(MyApp.mApp);
+        Intent intent = new Intent();
+        if (TextUtils.isEmpty(token)) {
+            SharedPreferencesUtil.deleteToken(MyApp.mApp);
+            intent.setClass(context, LoginActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+            getActivity().finish();
+        } else {
+            Constant.token = token;
+//            intent.setClass(context, MainActivity.class);
+        }
     }
 
     @Override

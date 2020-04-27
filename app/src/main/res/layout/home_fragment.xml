@@ -5,8 +5,7 @@
     android:layout_height="match_parent">
 
 
-    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -23,86 +22,20 @@
                 android:layout_height="160dp"
                 android:background="#FFFFFF" />
 
-            <LinearLayout
+
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
-                android:background="@color/line_gray"
-                android:orientation="vertical">
 
-                <RelativeLayout
+                android:background="@color/whites">
+
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/hot_recyler"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:background="#FFFFFF">
+                    android:layout_height="wrap_content" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginLeft="16dp"
-                        android:drawableLeft="@mipmap/hot"
-                        android:gravity="center_vertical"
-                        android:text="热门推存"
-                        android:textColor="#151515"
-                        android:textSize="14sp" />
-                </RelativeLayout>
-
-                <ScrollView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="6dp"
-                    android:background="@color/white">
-
-                    <android.support.v7.widget.RecyclerView
-                        android:id="@+id/hot_recyler"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-                </ScrollView>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
-                android:orientation="vertical">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:background="#FFFFFF"
-
-                    >
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginLeft="16dp"
-                        android:drawableLeft="@mipmap/hot"
-                        android:gravity="center_vertical"
-                        android:text="特价热卖"
-                        android:textColor="#151515"
-                        android:textSize="14sp" />
-                </RelativeLayout>
-
-                <ScrollView
-                    android:layout_width="match_parent"
-                    android:layout_height="400dp"
-                    android:layout_marginTop="6dp"
-                    android:background="@color/white">
-
-                    <android.support.v7.widget.RecyclerView
-                        android:id="@+id/sale_recyler"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="6dp" />
-                </ScrollView>
-
-            </LinearLayout>
+            </RelativeLayout>
         </LinearLayout>
-
     </ScrollView>
 </android.support.v4.widget.SwipeRefreshLayout>

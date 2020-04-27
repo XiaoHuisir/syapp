@@ -1,8 +1,15 @@
 package com.example.project.interfaces;
 
 
+import com.example.project.bean.AnddressBean;
+import com.example.project.bean.ClassBean;
+import com.example.project.bean.ClassListBean;
+import com.example.project.bean.HomeBean;
 import com.example.project.bean.LoginBean;
 import com.example.project.bean.LoginsBean;
+import com.example.project.bean.ProductDetailsBean;
+import com.example.project.bean.SubmitBean;
+import com.example.project.bean.SubmitListBean;
 
 import java.util.Map;
 
@@ -18,19 +25,58 @@ import retrofit2.http.POST;
 
 public interface Api {
 
-    //TODO shiyuan
+
     //---------------------------------------
+//login
     @POST("doLoginByPhone_number")
     @FormUrlEncoded
-    Flowable<LoginsBean> logins(@Field("phone_number") String mobile,@Field("password")String password);
+    Flowable<LoginsBean> logins(@Field("phone_number") String mobile, @Field("password") String password);
+
+    //home
+    @POST("toIndex")
+//    @FormUrlEncoded
+    Flowable<HomeBean> home();
+
+    //商品 详情
+    @POST("toItemsDetail")
+    @FormUrlEncoded
+    Flowable<ProductDetailsBean> ProductDetails(@Field("idsa") int id);
+
+
+    //classify
+    @POST("toCateIndex")
+//    @FormUrlEncoded
+    Flowable<ClassBean> clasify();
+
+    // classifylist
+    @POST("toCatePage")
+    @FormUrlEncoded
+    Flowable<ClassListBean> classlist(@Field("cateid") int type);
+
+
+    //订单确认页(地址)
+    @POST("toConfirmOrderList")
+    @FormUrlEncoded
+    Flowable<SubmitBean> submits(@Field("user_name") String user, @Field("idsa") int id);
+
+//toUser_AddressIndex 地址管理list
+
+    //收货地址列表
+    @POST("toUser_AddressIndex")
+    @FormUrlEncoded
+    Flowable<SubmitListBean> submitLists(@Field("user_name") String user);
+
+    //修改收货地址
+    @POST("updateUser_AddressById")
+    @FormUrlEncoded
+    Flowable<AnddressBean> address(@Field("user_name") String user, @Field("name") String name, @Field("id") int id, @Field("is_default") int is_default, @Field("phone") String phone, @Field("address") String address);
 
     //----------------------------------------
+
 
     @POST("index/user/login")
     @FormUrlEncoded
     Flowable<LoginBean> login(@Field("mobile") String mobile, @Field("password") String password);
-
-
     //
 //    @POST("index/train/index")
 //    @FormUrlEncoded

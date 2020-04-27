@@ -4,32 +4,42 @@ import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.widget.Toast;
 
 import com.example.project.R;
 import com.example.project.adapter.FragmentApader;
 import com.example.project.base.BaseFragment;
+import com.example.project.bean.ClassBean;
+import com.example.project.bean.ClassListBean;
 import com.example.project.interfaces.IBasePresenter;
+import com.example.project.interfaces.contract.ClassifyContract;
+import com.example.project.presenter.ClassifyPresenter;
+
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 
-public class ClassifyFragment extends BaseFragment {
+//toCateIndex
+public class ClassifyFragment extends BaseFragment implements ClassifyContract.View {
     @BindView(R.id.tab_classfy)
     TabLayout tabClassfy;
     @BindView(R.id.vp_classfy)
     ViewPager vpClassfy;
 
+    ArrayList<String> strlist = new ArrayList<>(); //tab
 
     List<Fragment> mFragmentList = new ArrayList<>();
 
     List<String> mList = new ArrayList<>();
     private String name;
+    private List<ClassBean.CateListBean> cateList;
 
     @Override
     protected IBasePresenter getPresenter() {
-        return null;
+        return new ClassifyPresenter();
     }
 
     @Override
@@ -39,44 +49,54 @@ public class ClassifyFragment extends BaseFragment {
 
     @Override
     protected void initView() {
-        initbundle();
-        mList.add("手机");
-        mList.add("数码");
-        mList.add("生活");
-        mList.add("电器");
-        mList.add("百货");
-        mList.add("会员");
-        mList.add("学习");
-        mList.add("测试1");
-        mList.add("测试2");
-        mList.add("测试3");
-        for (int i = 0; i < mList.size(); i++) {
-            //返回一个对象
-            Fragment fuYong = ShowClassfyFragment.getFuYong(mList.get(i));
-            // fragment集合添加这个对象，fragment集合就添加了5个fragment
-            mFragmentList.add(fuYong);
-        }
-        //然后是ViewPager适配器，搭配上TabLayout
-        FragmentApader apader =
-                new FragmentApader(getChildFragmentManager(), mFragmentList, mList);
-        vpClassfy.setAdapter(apader);
-        tabClassfy.setupWithViewPager(vpClassfy);
 
     }
 
 
-    private void initbundle() {
-        Bundle arguments = getArguments();
 
-        if (arguments != null) {
 
-            name = arguments.getString("string");
-
-        }
-    }
 
     @Override
     protected void initData() {
+        ((ClassifyPresenter) mPresenter).classify();
 
     }
+
+    @Override
+    public void classifyReturn(ClassBean result) {
+        if (result != null) {
+            Toast.makeText(context, "成功", Toast.LENGTH_SHORT).show();
+//            //TODO ??
+            cateList = result.getCateList();
+
+            for (int i = 0; i < cateList.size(); i++) {
+                String name = cateList.get(i).getName();
+                strlist.add(name);
+            }
+            for (int i = 0; i < cateList.size(); i++) {
+                int cateid = cateList.get(i).getCateid();
+//                tabClassfy.addTab(tabClassfy.newTab().setText(cateList.get(i).getName()).setTag(i));
+
+                ShowClassfyFragment showClassfyFragment = new ShowClassfyFragment(cateid);
+                mFragmentList.add(showClassfyFragment);
+            }
+            //getChildFragmentManager()
+            FragmentApader apader =
+                    new FragmentApader(getFragmentManager(), mFragmentList, strlist);
+            vpClassfy.setAdapter(apader);
+            tabClassfy.setupWithViewPager(vpClassfy);
+        } else {
+            Toast.makeText(context, "失败", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
+    //List
+//    @Override
+//    public void classListReturn(ClassListBean result) {
+//        if (result != null) {
+//            List<ClassListBean.ItemsListBean> itemsList = result.getItemsList();
+//
+//        }
+//    }
 }

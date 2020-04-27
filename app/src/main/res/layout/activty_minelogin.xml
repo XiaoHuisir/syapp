@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <!--  android:background="@drawable/bkg_mien_login"-->
+
+    <ImageView
+        android:id="@+id/imager_break"
+        android:layout_width="@dimen/dp_35"
+        android:layout_height="@dimen/dp_35"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="@dimen/dp_90"
+        android:layout_toRightOf="@id/re_mine_login_zhu"
+        android:src="@drawable/close_evaluated" />
+
+    <RelativeLayout
+        android:id="@+id/re_mine_login_zhu"
+        android:layout_width="@dimen/dp_300"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/imager_break"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:background="@drawable/bkg_mien_login">
+
+
+        <TextView
+            android:id="@+id/tv_telte"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/dp_19"
+            android:text="识缘商城"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp_25"
+            android:textStyle="bold" />
+
+        <RelativeLayout
+            android:id="@+id/re_user"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_60"
+            android:layout_below="@id/tv_telte">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/dp_16"
+                android:text="用户名:"
+                android:textColor="@color/black"
+                android:textSize="@dimen/dp_18" />
+
+            <EditText
+                android:id="@+id/ed_user"
+                android:layout_width="@dimen/dp_150"
+                android:layout_height="@dimen/dp_55"
+                android:layout_centerHorizontal="true"
+                android:background="@null" />
+
+            <View
+                android:layout_width="@dimen/dp_150"
+                android:layout_height="@dimen/dp_1"
+                android:layout_below="@id/ed_user"
+                android:layout_centerHorizontal="true"
+                android:background="@color/line_gray" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/re_pwd"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_60"
+            android:layout_below="@id/re_user">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/dp_16"
+                android:text="密码:"
+                android:textColor="@color/black"
+                android:textSize="@dimen/dp_18" />
+
+            <EditText
+                android:id="@+id/ed_pwd"
+                android:layout_width="@dimen/dp_150"
+                android:layout_height="@dimen/dp_55"
+                android:layout_centerHorizontal="true"
+                android:background="@null" />
+
+            <View
+                android:layout_width="@dimen/dp_150"
+                android:layout_height="@dimen/dp_1"
+                android:layout_below="@id/ed_pwd"
+                android:layout_centerHorizontal="true"
+                android:background="@color/line_gray" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/text_hint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/re_pwd"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/dp_21"
+            android:text="错误提示" />
+
+        <Button
+
+            android:id="@+id/btn_login_mine"
+            android:layout_width="@dimen/dp_100"
+            android:layout_height="40dp"
+            android:layout_below="@id/text_hint"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/dp_17"
+            android:background="@drawable/btn_blue"
+            android:text="登录"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_29"
+            android:layout_below="@id/btn_login_mine"
+            android:layout_marginTop="@dimen/dp_2"
+            android:background="@color/whites" />
+    </RelativeLayout>
+</RelativeLayout>

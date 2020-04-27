@@ -1,41 +1,55 @@
 package com.example.project.ui.fragment;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.Toast;
 
 
 import com.example.project.R;
 import com.example.project.adapter.ShowClassAdapter;
 import com.example.project.base.BaseFragment;
+import com.example.project.bean.ClassBean;
+import com.example.project.bean.ClassListBean;
 import com.example.project.bean.InfoBean;
 import com.example.project.interfaces.IBasePresenter;
+import com.example.project.interfaces.contract.ClassListifyContract;
+import com.example.project.interfaces.contract.ClassifyContract;
+import com.example.project.presenter.ClassListifyPresenter;
+import com.example.project.presenter.ClassifyPresenter;
+import com.example.project.presenter.HomePresenter;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 
-public class ShowClassfyFragment extends BaseFragment {
+@SuppressLint("ValidFragment")
+public class ShowClassfyFragment extends BaseFragment implements ClassListifyContract.View {
 
     @BindView(R.id.recycler_showclassfy)
     RecyclerView recyclerShowclassfy;
+    @BindView(R.id.swipeRefresh)
+    SwipeRefreshLayout swipeRefr;
 
-    private String name;
-    private ArrayList<InfoBean> list;
 
-    //复用
-    public static Fragment getFuYong(String string) {
-        ShowClassfyFragment myFragmentFuYong = new ShowClassfyFragment();
-        Bundle bundle = new Bundle();
-        bundle.putString("string", string);
-        myFragmentFuYong.setArguments(bundle);
-        return myFragmentFuYong;
+    private ArrayList<ClassListBean.ItemsListBean> list;
+    private int type;
+    private ShowClassAdapter showClassAdapter;
+
+    public ShowClassfyFragment(int cateid) {
+        super();
+        this.type = cateid;
     }
+
 
     @Override
     protected IBasePresenter getPresenter() {
-        return null;
+        return new ClassListifyPresenter();
     }
 
     @Override
@@ -45,34 +59,54 @@ public class ShowClassfyFragment extends BaseFragment {
 
     @Override
     protected void initView() {
-        initbun();
-        initrecycler();
+//        initbun();
 
+        initrecycler();
+        //刷新
+        swipeRefr.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                ((ClassListifyPresenter) mPresenter).cifyList(type);
+
+                swipeRefr.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (swipeRefr != null) {
+                            swipeRefr.setRefreshing(false);
+                        }
+                    }
+                }, 2000);
+            }
+        });
     }
 
     private void initrecycler() {
         recyclerShowclassfy.setHasFixedSize(true);
         recyclerShowclassfy.setNestedScrollingEnabled(false);
         recyclerShowclassfy.setLayoutManager(new GridLayoutManager(context, 2));
-
         list = new ArrayList<>();
-        for (int i = 0; i < 8; i++) {
 
-            InfoBean infoBean = new InfoBean("机器人" + i, 1000, R.drawable.exhibition_bg);
-            list.add(infoBean);
 
-        }
-        ShowClassAdapter showClassAdapter = new ShowClassAdapter(context,list);
+        showClassAdapter = new ShowClassAdapter(context, list);
         recyclerShowclassfy.setAdapter(showClassAdapter);
     }
 
-    private void initbun() {
-        Bundle arguments = getArguments();
 
-        if (arguments != null) {
-            name = arguments.getString("string");
+    @Override
+    public void classListReturn(ClassListBean result) {
+        if (result != null) {
+            List<ClassListBean.ItemsListBean> itemsList = result.getItemsList();
+            list.clear();
+            list.addAll(itemsList);
+            showClassAdapter.notifyDataSetChanged();
+        } else {
+            Toast.makeText(context, "分类列表请求失败", Toast.LENGTH_SHORT).show();
+
         }
     }
 
-
+    @Override
+    protected void initData() {
+        ((ClassListifyPresenter) mPresenter).cifyList(type);
+    }
 }

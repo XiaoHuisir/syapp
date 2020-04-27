@@ -12,12 +12,13 @@
         android:layout_width="match_parent"
         android:layout_height="40dp"
         app:tabIndicatorColor="#1B82D2"
-        app:tabSelectedTextColor="#1B82D2"
         app:tabMode="scrollable"
+        app:tabSelectedTextColor="#1B82D2"
         app:tabTextColor="#585858" />
 
     <android.support.v4.view.ViewPager
         android:id="@+id/vp_classfy"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:background="@color/line_gray" />
 </LinearLayout>

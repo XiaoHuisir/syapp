@@ -5,11 +5,13 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+import com.example.project.bean.ClassBean;
+
 import java.util.List;
 
 public class FragmentApader extends FragmentPagerAdapter {
     private List<Fragment> mFragmentList;
-    private List<String> mList;
+    private List<String> mList;//ClassBean.CateListBean
 
     public FragmentApader(FragmentManager fm, List<Fragment> mFragmentList, List<String> mList) {
         super(fm);

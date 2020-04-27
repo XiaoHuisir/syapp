@@ -28,6 +28,7 @@
                 android:id="@+id/im"
                 android:layout_width="match_parent"
                 android:layout_height="155dp"
+                android:scaleType="centerCrop"
                 android:background="@color/red" />
 
             <TextView

@@ -24,7 +24,7 @@ public class MyApp extends Application {
         super.onCreate();
         Log.e("MyApplication", "onCreate: ");
         mApp = this;
-        um();
+        um(); //友盟统计
     }
 
     private void um() {

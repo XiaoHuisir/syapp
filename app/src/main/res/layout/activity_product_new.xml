@@ -133,23 +133,12 @@
                         android:textColor="#585858"
                         android:textSize="14sp" />
                 </LinearLayout>
-                <!--<ImageView-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="260dp"-->
-                <!--android:scaleType="centerCrop"-->
-                <!--android:src="@mipmap/p20" />-->
 
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="260dp"
-                    android:scaleType="centerCrop"
-                    android:src="@mipmap/p20" />
+               <ImageView
+                   android:id="@+id/im_xiang"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content" />
 
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="260dp"
-                    android:scaleType="centerCrop"
-                    android:src="@mipmap/p20" />
             </LinearLayout>
         </ScrollView>
     </LinearLayout>
