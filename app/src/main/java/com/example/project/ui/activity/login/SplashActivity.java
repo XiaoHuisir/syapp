@@ -10,13 +10,18 @@ import com.example.project.R;
 import com.example.project.app.Constant;
 import com.example.project.app.MyApp;
 import com.example.project.base.BaseActivity;
+import com.example.project.bean.LoginTokenBean;
 import com.example.project.interfaces.IBasePresenter;
+import com.example.project.interfaces.contract.LoginTokenContract;
+import com.example.project.presenter.login.LoginTokenPresenter;
 import com.example.project.utils.SharedPreferencesUtil;
 
 //implements VersionConstract.View
-public class SplashActivity extends BaseActivity {
+public class SplashActivity extends BaseActivity implements LoginTokenContract.View {
 
     VideoView videoView;
+    private String msg;
+    private String logintoken;
 
     /**
      * 处理初始化操作
@@ -29,7 +34,7 @@ public class SplashActivity extends BaseActivity {
     //new VersionPersenter();
     @Override
     protected IBasePresenter getPresenter() {
-        return null;
+        return new LoginTokenPresenter();
     }
 
     @Override
@@ -39,17 +44,24 @@ public class SplashActivity extends BaseActivity {
 
     @Override
     protected void initData() {
-        String token = SharedPreferencesUtil.getToken(MyApp.mApp);
+        logintoken = SharedPreferencesUtil.getToken(MyApp.mApp);
+        ((LoginTokenPresenter) mPresenter).logintokens(logintoken);
+
+
+    }
+
+    @Override
+    public void logintokenReaun(LoginTokenBean loginTokenBean) {
+        msg = loginTokenBean.getMsg();
         Intent intent = new Intent();
-        if (TextUtils.isEmpty(token)) {
+        if (msg.equals("001")) {
             intent.setClass(this, LoginActivity.class);
         } else {
-            Constant.token = token;
+            Constant.token = logintoken;
             intent.setClass(this, MainActivity.class);
         }
         startActivity(intent);
         finish();
-
     }
 
 //    @Override

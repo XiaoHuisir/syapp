@@ -59,7 +59,16 @@ public class Submit0rdersActivity extends BaseActivity implements SubmitContract
     private int typeid;
     private int add_price;
     private int num;
+    private boolean indxler = true;
+    private String get_name;
+    private String get_phone;
+    private String get_address;
 
+    private String getname;
+    private String getphone;
+    private String getaddress;
+
+    private int type = 0;
 
     @Override
     protected IBasePresenter getPresenter() {
@@ -79,12 +88,12 @@ public class Submit0rdersActivity extends BaseActivity implements SubmitContract
             case R.id.re_site_ok: //有 地址管理
                 Intent intent = new Intent(context, SelectAddressActivity.class);
                 startActivity(intent);
-
+                finish();
                 break;
             case R.id.re_on: //无 地址管理
                 Intent intent1 = new Intent(context, SelectAddressActivity.class);
                 startActivity(intent1);
-
+                finish();
                 break;
             case R.id.btn_exchangOn: //有 提交订单
                 Intent intent2 = new Intent(context, CompleteOrderActivity.class);
@@ -101,10 +110,23 @@ public class Submit0rdersActivity extends BaseActivity implements SubmitContract
     protected void initView() {
 //        type_id
         typeid = getIntent().getIntExtra("type_id", 0);
-        add_price = getIntent().getIntExtra("add_price", 0);//交易价格
+//        add_price = getIntent().getIntExtra("add_price", 0);//交易价格
         num = getIntent().getIntExtra("num", 0);//交易数量
 
 
+        Intent intent = getIntent();
+        boolean type_0 = intent.getBooleanExtra("type_0", true);
+        get_name = intent.getStringExtra("get_name");
+        get_phone = intent.getStringExtra("get_phone");
+        get_address = intent.getStringExtra("get_address");
+        indxler = type_0;
+
+
+        getname = intent.getStringExtra("getname");
+        getphone = intent.getStringExtra("getphone");
+        getaddress = intent.getStringExtra("getaddress");
+        int indx_0 = intent.getIntExtra("indx_0", 0);
+        type = indx_0;
     }
 
     @Override
@@ -115,6 +137,8 @@ public class Submit0rdersActivity extends BaseActivity implements SubmitContract
 
     @Override
     public void submitRetrun(SubmitBean submitBean) {
+
+
         Integer is_id = submitBean.getUser_address().getId();
         if (is_id != Constant.IS_ID) {
             reOn.setVisibility(View.GONE);
@@ -136,8 +160,8 @@ public class Submit0rdersActivity extends BaseActivity implements SubmitContract
             tvFreight.setText(freight + "积分");
             tvNum.setText("X" + num);
             //add_price
-            textZong.setText(src_price * num + "积分");//总价钱
-            tvJifenOn.setText(src_price * num + "积分");
+            textZong.setText((src_price * num + freight) + "积分");//总价钱
+            tvJifenOn.setText((src_price * num + freight) + "积分");
         }
         SubmitBean.UserAddressBean user_address = submitBean.getUser_address();
         if (user_address != null) {
@@ -146,9 +170,21 @@ public class Submit0rdersActivity extends BaseActivity implements SubmitContract
             String user_name = user_address.getUser_name();//用户账号
             String address = user_address.getAddress();//用户地址
 //            tvOrderNum.setText("订单号 "+phone);
-            txtName.setText(name);
-            textDahao.setText(phone);
-            textDizhi.setText(address);
+            if (indxler == true) {
+                txtName.setText(name);
+                textDahao.setText(phone);
+                textDizhi.setText(address);
+            } else {
+                txtName.setText(get_name);
+                textDahao.setText(get_phone);
+                textDizhi.setText(get_address);
+            }
+            if (type == 100) {
+                txtName.setText(getname);
+                textDahao.setText(getphone);
+                textDizhi.setText(getaddress);
+            }
+
 
         }
     }

@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.example.project.R;
 import com.example.project.adapter.SubmitListAdapter;
+import com.example.project.app.Constant;
 import com.example.project.base.BaseActivity;
 import com.example.project.bean.SubmitListBean;
 import com.example.project.interfaces.IBasePresenter;
@@ -27,8 +28,9 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+
 //toUser_AddressIndex?user_name=sf003
-public class SelectAddressActivity extends BaseActivity implements SubmitListContract.View {
+public class SelectAddressActivity extends BaseActivity implements SubmitListContract.View, SubmitListAdapter.AddressItemClick, SubmitListAdapter.Submit0rdersItemClick {
 
     @BindView(R.id.tv_add_site)
     TextView tvAddSite;
@@ -59,6 +61,9 @@ public class SelectAddressActivity extends BaseActivity implements SubmitListCon
         list = new ArrayList<>();
         reSubmitList.setLayoutManager(new LinearLayoutManager(context));//管理器
         submitListAdapter = new SubmitListAdapter(list);
+        submitListAdapter.itemClick = this;
+        submitListAdapter.submitordersClick = this;
+
         reSubmitList.setAdapter(submitListAdapter);
         shuaxin();
 
@@ -92,7 +97,9 @@ public class SelectAddressActivity extends BaseActivity implements SubmitListCon
 //                finish();
 //                break;
             case R.id.tv_add_site:
-                Intent intent = new Intent(context, AddressMessage.class);
+                Intent intent = new Intent();
+                intent.setClass(context, AddressMessage.class);
+                Constant.CURTYPE = "添加";
                 startActivity(intent);
                 finish();
                 break;
@@ -121,5 +128,32 @@ public class SelectAddressActivity extends BaseActivity implements SubmitListCon
     }
 
 
+    //submitlistadapter AddressMessage 回调方法
+    @Override
+    public void addressclick(SubmitListBean.UserAddressLIstBean listSubmit) {
+        int is_default = listSubmit.getIs_default();
+        Intent intent = new Intent();
+        intent.setClass(context, AddressMessage.class);
+        intent.putExtra("add_ress", listSubmit.getAddress());
+        intent.putExtra("names", listSubmit.getName());
+        intent.putExtra("id_dizhi", listSubmit.getId());
+        intent.putExtra("is_defaults", is_default); //判断是否设置成默认收货地址
+        intent.putExtra("phone", listSubmit.getPhone());
+        Constant.CURTYPE = "编辑";
+        startActivity(intent);
+        finish();
+    }
 
+    //submitlistadapter Submit0rders 回调方法
+    @Override
+    public void Submit0rdersclick(SubmitListBean.UserAddressLIstBean listSubmit) {
+        Intent intent = new Intent();
+        intent.setClass(context, Submit0rdersActivity.class);
+        intent.putExtra("getaddress", listSubmit.getAddress());
+        intent.putExtra("getname", listSubmit.getName());
+        intent.putExtra("getphone", listSubmit.getPhone());
+        intent.putExtra("indx_0", 100);
+        startActivity(intent);
+        finish();
+    }
 }

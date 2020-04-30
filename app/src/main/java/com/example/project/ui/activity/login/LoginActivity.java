@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -35,9 +36,10 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-
+//http://198.168.124.14:8080/user_login
 public class LoginActivity extends BaseActivity implements LoginsContract.Views {
 
+    private static final String TAG = "t";
     @BindView(R.id.ed_phone)
     EditText edPhone;
     @BindView(R.id.ed_pw)
@@ -78,7 +80,7 @@ public class LoginActivity extends BaseActivity implements LoginsContract.Views 
                 edPw.setText(pw);
             }
         }
-        edPhone.setText("18500398400");
+        edPhone.setText("sy001");
         edPw.setText("123456");
 //        edPhone.setFocusable(false);
 //        edPw.setFocusable(false);
@@ -178,13 +180,24 @@ public class LoginActivity extends BaseActivity implements LoginsContract.Views 
 //    }
     @Override
     public void loginsReturn(LoginsBean result) {
-        String user_name = result.getUser_name();
-        Toast.makeText(context, "" + user_name, Toast.LENGTH_SHORT).show();
-//        SharedPreferencesUtil.addUserToken(context,);// 添加保存token TODO ？？？
-        Intent intent = new Intent();
-        intent.setClass(this, MainActivity.class);
-        startActivity(intent);
-        finish();
+        LoginsBean.DataBean data = result.getData();
+        String message = result.getMsg();
+        int code = Integer.parseInt(message);
+        if (code==200) {
+            SharedPreferencesUtil.addUserToken(context, data.getToken());// 添加保存token TODO ？？？
+            Constant.token = result.getData().getToken();
+            Log.i(TAG, "loginsReturn: "+result.getData().getToken());
+            Intent intent = new Intent();
+            intent.setClass(this, MainActivity.class);
+            startActivity(intent);
+            finish();
+        } else {
+            Toast.makeText(context, "登录失败", Toast.LENGTH_SHORT).show();
+        }
+//        data.errorcode
+//        Toast.makeText(context, "" + user_name, Toast.LENGTH_SHORT).show();
+////        SharedPreferencesUtil.addUserToken(context,);// 添加保存token TODO ？？？
+
     }
 
     //关闭指定文本输入框的软键盘

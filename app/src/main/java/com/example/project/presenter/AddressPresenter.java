@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.example.project.app.Constant;
 import com.example.project.base.BasePresenter;
+import com.example.project.bean.AddRBean;
 import com.example.project.bean.AnddressBean;
 import com.example.project.bean.ClassBean;
 import com.example.project.interfaces.contract.AddressContract;
@@ -27,6 +28,31 @@ public class AddressPresenter extends BasePresenter<AddressContract.View>impleme
                                 != null) {
                             if (mView != null) {
                                 mView.addressReaun(anddressBean);
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable t) {
+                        super.onError(t);
+                        Log.d(TAG, "onError: " + t);
+                    }
+                })
+
+        );
+    }
+
+    @Override
+    public void addR(String user, String name, int is_default, String phone, String address) {
+        addSubscribe(HttpUtils.getMyServer(Constant.BaseUrl).addr(user,name,is_default,phone,address)
+                .compose(RxUtils.<AddRBean>rxScheduler())
+                .subscribeWith(new CommonSubscriber<AddRBean>(mView) {
+                    @Override
+                    public void onNext(AddRBean addRBean) {
+                        if (addRBean
+                                != null) {
+                            if (mView != null) {
+                                mView.addReaun(addRBean);
                             }
                         }
                     }

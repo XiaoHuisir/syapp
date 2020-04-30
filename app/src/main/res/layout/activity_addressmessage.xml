@@ -22,11 +22,12 @@
             android:src="@mipmap/back_hui" />
 
         <TextView
+            android:id="@+id/tv_tilet"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:text="添加收货地址"
+            android:text=""
             android:textColor="@color/blackss"
             android:textSize="@dimen/sp_21" />
 
@@ -61,7 +62,7 @@
                 android:layout_marginLeft="17dp"
                 android:background="@null"
                 android:gravity="center_vertical"
-                android:hint="收货人姓名"
+                android:hint="请填写收货人姓名"
                 android:textColor="#333"
                 android:textSize="14sp" />
         </LinearLayout>
@@ -92,7 +93,7 @@
                 android:layout_marginLeft="17dp"
                 android:background="@null"
                 android:gravity="center_vertical"
-                android:hint="收货人电话"
+                android:hint="请填写收货人手机号"
                 android:textColor="#333"
                 android:textSize="14sp" />
         </LinearLayout>
@@ -105,6 +106,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="48dp"
+            android:layout_alignParentTop="true"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="12dp">
 
@@ -122,8 +124,46 @@
                 android:layout_height="match_parent"
                 android:layout_marginLeft="17dp"
                 android:background="@null"
+                android:ellipsize="end"
+                android:focusable="false"
                 android:gravity="center_vertical"
-                android:hint="收货人地址"
+                android:hint="省市区县、乡镇等"
+                android:maxLines="1"
+                android:textColor="#333"
+                android:textSize="14sp" />
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/list_divider_color" />
+
+        <LinearLayout
+            android:id="@+id/lin_ed_street"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="12dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="详细地址"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/ed_street"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="17dp"
+                android:background="@null"
+                android:ellipsize="end"
+                android:gravity="center_vertical"
+                android:hint="街道、楼牌号等"
+                android:maxLines="1"
                 android:textColor="#333"
                 android:textSize="14sp" />
         </LinearLayout>

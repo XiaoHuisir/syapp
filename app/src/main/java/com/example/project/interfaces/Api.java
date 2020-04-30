@@ -1,11 +1,13 @@
 package com.example.project.interfaces;
 
 
+import com.example.project.bean.AddRBean;
 import com.example.project.bean.AnddressBean;
 import com.example.project.bean.ClassBean;
 import com.example.project.bean.ClassListBean;
 import com.example.project.bean.HomeBean;
 import com.example.project.bean.LoginBean;
+import com.example.project.bean.LoginTokenBean;
 import com.example.project.bean.LoginsBean;
 import com.example.project.bean.ProductDetailsBean;
 import com.example.project.bean.SubmitBean;
@@ -28,9 +30,15 @@ public interface Api {
 
     //---------------------------------------
 //login
-    @POST("doLoginByPhone_number")
+    @POST("user_login")
     @FormUrlEncoded
-    Flowable<LoginsBean> logins(@Field("phone_number") String mobile, @Field("password") String password);
+    Flowable<LoginsBean> logins(@Field("user_name") String mobile, @Field("password") String password);
+
+    //     验证token 是否有效  http://192.168.124.14:8080/user_login?token=
+    @POST("checkLogin")
+    @FormUrlEncoded
+    Flowable<LoginTokenBean> logintoken(@Field("token") String logintoken);
+
 
     //home
     @POST("toIndex")
@@ -71,13 +79,18 @@ public interface Api {
     @FormUrlEncoded
     Flowable<AnddressBean> address(@Field("user_name") String user, @Field("name") String name, @Field("id") int id, @Field("is_default") int is_default, @Field("phone") String phone, @Field("address") String address);
 
+    //添加收货地址
+    @POST("addUser_Address")
+    @FormUrlEncoded
+    Flowable<AddRBean> addr(@Field("user_name") String user, @Field("name") String name, @Field("is_default") int is_default, @Field("phone") String phone, @Field("address") String address);
+
     //----------------------------------------
 
 
-    @POST("index/user/login")
-    @FormUrlEncoded
-    Flowable<LoginBean> login(@Field("mobile") String mobile, @Field("password") String password);
-    //
+//    @POST("index/user/login")
+//    @FormUrlEncoded
+//    Flowable<LoginBean> login(@Field("mobile") String mobile, @Field("password") String password);
+//    //
 //    @POST("index/train/index")
 //    @FormUrlEncoded
 //    Flowable<IndexBean> getIndex(@Header("x-access-token") String token, @FieldMap Map<String, String> map);

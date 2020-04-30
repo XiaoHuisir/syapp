@@ -192,7 +192,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="44dp"
+                android:layout_marginRight="@dimen/dp_10"
+                android:layout_toLeftOf="@+id/text_jifen"
                 android:layout_toRightOf="@id/im_1"
+                android:ellipsize="end"
+                android:maxLines="1"
                 android:text="识缘手机 K10 5G"
                 android:textColor="@color/black"
                 android:textSize="17sp" />
@@ -250,7 +254,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="@dimen/dp_8"
-                android:text="10积分"
+                android:text="0积分"
                 android:textColor="@color/black"
                 android:textSize="@dimen/sp_14" />
         </RelativeLayout>

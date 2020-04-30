@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.project">
     <!--value的值填写你在友盟后台申请的应用Appkey  5e828f8d167edd2e0a000052-->
 
@@ -9,6 +10,7 @@
     <uses-permission android:name="android.permission.INTERNET"></uses-permission>
     <uses-permission android:name="android.permission.READ_PHONE_STATE"></uses-permission>
 
+    <!-- android:allowBackup="true"  tools:replace="android:allowBackup"   注释：改变 sp储存状态-->
     <application
         android:name=".app.MyApp"
         android:allowBackup="true"
@@ -17,24 +19,28 @@
         android:networkSecurityConfig="@xml/network_config"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+
+        >
+        <!--  replac="android:theme"-->
         <!--登录  主--><!--login: Activity-->
         <activity android:name=".ui.activity.login.SplashActivity">
-
-            <!--<intent-filter>-->
-            <!--<action android:name="android.intent.action.MAIN" />-->
-            <!--<category android:name="android.intent.category.LAUNCHER" />-->
-            <!--</intent-filter>-->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <!--我的模块 登录-->
         <activity
             android:name=".ui.activity.minelogin.MineLogin"
             android:theme="@style/TopDialogStyleBottomnoanim" />
+        <!--主界面-->
+        <!--android:launchMode="singleTask"-->
         <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            <!--<intent-filter>-->
+            <!--<action android:name="android.intent.action.MAIN" />-->
+            <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--</intent-filter>-->
         </activity>
         <activity android:name=".ui.activity.login.LoginActivity" />
         <!--底部弹窗-->

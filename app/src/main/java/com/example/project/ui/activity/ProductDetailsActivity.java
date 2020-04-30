@@ -92,14 +92,17 @@ public class ProductDetailsActivity extends BaseActivity implements ProductDetai
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.lin_home: //TODO 这里是跳转到 mainActivity的 HomeFragment(首页)
-                Intent intent = new Intent(context, MainActivity.class);
+                Intent intent = new Intent();
+                intent.setClass(context, MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);//设置栈顶模式
                 intent.putExtra("id", Constant.ONE_TYPE_1);
-//
                 startActivityForResult(intent, Constant.ONE_TYPE_1);
                 finish();
                 break;
             case R.id.lin_classfy://TODO 这里是跳转到 mainActivity的 ClassfyFragment（分类）
-                Intent intent1 = new Intent(context, MainActivity.class);
+                Intent intent1 = new Intent();
+                intent1.setClass(context, MainActivity.class);
+                intent1.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent1.putExtra("id", Constant.TWO_TYPE_2);
                 startActivityForResult(intent1, Constant.TWO_TYPE_2);
                 finish();
@@ -109,7 +112,7 @@ public class ProductDetailsActivity extends BaseActivity implements ProductDetai
                 intent2.putExtra("price", price);
                 intent2.putExtra("imgs", img);
                 intent2.putExtra("buynums", buynum);
-                intent2.putExtra("idsas",idsa);
+                intent2.putExtra("idsas", idsa);
 //                intent2.putExtra("freight_",freight);
                 startActivity(intent2);
 

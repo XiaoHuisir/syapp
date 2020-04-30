@@ -9,9 +9,9 @@ import java.io.File;
  * Created by zhanghui on 20-3-30.
  */
 public class Constant {
-    //    http://192.168.124.13:8080/
-    public static final String BaseUrl = "http://192.168.124.13:8080/"; //识缘  （局域网）
-//    public static final String BaseUrl = "http://api.mb.knowfate.com.cn/shiyuanshop-0.0.1-SNAPSHOT/"; //识缘 （服务器）
+//        public static final String BaseUrl = "http://192.168.124.13:8080/"; //识缘  （局域网）  TODO  张文端
+//    public static final String BaseUrl = "http://192.168.124.14:8080/"; //识缘  （局域网）  TODO  李聪
+    public static final String BaseUrl = "http://api.mb.knowfate.com.cn/shiyuanshop-0.0.1-SNAPSHOT/"; //识缘 （服务器）
 
 
     //    public static final String URl = "http://123.206.58.124:8025/index/user/login";
@@ -48,8 +48,8 @@ public class Constant {
     public static final int ONE_TYPE_1 = 1;
     public static final int TWO_TYPE_2 = 2;
 
-    public static final int STUDY_TYPE_1 = 1; //
-    public static final int STUDY_TYPE_2 = 2; //
+    public static final int STUDY_TYPE_1 = 0; //
+    public static final int STUDY_TYPE_2 = 1; //
     public static final int STUDY_TYPE_3 = 3; //
 
     public static final int ONE_CODE = 10000;
@@ -58,8 +58,8 @@ public class Constant {
     public static final String STUD_TYPE_0 = "0";
     public static final String STUD_TYPE_1 = "1";
     public static final String STUD_TYPE_2 = "2";
-    public static  final  int IS_ID=0;
-    public  static  int  DYNAMIC_DIGITAL=1;
-    public   static  int  DYNAMIC_PRICE=0;
+    public static final int IS_ID = 0;
+    public static int DYNAMIC_DIGITAL = 1;
+    public static int DYNAMIC_PRICE = 0;
 
 }

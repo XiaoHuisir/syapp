@@ -98,4 +98,7 @@ dependencies {
     implementation 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+'
     //年月日时分 （选中器）
     implementation 'com.bigkoo:pickerview:2.1.1'
+
+    // 三级联动
+    implementation 'liji.library.dev:citypickerview:3.1.12'
 }

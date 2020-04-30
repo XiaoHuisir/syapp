@@ -1,28 +1,47 @@
 package com.example.project.ui.activity;
 
+import android.app.AlertDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.project.R;
+import com.example.project.app.Constant;
 import com.example.project.base.BaseActivity;
+import com.example.project.bean.AddRBean;
 import com.example.project.bean.AnddressBean;
 import com.example.project.interfaces.IBasePresenter;
 import com.example.project.interfaces.contract.AddressContract;
 import com.example.project.presenter.AddressPresenter;
 import com.example.project.utils.Validator;
+import com.lljjcoder.Interface.OnCityItemClickListener;
+import com.lljjcoder.bean.CityBean;
+import com.lljjcoder.bean.DistrictBean;
+import com.lljjcoder.bean.ProvinceBean;
+import com.lljjcoder.citywheel.CityConfig;
+import com.lljjcoder.style.citylist.Toast.ToastUtils;
+import com.lljjcoder.style.citypickerview.CityPickerView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+/*
+ *
+ * */
 //updateUser_AddressById    Flowable<AnddressBean> address(@Field("user_name") String user, @Field("name") String name, @Field("id") int id, @Field("is_default") int is_default, @Field("phone") int phone, @Field("address") String address);
-public class AddressMessage extends BaseActivity implements AddressContract.View {
+public class AddressMessage extends BaseActivity implements AddressContract.View {//, View.OnClickListener
     @BindView(R.id.btn_hold_site)
     Button btnHoldSite;
     @BindView(R.id.re_break)
@@ -33,11 +52,26 @@ public class AddressMessage extends BaseActivity implements AddressContract.View
     EditText etCompany;
     @BindView(R.id.et_post)
     EditText etPost;
+    @BindView(R.id.tv_tilet)
+    TextView tvTilet;
+    @BindView(R.id.ed_street)
+    EditText edStreet;
+    @BindView(R.id.lin_ed_street)
+    LinearLayout linEdStreet;
+
+
     private String name;
     private int id_dizhi;
     private int is_defaults;
+
     private String phone;
     private String add_ress;
+    private String bian_ji;
+    private Intent intent;
+    private String add_s;
+    private CityPickerView mPicker = new CityPickerView(); //三级联动
+    private InputMethodManager imm;
+
 
     @Override
     protected IBasePresenter getPresenter() {
@@ -54,35 +88,21 @@ public class AddressMessage extends BaseActivity implements AddressContract.View
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_hold_site:  //保存修改后的地址
-                String getname = etName.getText().toString();
-                String getphone = etCompany.getText().toString();
-                String getaddress = etPost.getText().toString();
-                if (TextUtils.isEmpty(getname) || TextUtils.isEmpty(getphone) || TextUtils.isEmpty(getaddress)) {
-                    Toast.makeText(context, "请输入姓名和手机号、地址", Toast.LENGTH_SHORT).show();
-                    if (!TextUtils.isEmpty(getname) && TextUtils.isEmpty(getphone)) {
-                        Toast.makeText(context, "请输入手机号", Toast.LENGTH_SHORT).show();
-
-                    }
-
-                    if (TextUtils.isEmpty(getname) && !TextUtils.isEmpty(getphone)) {
-                        Toast.makeText(context, "请输入姓名", Toast.LENGTH_SHORT).show();
-
-                    }
-
-                    return;
+                final String getname = etName.getText().toString();
+                final String getphone = etCompany.getText().toString();
+                final String edstreets = edStreet.getText().toString();//详细地址
+                final String getaddress = etPost.getText().toString();//地址
+                if (Constant.CURTYPE.equals("编辑")) {
+                    tvTilet.setText("修改收货地址");
+                    Toast.makeText(context, "编辑001124545", Toast.LENGTH_SHORT).show();
+                    biajineirong(getname, getphone, getaddress, edstreets);
+                } else if (Constant.CURTYPE.equals("添加")) {
+                    tvTilet.setText("添加收货地址");
+                    Toast.makeText(context, "添加收货地址0000000", Toast.LENGTH_SHORT).show();
+                    biajineirong(getname, getphone, getaddress, edstreets);
                 }
-                if (Validator.isChinese(getname) == false) {
-                    Toast.makeText(context, "请输入正确的姓名格式", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                if (Validator.isMobile(getphone) == false) {
-                    Toast.makeText(context, "请输入正确的手机号格式", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                ((AddressPresenter) mPresenter).addressRe("sf003", getname, id_dizhi, is_defaults, getphone, getaddress);
-                Intent intent = new Intent(context, Submit0rdersActivity.class);
-                startActivity(intent);
-                finish();
+
+
                 break;
             case R.id.re_break:
                 finish();
@@ -90,15 +110,103 @@ public class AddressMessage extends BaseActivity implements AddressContract.View
         }
     }
 
+    private void biajineirong(final String getname, final String getphone, final String getaddress, final String edstreets) {
+        if (TextUtils.isEmpty(getname) || TextUtils.isEmpty(getphone) || TextUtils.isEmpty(getaddress)) {
+            Toast.makeText(context, "请输入姓名和手机号、地址", Toast.LENGTH_SHORT).show();
+            if (!TextUtils.isEmpty(getname) && TextUtils.isEmpty(getphone)) {
+                Toast.makeText(context, "请输入手机号", Toast.LENGTH_SHORT).show();
+
+            }
+
+            if (TextUtils.isEmpty(getname) && !TextUtils.isEmpty(getphone)) {
+                Toast.makeText(context, "请输入姓名", Toast.LENGTH_SHORT).show();
+
+            }
+
+            return;
+        }
+        if (Validator.isChinese(getname) == false) {
+            Toast.makeText(context, "请输入正确的姓名格式", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (Validator.isMobile(getphone) == false) {
+            Toast.makeText(context, "请输入正确的手机号格式", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        LayoutInflater inflater = getLayoutInflater();
+        //引入自定义好的对话框.xml布局
+        View layout = inflater.inflate(R.layout.is_default_layout, null);
+        //实列提示对话框对象，并将加载的试图对象设置给对话框对象
+        final AlertDialog alertDialog = new AlertDialog.Builder(AddressMessage.this).setTitle(" ").setView(layout).show();
+        final RelativeLayout yes = layout.findViewById(R.id.relative_update);
+        final RelativeLayout no = layout.findViewById(R.id.relative_cancel);
+        if (Constant.CURTYPE.equals("编辑")) {
+            yes.setOnClickListener(new View.OnClickListener() {  //是
+                @Override
+                public void onClick(View v) {
+                    alertDialog.dismiss();
+                    ((AddressPresenter) mPresenter).addressRe("sf003", getname, id_dizhi, Constant.STUDY_TYPE_2, getphone, getaddress + " " + edstreets);
+                    Intent intent = new Intent(context, Submit0rdersActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+            });
+            no.setOnClickListener(new View.OnClickListener() {  //否
+                @Override
+                public void onClick(View v) {
+                    alertDialog.dismiss();
+                    ((AddressPresenter) mPresenter).addressRe("sf003", getname, id_dizhi, Constant.STUDY_TYPE_1, getphone, getaddress + " " + edstreets);
+                    Intent intent1 = new Intent(context, Submit0rdersActivity.class);
+                    intent1.putExtra("get_name", getname);
+                    intent1.putExtra("get_phone", getphone);
+                    intent1.putExtra("get_address", getaddress);
+                    intent1.putExtra("type_0", false);
+                    startActivity(intent1);
+                    finish();
+                }
+            });
+
+        } else if (Constant.CURTYPE.equals("添加")) {
+
+            yes.setOnClickListener(new View.OnClickListener() {  //是
+                @Override
+                public void onClick(View v) {
+                    alertDialog.dismiss();
+                    ((AddressPresenter) mPresenter).addR("sf003", getname, Constant.STUDY_TYPE_2, getphone, getaddress + " " + edstreets);
+                    Intent intent = new Intent(context, Submit0rdersActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+            });
+            no.setOnClickListener(new View.OnClickListener() {  //否
+                @Override
+                public void onClick(View v) {
+                    alertDialog.dismiss();
+                    ((AddressPresenter) mPresenter).addR("sf003", getname, Constant.STUDY_TYPE_1, getphone, getaddress + " " + edstreets);
+                    Intent intent1 = new Intent(context, Submit0rdersActivity.class);
+                    intent1.putExtra("get_name", getname);
+                    intent1.putExtra("get_phone", getphone);
+                    intent1.putExtra("get_address", getaddress);
+                    intent1.putExtra("type_0", false);
+                    startActivity(intent1);
+                    finish();
+                }
+            });
+        }
+
+    }
+
     @Override
     protected void initView() {
+        imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);//软键盘
+        if (Constant.CURTYPE.equals("编辑")) {
+            tvTilet.setText("修改收货地址");
 
-//        intent.putExtra("add_ress",listSubmit.getAddress());
-//        intent.putExtra("name",listSubmit.getName());
-//        intent.putExtra("id_dizhi",listSubmit.getId());
-//        intent.putExtra("phone",String.valueOf(listSubmit.getPhone()));
-//         intent.putExtra("is_default",is_default); //判断是否设置成默认收货地址
-        Intent intent = getIntent();
+        } else if (Constant.CURTYPE.equals("添加")) {
+            tvTilet.setText("添加收货地址");
+
+        }
+        intent = getIntent();
         //用户姓名
         name = intent.getStringExtra("names");
         //用户手机号
@@ -110,18 +218,87 @@ public class AddressMessage extends BaseActivity implements AddressContract.View
         //判断是否设置成默认收货地址
         is_defaults = intent.getIntExtra("is_defaults", 0);
         //初始化信息
-        startup();
+        startup(); //编辑地址时初始化信息
+
+
     }
 
+    //点击空白关闭软键盘
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        if (event.getAction() == MotionEvent.ACTION_DOWN) {
+            if (AddressMessage.this.getCurrentFocus() != null) {
+                if (AddressMessage.this.getCurrentFocus().getWindowToken() != null) {
+                    imm.hideSoftInputFromWindow(AddressMessage.this.getCurrentFocus().getWindowToken(),
+                            InputMethodManager.HIDE_NOT_ALWAYS);
+
+                }
+            }
+        }
+        return super.onTouchEvent(event);
+    }
+
+
     private void startup() {
+        //        intent.putExtra("add_ress",listSubmit.getAddress());
+//        intent.putExtra("name",listSubmit.getName());
+//        intent.putExtra("id_dizhi",listSubmit.getId());
+//        intent.putExtra("phone",String.valueOf(listSubmit.getPhone()));
+//         intent.putExtra("is_default",is_default); //判断是否设置成默认收货地址
+        //selectAddressActivity
         etName.setText(name);
         etCompany.setText(phone);
         etPost.setText(add_ress);
+        pickers();  //三级联动地址管理
+    }
+
+    private void pickers() {
+        mPicker.init(context); //必须！  初始化城市数据
+        etPost.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                imm.hideSoftInputFromWindow(AddressMessage.this.getCurrentFocus().getWindowToken(),
+                        InputMethodManager.HIDE_NOT_ALWAYS);
+                if (v == etPost) {  //地区联动选择
+                    //添加默认的配置，可以自己修改
+                    CityConfig cityConfig = new CityConfig.Builder()
+                            .province("河北") //设置默认显示省份
+                            .build();
+                    mPicker.setConfig(cityConfig);
+                    //监听选择点击事件及返回结果
+                    mPicker.setOnCityItemClickListener(new OnCityItemClickListener() {
+                        @Override
+                        public void onSelected(ProvinceBean province, CityBean city, DistrictBean district) {
+                            //省份
+                            if (province != null && city != null && district != null) {
+                                etPost.setText(province.toString() + "  " + city.toString() + "  " + district.toString());
+                            }
+                        }
+
+                        @Override
+                        public void onCancel() {
+                            ToastUtils.showLongToast(context, "已取消");
+                        }
+                    });
+                    //显示
+                    mPicker.showCityPicker();
+                    linEdStreet.setVisibility(View.VISIBLE);//显示详细地址输入框
+                }
+
+
+            }
+        });
     }
 
     @Override
     public void addressReaun(AnddressBean anddressBean) {
         Toast.makeText(context, "修改成功", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void addReaun(AddRBean addRBean) {
+        Toast.makeText(context, "添加成功", Toast.LENGTH_SHORT).show();
+
     }
 
     @Override

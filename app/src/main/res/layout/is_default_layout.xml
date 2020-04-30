@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_inflater"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:layout_marginLeft="@dimen/dp_20"
+    android:layout_marginRight="@dimen/dp_20"
+    android:background="@drawable/address_bkg"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/dp_10">
+
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/dp_8"
+            android:text="是否设置为默认收货地址"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp_20" />
+
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_0_5"
+            android:layout_marginTop="@dimen/dp_20"
+            android:background="@color/grey" />
+
+        <RelativeLayout
+            android:id="@+id/relative_update"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_16">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="是"
+                android:textColor="@color/col_blue"
+                android:textSize="@dimen/sp_20" />
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_0_5"
+            android:layout_marginTop="@dimen/dp_16"
+            android:background="@color/grey" />
+
+        <RelativeLayout
+            android:id="@+id/relative_cancel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_16">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="否"
+                android:textColor="@color/col_blue"
+                android:textSize="@dimen/sp_20" />
+        </RelativeLayout>
+    </LinearLayout>
+
+

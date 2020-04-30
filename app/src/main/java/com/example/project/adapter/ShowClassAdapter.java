@@ -56,7 +56,6 @@ public class ShowClassAdapter extends RecyclerView.Adapter<ShowClassAdapter.View
                     int idsa = listBean.getIdsa();
                     Intent intent = new Intent(context, ProductDetailsActivity.class);
                     intent.putExtra("idsa", String.valueOf(idsa));
-                    Constant.DYNAMIC_DIGITAL = 0;
                     context.startActivity(intent);
                 }
             });
