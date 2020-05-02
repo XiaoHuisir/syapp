@@ -1,14 +1,16 @@
 package com.example.project.interfaces;
 
 
+import com.example.project.bean.AddOrderistBean;
 import com.example.project.bean.AddRBean;
 import com.example.project.bean.AnddressBean;
 import com.example.project.bean.ClassBean;
 import com.example.project.bean.ClassListBean;
 import com.example.project.bean.HomeBean;
-import com.example.project.bean.LoginBean;
+import com.example.project.bean.LineItemBean;
 import com.example.project.bean.LoginTokenBean;
 import com.example.project.bean.LoginsBean;
+import com.example.project.bean.NewIndentBean;
 import com.example.project.bean.ProductDetailsBean;
 import com.example.project.bean.SubmitBean;
 import com.example.project.bean.SubmitListBean;
@@ -16,13 +18,10 @@ import com.example.project.bean.SubmitListBean;
 import java.util.Map;
 
 import io.reactivex.Flowable;
-import okhttp3.RequestBody;
-import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.Header;
-import retrofit2.http.Headers;
 import retrofit2.http.POST;
 
 public interface Api {
@@ -83,6 +82,22 @@ public interface Api {
     @POST("addUser_Address")
     @FormUrlEncoded
     Flowable<AddRBean> addr(@Field("user_name") String user, @Field("name") String name, @Field("is_default") int is_default, @Field("phone") String phone, @Field("address") String address);
+
+    //提交订单
+    @POST("addOrder_list")
+    @FormUrlEncoded
+    Flowable<AddOrderistBean> addOrderApi( @FieldMap Map<String, String> map);
+
+    //订单列表
+    @POST("toOrderIndex")
+    @FormUrlEncoded
+    Flowable<NewIndentBean> indentApi(@Field("userId") int user_id);
+
+    //订单详情页
+    @POST("detailOrder_listById")
+    @FormUrlEncoded
+    Flowable<LineItemBean> lineitemApi(@Field("id") int id);
+
 
     //----------------------------------------
 

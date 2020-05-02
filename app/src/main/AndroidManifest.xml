@@ -11,17 +11,28 @@
     <uses-permission android:name="android.permission.READ_PHONE_STATE"></uses-permission>
 
     <!-- android:allowBackup="true"  tools:replace="android:allowBackup"   注释：改变 sp储存状态-->
+    <!-- android:name="com.example.iwapp.app.MyApp"
+        android:allowBackup="true"
+        android:appComponentFactory="app"
+        android:icon="@drawable/icon"
+        android:label="@string/app_name"
+        android:networkSecurityConfig="@xml/network_config"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        tools:replace="android:appComponentFactory">-->
+    <!--新加 ：tools:replace="android:appComponentFactory"        android:appComponentFactory="app"-->
     <application
         android:name=".app.MyApp"
         android:allowBackup="true"
+        android:appComponentFactory="app"
         android:icon="@drawable/telite"
         android:label="@string/app_name"
         android:networkSecurityConfig="@xml/network_config"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-
-        >
+        tools:replace="android:appComponentFactory">
         <!--  replac="android:theme"-->
         <!--登录  主--><!--login: Activity-->
         <activity android:name=".ui.activity.login.SplashActivity">

@@ -2,6 +2,7 @@ package com.example.project.ui.activity.login;
 
 import android.content.Intent;
 import android.text.TextUtils;
+import android.util.Log;
 import android.widget.VideoView;
 
 
@@ -19,6 +20,7 @@ import com.example.project.utils.SharedPreferencesUtil;
 //implements VersionConstract.View
 public class SplashActivity extends BaseActivity implements LoginTokenContract.View {
 
+    private static final String TAG = "测试token";
     VideoView videoView;
     private String msg;
     private String logintoken;
@@ -44,6 +46,7 @@ public class SplashActivity extends BaseActivity implements LoginTokenContract.V
 
     @Override
     protected void initData() {
+        Log.d(TAG, "initData: "+ Constant.token);
         logintoken = SharedPreferencesUtil.getToken(MyApp.mApp);
         ((LoginTokenPresenter) mPresenter).logintokens(logintoken);
 

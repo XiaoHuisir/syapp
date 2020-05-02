@@ -62,6 +62,7 @@ public class ProductDetailsActivity extends BaseActivity implements ProductDetai
     private int buynum;
     private int idsa;
     private int freight;
+    private int stock;
     //   @BindView(R.id.tv_old_integral)
 //    TextView imBeak;
 
@@ -112,6 +113,7 @@ public class ProductDetailsActivity extends BaseActivity implements ProductDetai
                 intent2.putExtra("price", price);
                 intent2.putExtra("imgs", img);
                 intent2.putExtra("buynums", buynum);
+                intent2.putExtra("stock_",stock);
                 intent2.putExtra("idsas", idsa);
 //                intent2.putExtra("freight_",freight);
                 startActivity(intent2);
@@ -140,7 +142,8 @@ public class ProductDetailsActivity extends BaseActivity implements ProductDetai
         //价格
         price = result.getPrice();
         int src_price = result.getSrc_price(); //原价
-        int stock = result.getStock();//库存
+        //库存
+        stock = result.getStock();
         //图
         img = result.getImg();
         //运费

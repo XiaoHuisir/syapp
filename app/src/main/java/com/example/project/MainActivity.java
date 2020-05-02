@@ -134,6 +134,22 @@ public class MainActivity extends BaseActivity {
 
 
         }
+        if (id==3){
+            targetBottomPosition = 2;
+            if (currentBottomPosition == 2) {
+                return;
+            }
+            ftran.hide(fragmentList.get(currentBottomPosition));
+            if (!fragmentList.get(targetBottomPosition).isAdded()) {
+                ftran.add(R.id.fl, fragmentList.get(targetBottomPosition));
+            }
+            ftran.show(fragmentList.get(targetBottomPosition)).commit();
+            currentBottomPosition = 2;
+            mTl.setSelected(true);
+//            mTl.setClipChildren(true);
+            mTl.getTabAt(2).select();
+
+        }
     }
 
     @Override

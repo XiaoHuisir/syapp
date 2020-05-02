@@ -1,7 +1,8 @@
 package com.example.project.ui.activity;
 
+import android.app.AlertDialog;
 import android.content.Intent;
-import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -10,16 +11,20 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.project.MainActivity;
 import com.example.project.R;
 import com.example.project.app.Constant;
 import com.example.project.base.BaseActivity;
+import com.example.project.bean.AddOrderistBean;
 import com.example.project.bean.SubmitBean;
 import com.example.project.interfaces.IBasePresenter;
 import com.example.project.interfaces.contract.SubmitContract;
+import com.example.project.presenter.AddressPresenter;
 import com.example.project.presenter.SubmitPresenter;
 
+import java.util.HashMap;
+
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 //http://192.168.124.13:8080/toConfirmOrderList?user_name=sf003&idsa=2011
@@ -69,6 +74,10 @@ public class Submit0rdersActivity extends BaseActivity implements SubmitContract
     private String getaddress;
 
     private int type = 0;
+    private String img;
+    private int idsas;
+    private int src_price;
+    private int freight;
 
     @Override
     protected IBasePresenter getPresenter() {
@@ -95,10 +104,36 @@ public class Submit0rdersActivity extends BaseActivity implements SubmitContract
                 startActivity(intent1);
                 finish();
                 break;
-            case R.id.btn_exchangOn: //有 提交订单
-                Intent intent2 = new Intent(context, CompleteOrderActivity.class);
-                startActivity(intent2);
-                finish();
+            case R.id.btn_exchangOn: //有 立即兑换 提交订单
+//                String tvnum = tvNum.getText().toString(); //数量
+                String tvname = txtName.getText().toString();//用户姓名
+                String tvDahao = textDahao.getText().toString();//用户电话
+                String tvDizhi = textDizhi.getText().toString();//用户地址
+                String tviphoneName = tvIphoneName.getText().toString();//商品名称
+//                String tvJifen = textJifen.getText().toString();//商品价格
+//                String tvfreight = tvFreight.getText().toString();//运费
+                String tvZong = textZong.getText().toString();//总价格
+                HashMap<String, String> maps = new HashMap<>();
+                maps.put("name", "sf003");
+                maps.put("num", String.valueOf(num));
+                maps.put("user_name", tvname);
+                maps.put("user_phone", tvDahao);
+                maps.put("user_add", tvDizhi);
+                maps.put("user_id", String.valueOf(15));//用户id
+                maps.put("item_img", img);
+                maps.put("item_name", tviphoneName);
+                maps.put("item_price", String.valueOf(src_price));
+                maps.put("item_freight", String.valueOf(freight));
+                maps.put("order_price", tvZong);
+                maps.put("idsa", String.valueOf(idsas)); //上屏编号
+                ((SubmitPresenter) mPresenter).addOrders(maps);
+
+//                Intent intent2 = new Intent();
+//                intent2.setClass(context, MainActivity.class);
+//                intent2.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+//                intent2.putExtra("id", Constant.TWO_TYPE_3);
+//                startActivityForResult(intent2, Constant.TWO_TYPE_3);
+//                finish();
                 break;
             case R.id.relative_on_:
                 finish();
@@ -151,17 +186,21 @@ public class Submit0rdersActivity extends BaseActivity implements SubmitContract
         SubmitBean.ItemsBean items = submitBean.getItems();
         if (items != null) {
             String name = items.getName(); //产品名称
-            int freight = items.getFreight();//运费
-            String img = items.getImg(); //图
-            int src_price = items.getPrice(); //产品价格
+            //运费
+            freight = items.getFreight();
+            img = items.getImg(); //图
+            //产品价格
+            src_price = items.getPrice();
+            idsas = items.getIdsa(); //商品编号
             Glide.with(context).load(img).into(im_);
             tvIphoneName.setText(name);
             textJifen.setText(src_price + "积分");
             tvFreight.setText(freight + "积分");
             tvNum.setText("X" + num);
             //add_price
-            textZong.setText((src_price * num + freight) + "积分");//总价钱
+            textZong.setText((src_price * num + freight) + "");//总价钱
             tvJifenOn.setText((src_price * num + freight) + "积分");
+
         }
         SubmitBean.UserAddressBean user_address = submitBean.getUser_address();
         if (user_address != null) {
@@ -186,6 +225,44 @@ public class Submit0rdersActivity extends BaseActivity implements SubmitContract
             }
 
 
+        }
+    }
+
+    @Override
+    public void addOrderRean(AddOrderistBean addOrderistBean) {
+        if (addOrderistBean != null) {
+            int order_state = addOrderistBean.getOrder_state();
+            if (order_state == Constant.ORDER_STATE_0) {
+                Toast.makeText(context, "提交订单成功", Toast.LENGTH_SHORT).show();
+                                Intent intent2 = new Intent();
+                intent2.setClass(context, MainActivity.class);
+                intent2.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent2.putExtra("id", Constant.TWO_TYPE_3);
+                startActivityForResult(intent2, Constant.TWO_TYPE_3);
+                finish();
+            } else if (order_state == Constant.ORDER_STATE_4) {
+                LayoutInflater inflater = getLayoutInflater();
+                //引入自定义好的对话框.xml布局
+                View layout = inflater.inflate(R.layout.is_submit_layout, null);
+                //实列提示对话框对象，并将加载的试图对象设置给对话框对象
+                final AlertDialog alertDialog = new AlertDialog.Builder(this).setTitle(" ").setView(layout).show();
+                final RelativeLayout yes = layout.findViewById(R.id.relative_update);
+                final RelativeLayout no = layout.findViewById(R.id.relative_cancel);
+                yes.setOnClickListener(new View.OnClickListener() {  //是
+                    @Override
+                    public void onClick(View v) {
+                        alertDialog.dismiss();
+                        Toast.makeText(context, "还未实现，敬请期待！", Toast.LENGTH_SHORT).show();
+                    }
+                });
+                no.setOnClickListener(new View.OnClickListener() {  //否
+                    @Override
+                    public void onClick(View v) {
+                        alertDialog.dismiss();
+
+                    }
+                });
+            }
         }
     }
 }

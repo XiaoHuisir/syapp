@@ -48,6 +48,7 @@ public class ExchangeActivity extends Activity {
     private int freight;
     private String im_g;
     private String imgs;
+    private int stock;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +73,8 @@ public class ExchangeActivity extends Activity {
         price = intent.getIntExtra("price", 0);//价格
         ids = intent.getIntExtra("idsas", 0);
         buynums = intent.getIntExtra("buynums", 0); //限购数量
+        //库存数量
+        stock = intent.getIntExtra("stock_", 0);
 
         Glide.with(this).load(imgs).into(imStyling);
         //初始化兑换数量 1
@@ -89,7 +92,7 @@ public class ExchangeActivity extends Activity {
                 break;
             case R.id.im_add: //++
 
-                if (Constant.DYNAMIC_DIGITAL < buynums + 1) {
+                if (Constant.DYNAMIC_DIGITAL < buynums + 1 && Constant.DYNAMIC_DIGITAL < stock) {
                     Constant.DYNAMIC_DIGITAL++;
                     tvShu.setText("兑换数量：" + String.valueOf(Constant.DYNAMIC_DIGITAL));
                     textShuRAM.setText(String.valueOf(Constant.DYNAMIC_DIGITAL));
@@ -102,7 +105,7 @@ public class ExchangeActivity extends Activity {
             case R.id.im_jian:  //--
                 if (Constant.DYNAMIC_DIGITAL > 1) {
                     Constant.DYNAMIC_DIGITAL--;
-                    tvShu.setText("兑换数量：" +Constant.DYNAMIC_DIGITAL);
+                    tvShu.setText("兑换数量：" + Constant.DYNAMIC_DIGITAL);
                     textShuRAM.setText(String.valueOf(Constant.DYNAMIC_DIGITAL));
 
 
