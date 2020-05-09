@@ -2,23 +2,29 @@ package com.example.project.ui.fragment;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.project.MainActivity;
 import com.example.project.R;
 import com.example.project.adapter.HomeAdapter;
+import com.example.project.app.Constant;
 import com.example.project.base.BaseFragment;
 import com.example.project.bean.HomeBean;
 import com.example.project.interfaces.IBasePresenter;
 import com.example.project.interfaces.contract.HomeCotract;
 import com.example.project.presenter.HomePresenter;
+import com.example.project.presenter.IndentPresenter;
 import com.example.project.ui.activity.ProductDetailsActivity;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
@@ -39,6 +45,8 @@ public class HomeFragment extends BaseFragment implements HomeCotract.View {
     RecyclerView hotRecyler;
     @BindView(R.id.swipeRefresh)
     SwipeRefreshLayout swipeRefres;
+    @BindView(R.id.scr_view)
+    ScrollView scrView;
 
 
     private HomeAdapter homeAdapter;
@@ -49,6 +57,7 @@ public class HomeFragment extends BaseFragment implements HomeCotract.View {
     //Banner 点击事件 1 详情  2 分类
     public static final int ONE_TYPE_ = 1;
     public static final int TWO_TYPE_ = 2;
+    private SwipeRefreshLayout.OnRefreshListener listener;
 
     @Override
     protected IBasePresenter getPresenter() {
@@ -62,15 +71,31 @@ public class HomeFragment extends BaseFragment implements HomeCotract.View {
 
     @Override
     protected void initView() {
-
-
         LinearLayoutManager layoutManager = new LinearLayoutManager(context);
         hotRecyler.setLayoutManager(layoutManager);
-
         listTetle = new ArrayList<>();
         homeAdapter = new HomeAdapter(listTetle, context);
         hotRecyler.setAdapter(homeAdapter);
         //刷新
+        refress();  //效果一 简单刷新
+//        newrefres(); 效果二  自动刷新
+    }
+
+    private void refress() {
+        // 让页面返回顶部
+        scrView.post(new Runnable() {
+            @Override
+            public void run() {
+                scrView.post(new Runnable() {
+                    public void run() {
+                        // 滚动至顶部
+                        scrView.fullScroll(ScrollView.FOCUS_UP);
+                        // 滚动到底部
+                        //sc.fullScroll(ScrollView.FOCUS_DOWN);
+                    }
+                });
+            }
+        });
         swipeRefres.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -89,8 +114,64 @@ public class HomeFragment extends BaseFragment implements HomeCotract.View {
     }
 
 
+    private void newrefres() {
+        //设置刷新球颜色
+        swipeRefres.setColorSchemeColors(Color.BLUE, Color.RED, Color.YELLOW);
+        swipeRefres.setProgressBackgroundColorSchemeColor(Color.parseColor("#BBFFFF"));
+        ViewTreeObserver obeser = swipeRefres.getViewTreeObserver();
+        obeser.addOnWindowFocusChangeListener(new ViewTreeObserver.OnWindowFocusChangeListener() {
+            @Override
+            public void onWindowFocusChanged(boolean hasFocus) {
+                swipeRefres.setRefreshing(true);
+                Toast.makeText(context, "刷新", Toast.LENGTH_SHORT).show();
+                ((HomePresenter) mPresenter).home();
+//                Log.i("11getMeasuredHeight",mSwipeRefreshLayout.getMeasuredHeight()+"");
+                swipeRefres.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (swipeRefres != null) {
+                            swipeRefres.setRefreshing(false);
+                            scrView.fullScroll(View.FOCUS_UP);
+                        }
+                    }
+                }, 2000);
+            }
+        });
+        swipeRefres.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                ((HomePresenter) mPresenter).home();
+
+                swipeRefres.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (swipeRefres != null) {
+                            swipeRefres.setRefreshing(false);
+                            scrView.fullScroll(View.FOCUS_UP);
+                        }
+                    }
+                }, 2000);
+            }
+        });
+    }
+
+
     @Override
     public void homeReturn(HomeBean result) {
+        // 让页面返回顶部
+        scrView.post(new Runnable() {
+            @Override
+            public void run() {
+                scrView.post(new Runnable() {
+                    public void run() {
+                        // 滚动至顶部
+                        scrView.fullScroll(ScrollView.FOCUS_UP);
+                        // 滚动到底部
+                        //sc.fullScroll(ScrollView.FOCUS_DOWN);
+                    }
+                });
+            }
+        });
         mainList_banner = result.getMainList_banner();
         if (mainList_banner.size() > 0 && mainList_banner != null) {
             initbann(mainList_banner); //banner
@@ -146,7 +227,12 @@ public class HomeFragment extends BaseFragment implements HomeCotract.View {
                     startActivity(intent);
                 }
                 if (type2 == TWO_TYPE_) {  // TODO 分类 ??
-
+                    Intent intent = new Intent();
+                    intent.setClass(getActivity(), MainActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.putExtra("id", Constant.TWO_TYPE_2);
+                    startActivityForResult(intent, Constant.TWO_TYPE_2);
+                    startActivity(intent);
                     Toast.makeText(context, "跳 分类", Toast.LENGTH_SHORT).show();
 
                 }
@@ -164,7 +250,8 @@ public class HomeFragment extends BaseFragment implements HomeCotract.View {
 
 
     @Override
-    protected void initData() { //用于返回数据
+    protected void initData() {
+
         ((HomePresenter) mPresenter).home();
     }
 

@@ -61,7 +61,7 @@ public class IndentFragment extends BaseFragment implements IndentContract.View,
         indentSwipeRefeash.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                ((IndentPresenter) mPresenter).indents(15);
+                ((IndentPresenter) mPresenter).indents();
 
                 indentSwipeRefeash.postDelayed(new Runnable() {
                     @Override
@@ -77,7 +77,7 @@ public class IndentFragment extends BaseFragment implements IndentContract.View,
 
     @Override
     protected void initData() {
-        ((IndentPresenter) mPresenter).indents(15);
+        ((IndentPresenter) mPresenter).indents();
     }
 
     @Override

@@ -34,6 +34,8 @@
     <color name="main_gray">#9A9A9A</color>
     <color name="list_divider_color">#DADADA</color>
     <color name="gray_g">#9c9c9c</color>
+    <color name="new_blue">#1B82D2</color>
+    <color name="new_bag">#F4F4F4</color>
     <!-- 下拉刷新时，颜色值 -->
     <color name="swiperefresh_color1">#ff00ddff</color>
     <color name="swiperefresh_color2">#ffffbb33</color>

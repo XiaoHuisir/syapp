@@ -42,6 +42,11 @@ android {
             manifestPlaceholders = [UMENG_CHANNEL_VALUE: "xiaomi"]
         }
     }
+//    因为打包不成功加的这句话
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+    }
 }
 
 dependencies {

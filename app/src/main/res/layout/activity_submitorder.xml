@@ -105,7 +105,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
                         android:layout_centerVertical="true"
-                        android:text="收货人：翟广猛"
+                        android:text="收货人："
                         android:textColor="@color/black"
                         android:textSize="@dimen/sp_17" />
 
@@ -115,7 +115,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
-                        android:text="18500000000"
+                        android:text="00000"
                         android:textColor="@color/black"
                         android:textSize="@dimen/sp_17" />
                 </RelativeLayout>
@@ -131,8 +131,7 @@
                     android:layout_toLeftOf="@id/re_one"
                     android:ellipsize="end"
                     android:maxLines="2"
-                    android:text="收货地址：河北省高碑店市东盛办事处纽伦堡
-底商4-4A  识缘科技公司二楼北"
+                    android:text="收货地址："
                     android:textColor="@color/black"
                     android:textSize="@dimen/sp_13" />
 
@@ -184,7 +183,7 @@
                 android:layout_marginLeft="@dimen/dp_8"
                 android:layout_marginTop="@dimen/dp_40"
                 android:scaleType="centerCrop"
-                android:src="@mipmap/xiao18" />
+                android:src="@color/line_gray" />
 
             <TextView
                 android:id="@+id/tv_iphone_name"
@@ -197,7 +196,7 @@
                 android:layout_toRightOf="@id/im_1"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:text="识缘手机 K10 5G"
+                android:text=""
                 android:textColor="@color/black"
                 android:textSize="17sp" />
 
@@ -209,7 +208,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_marginTop="@dimen/dp_44"
                 android:layout_marginRight="@dimen/dp_8"
-                android:text="6699积分"
+                android:text="0积分"
                 android:textColor="@color/black"
                 android:textSize="17sp" />
 
@@ -327,7 +326,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginRight="@dimen/dp_20"
                 android:layout_toLeftOf="@id/btn_exchangOn"
-                android:text="6709积分"
+                android:text="0积分"
                 android:textColor="@color/red"
                 android:textSize="@dimen/sp_19" />
 

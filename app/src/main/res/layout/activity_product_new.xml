@@ -3,12 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/new_bag"
     tools:context=".ui.activity.ProductDetailsActivity">
 
     <LinearLayout
         android:id="@+id/lin_1"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_40"
+        android:layout_height="@dimen/dp_48"
         android:layout_alignParentTop="true"
         android:background="#1B82D2"
         android:gravity="center_vertical"
@@ -24,6 +25,7 @@
 
     <LinearLayout
         android:id="@+id/lin_2"
+        android:background="@color/new_bag"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/lin_1"
@@ -32,10 +34,13 @@
 
         <ScrollView
             android:layout_width="match_parent"
+            android:scrollbars="none"
+
             android:layout_height="match_parent"
-            android:background="@color/line_gray">
+            android:background="@color/new_bag">
 
             <LinearLayout
+                android:background="@color/new_bag"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
@@ -134,11 +139,19 @@
                         android:textSize="14sp" />
                 </LinearLayout>
 
-               <ImageView
-                   android:id="@+id/im_xiang"
-                   android:layout_width="match_parent"
-                   android:layout_height="wrap_content" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/dp_6"
+                    android:background="@color/whites"
+                    android:orientation="vertical">
 
+
+                    <WebView
+                        android:id="@+id/web_xiang"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
             </LinearLayout>
         </ScrollView>
     </LinearLayout>
@@ -204,6 +217,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/lin_call_center"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="3"
@@ -232,10 +246,10 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="6dp"
-                android:background="@drawable/btn_blue"
+                android:background="#1B82D2"
                 android:text="立即兑换"
                 android:textColor="@color/white"
-                android:textSize="14sp" />
+                android:textSize="@dimen/sp_21" />
         </RelativeLayout>
     </android.support.constraint.ConstraintLayout>
 </RelativeLayout>

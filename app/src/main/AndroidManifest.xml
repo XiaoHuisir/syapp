@@ -82,7 +82,12 @@
         <activity android:name=".ui.activity.ShopWBActivity" />
         <!--手机验证-->
         <activity android:name=".ui.activity.VerfiyActivity" />
-
+        <!--个人中心-->
+        <activity android:name=".ui.activity.PersonalCenterActivity"/>
+        <!--客服-->
+        <activity android:name=".ui.activity.WebCallCenterActivity"/>
+        <!--（个人）添加身份证号/银行卡号-->
+        <activity android:name=".ui.activity.ClickOnAddActivity"/>
     </application>
 
     <!--友盟统计配置Appkey与Channel-->

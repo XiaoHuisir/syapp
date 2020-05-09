@@ -15,8 +15,8 @@ import static android.support.constraint.Constraints.TAG;
 
 public class IndentPresenter extends BasePresenter<IndentContract.View> implements IndentContract.Presenter {
     @Override
-    public void indents(int user_id) {
-        addSubscribe(HttpUtils.getMyServer(Constant.BaseUrl).indentApi(user_id)
+    public void indents() {
+        addSubscribe(HttpUtils.getMyServer(Constant.BaseUrl).indentApi(Constant.token)
                 .compose(RxUtils.<NewIndentBean>rxScheduler())
                 .subscribeWith(new CommonSubscriber<NewIndentBean>(mView) {
                     @Override

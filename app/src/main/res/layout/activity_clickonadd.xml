@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/new_bag"
+    android:orientation="vertical"
+    tools:context=".ui.activity.ClickOnAddActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_48"
+        android:background="@color/whites">
+
+        <ImageView
+            android:id="@+id/im_break"
+            android:layout_width="@dimen/dp_30"
+            android:layout_height="@dimen/dp_30"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dp_16"
+            android:src="@mipmap/back" />
+
+        <TextView
+            android:id="@+id/txt_tlite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dp_6"
+            android:layout_toRightOf="@id/im_break"
+            android:text="xxx"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp_21" />
+
+        <TextView
+            android:id="@+id/text_update"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/dp_36"
+            android:text="修改"
+            android:textColor="@color/col_blue" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_10">
+
+
+        <RelativeLayout
+            android:id="@+id/relative_IDnumber"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_50"
+            android:layout_alignParentTop="true"
+            android:background="@color/whites">
+
+            <TextView
+                android:id="@+id/t04"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/dp_16"
+                android:text="身份证号"
+                android:textColor="#64333333"
+                android:textSize="@dimen/sp_17" />
+
+            <EditText
+                android:id="@+id/ed_IDnumber"
+                android:layout_width="wrap_content"
+                android:layout_toRightOf="@+id/t04"
+                android:layout_marginLeft="@dimen/dp_16"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/dp_16"
+                android:background="@null"
+                android:text="xxxxxxxxxxx"
+                android:textColor="#64333333"
+                android:textSize="@dimen/sp_17" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/linear_bank_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_50"
+                android:background="@color/whites">
+
+                <TextView
+                    android:id="@+id/t02"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/dp_16"
+                    android:text="开户姓名"
+                    android:textColor="#64333333"
+                    android:textSize="@dimen/sp_17" />
+
+                <EditText
+                    android:id="@+id/ed_account_name"
+                    android:layout_marginLeft="@dimen/dp_16"
+                    android:layout_toRightOf="@+id/t02"
+                    android:layout_marginRight="@dimen/dp_16"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:background="@null"
+                    android:text="xx"
+                    android:textColor="#64333333"
+                    android:textSize="@dimen/sp_17" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_1"
+                android:background="@color/line_gray" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_50"
+                android:background="@color/whites">
+
+                <TextView
+                    android:id="@+id/t03"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/dp_16"
+                    android:text="银行卡号"
+                    android:textColor="#64333333"
+                    android:textSize="@dimen/sp_17" />
+
+                <EditText
+                    android:id="@+id/ed_credit_card_numbers"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                   android:layout_toRightOf="@+id/t03"
+                    android:layout_marginLeft="@dimen/dp_16"
+                    android:layout_marginRight="@dimen/dp_16"
+
+                    android:background="@null"
+                    android:text="xx"
+                    android:textColor="#64333333"
+                    android:textSize="@dimen/sp_17" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_1"
+                android:background="@color/line_gray" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_50"
+                android:layout_alignParentTop="true"
+                android:background="@color/whites">
+
+                <TextView
+                    android:id="@+id/t01"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/dp_16"
+                    android:text="开户银行"
+                    android:textColor="#64333333"
+                    android:textSize="@dimen/sp_17" />
+
+                <EditText
+                    android:id="@+id/ed_deposit_bank"
+                    android:layout_width="wrap_content"
+                    android:layout_toRightOf="@+id/t01"
+                    android:layout_marginLeft="@dimen/dp_16"
+                    android:layout_marginRight="@dimen/dp_16"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:background="@null"
+                    android:text="xxxx"
+                    android:textColor="#64333333"
+                    android:textSize="@dimen/sp_17" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_1"
+                android:background="@color/line_gray" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/linear_save"
+        android:layout_width="@dimen/dp_100"
+        android:layout_height="@dimen/dp_56"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/dp_35"
+        android:background="@color/col_blue"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="保存"
+            android:textColor="@color/whites"
+            android:textSize="@dimen/sp_23" />
+    </LinearLayout>
+</LinearLayout>

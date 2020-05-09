@@ -10,6 +10,6 @@ public interface IndentContract {
     }
 
     interface Presenter extends IBasePresenter<View> {
-        void indents(int user_id);
+        void indents();
     }
 }

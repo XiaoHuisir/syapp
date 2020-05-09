@@ -9,6 +9,6 @@ public interface LoginTokenContract {
         void  logintokenReaun(LoginTokenBean loginTokenBean);
     }
     interface  Presenter extends IBasePresenter<View>{
-        void  logintokens(String tokens);
+        void  logintokens();
     }
 }

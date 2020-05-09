@@ -101,7 +101,7 @@ public class IndentListAdapter extends RecyclerView.Adapter<IndentListAdapter.Vi
             mTvOdd = itemView.findViewById(R.id.tv_odd);
             mImager = itemView.findViewById(R.id.imager);
             mTxtName = itemView.findViewById(R.id.txt_name);
-            mTxtColor = itemView.findViewById(R.id.txt_color);
+//            mTxtColor = itemView.findViewById(R.id.txt_color);
             mTxtShuliang = itemView.findViewById(R.id.txt_shuliang);
             mTxtZhongji = itemView.findViewById(R.id.txt_zhongji);
             mLinXiangqing = itemView.findViewById(R.id.lin_xiangqing);

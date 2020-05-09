@@ -132,10 +132,10 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentBottom="true"
-                android:background="@drawable/btn_blue"
+                android:background="#1B82d2"
                 android:text="立即兑换"
                 android:textColor="@color/white"
-                android:textSize="14sp" />
+                android:textSize="@dimen/sp_21" />
         </RelativeLayout>
     </RelativeLayout>
 

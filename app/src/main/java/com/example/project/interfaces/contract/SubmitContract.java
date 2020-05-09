@@ -15,7 +15,7 @@ public interface SubmitContract {
         void addOrderRean(AddOrderistBean addOrderistBean);
     }
     interface  Presenter extends IBasePresenter<View>{
-        void  submit(String user,int id);
+        void  submit(int id);
         void addOrders(@FieldMap Map<String, String> map);
     }
 

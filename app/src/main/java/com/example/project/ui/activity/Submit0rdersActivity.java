@@ -95,12 +95,20 @@ public class Submit0rdersActivity extends BaseActivity implements SubmitContract
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.re_site_ok: //有 地址管理
-                Intent intent = new Intent(context, SelectAddressActivity.class);
+                Intent intent = new Intent();
+                intent.setClass(context, SelectAddressActivity.class);
+                intent.putExtra("typeid_", typeid);
+                intent.putExtra("num_", num);
+                Constant.IS_MINE=false;
+                Constant.IS_MINE_IS="1";
                 startActivity(intent);
                 finish();
                 break;
             case R.id.re_on: //无 地址管理
-                Intent intent1 = new Intent(context, SelectAddressActivity.class);
+                Intent intent1 = new Intent();
+                intent1.setClass(context, SelectAddressActivity.class);
+                Constant.IS_MINE=false;
+                Constant.IS_MINE_IS="1";
                 startActivity(intent1);
                 finish();
                 break;
@@ -114,26 +122,21 @@ public class Submit0rdersActivity extends BaseActivity implements SubmitContract
 //                String tvfreight = tvFreight.getText().toString();//运费
                 String tvZong = textZong.getText().toString();//总价格
                 HashMap<String, String> maps = new HashMap<>();
-                maps.put("name", "sf003");
-                maps.put("num", String.valueOf(num));
+//                maps.put("name", "sf003");
+                maps.put("num", String.valueOf(Constant.NUM));//num
                 maps.put("user_name", tvname);
                 maps.put("user_phone", tvDahao);
                 maps.put("user_add", tvDizhi);
-                maps.put("user_id", String.valueOf(15));//用户id
-                maps.put("item_img", img);
-                maps.put("item_name", tviphoneName);
-                maps.put("item_price", String.valueOf(src_price));
+//                maps.put("user_id", String.valueOf(15));//用户id
+                maps.put("item_img", Constant.IMG);//img
+                maps.put("item_name", Constant.NAME);//tviphoneName
+                maps.put("item_price", String.valueOf(Constant.SRC_PRICE));//src_price
                 maps.put("item_freight", String.valueOf(freight));
-                maps.put("order_price", tvZong);
-                maps.put("idsa", String.valueOf(idsas)); //上屏编号
+                maps.put("order_price", String.valueOf(Constant.ZONG_JIA));//tvZong
+                maps.put("idsa", String.valueOf(Constant.IDSAS)); //商品编号idsas
                 ((SubmitPresenter) mPresenter).addOrders(maps);
 
-//                Intent intent2 = new Intent();
-//                intent2.setClass(context, MainActivity.class);
-//                intent2.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-//                intent2.putExtra("id", Constant.TWO_TYPE_3);
-//                startActivityForResult(intent2, Constant.TWO_TYPE_3);
-//                finish();
+
                 break;
             case R.id.relative_on_:
                 finish();
@@ -144,29 +147,30 @@ public class Submit0rdersActivity extends BaseActivity implements SubmitContract
     @Override
     protected void initView() {
 //        type_id
+
         typeid = getIntent().getIntExtra("type_id", 0);
 //        add_price = getIntent().getIntExtra("add_price", 0);//交易价格
         num = getIntent().getIntExtra("num", 0);//交易数量
+        Constant.NUM = num;
 
-
-        Intent intent = getIntent();
-        boolean type_0 = intent.getBooleanExtra("type_0", true);
-        get_name = intent.getStringExtra("get_name");
-        get_phone = intent.getStringExtra("get_phone");
-        get_address = intent.getStringExtra("get_address");
+//        Intent intent = getIntent();
+        boolean type_0 = getIntent().getBooleanExtra("type_0", true);
+        get_name = getIntent().getStringExtra("get_name");
+        get_phone = getIntent().getStringExtra("get_phone");
+        get_address = getIntent().getStringExtra("get_address");
         indxler = type_0;
 
 
-        getname = intent.getStringExtra("getname");
-        getphone = intent.getStringExtra("getphone");
-        getaddress = intent.getStringExtra("getaddress");
-        int indx_0 = intent.getIntExtra("indx_0", 0);
+        getname = getIntent().getStringExtra("getname");
+        getphone = getIntent().getStringExtra("getphone");
+        getaddress = getIntent().getStringExtra("getaddress");
+        int indx_0 = getIntent().getIntExtra("indx_0", 0);
         type = indx_0;
     }
 
     @Override
     protected void initData() {//typeid
-        ((SubmitPresenter) mPresenter).submit("sf003", typeid);
+        ((SubmitPresenter) mPresenter).submit(typeid);
     }
 
 
@@ -185,27 +189,34 @@ public class Submit0rdersActivity extends BaseActivity implements SubmitContract
 //        items
         SubmitBean.ItemsBean items = submitBean.getItems();
         if (items != null) {
-            String name = items.getName(); //产品名称
+            String namess = items.getName(); //产品名称
             //运费
             freight = items.getFreight();
             img = items.getImg(); //图
             //产品价格
             src_price = items.getPrice();
             idsas = items.getIdsa(); //商品编号
-            Glide.with(context).load(img).into(im_);
-            tvIphoneName.setText(name);
-            textJifen.setText(src_price + "积分");
-            tvFreight.setText(freight + "积分");
-            tvNum.setText("X" + num);
+
+            Constant.IMG = img; //图
+            Constant.NAME = namess; //产品名
+            Constant.FREIGHT = freight;
+            Constant.SRC_PRICE = src_price;//产品价格
+            Constant.IDSAS = idsas; //商品编号
+            Constant.ZONG_JIA = src_price * num + freight; //总价
+            Glide.with(context).load(Constant.IMG).into(im_); //img
+            tvIphoneName.setText(Constant.NAME);//namess
+            textJifen.setText(Constant.SRC_PRICE + "积分");//src_price
+            tvFreight.setText(Constant.FREIGHT + "积分");//freight
+            tvNum.setText("X" + Constant.NUM);//num
             //add_price
-            textZong.setText((src_price * num + freight) + "");//总价钱
-            tvJifenOn.setText((src_price * num + freight) + "积分");
+            textZong.setText(Constant.ZONG_JIA + "");//总价钱(src_price * num + freight)
+            tvJifenOn.setText(Constant.ZONG_JIA + "积分");//(src_price * num + freight)
 
         }
         SubmitBean.UserAddressBean user_address = submitBean.getUser_address();
         if (user_address != null) {
             String name = user_address.getName();//用户姓名
-            String phone = user_address.getPhone();//订单号
+            String phone = user_address.getPhone();//手机号
             String user_name = user_address.getUser_name();//用户账号
             String address = user_address.getAddress();//用户地址
 //            tvOrderNum.setText("订单号 "+phone);
@@ -234,7 +245,7 @@ public class Submit0rdersActivity extends BaseActivity implements SubmitContract
             int order_state = addOrderistBean.getOrder_state();
             if (order_state == Constant.ORDER_STATE_0) {
                 Toast.makeText(context, "提交订单成功", Toast.LENGTH_SHORT).show();
-                                Intent intent2 = new Intent();
+                Intent intent2 = new Intent();
                 intent2.setClass(context, MainActivity.class);
                 intent2.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent2.putExtra("id", Constant.TWO_TYPE_3);

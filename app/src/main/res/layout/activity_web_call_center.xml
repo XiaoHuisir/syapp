@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.activity.WebCallCenterActivity">
+
+    <RelativeLayout
+        android:id="@+id/rl_web_top"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@color/swiperefresh_color1">
+
+        <!--<TextView-->
+        <!--android:id="@+id/nav_title"-->
+        <!--android:layout_width="320dp"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--android:layout_alignParentTop="true"-->
+        <!--android:layout_toEndOf="@+id/btn_navi_back"-->
+        <!--android:layout_toRightOf="@+id/btn_navi_back"-->
+        <!--android:gravity="center"-->
+        <!--android:singleLine="true"-->
+        <!--android:text="详情"-->
+        <!--android:textColor="#333333"-->
+        <!--android:textSize="18sp"/>-->
+        <TextView
+            android:id="@+id/nav_title"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="5dp"
+            android:layout_toRightOf="@id/btn_navi_back"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="客服"
+            android:textColor="#333333"
+            android:textSize="18sp" />
+
+        <LinearLayout
+            android:id="@+id/btn_navi_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:orientation="horizontal"
+            android:padding="10dp">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="3dp"
+                android:scaleType="centerInside"
+                android:src="@mipmap/back" />
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <ProgressBar
+        android:id="@+id/web_progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:progressDrawable="@drawable/progressbar_web"
+        android:visibility="gone" />
+
+    <WebView
+        android:id="@+id/webview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</LinearLayout>

@@ -6,10 +6,11 @@ import com.example.project.interfaces.IBasePresenter;
 import com.example.project.interfaces.IBaseView;
 
 public interface SubmitListContract {
-    interface  View extends IBaseView{
-        void   submitlistReane(SubmitListBean submitListBean);
+    interface View extends IBaseView {
+        void submitlistReane(SubmitListBean submitListBean);
     }
-    interface  Presenter extends IBasePresenter<View>{
-        void   submitList(String user_name);
+
+    interface Presenter extends IBasePresenter<View> {
+        void submitList(int idsas, int num);
     }
 }

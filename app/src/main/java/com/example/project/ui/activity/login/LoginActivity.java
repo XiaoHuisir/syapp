@@ -80,7 +80,7 @@ public class LoginActivity extends BaseActivity implements LoginsContract.Views 
                 edPw.setText(pw);
             }
         }
-        edPhone.setText("sy001");
+        edPhone.setText("sf003");
         edPw.setText("123456");
 //        edPhone.setFocusable(false);
 //        edPw.setFocusable(false);

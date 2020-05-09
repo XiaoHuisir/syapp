@@ -11,20 +11,25 @@
         android:id="@+id/fl"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/tl"
-        />
-
+        android:layout_above="@id/tl" />
+    <View
+        android:layout_below="@id/fl"
+        android:layout_width="match_parent"
+        android:background="@color/line_gray"
+        android:layout_height="@dimen/dp_1"/>
     <android.support.design.widget.TabLayout
         android:id="@+id/tl"
+
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/dp_68"
         android:layout_alignParentBottom="true"
         app:tabGravity="fill"
+        app:tabTextColor="#151515"
         app:tabIndicatorHeight="0dp"
         app:tabMaxWidth="0dp"
         app:tabMode="fixed"
-        app:tabSelectedTextColor="@color/col_blue"
+        app:tabSelectedTextColor="@color/new_blue"
 
-    />
+        />
 
 </RelativeLayout>

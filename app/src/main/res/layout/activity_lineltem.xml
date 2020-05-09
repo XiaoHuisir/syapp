@@ -141,13 +141,13 @@
                 android:layout_height="match_parent"
                 android:layout_alignParentRight="true">
 
-                <ImageView
-                    android:id="@+id/im_beak_ok"
-                    android:layout_width="36dp"
-                    android:layout_height="36dp"
-                    android:layout_centerHorizontal="true"
-                    android:layout_centerVertical="true"
-                    android:src="@mipmap/back_h" />
+                <!--<ImageView-->
+                <!--android:id="@+id/im_beak_ok"-->
+                <!--android:layout_width="36dp"-->
+                <!--android:layout_height="36dp"-->
+                <!--android:layout_centerHorizontal="true"-->
+                <!--android:layout_centerVertical="true"-->
+                <!--android:src="@mipmap/back_h" />-->
             </RelativeLayout>
 
         </RelativeLayout>
@@ -164,15 +164,15 @@
             android:background="@color/white">
 
             <!--<TextView-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_alignParentLeft="true"-->
-                <!--android:layout_alignParentTop="true"-->
-                <!--android:layout_marginLeft="@dimen/dp_8"-->
-                <!--android:layout_marginTop="@dimen/dp_4"-->
-                <!--android:text="订单号：4155156255"-->
-                <!--android:textColor="@color/gray"-->
-                <!--android:textSize="@dimen/sp_13" />-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_alignParentLeft="true"-->
+            <!--android:layout_alignParentTop="true"-->
+            <!--android:layout_marginLeft="@dimen/dp_8"-->
+            <!--android:layout_marginTop="@dimen/dp_4"-->
+            <!--android:text="订单号：4155156255"-->
+            <!--android:textColor="@color/gray"-->
+            <!--android:textSize="@dimen/sp_13" />-->
 
             <ImageView
                 android:id="@+id/im_item_img"
@@ -190,7 +190,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="44dp"
+                android:layout_toLeftOf="@+id/tv_item_price"
                 android:layout_toRightOf="@id/im_item_img"
+                android:ellipsize="end"
+                android:maxLines="1"
                 android:text="识缘手机 K10 5G"
                 android:textColor="@color/black"
                 android:textSize="17sp" />

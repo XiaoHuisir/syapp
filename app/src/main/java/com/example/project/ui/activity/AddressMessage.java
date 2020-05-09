@@ -71,6 +71,9 @@ public class AddressMessage extends BaseActivity implements AddressContract.View
     private String add_s;
     private CityPickerView mPicker = new CityPickerView(); //三级联动
     private InputMethodManager imm;
+    private int id_s;
+    private int nu_m;
+    private  boolean inxdlers=false;
 
 
     @Override
@@ -92,6 +95,20 @@ public class AddressMessage extends BaseActivity implements AddressContract.View
                 final String getphone = etCompany.getText().toString();
                 final String edstreets = edStreet.getText().toString();//详细地址
                 final String getaddress = etPost.getText().toString();//地址
+
+                if ( Constant.IS_MINE_IS .equals("2")){
+                    if (Constant.CURTYPE.equals("编辑")) {
+                        tvTilet.setText("修改收货地址");
+                        Toast.makeText(context, "编辑001124545", Toast.LENGTH_SHORT).show();
+                        biajineirong(getname, getphone, getaddress, edstreets);
+                    } else if (Constant.CURTYPE.equals("添加")) {
+                        tvTilet.setText("添加收货地址");
+                        Toast.makeText(context, "添加收货地址0000000", Toast.LENGTH_SHORT).show();
+                        biajineirong(getname, getphone, getaddress, edstreets);
+                    }
+                }else {
+
+
                 if (Constant.CURTYPE.equals("编辑")) {
                     tvTilet.setText("修改收货地址");
                     Toast.makeText(context, "编辑001124545", Toast.LENGTH_SHORT).show();
@@ -102,7 +119,7 @@ public class AddressMessage extends BaseActivity implements AddressContract.View
                     biajineirong(getname, getphone, getaddress, edstreets);
                 }
 
-
+                }
                 break;
             case R.id.re_break:
                 finish();
@@ -140,13 +157,79 @@ public class AddressMessage extends BaseActivity implements AddressContract.View
         final AlertDialog alertDialog = new AlertDialog.Builder(AddressMessage.this).setTitle(" ").setView(layout).show();
         final RelativeLayout yes = layout.findViewById(R.id.relative_update);
         final RelativeLayout no = layout.findViewById(R.id.relative_cancel);
+        if ( Constant.IS_MINE_IS .equals("2")){
+            if (Constant.CURTYPE.equals("编辑")) {
+                yes.setOnClickListener(new View.OnClickListener() {  //是
+                    @Override
+                    public void onClick(View v) {
+                        alertDialog.dismiss();
+                        ((AddressPresenter) mPresenter).addressRe( getname, id_dizhi, Constant.STUDY_TYPE_2, getphone, getaddress);//+ " " + edstreets
+                        Intent intent = new Intent(context, SelectAddressActivity.class);
+                        intent.putExtra("type_id", id_s);
+                        intent.putExtra("num", nu_m);
+                        startActivity(intent);
+                        finish();
+                    }
+                });
+                no.setOnClickListener(new View.OnClickListener() {  //否
+                    @Override
+                    public void onClick(View v) {
+                        alertDialog.dismiss();
+                        ((AddressPresenter) mPresenter).addressRe( getname, id_dizhi, Constant.STUDY_TYPE_1, getphone, getaddress);//+ " " + edstreets
+                        Intent intent1 = new Intent(context, SelectAddressActivity.class);
+                        intent1.putExtra("get_name", getname);
+                        intent1.putExtra("get_phone", getphone);
+                        intent1.putExtra("get_address", getaddress);
+                        intent1.putExtra("type_0", false);
+                        intent1.putExtra("type_id", id_s);
+                        intent1.putExtra("num", nu_m);
+                        startActivity(intent1);
+                        finish();
+                    }
+                });
+
+            } else if (Constant.CURTYPE.equals("添加")) {
+
+                yes.setOnClickListener(new View.OnClickListener() {  //是
+                    @Override
+                    public void onClick(View v) {
+                        alertDialog.dismiss();
+                        ((AddressPresenter) mPresenter).addR( getname, Constant.STUDY_TYPE_2, getphone, getaddress);//+ " " + edstreets
+                        Intent intent = new Intent(context, SelectAddressActivity.class);
+                        intent.putExtra("type_id", id_s);
+                        intent.putExtra("num", nu_m);
+                        startActivity(intent);
+                        finish();
+                    }
+                });
+                no.setOnClickListener(new View.OnClickListener() {  //否
+                    @Override
+                    public void onClick(View v) {
+                        alertDialog.dismiss();
+                        ((AddressPresenter) mPresenter).addR( getname, Constant.STUDY_TYPE_1, getphone, getaddress);//+ " " + edstreets
+                        Intent intent1 = new Intent(context, SelectAddressActivity.class);
+                        intent1.putExtra("get_name", getname);
+                        intent1.putExtra("get_phone", getphone);
+                        intent1.putExtra("get_address", getaddress);
+                        intent1.putExtra("type_0", false);
+                        intent1.putExtra("type_id", id_s);
+                        intent1.putExtra("num", nu_m);
+                        startActivity(intent1);
+                        finish();
+                    }
+                });
+            }
+        }else {
+
         if (Constant.CURTYPE.equals("编辑")) {
             yes.setOnClickListener(new View.OnClickListener() {  //是
                 @Override
                 public void onClick(View v) {
                     alertDialog.dismiss();
-                    ((AddressPresenter) mPresenter).addressRe("sf003", getname, id_dizhi, Constant.STUDY_TYPE_2, getphone, getaddress + " " + edstreets);
+                    ((AddressPresenter) mPresenter).addressRe( getname, id_dizhi, Constant.STUDY_TYPE_2, getphone, getaddress);//+ " " + edstreets
                     Intent intent = new Intent(context, Submit0rdersActivity.class);
+                    intent.putExtra("type_id", id_s);
+                    intent.putExtra("num", nu_m);
                     startActivity(intent);
                     finish();
                 }
@@ -155,12 +238,14 @@ public class AddressMessage extends BaseActivity implements AddressContract.View
                 @Override
                 public void onClick(View v) {
                     alertDialog.dismiss();
-                    ((AddressPresenter) mPresenter).addressRe("sf003", getname, id_dizhi, Constant.STUDY_TYPE_1, getphone, getaddress + " " + edstreets);
+                    ((AddressPresenter) mPresenter).addressRe( getname, id_dizhi, Constant.STUDY_TYPE_1, getphone, getaddress);//+ " " + edstreets
                     Intent intent1 = new Intent(context, Submit0rdersActivity.class);
                     intent1.putExtra("get_name", getname);
                     intent1.putExtra("get_phone", getphone);
                     intent1.putExtra("get_address", getaddress);
                     intent1.putExtra("type_0", false);
+                    intent1.putExtra("type_id", id_s);
+                    intent1.putExtra("num", nu_m);
                     startActivity(intent1);
                     finish();
                 }
@@ -172,8 +257,10 @@ public class AddressMessage extends BaseActivity implements AddressContract.View
                 @Override
                 public void onClick(View v) {
                     alertDialog.dismiss();
-                    ((AddressPresenter) mPresenter).addR("sf003", getname, Constant.STUDY_TYPE_2, getphone, getaddress + " " + edstreets);
+                    ((AddressPresenter) mPresenter).addR( getname, Constant.STUDY_TYPE_2, getphone, getaddress);//+ " " + edstreets
                     Intent intent = new Intent(context, Submit0rdersActivity.class);
+                    intent.putExtra("type_id", id_s);
+                    intent.putExtra("num", nu_m);
                     startActivity(intent);
                     finish();
                 }
@@ -182,23 +269,29 @@ public class AddressMessage extends BaseActivity implements AddressContract.View
                 @Override
                 public void onClick(View v) {
                     alertDialog.dismiss();
-                    ((AddressPresenter) mPresenter).addR("sf003", getname, Constant.STUDY_TYPE_1, getphone, getaddress + " " + edstreets);
+                    ((AddressPresenter) mPresenter).addR( getname, Constant.STUDY_TYPE_1, getphone, getaddress);//+ " " + edstreets
                     Intent intent1 = new Intent(context, Submit0rdersActivity.class);
                     intent1.putExtra("get_name", getname);
                     intent1.putExtra("get_phone", getphone);
                     intent1.putExtra("get_address", getaddress);
                     intent1.putExtra("type_0", false);
+                    intent1.putExtra("type_id", id_s);
+                    intent1.putExtra("num", nu_m);
                     startActivity(intent1);
                     finish();
                 }
             });
+        }
         }
 
     }
 
     @Override
     protected void initView() {
-        imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);//软键盘
+        id_s = getIntent().getIntExtra("id_s", 0);
+        nu_m = getIntent().getIntExtra("nu_m", 0);
+//        inxdlers = getIntent().getBooleanExtra("is_mine_is", true);
+//        imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);//软键盘
         if (Constant.CURTYPE.equals("编辑")) {
             tvTilet.setText("修改收货地址");
 
@@ -223,20 +316,20 @@ public class AddressMessage extends BaseActivity implements AddressContract.View
 
     }
 
-    //点击空白关闭软键盘
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        if (event.getAction() == MotionEvent.ACTION_DOWN) {
-            if (AddressMessage.this.getCurrentFocus() != null) {
-                if (AddressMessage.this.getCurrentFocus().getWindowToken() != null) {
-                    imm.hideSoftInputFromWindow(AddressMessage.this.getCurrentFocus().getWindowToken(),
-                            InputMethodManager.HIDE_NOT_ALWAYS);
-
-                }
-            }
-        }
-        return super.onTouchEvent(event);
-    }
+//    //点击空白关闭软键盘
+//    @Override
+//    public boolean onTouchEvent(MotionEvent event) {
+//        if (event.getAction() == MotionEvent.ACTION_DOWN) {
+//            if (AddressMessage.this.getCurrentFocus() != null) {
+//                if (AddressMessage.this.getCurrentFocus().getWindowToken() != null) {
+//                    imm.hideSoftInputFromWindow(AddressMessage.this.getCurrentFocus().getWindowToken(),
+//                            InputMethodManager.HIDE_NOT_ALWAYS);
+//
+//                }
+//            }
+//        }
+//        return super.onTouchEvent(event);
+//    }
 
 
     private void startup() {
@@ -249,45 +342,45 @@ public class AddressMessage extends BaseActivity implements AddressContract.View
         etName.setText(name);
         etCompany.setText(phone);
         etPost.setText(add_ress);
-        pickers();  //三级联动地址管理
+//        pickers();  //三级联动地址管理
     }
 
     private void pickers() {
-        mPicker.init(context); //必须！  初始化城市数据
-        etPost.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                imm.hideSoftInputFromWindow(AddressMessage.this.getCurrentFocus().getWindowToken(),
-                        InputMethodManager.HIDE_NOT_ALWAYS);
-                if (v == etPost) {  //地区联动选择
-                    //添加默认的配置，可以自己修改
-                    CityConfig cityConfig = new CityConfig.Builder()
-                            .province("河北") //设置默认显示省份
-                            .build();
-                    mPicker.setConfig(cityConfig);
-                    //监听选择点击事件及返回结果
-                    mPicker.setOnCityItemClickListener(new OnCityItemClickListener() {
-                        @Override
-                        public void onSelected(ProvinceBean province, CityBean city, DistrictBean district) {
-                            //省份
-                            if (province != null && city != null && district != null) {
-                                etPost.setText(province.toString() + "  " + city.toString() + "  " + district.toString());
-                            }
-                        }
-
-                        @Override
-                        public void onCancel() {
-                            ToastUtils.showLongToast(context, "已取消");
-                        }
-                    });
-                    //显示
-                    mPicker.showCityPicker();
-                    linEdStreet.setVisibility(View.VISIBLE);//显示详细地址输入框
-                }
-
-
-            }
-        });
+//        mPicker.init(context); //必须！  初始化城市数据
+//        etPost.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                imm.hideSoftInputFromWindow(AddressMessage.this.getCurrentFocus().getWindowToken(),
+//                        InputMethodManager.HIDE_NOT_ALWAYS);
+//                if (v == etPost) {  //地区联动选择
+//                    //添加默认的配置，可以自己修改
+//                    CityConfig cityConfig = new CityConfig.Builder()
+//                            .province("河北") //设置默认显示省份
+//                            .build();
+//                    mPicker.setConfig(cityConfig);
+//                    //监听选择点击事件及返回结果
+//                    mPicker.setOnCityItemClickListener(new OnCityItemClickListener() {
+//                        @Override
+//                        public void onSelected(ProvinceBean province, CityBean city, DistrictBean district) {
+//                            //省份
+//                            if (province != null && city != null && district != null) {
+//                                etPost.setText(province.toString() + "  " + city.toString() + "  " + district.toString());
+//                            }
+//                        }
+//
+//                        @Override
+//                        public void onCancel() {
+//                            ToastUtils.showLongToast(context, "已取消");
+//                        }
+//                    });
+//                    //显示
+//                    mPicker.showCityPicker();
+//                    linEdStreet.setVisibility(View.VISIBLE);//显示详细地址输入框
+//                }
+//
+//
+//            }
+//        });
     }
 
     @Override

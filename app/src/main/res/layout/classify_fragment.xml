@@ -10,7 +10,7 @@
     <android.support.design.widget.TabLayout
         android:id="@+id/tab_classfy"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="@dimen/dp_48"
         app:tabIndicatorColor="#1B82D2"
         app:tabMode="scrollable"
         app:tabSelectedTextColor="#1B82D2"
@@ -20,5 +20,5 @@
         android:id="@+id/vp_classfy"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/line_gray" />
+        android:background="@color/new_bag" />
 </LinearLayout>

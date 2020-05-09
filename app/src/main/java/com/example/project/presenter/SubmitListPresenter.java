@@ -16,9 +16,11 @@ import static android.content.ContentValues.TAG;
 
 
 public class SubmitListPresenter extends BasePresenter<SubmitListContract.View> implements SubmitListContract.Presenter {
+
+
     @Override
-    public void submitList(String user_name) {
-        addSubscribe(HttpUtils.getMyServer(Constant.BaseUrl).submitLists(user_name)
+    public void submitList(int idsas, int num) {
+        addSubscribe(HttpUtils.getMyServer(Constant.BaseUrl).submitLists(Constant.token,idsas,num)
                 .compose(RxUtils.<SubmitListBean>rxScheduler())
                 .subscribeWith(new CommonSubscriber<SubmitListBean>(mView) {
                     @Override

@@ -16,9 +16,9 @@ public interface AddressContract {
     }
 
     interface Presenter extends IBasePresenter<View> {
-        void addressRe(String user, String name, int id, int is_default, String phone, String address);
+        void addressRe( String name, int id, int is_default, String phone, String address);
 
-        void addR(String user, String name, int is_default, String phone, String address);
+        void addR( String name, int is_default, String phone, String address);
 
     }
 

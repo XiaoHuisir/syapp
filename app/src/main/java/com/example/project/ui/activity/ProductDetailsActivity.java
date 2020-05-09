@@ -2,7 +2,12 @@ package com.example.project.ui.activity;
 
 import android.content.Intent;
 import android.graphics.Paint;
+import android.os.Bundle;
 import android.view.View;
+import android.webkit.WebChromeClient;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -19,14 +24,10 @@ import com.example.project.interfaces.IBasePresenter;
 import com.example.project.interfaces.contract.ProductDetailsContract;
 import com.example.project.presenter.ProductDetailsPresenter;
 
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
-
 import java.util.ArrayList;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 //toItemsDetail idsa
@@ -52,8 +53,10 @@ public class ProductDetailsActivity extends BaseActivity implements ProductDetai
     TextView tvFreight;
     @BindView(R.id.tv_stock)
     TextView tvStock;
-    @BindView(R.id.im_xiang)
-    ImageView imX;
+    @BindView(R.id.web_xiang)
+    WebView webview;
+    @BindView(R.id.lin_call_center)
+    LinearLayout linCallCenter;
 
     private String ids;
     private ArrayList<StringBuffer> ims;
@@ -89,7 +92,7 @@ public class ProductDetailsActivity extends BaseActivity implements ProductDetai
     }
 
 
-    @OnClick({R.id.lin_home, R.id.lin_classfy, R.id.btn_exchang, R.id.im_beak})
+    @OnClick({R.id.lin_home, R.id.lin_classfy, R.id.btn_exchang, R.id.im_beak, R.id.lin_call_center})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.lin_home: //TODO 这里是跳转到 mainActivity的 HomeFragment(首页)
@@ -113,7 +116,7 @@ public class ProductDetailsActivity extends BaseActivity implements ProductDetai
                 intent2.putExtra("price", price);
                 intent2.putExtra("imgs", img);
                 intent2.putExtra("buynums", buynum);
-                intent2.putExtra("stock_",stock);
+                intent2.putExtra("stock_", stock);
                 intent2.putExtra("idsas", idsa);
 //                intent2.putExtra("freight_",freight);
                 startActivity(intent2);
@@ -121,6 +124,9 @@ public class ProductDetailsActivity extends BaseActivity implements ProductDetai
                 break;
             case R.id.im_beak:
                 finish();
+                break;
+            case R.id.lin_call_center: //客服
+                startActivity(new Intent(context, WebCallCenterActivity.class));
                 break;
         }
     }
@@ -150,7 +156,7 @@ public class ProductDetailsActivity extends BaseActivity implements ProductDetai
         freight = result.getFreight();
         //限购数量
         buynum = result.getBuynum();
-
+        String sulimg = result.getImges();
         Glide.with(context).load(img).into(imHead);
         tvTelet.setText(name);
         tvPrice.setText(String.valueOf(price));
@@ -159,7 +165,47 @@ public class ProductDetailsActivity extends BaseActivity implements ProductDetai
         tvStock.setText("库存：" + String.valueOf(stock));
 
 
-        xiangqing(result); // TODO 详情 ？？？
+//        xiangqing(result); // TODO 详情 ？？？
+        newxingqing(sulimg);
+    }
+
+    private void newxingqing(String  sulimg) {
+        //webview图片自适应。
+        WebSettings webSettings = webview.getSettings();
+        webSettings.setJavaScriptEnabled(true);
+        webSettings.setJavaScriptCanOpenWindowsAutomatically(true);
+        webSettings.setUseWideViewPort(true);//关键点
+        webSettings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
+        webSettings.setDisplayZoomControls(false);
+        webSettings.setAllowFileAccess(true); // 允许访问文件
+        webSettings.setBuiltInZoomControls(true); // 设置显示缩放按钮
+        webSettings.setSupportZoom(true); // 支持缩放
+        webSettings.setLoadWithOverviewMode(true);
+//        webview.setWebViewClient(new WebViewClient() {
+//            @Override
+//            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+//                return super.shouldOverrideUrlLoading(view, url);
+//            }
+//        });
+//        webview.setWebChromeClient(new WebChromeClient() {
+//            @Override
+//            public void onProgressChanged(WebView view, int newProgress) {
+//                webProgressBar.setProgress(newProgress);//设置进度值
+//                if (newProgress == 100) {
+//                    webProgressBar.setVisibility(View.GONE);//加载完网页进度条消失
+//                } else {
+//                    webProgressBar.setVisibility(View.VISIBLE);//开始加载网页时显示进度条
+//                    webProgressBar.setProgress(newProgress);//设置进度值
+//                }
+//            }
+//
+//            @Override
+//            public void onReceivedTitle(WebView view, String title) {
+//                super.onReceivedTitle(view, title);
+////                navTitle.setText(title);
+//            }
+//        });
+        webview.loadUrl(sulimg);
     }
 
     private void xiangqing(ProductDetailsBean result) {
@@ -188,4 +234,6 @@ public class ProductDetailsActivity extends BaseActivity implements ProductDetai
     private void failedings() {
         Toast.makeText(context, "商品详情请求失败", Toast.LENGTH_SHORT).show();
     }
+
+
 }

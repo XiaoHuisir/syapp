@@ -13,8 +13,8 @@ import com.example.project.utils.RxUtils;
 
 public class LoginTokenPresenter extends BasePresenter<LoginTokenContract.View> implements LoginTokenContract.Presenter {
     @Override
-    public void logintokens(String tokens) {
-        addSubscribe(HttpUtils.getMyServer(Constant.BaseUrl).logintoken(tokens)
+    public void logintokens() {
+        addSubscribe(HttpUtils.getMyServer(Constant.BaseUrl).logintoken(Constant.token)
                 .compose(RxUtils.<LoginTokenBean>rxScheduler())
                 .subscribeWith(new CommonSubscriber<LoginTokenBean>(mView) {
                     @Override

@@ -117,7 +117,7 @@
                 android:text="地址"
                 android:textColor="@color/black"
                 android:textSize="14sp" />
-
+            <!--android:focusable="false" 关闭软键盘-->
             <EditText
                 android:id="@+id/et_post"
                 android:layout_width="match_parent"
@@ -125,7 +125,7 @@
                 android:layout_marginLeft="17dp"
                 android:background="@null"
                 android:ellipsize="end"
-                android:focusable="false"
+
                 android:gravity="center_vertical"
                 android:hint="省市区县、乡镇等"
                 android:maxLines="1"

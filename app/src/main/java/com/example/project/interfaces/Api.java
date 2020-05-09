@@ -4,14 +4,21 @@ package com.example.project.interfaces;
 import com.example.project.bean.AddOrderistBean;
 import com.example.project.bean.AddRBean;
 import com.example.project.bean.AnddressBean;
+import com.example.project.bean.BankBean;
 import com.example.project.bean.ClassBean;
 import com.example.project.bean.ClassListBean;
 import com.example.project.bean.HomeBean;
+import com.example.project.bean.IdentityBean;
 import com.example.project.bean.LineItemBean;
 import com.example.project.bean.LoginTokenBean;
 import com.example.project.bean.LoginsBean;
+import com.example.project.bean.MineBean;
 import com.example.project.bean.NewIndentBean;
 import com.example.project.bean.ProductDetailsBean;
+import com.example.project.bean.QueryIntegralBean;
+import com.example.project.bean.QueryLastWeekStockBean;
+import com.example.project.bean.QueryMinuteStockBean;
+import com.example.project.bean.QueryStockBean;
 import com.example.project.bean.SubmitBean;
 import com.example.project.bean.SubmitListBean;
 
@@ -35,8 +42,8 @@ public interface Api {
 
     //     验证token 是否有效  http://192.168.124.14:8080/user_login?token=
     @POST("checkLogin")
-    @FormUrlEncoded
-    Flowable<LoginTokenBean> logintoken(@Field("token") String logintoken);
+//    @FormUrlEncoded
+    Flowable<LoginTokenBean> logintoken(@Header("token") String logintoken);
 
 
     //home
@@ -64,40 +71,73 @@ public interface Api {
     //订单确认页(地址)
     @POST("toConfirmOrderList")
     @FormUrlEncoded
-    Flowable<SubmitBean> submits(@Field("user_name") String user, @Field("idsa") int id);
+    Flowable<SubmitBean> submits(@Header("token") String tokens, @Field("idsa") int id);
 
 //toUser_AddressIndex 地址管理list
 
     //收货地址列表
     @POST("toUser_AddressIndex")
     @FormUrlEncoded
-    Flowable<SubmitListBean> submitLists(@Field("user_name") String user);
+    Flowable<SubmitListBean> submitLists(@Header("token") String tokens, @Field("idsa") int idsas, @Field("num") int num);
 
     //修改收货地址
     @POST("updateUser_AddressById")
     @FormUrlEncoded
-    Flowable<AnddressBean> address(@Field("user_name") String user, @Field("name") String name, @Field("id") int id, @Field("is_default") int is_default, @Field("phone") String phone, @Field("address") String address);
+    Flowable<AnddressBean> address(@Header("token") String tokens, @Field("name") String name, @Field("id") int id, @Field("is_default") int is_default, @Field("phone") String phone, @Field("address") String address);
 
     //添加收货地址
     @POST("addUser_Address")
     @FormUrlEncoded
-    Flowable<AddRBean> addr(@Field("user_name") String user, @Field("name") String name, @Field("is_default") int is_default, @Field("phone") String phone, @Field("address") String address);
+    Flowable<AddRBean> addr(@Header("token") String tokens, @Field("name") String name, @Field("is_default") int is_default, @Field("phone") String phone, @Field("address") String address);
 
     //提交订单
-    @POST("addOrder_list")
+    @POST("addOrder_list")  //TODO ?????
     @FormUrlEncoded
-    Flowable<AddOrderistBean> addOrderApi( @FieldMap Map<String, String> map);
+    Flowable<AddOrderistBean> addOrderApi(@Header("token") String tokens, @FieldMap Map<String, String> map);
 
     //订单列表
     @POST("toOrderIndex")
-    @FormUrlEncoded
-    Flowable<NewIndentBean> indentApi(@Field("userId") int user_id);
+    //@Field("userId") int user_id TODO
+//    @FormUrlEncoded
+    Flowable<NewIndentBean> indentApi(@Header("token") String tokens);
 
     //订单详情页
     @POST("detailOrder_listById")
     @FormUrlEncoded
     Flowable<LineItemBean> lineitemApi(@Field("id") int id);
 
+    //我的模块
+    @POST("query_User")
+//    @FormUrlEncoded
+    Flowable<MineBean> MinesApi(@Header("token") String tokens);
+
+    //身份证号修改   update_identity
+    @POST("update_identity")
+    @FormUrlEncoded
+    Flowable<IdentityBean> updateidentityApi(@Header("token") String tokens, @Field("identity_num") String identity);
+
+    //银行卡号修改
+    @POST("update_bank")
+    @FormUrlEncoded
+    Flowable<BankBean> updatebankApi(@Header("token") String tokens, @Field("bank_name") String bankname, @Field("bank_num") String banknum, @Field("bank_address") String bankaddress);
+
+
+    //IntegralDetails
+    //购物积分明细: http://192.168.124.14:8080/queryIntegral
+    @POST("queryIntegral")
+    Flowable<QueryIntegralBean> queryIntegralApi(@Header("token") String tokens);
+
+    //识缘股明细: http://192.168.124.14:8080/queryStock
+    @POST("queryStock")
+    Flowable<QueryStockBean> queryStockApi(@Header("token") String tokens);
+
+    //分红识缘股明细: http://192.168.124.14:8080/queryMinuteStock
+    @POST("queryMinuteStock")
+    Flowable<QueryMinuteStockBean> queryMinuteStockApi(@Header("token") String tokens);
+
+    //赠送积分: http://192.168.124.14:8080/queryLastWeekStock
+    @POST("queryLastWeekStock")
+    Flowable<QueryLastWeekStockBean> queryLastWeekStockApi(@Header("token") String tokens);
 
     //----------------------------------------
 

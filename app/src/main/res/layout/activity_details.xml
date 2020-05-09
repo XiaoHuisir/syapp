@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/new_bag"
     tools:context=".ui.activity.DetailsActivity">
 
     <LinearLayout
@@ -21,10 +22,11 @@
             android:src="@mipmap/beak47" />
 
         <TextView
+            android:id="@+id/tv_tilte"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/dp_8"
-            android:text="购物积分"
+            android:text="xx"
             android:textColor="@color/white"
             android:textSize="20sp" />
     </LinearLayout>
@@ -40,51 +42,53 @@
         android:background="@color/col_blue">
 
         <TextView
+            android:id="@+id/tv_tilte_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/dp_16"
-            android:text="购物积分："
+            android:text="xx"
             android:textColor="@color/white"
             android:textSize="@dimen/sp_20" />
 
-        <LinearLayout
-            android:id="@+id/lin_WD"
-            android:layout_width="@dimen/dp_60"
-            android:layout_height="@dimen/dp_30"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginTop="@dimen/dp_10"
-            android:layout_marginRight="@dimen/dp_26"
-            android:background="@drawable/btn_wd"
-            android:gravity="center">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="提现"
-                android:textColor="@color/white"
-                android:textSize="@dimen/sp_20" />
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/tv_record"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/lin_WD"
-            android:layout_alignParentRight="true"
-            android:layout_marginTop="@dimen/dp_12"
-            android:layout_marginRight="@dimen/dp_25"
-            android:text="提现记录"
-            android:textColor="@color/white"
-            android:textSize="@dimen/sp_16" />
     </RelativeLayout>
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/re_WDlist"
+    <ScrollView
+        android:scrollbars="none"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
 
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/re_queryIntegral"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/re_queryStock"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/re_queryMinuteStock"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/re_queryLastWeekStock"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </RelativeLayout>
+    </ScrollView>
 </LinearLayout>

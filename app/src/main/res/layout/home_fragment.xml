@@ -6,28 +6,29 @@
 
 
     <ScrollView
+        android:id="@+id/scr_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:scrollbars="none"
         android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/line_gray"
+            android:background="@color/new_bag"
             android:orientation="vertical">
 
             <com.youth.banner.Banner
                 android:id="@+id/ban"
                 android:layout_width="match_parent"
                 android:layout_height="160dp"
-                android:background="#FFFFFF" />
+                android:background="@color/new_bag" />
 
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
-                android:background="@color/whites">
+                android:background="@color/new_bag">
 
 
                 <android.support.v7.widget.RecyclerView

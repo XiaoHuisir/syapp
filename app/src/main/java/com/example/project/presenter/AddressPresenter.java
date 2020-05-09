@@ -18,8 +18,8 @@ public class AddressPresenter extends BasePresenter<AddressContract.View>impleme
     private static final String TAG = "addresspresentertag";
 
     @Override
-    public void addressRe(String user, String name, int id, int is_default, String phone, String address) {
-        addSubscribe(HttpUtils.getMyServer(Constant.BaseUrl).address(user,name,id,is_default,phone,address)
+    public void addressRe( String name, int id, int is_default, String phone, String address) {
+        addSubscribe(HttpUtils.getMyServer(Constant.BaseUrl).address(Constant.token,name,id,is_default,phone,address)
                 .compose(RxUtils.<AnddressBean>rxScheduler())
                 .subscribeWith(new CommonSubscriber<AnddressBean>(mView) {
                     @Override
@@ -43,8 +43,8 @@ public class AddressPresenter extends BasePresenter<AddressContract.View>impleme
     }
 
     @Override
-    public void addR(String user, String name, int is_default, String phone, String address) {
-        addSubscribe(HttpUtils.getMyServer(Constant.BaseUrl).addr(user,name,is_default,phone,address)
+    public void addR( String name, int is_default, String phone, String address) {
+        addSubscribe(HttpUtils.getMyServer(Constant.BaseUrl).addr(Constant.token,name,is_default,phone,address)
                 .compose(RxUtils.<AddRBean>rxScheduler())
                 .subscribeWith(new CommonSubscriber<AddRBean>(mView) {
                     @Override

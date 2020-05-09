@@ -5,7 +5,31 @@ import java.util.List;
 public class SubmitListBean {
 
 
+    /**
+     * user_addressLIst : [{"id":54,"user_name":"sf003","is_default":1,"name":"他","phone":"17524434242","address":"河北省  省直辖县级行政区划  定州市 发"},{"id":53,"user_name":"sf003","is_default":0,"name":"其实","phone":"17526625555","address":"河北省  石家庄市  市辖区 14"},{"id":10,"user_name":"sf003","is_default":0,"name":"孙悟空","phone":"17445551111","address":"河北省高阳现金也也行产品"},{"id":5,"user_name":"sf003","is_default":0,"name":"李聪","phone":"18911410154","address":"北京市昌平区哈哈哈哈"},{"id":4,"user_name":"sf003","is_default":0,"name":"xiaomao","phone":"11111111111","address":"北京市就是北京市咋地？"},{"id":1,"user_name":"sf003","is_default":0,"name":"士大二万人","phone":"112","address":"士大夫"}]
+     * idsa : 1012
+     * num : 1
+     */
+
+    private int idsa;
+    private int num;
     private List<UserAddressLIstBean> user_addressLIst;
+
+    public int getIdsa() {
+        return idsa;
+    }
+
+    public void setIdsa(int idsa) {
+        this.idsa = idsa;
+    }
+
+    public int getNum() {
+        return num;
+    }
+
+    public void setNum(int num) {
+        this.num = num;
+    }
 
     public List<UserAddressLIstBean> getUser_addressLIst() {
         return user_addressLIst;
@@ -17,12 +41,12 @@ public class SubmitListBean {
 
     public static class UserAddressLIstBean {
         /**
-         * id : 7
+         * id : 54
          * user_name : sf003
-         * is_default : 0
-         * name : 呼呼呼
-         * phone : 11025463576
-         * address : 山东路陪你你先去咯了
+         * is_default : 1
+         * name : 他
+         * phone : 17524434242
+         * address : 河北省  省直辖县级行政区划  定州市 发
          */
 
         private int id;

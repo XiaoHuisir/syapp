@@ -19,8 +19,8 @@ import static android.content.ContentValues.TAG;
 
 public class SubmitPresenter extends BasePresenter<SubmitContract.View> implements SubmitContract.Presenter {
     @Override
-    public void submit(String user, int id) {
-        addSubscribe(HttpUtils.getMyServer(Constant.BaseUrl).submits(user,id)
+    public void submit(int id) {
+        addSubscribe(HttpUtils.getMyServer(Constant.BaseUrl).submits(Constant.token, id)
                 .compose(RxUtils.<SubmitBean>rxScheduler())
                 .subscribeWith(new CommonSubscriber<SubmitBean>(mView) {
                     @Override
@@ -45,7 +45,7 @@ public class SubmitPresenter extends BasePresenter<SubmitContract.View> implemen
 
     @Override
     public void addOrders(Map<String, String> map) {
-        addSubscribe(HttpUtils.getMyServer(Constant.BaseUrl).addOrderApi(map)
+        addSubscribe(HttpUtils.getMyServer(Constant.BaseUrl).addOrderApi(Constant.token, map)
                 .compose(RxUtils.<AddOrderistBean>rxScheduler())
                 .subscribeWith(new CommonSubscriber<AddOrderistBean>(mView) {
                     @Override

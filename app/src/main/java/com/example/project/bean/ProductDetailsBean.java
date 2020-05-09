@@ -2,28 +2,30 @@ package com.example.project.bean;
 
 public class ProductDetailsBean {
 
+
     /**
-     * id : 4
-     * idsa : 3
-     * name : 小缘在家机器人
-     * img : https://cdn.knowfate.com.cn/web/images/product/201.jpg
+     * id : 7
+     * idsa : 2014
+     * name : 小西科技拼读机
+     * img : https://cdn.knowfate.com.cn/web/images/product/xxkjpdj/00.jpg
      * img2 : 22
-     * price : 13999
+     * imges : http://bc.knowfate.com.cn/4g.html
+     * price : 499
      * src_price : 5999
-     * stock : 999
-     * weight : 111.0
-     * cateid : 2
+     * stock : 55
+     * weight : 9.0
+     * cateid : 4
      * isshow : 1
-     * imgs : https://cdn.knowfate.com.cn/web/images/product/61.png,https://cdn.knowfate.com.cn/web/images/product/62.png,https://cdn.knowfate.com.cn/web/images/product/63.png,https://cdn.knowfate.com.cn/web/images/product/64.png,https://cdn.knowfate.com.cn/web/images/product/65.png,https://cdn.knowfate.com.cn/web/images/product/66.png,https://cdn.knowfate.com.cn/web/images/product/67.png,https://cdn.knowfate.com.cn/web/images/product/68.png,https://cdn.knowfate.com.cn/web/images/product/69.png,https://cdn.knowfate.com.cn/web/images/product/70.png
-     * freight : 100
-     * buynum : 100
-     * des : 小缘机器人
-     * list : 小缘机器人
-     * times : 2020-04-21T14:57:43.000+0000
+     * imgs : https://cdn.knowfate.com.cn/web/images/product/xxkjpdj/01.jpg,https://cdn.knowfate.com.cn/web/images/product/xxkjpdj/02.jpg,https://cdn.knowfate.com.cn/web/images/product/xxkjpdj/03.jpg,https://cdn.knowfate.com.cn/web/images/product/xxkjpdj/04.jpg,https://cdn.knowfate.com.cn/web/images/product/xxkjpdj/05.jpg
+     * freight : 10
+     * buynum : 10
+     * des :
+     * list :
+     * times : 2020-05-05T15:36:22.000+0000
      * addtime : 2020-04-13T22:36:47.000+0000
      * listing_Time : null
      * offshelf_Time : null
-     * cate : {"id":4,"cateid":2,"name":"小缘在家机器人","weight":111,"isshow":1,"itemsList":null}
+     * cate : {"id":7,"cateid":4,"name":"小西科技拼读机","weight":9,"isshow":1,"itemsList":null}
      */
 
     private int id;
@@ -31,6 +33,7 @@ public class ProductDetailsBean {
     private String name;
     private String img;
     private String img2;
+    private String imges;
     private int price;
     private int src_price;
     private int stock;
@@ -86,6 +89,14 @@ public class ProductDetailsBean {
 
     public void setImg2(String img2) {
         this.img2 = img2;
+    }
+
+    public String getImges() {
+        return imges;
+    }
+
+    public void setImges(String imges) {
+        this.imges = imges;
     }
 
     public int getPrice() {
@@ -218,10 +229,10 @@ public class ProductDetailsBean {
 
     public static class CateBean {
         /**
-         * id : 4
-         * cateid : 2
-         * name : 小缘在家机器人
-         * weight : 111.0
+         * id : 7
+         * cateid : 4
+         * name : 小西科技拼读机
+         * weight : 9.0
          * isshow : 1
          * itemsList : null
          */
