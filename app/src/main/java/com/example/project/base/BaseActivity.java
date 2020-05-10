@@ -64,7 +64,7 @@ public abstract class BaseActivity<V extends IBaseView, P extends IBasePresenter
     }
 
     protected void setStatusBar(){
-        StatusBarUtil.setColor(this, ContextCompat.getColor(this,R.color.line_gray),50);
+        StatusBarUtil.setColor(this, ContextCompat.getColor(this,R.color.tou_ming),50);
         //StatusBarUtil.setDarkMode(this);
     }
 

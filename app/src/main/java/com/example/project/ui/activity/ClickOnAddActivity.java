@@ -19,6 +19,7 @@ import com.example.project.interfaces.IBasePresenter;
 import com.example.project.interfaces.contract.BankIdentityContract;
 import com.example.project.presenter.BankIdentityPresenter;
 import com.example.project.utils.IDCard;
+import com.example.project.utils.Validator;
 
 import java.text.ParseException;
 
@@ -184,7 +185,25 @@ public class ClickOnAddActivity extends BaseActivity implements BankIdentityCont
             String adds = edDepositBank.getText().toString();
         if (!TextUtils.isEmpty(names)&&!TextUtils.isEmpty(nums)&&!TextUtils.isEmpty(adds)){
             boolean b = IDCard.checkBankCard(nums);  //验证银行卡号
-            if (b==true){
+            boolean isshuzi = Validator.isshuzi(nums);
+            if (isshuzi==false){
+                Toast.makeText(context,"请输入正确的银行卡号！",Toast.LENGTH_SHORT).show();
+//                Intent intent = new Intent();
+//                intent.putExtra("names_", names);
+//                intent.putExtra("nums_", nums);
+//                intent.putExtra("adds_", adds);
+//                setResult(type, intent);
+//                ((BankIdentityPresenter) mPresenter).banks(names, nums, adds);
+
+                linearSave.setVisibility(View.VISIBLE);
+                textUpdate.setVisibility(View.GONE);
+                editable();
+                                Intent intent = new Intent();
+                intent.putExtra("names_", bank_names_);
+                intent.putExtra("nums_", bank_nums_);
+                intent.putExtra("adds_", bank_addres_);
+                setResult(type, intent);
+            }else {
                 Toast.makeText(context,"保存成功！",Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent();
                 intent.putExtra("names_", names);
@@ -192,22 +211,21 @@ public class ClickOnAddActivity extends BaseActivity implements BankIdentityCont
                 intent.putExtra("adds_", adds);
                 setResult(type, intent);
                 ((BankIdentityPresenter) mPresenter).banks(names, nums, adds);
-            }else {
-                Toast.makeText(context,"保存失败！",Toast.LENGTH_SHORT).show();
 //                 //银行卡号
 //        bank_nums_ = intent.getStringExtra("bank_nums_");
 //        //开户名
 //        bank_names_ = intent.getStringExtra("bank_names_");
 //        //开户地址
 //        bank_addres_ = intent.getStringExtra("bank_addres_");
-                linearSave.setVisibility(View.VISIBLE);
-                textUpdate.setVisibility(View.GONE);
-                editable();
-                Intent intent = new Intent();
-                intent.putExtra("names_", bank_names_);
-                intent.putExtra("nums_", bank_nums_);
-                intent.putExtra("adds_", bank_addres_);
-                setResult(type, intent);
+
+//                linearSave.setVisibility(View.VISIBLE);
+//                textUpdate.setVisibility(View.GONE);
+//                editable();
+//                Intent intent = new Intent();
+//                intent.putExtra("names_", bank_names_);
+//                intent.putExtra("nums_", bank_nums_);
+//                intent.putExtra("adds_", bank_addres_);
+//                setResult(type, intent);
             }
         }else {
             linearSave.setVisibility(View.VISIBLE);

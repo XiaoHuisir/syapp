@@ -146,7 +146,7 @@ public class AddressMessage extends BaseActivity implements AddressContract.View
             Toast.makeText(context, "请输入正确的姓名格式", Toast.LENGTH_SHORT).show();
             return;
         }
-        if (Validator.isMobile(getphone) == false) {
+        if (Validator.newisMobile(getphone) == false) {
             Toast.makeText(context, "请输入正确的手机号格式", Toast.LENGTH_SHORT).show();
             return;
         }

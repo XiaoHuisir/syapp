@@ -29,9 +29,9 @@ public class QueryintegralAdapter extends BaseAdapter {
         QueryIntegralBean.UserAddLogListBean list = (QueryIntegralBean.UserAddLogListBean) mDatas.get(positon);
         int add_val = list.getAdd_val();
         if (add_val >= 0) {
-            namelist.setText("增加" + add_val + "股");
+            namelist.setText("增加" + add_val + "积分");
         } else {
-            namelist.setText("减少" + add_val + "股");
+            namelist.setText("减少" + add_val + "积分");
         }
         String time = list.getTime();
         itmelist.setText(time);

@@ -3,12 +3,14 @@ package com.example.project.ui.fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.example.project.MainActivity;
@@ -19,6 +21,7 @@ import com.example.project.base.BaseFragment;
 import com.example.project.bean.MineBean;
 import com.example.project.interfaces.IBasePresenter;
 import com.example.project.interfaces.contract.MineContract;
+import com.example.project.presenter.HomePresenter;
 import com.example.project.presenter.MinePresenter;
 import com.example.project.ui.activity.DetailsActivity;
 import com.example.project.ui.activity.PersonalCenterActivity;
@@ -58,6 +61,8 @@ public class MineFragment extends BaseFragment implements MineContract.View {
     TextView tvScore2;
     @BindView(R.id.tv_score3_1)
     TextView tvScore3_1;
+    @BindView(R.id.swiperefresh)
+    SwipeRefreshLayout swipeRefres;
     private String phone_number;
     private String name;
     private String user_name;
@@ -82,10 +87,26 @@ public class MineFragment extends BaseFragment implements MineContract.View {
     @Override
     protected void initView() {
 //        countDown();//我的模块登录状态初始化处理（判断是否登录）
-
+        refress();
 
     }
+    private void refress() {
+        swipeRefres.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                ((MinePresenter) mPresenter).mines();
 
+                swipeRefres.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (swipeRefres != null) {
+                            swipeRefres.setRefreshing(false);
+                        }
+                    }
+                }, 2000);
+            }
+        });
+    }
     /**
      * 倒计时显示
      */
@@ -206,7 +227,7 @@ public class MineFragment extends BaseFragment implements MineContract.View {
             score = String.valueOf(mineBean.getScore());
             score2 = String.valueOf(mineBean.getScore2());
             score4 = String.valueOf(mineBean.getScore4());
-            score3_1 = String.valueOf(mineBean.getScore3_1());
+            score3_1 = String.valueOf(mineBean.getScore3());
         }
     }
 
