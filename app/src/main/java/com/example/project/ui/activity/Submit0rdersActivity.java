@@ -107,6 +107,8 @@ public class Submit0rdersActivity extends BaseActivity implements SubmitContract
             case R.id.re_on: //无 地址管理
                 Intent intent1 = new Intent();
                 intent1.setClass(context, SelectAddressActivity.class);
+                intent1.putExtra("typeid_", typeid);
+                intent1.putExtra("num_", num);
                 Constant.IS_MINE=false;
                 Constant.IS_MINE_IS="1";
                 startActivity(intent1);

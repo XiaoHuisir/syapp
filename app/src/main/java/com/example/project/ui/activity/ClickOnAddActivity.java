@@ -152,10 +152,10 @@ public class ClickOnAddActivity extends BaseActivity implements BankIdentityCont
             try {
                 String s = IDCard.IDCardValidate(returnValue);  //验证身份证号 (工具类：IDCard)
                 if (s.equals("")) {
-                    Toast.makeText(context, "保存成功！" , Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent();
-                    intent.putExtra("value", returnValue);
-                    setResult(type, intent);
+//                    Toast.makeText(context, "保存成功！" , Toast.LENGTH_SHORT).show();
+//                    Intent intent = new Intent();
+//                    intent.putExtra("value", returnValue);
+//                    setResult(type, intent);
                     ((BankIdentityPresenter) mPresenter).identitys(returnValue);
                 } else {
                     linearSave.setVisibility(View.VISIBLE);
@@ -204,12 +204,12 @@ public class ClickOnAddActivity extends BaseActivity implements BankIdentityCont
                 intent.putExtra("adds_", bank_addres_);
                 setResult(type, intent);
             }else {
-                Toast.makeText(context,"保存成功！",Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent();
-                intent.putExtra("names_", names);
-                intent.putExtra("nums_", nums);
-                intent.putExtra("adds_", adds);
-                setResult(type, intent);
+//                Toast.makeText(context,"保存成功！",Toast.LENGTH_SHORT).show();
+//                Intent intent = new Intent();
+//                intent.putExtra("names_", names);
+//                intent.putExtra("nums_", nums);
+//                intent.putExtra("adds_", adds);
+//                setResult(type, intent);
                 ((BankIdentityPresenter) mPresenter).banks(names, nums, adds);
 //                 //银行卡号
 //        bank_nums_ = intent.getStringExtra("bank_nums_");
@@ -249,6 +249,10 @@ public class ClickOnAddActivity extends BaseActivity implements BankIdentityCont
         if (identityBean != null) {
             String identity_num = identityBean.getIdentity_num();
             String bank_name = identityBean.getBank_name();
+            Toast.makeText(context, "保存成功！" , Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent();
+            intent.putExtra("value", identity_num);
+            setResult(type, intent);
         }
     }
 
@@ -257,6 +261,11 @@ public class ClickOnAddActivity extends BaseActivity implements BankIdentityCont
         String bank_address = bankBean.getBank_address();
         String bank_name = bankBean.getBank_name();
         String bank_num = bankBean.getBank_num();
-
+        Toast.makeText(context,"保存成功！",Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent();
+        intent.putExtra("names_", bank_name);
+        intent.putExtra("nums_", bank_num);
+        intent.putExtra("adds_", bank_address);
+        setResult(type, intent);
     }
 }

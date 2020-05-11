@@ -154,6 +154,9 @@ public class PersonalCenterActivity extends BaseActivity implements MineContract
                 String show_id = idnumber.substring(0, 3) + "********" + idnumber.substring(11);
                 textIndent.setText(show_id);
                 identity_numName=idnumber;
+                tvIDnumber.setVisibility(View.GONE);
+                reIndent.setVisibility(View.VISIBLE);
+
             }
         } else if (requestCode == BANK_CARD) {
 //              intent.putExtra("names_", names);
@@ -165,6 +168,8 @@ public class PersonalCenterActivity extends BaseActivity implements MineContract
             textBank.setText(nums_);
             tv_bank_address.setText(adds_);
             tv_bank_name.setText(names_);
+            tvBankCard.setVisibility(View.GONE);
+            reBank.setVisibility(View.VISIBLE);
         }
     }
 
@@ -182,6 +187,7 @@ public class PersonalCenterActivity extends BaseActivity implements MineContract
 //初始化
             if (!identityNum.equals(ins)) {
                 tvIDnumber.setVisibility(View.GONE);
+                reIndent.setVisibility(View.VISIBLE);
                 String show_id1 = identityNum.substring(0, 3) + "********" + identityNum.substring(11);
                 textIndent.setText(show_id1);
                 tv_bank_address.setText(bank_address);
@@ -193,6 +199,7 @@ public class PersonalCenterActivity extends BaseActivity implements MineContract
             }
             if (!bank_num.equals(ins)) {
                 tvBankCard.setVisibility(View.GONE);
+                reBank.setVisibility(View.VISIBLE);
                 textBank.setText(bank_num);
             } else {
                 tvBankCard.setVisibility(View.VISIBLE);
