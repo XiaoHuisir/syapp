@@ -10,6 +10,13 @@
     <uses-permission android:name="android.permission.INTERNET"></uses-permission>
     <uses-permission android:name="android.permission.READ_PHONE_STATE"></uses-permission>
 
+
+    <supports-screens
+        android:anyDensity="true"
+        android:largeScreens="true"
+        android:normalScreens="true"
+        android:smallScreens="true" />
+
     <!-- android:allowBackup="true"  tools:replace="android:allowBackup"   注释：改变 sp储存状态-->
     <!-- android:name="com.example.iwapp.app.MyApp"
         android:allowBackup="true"
@@ -39,6 +46,17 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <!--供h5调用-->
+                <data
+                    android:host="com.example.project"
+                    android:pathPrefix="/test/"
+                    android:scheme="syapp" />
             </intent-filter>
         </activity>
         <!--我的模块 登录-->
@@ -83,11 +101,23 @@
         <!--手机验证-->
         <activity android:name=".ui.activity.VerfiyActivity" />
         <!--个人中心-->
-        <activity android:name=".ui.activity.PersonalCenterActivity"/>
+        <activity android:name=".ui.activity.PersonalCenterActivity" />
         <!--客服-->
-        <activity android:name=".ui.activity.WebCallCenterActivity"/>
+        <activity android:name=".ui.activity.WebCallCenterActivity" />
         <!--（个人）添加身份证号/银行卡号-->
-        <activity android:name=".ui.activity.ClickOnAddActivity"/>
+        <activity android:name=".ui.activity.ClickOnAddActivity" />
+        <!--我的二维码-->
+        <activity android:name=".ui.activity.MyQRActivity" />
+        <!--我的扫码-->
+        <activity android:name=".ui.activity.MyScanCodeActivity" />
+        <!--注册-->
+        <activity android:name=".ui.activity.login.RegisterActivity" />
+        <!--修改密码-->
+        <activity android:name=".ui.activity.UpdatePasswrdActivity" />
+        <!--验证账号-->
+        <activity android:name=".ui.activity.VerifyAccountActivity"/>
+        <!--合作组-->
+        <activity android:name=".ui.activity.SynergicActivity"/>
     </application>
 
     <!--友盟统计配置Appkey与Channel-->

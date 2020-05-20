@@ -3,12 +3,14 @@ package com.example.project.interfaces;
 
 import com.example.project.bean.AddOrderistBean;
 import com.example.project.bean.AddRBean;
+import com.example.project.bean.AddUserBean;
 import com.example.project.bean.AnddressBean;
 import com.example.project.bean.BankBean;
 import com.example.project.bean.ClassBean;
 import com.example.project.bean.ClassListBean;
 import com.example.project.bean.HomeBean;
 import com.example.project.bean.IdentityBean;
+import com.example.project.bean.JoinBean;
 import com.example.project.bean.LineItemBean;
 import com.example.project.bean.LoginTokenBean;
 import com.example.project.bean.LoginsBean;
@@ -19,8 +21,12 @@ import com.example.project.bean.QueryIntegralBean;
 import com.example.project.bean.QueryLastWeekStockBean;
 import com.example.project.bean.QueryMinuteStockBean;
 import com.example.project.bean.QueryStockBean;
+import com.example.project.bean.QueryTabBean;
+import com.example.project.bean.ScanCodeBean;
 import com.example.project.bean.SubmitBean;
 import com.example.project.bean.SubmitListBean;
+import com.example.project.bean.SynergicBean;
+import com.example.project.bean.UpdatePwdtBean;
 
 import java.util.Map;
 
@@ -45,6 +51,20 @@ public interface Api {
 //    @FormUrlEncoded
     Flowable<LoginTokenBean> logintoken(@Header("token") String logintoken);
 
+    //注册
+    @POST("addUser")
+    @FormUrlEncoded
+    Flowable<AddUserBean> registerApi(@Field("user_name") String mobile, @Field("password") String password);
+
+    //    修改密码   http://192.168.124.14:8080/updatePassword?password=456789
+    @POST("updatePassword")
+    @FormUrlEncoded
+    Flowable<UpdatePwdtBean> updatepwdApi(@Header("token") String tokens, @Field("password") String pwds);
+
+    //    匹配不成功校验  http://192.168.124.14:8080/queryTab_user?user_name=sf005&phone_number=18500398400&name=测试账号2
+    @POST("queryTab_user")
+    @FormUrlEncoded
+    Flowable<QueryTabBean> querytabApi(@Field("user_name") String user_name, @Field("phone_number") String phone_number, @Field("name") String name);
 
     //home
     @POST("toIndex")
@@ -139,6 +159,38 @@ public interface Api {
     @POST("queryLastWeekStock")
     Flowable<QueryLastWeekStockBean> queryLastWeekStockApi(@Header("token") String tokens);
 
+
+    //二维码      TODO ???????
+    @POST("qrCode")
+    Flowable<ScanCodeBean> scancodeApi(@Header("token") String tokens);
+
+
+    //判断是否要加入合作组 1
+    @POST("toJoinTeam")
+    @FormUrlEncoded
+    Flowable<JoinBean> isjoinApi(@Field("shiyuanInvitation_code") String codes);
+
+    //  加入合作组  2
+    //  http://192.168.124.14:8080/doJoinTeam?token=111&id=36
+    @POST("doJoinTeam")
+    @FormUrlEncoded
+    Flowable<JoinBean> joinApi(@Header("token") String tokens, @Field("id") int mid);
+
+    // （商，合）组 展示
+    @POST("toTeamIndex")
+//    @FormUrlEncoded
+    Flowable<SynergicBean> synergicApi(@Header("token") String tokens);
+
+
+//    {
+//    "id": 34,
+//    "nick_name": "N号初级合作组",
+//    "level": 1,
+//    "affiliated_userid": 8,
+//    "people_num": 4,
+//    "create_time": "2020-05-19T15:04:36.000+0000",
+//    "tab_user": null
+//}
     //----------------------------------------
 
 

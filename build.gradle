@@ -21,6 +21,8 @@ allprojects {
 
 //        maven { url 'https://dl.bintray.com/umsdk/release' }
         mavenCentral()
+        //加入此行 二维码
+        maven { url 'https://jitpack.io' }
     }
 }
 

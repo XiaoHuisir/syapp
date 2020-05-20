@@ -1,44 +1,49 @@
 package com.example.project.ui.activity.login;
 
+import android.Manifest;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.Bundle;
+import android.content.pm.PackageManager;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
+import android.telephony.TelephonyManager;
 import android.text.InputType;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
-
-import com.bumptech.glide.Glide;
 import com.example.project.MainActivity;
 import com.example.project.R;
 import com.example.project.app.Constant;
 import com.example.project.app.MyApp;
 import com.example.project.base.BaseActivity;
-import com.example.project.bean.LoginBean;
 import com.example.project.bean.LoginsBean;
 import com.example.project.interfaces.IBasePresenter;
-import com.example.project.interfaces.contract.LoginContract;
 import com.example.project.interfaces.contract.LoginsContract;
-import com.example.project.presenter.login.LoginPresenter;
 import com.example.project.presenter.login.LoginsPresenter;
+import com.example.project.ui.activity.UpdatePasswrdActivity;
+import com.example.project.ui.activity.VerifyAccountActivity;
 import com.example.project.utils.SharedPreferencesUtil;
+import com.example.project.utils.ToastUtil;
 import com.tencent.mm.opensdk.modelmsg.SendAuth;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 //http://198.168.124.14:8080/user_login
 public class LoginActivity extends BaseActivity implements LoginsContract.Views {
-
+    private static final int REQUEST_READ_PHONE_STATE = 1;
     private static final String TAG = "t";
     @BindView(R.id.ed_phone)
     EditText edPhone;
@@ -52,17 +57,18 @@ public class LoginActivity extends BaseActivity implements LoginsContract.Views 
     Button btnShow;
     @BindView(R.id.wxlogin)
     LinearLayout wxlogin;
+    @BindView(R.id.tv_register)
+    TextView tvRegister;
     private String mobile;
     private String password;
     private int code;
     IWXAPI api; //微信api
 
-//TODO
+    public static int REGISTER = 146;
+    private String pho = "";
+    private String user_id = "";
+    private String pwdss = "";
 
-//    @Override
-//    protected IBasePresenter getPresenter() {
-//        return new LoginPresenter();
-//    }
 
     @Override
     protected int getLayoutId() {
@@ -80,8 +86,8 @@ public class LoginActivity extends BaseActivity implements LoginsContract.Views 
                 edPw.setText(pw);
             }
         }
-        edPhone.setText("sf003");
-        edPw.setText("123456");
+//        edPhone.setText("sf003");
+//        edPw.setText("456789");
 //        edPhone.setFocusable(false);
 //        edPw.setFocusable(false);
 
@@ -96,9 +102,15 @@ public class LoginActivity extends BaseActivity implements LoginsContract.Views 
     }
 
 
-    @OnClick({R.id.btn_login, R.id.btn_show, R.id.ed_pw, R.id.ed_phone, R.id.wxlogin})
+    @OnClick({R.id.btn_login, R.id.btn_show, R.id.ed_pw, R.id.ed_phone, R.id.wxlogin, R.id.tv_register})
     public void onViewClicked(View view) {
         switch (view.getId()) {
+            case R.id.tv_register: //注册
+                Intent intent = new Intent();
+                intent.setClass(context, RegisterActivity.class);
+                intent.putExtra("type_", REGISTER);
+                startActivityForResult(intent, REGISTER);
+                break;
             case R.id.wxlogin://微信登录
                 loginWX();
                 Toast.makeText(context, "欢迎使用微信三方登录", Toast.LENGTH_SHORT).show();
@@ -127,16 +139,12 @@ public class LoginActivity extends BaseActivity implements LoginsContract.Views 
                     }
                     return;
                 }
-//                if (mobile.equals("123") && password.equals("123")) {
-//                    context.startActivity(new Intent(context, MainActivity.class));
+
                 ((LoginsPresenter) mPresenter).logins(mobile, password);
-//     TODO
-//
-//      ((LoginPresenter) mPresenter).login(mobile, password);
+
 
                 break;
             case R.id.btn_show:
-
                 if (btnShow.isSelected()) {
                     btnShow.setSelected(false);
                     edPw.setInputType(InputType.TYPE_TEXT_VARIATION_PASSWORD | InputType.TYPE_CLASS_TEXT);//设置密码不可见
@@ -163,40 +171,110 @@ public class LoginActivity extends BaseActivity implements LoginsContract.Views 
         api.sendReq(req);
     }
 
-    //TODO
-//    @Override
-//    public void loginReturn(LoginBean result) {
-//        code = result.getCode();
-//        if (code == 10000) {
-//            SharedPreferencesUtil.addUserToken(context, result.getData().getUserToken());
-//            Constant.token = result.getData().getUserToken();
-//            Intent intent = new Intent();
-//            intent.setClass(this, MainActivity.class);
-//            startActivity(intent);
-//            finish();
-//        } else {
-//            Toast.makeText(context, result.getMsg(), Toast.LENGTH_SHORT).show();
-//        }
-//    }
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public void loginsReturn(LoginsBean result) {
-        LoginsBean.DataBean data = result.getData();
         String message = result.getMsg();
+
+
         int code = Integer.parseInt(message);
-        if (code==200) {
-            SharedPreferencesUtil.addUserToken(context, data.getToken());// 添加保存token TODO ？？？
+        if (code == 200) {
+            LoginsBean.DataBean data = result.getData();
+
+            pho = data.getData1();
+            user_id = data.getData2();
+            pwdss = data.getData3();
+            SharedPreferencesUtil.addUserToken(context, data.getToken());// 添加保存token TODO
             Constant.token = result.getData().getToken();
-            Log.i(TAG, "loginsReturn: "+result.getData().getToken());
-            Intent intent = new Intent();
-            intent.setClass(this, MainActivity.class);
-            startActivity(intent);
-            finish();
+            if (pwdss.equals("123456")) {
+                new AlertDialog.Builder(this).setTitle("为默认密码，请修改密码,并且同意权限，否则无法登录")
+                        .setPositiveButton("是", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                int permissionCheck = ContextCompat.checkSelfPermission(LoginActivity.this, Manifest.permission.READ_PHONE_STATE);
+                                if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
+                                    ActivityCompat.requestPermissions(LoginActivity.this, new String[]
+                                            {Manifest.permission.READ_PHONE_STATE
+                                            }, REQUEST_READ_PHONE_STATE);
+                                } else {
+                                    sms(); //电话权限
+                                }
+                            }
+                        }).setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                }).create().show();
+
+            } else {
+                Intent intent = new Intent();
+                intent.setClass(this, MainActivity.class);
+                startActivity(intent);
+                finish();
+                ToastUtil toastUtil2 = new ToastUtil(context, R.layout.ok_toast_center_horizontal, "登录成功！");
+                toastUtil2.show();
+            }
         } else {
-            Toast.makeText(context, "登录失败", Toast.LENGTH_SHORT).show();
+            ToastUtil toastUtil2 = new ToastUtil(context, R.layout.toast_center_horizontal, "登录失败！");
+            toastUtil2.show();
         }
-//        data.errorcode
-//        Toast.makeText(context, "" + user_name, Toast.LENGTH_SHORT).show();
-////        SharedPreferencesUtil.addUserToken(context,);// 添加保存token TODO ？？？
+
+
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case REQUEST_READ_PHONE_STATE:
+                if ((grantResults.length > 0) && (grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
+                    //TODO
+                    sms();
+                }
+                break;
+
+            default:
+                break;
+        }
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    private void sms() {
+
+        TelephonyManager tm = (TelephonyManager) this.getSystemService(getApplication().TELEPHONY_SERVICE);
+
+        if (checkSelfPermission(Manifest.permission.READ_SMS) != PackageManager.PERMISSION_GRANTED && checkSelfPermission(Manifest.permission.READ_PHONE_NUMBERS) != PackageManager.PERMISSION_GRANTED && checkSelfPermission(Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    Activity#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for Activity#requestPermissions for more details.
+            return;
+        }
+        String line1Number = tm.getLine1Number(); //本机手机号
+        Intent intent = new Intent();
+        if (line1Number==null){
+            ToastUtil toastUtil2 = new ToastUtil(context, R.layout.toast_center_horizontal, "无SD卡无法登录！");
+            toastUtil2.show();
+            return;
+        }
+        if (line1Number.equals("") || line1Number.equals("+86") || !line1Number.equals("+86" + pho) ) {
+            Toast.makeText(this, "匹配失败(获取失败！)" + line1Number, Toast.LENGTH_SHORT).show();
+            //匹配失败 跳转到校验界面
+            intent.setClass(this, VerifyAccountActivity.class);
+        } else {
+            //匹配成功 (修改密码)
+            intent.setClass(this, UpdatePasswrdActivity.class);
+// pwdss
+            intent.putExtra("pw_", pwdss);
+            Constant.DYNAMIC_PRICE = 123;
+        }
+        startActivity(intent);
+
 
     }
 
@@ -212,4 +290,21 @@ public class LoginActivity extends BaseActivity implements LoginsContract.Views 
     }
 
 
+    //注册回调
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REGISTER) {
+            if (data == null) {
+                return;
+            }
+            String phone = data.getStringExtra("uname_");
+            String pawd = data.getStringExtra("pawd_");
+            edPhone.setText(phone);
+            edPw.setText(pawd);
+
+        }
+    }
 }

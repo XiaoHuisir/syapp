@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:orientation="vertical"
+    tools:context=".ui.activity.MyQRActivity">
+
+    <RelativeLayout
+        android:layout_alignParentTop="true"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@color/swiperefresh_color1">
+        <LinearLayout
+            android:id="@+id/btn_na_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:orientation="horizontal"
+            android:padding="10dp">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="3dp"
+                android:scaleType="centerInside"
+                android:src="@mipmap/back" />
+        </LinearLayout>
+    <TextView
+        android:text="我的二维码"
+        android:textSize="@dimen/sp_21"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@id/btn_na_back"
+        android:layout_marginLeft="@dimen/dp_8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/txt_user_name"
+            android:layout_alignParentTop="true"
+        android:layout_marginTop="@dimen/dp_195"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:text=""
+        android:textColor="@color/black"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/sp_18" />
+
+    <ImageView
+        android:id="@+id/im_view_qr"
+        android:layout_width="@dimen/dp_200"
+        android:layout_below="@id/txt_user_name"
+        android:layout_height="@dimen/dp_200"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="@dimen/dp_16" />
+</RelativeLayout>

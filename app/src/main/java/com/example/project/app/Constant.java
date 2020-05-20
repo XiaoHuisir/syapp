@@ -9,7 +9,7 @@ import java.io.File;
  * Created by zhanghui on 20-3-30.
  */
 public class Constant {
-//    public static final String BaseUrl = "http://192.168.124.13:8080/"; //识缘  （局域网）  TODO  张文端
+    //    public static final String BaseUrl = "http://192.168.124.13:8080/"; //识缘  （局域网）  TODO  张文端
 //        public static final String BaseUrl = "http://192.168.124.14:8080/"; //识缘  （局域网）  TODO  李聪
     public static final String BaseUrl = "http://api.mb.knowfate.com.cn/shiyuanshop-0.0.1-SNAPSHOT/"; //识缘 （服务器）
 
@@ -43,6 +43,7 @@ public class Constant {
     public static String mobiles = "";
     public static String passwords = "";
 
+    public static final int REGISTER = 156;
     public static final int STATUS = 1;
     public static final int ZERO = 0;
     public static final int ONE_TYPE_1 = 1;
@@ -80,7 +81,9 @@ public class Constant {
     public static int ZONG_JIA = 0;
     public static int NUM = 0;
 
-    public   static boolean IS_MINE=false;
-    public   static String IS_MINE_IS="";
+    public static boolean IS_MINE = false;
+    public static String IS_MINE_IS = "";
+
+    public static boolean INXDLER = false;
 
 }

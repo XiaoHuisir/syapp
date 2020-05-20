@@ -3,7 +3,7 @@ package com.example.project.bean;
 public class LoginsBean {
 
     /**
-     * data : {"expTime":"1588081284937","genTime":"Tue Apr 28 21:11:24 CST 2020","token":"105743af-883b-40ad-a865-1097d3a82ee6"}
+     * data : {"data1":"17090315292","data2":"15","data3":"456789","genTime":"Sat May 16 16:11:30 CST 2020","token":"155d0f9b-76b3-4eab-93d4-9b55fb317898"}
      * msg : 200
      */
 
@@ -28,21 +28,41 @@ public class LoginsBean {
 
     public static class DataBean {
         /**
-         * expTime : 1588081284937
-         * genTime : Tue Apr 28 21:11:24 CST 2020
-         * token : 105743af-883b-40ad-a865-1097d3a82ee6
+         * data1 : 17090315292
+         * data2 : 15
+         * data3 : 456789
+         * genTime : Sat May 16 16:11:30 CST 2020
+         * token : 155d0f9b-76b3-4eab-93d4-9b55fb317898
          */
 
-        private String expTime;
+        private String data1;
+        private String data2;
+        private String data3;
         private String genTime;
         private String token;
 
-        public String getExpTime() {
-            return expTime;
+        public String getData1() {
+            return data1;
         }
 
-        public void setExpTime(String expTime) {
-            this.expTime = expTime;
+        public void setData1(String data1) {
+            this.data1 = data1;
+        }
+
+        public String getData2() {
+            return data2;
+        }
+
+        public void setData2(String data2) {
+            this.data2 = data2;
+        }
+
+        public String getData3() {
+            return data3;
+        }
+
+        public void setData3(String data3) {
+            this.data3 = data3;
         }
 
         public String getGenTime() {

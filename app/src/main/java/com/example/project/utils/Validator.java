@@ -10,6 +10,11 @@ public class Validator {
      */
     public static final String REGEX_SHUZI = "^([1-9])(\\d{15}|\\d{18})$";
 
+    /**
+     * 正则表达式: 包含大小写字母及数字且在6-12位
+     */
+    public static final String PWDS =  "^[a-zA-Z0-9]{6,12}$";
+
 
     /**
      * 正则表达式:验证用户名(不包含中文和特殊字符)如果用户名使用手机号码或邮箱 则结合手机号验证和邮箱验证
@@ -119,7 +124,16 @@ public class Validator {
     public static boolean isshuzi(String shuzi) {
         return Pattern.matches(REGEX_SHUZI, shuzi);
     }
-
+    /**
+     * 包含大小写字母及数字且在6-12位
+     * 是否包含
+     *
+     * @param pwdss
+     * @return
+     */
+    public  static  boolean isPwd(String pwdss){
+        return  Pattern.matches(PWDS,pwdss);
+    }
     /**
      * 校验身份证
      *

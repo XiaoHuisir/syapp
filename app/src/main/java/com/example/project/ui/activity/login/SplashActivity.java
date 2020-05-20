@@ -46,9 +46,9 @@ public class SplashActivity extends BaseActivity implements LoginTokenContract.V
 
     @Override
     protected void initData() {
-        Log.d(TAG, "initData: "+ Constant.token);
+        Log.d(TAG, "initData: " + Constant.token);
         logintoken = SharedPreferencesUtil.getToken(MyApp.mApp);
-        Constant.token=logintoken;
+        Constant.token = logintoken;
         ((LoginTokenPresenter) mPresenter).logintokens();
 
 

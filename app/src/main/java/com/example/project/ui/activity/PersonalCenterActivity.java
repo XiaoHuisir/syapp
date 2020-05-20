@@ -57,7 +57,8 @@ public class PersonalCenterActivity extends BaseActivity implements MineContract
     private String bank_num;
     private String bank_address;
     private String bank_name;
-   private String identity_numName="";
+    private String identity_numName = "";
+
     @Override
     protected IBasePresenter getPresenter() {
         return new MinePresenter();
@@ -94,7 +95,7 @@ public class PersonalCenterActivity extends BaseActivity implements MineContract
     }
 
 
-    @OnClick({R.id.tv_IDnumber, R.id.tv_bank_card, R.id.re_indent, R.id.line_break,R.id.re_bank})
+    @OnClick({R.id.tv_IDnumber, R.id.tv_bank_card, R.id.re_indent, R.id.line_break, R.id.re_bank})
     public void onViewClicked(View view) {
         String indentnum = textIndent.getText().toString();
         String banknums = textBank.getText().toString();
@@ -153,7 +154,7 @@ public class PersonalCenterActivity extends BaseActivity implements MineContract
             if (!TextUtils.isEmpty(idnumber)) {
                 String show_id = idnumber.substring(0, 3) + "********" + idnumber.substring(11);
                 textIndent.setText(show_id);
-                identity_numName=idnumber;
+                identity_numName = idnumber;
                 tvIDnumber.setVisibility(View.GONE);
                 reIndent.setVisibility(View.VISIBLE);
 
@@ -192,7 +193,7 @@ public class PersonalCenterActivity extends BaseActivity implements MineContract
                 textIndent.setText(show_id1);
                 tv_bank_address.setText(bank_address);
                 tv_bank_name.setText(bank_name);
-                identity_numName=identityNum;
+                identity_numName = identityNum;
             } else {
                 tvIDnumber.setVisibility(View.VISIBLE);
                 reIndent.setVisibility(View.GONE);

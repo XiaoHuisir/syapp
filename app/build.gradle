@@ -110,4 +110,10 @@ dependencies {
 
     // 三级联动
     implementation 'liji.library.dev:citypickerview:3.1.12'
+    //    二维码 （草料）
+    implementation 'com.github.jwkj:LibZXing:v1.0.4'
+    //方案（二） 二维码
+    implementation 'com.google.zxing:core:3.3.0'
+    implementation 'com.journeyapps:zxing-android-embedded:3.5.0'
+
 }

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/new_bag"
+    android:orientation="vertical"
+    tools:context=".ui.activity.SynergicActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_45"
+        android:background="@color/col_blue"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/lin_wbeak"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="@dimen/dp_10">
+
+            <ImageView
+                android:layout_width="@dimen/dp_30"
+                android:layout_height="30dp"
+                android:src="@mipmap/beak47" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <ScrollView
+        android:id="@+id/scroll_show"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/new_bag"
+            android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:background="@color/whites"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_marginTop="@dimen/dp_8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="所在单元："
+                android:textColor="#1B82D2"
+                android:textSize="@dimen/sp_19" />
+
+            <TextView
+                android:id="@+id/tv_place"
+                android:text=""
+                android:textSize="@dimen/sp_19"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_8"
+                android:textColor="#151515" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_1"
+                android:layout_marginTop="@dimen/dp_4"
+                android:background="@color/line_gray" />
+
+        </LinearLayout>
+          <LinearLayout
+              android:layout_marginTop="@dimen/dp_8"
+              android:layout_width="match_parent"
+              android:background="@color/whites"
+              android:orientation="vertical"
+              android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_marginTop="@dimen/dp_8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="我的单元："
+                android:textColor="#1B82D2"
+                android:textSize="@dimen/sp_19" />
+
+            <RelativeLayout
+                android:paddingTop="@dimen/dp_8"
+                android:layout_marginTop="@dimen/dp_4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recyc_synergic"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </RelativeLayout>
+          </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <ImageView
+        android:id="@+id/on_shuju"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/au8"
+        android:visibility="gone" />
+</LinearLayout>

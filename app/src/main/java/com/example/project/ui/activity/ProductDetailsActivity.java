@@ -181,31 +181,15 @@ public class ProductDetailsActivity extends BaseActivity implements ProductDetai
         webSettings.setBuiltInZoomControls(true); // 设置显示缩放按钮
         webSettings.setSupportZoom(true); // 支持缩放
         webSettings.setLoadWithOverviewMode(true);
-//        webview.setWebViewClient(new WebViewClient() {
-//            @Override
-//            public boolean shouldOverrideUrlLoading(WebView view, String url) {
-//                return super.shouldOverrideUrlLoading(view, url);
-//            }
-//        });
-//        webview.setWebChromeClient(new WebChromeClient() {
-//            @Override
-//            public void onProgressChanged(WebView view, int newProgress) {
-//                webProgressBar.setProgress(newProgress);//设置进度值
-//                if (newProgress == 100) {
-//                    webProgressBar.setVisibility(View.GONE);//加载完网页进度条消失
-//                } else {
-//                    webProgressBar.setVisibility(View.VISIBLE);//开始加载网页时显示进度条
-//                    webProgressBar.setProgress(newProgress);//设置进度值
-//                }
-//            }
-//
-//            @Override
-//            public void onReceivedTitle(WebView view, String title) {
-//                super.onReceivedTitle(view, title);
-////                navTitle.setText(title);
-//            }
-//        });
+        webview.onResume() ;
+        webview.setWebViewClient(new WebViewClient() {
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                return super.shouldOverrideUrlLoading(view, url);
+            }
+        });
         webview.loadUrl(sulimg);
+//        webview.setWebViewClient(new WebViewClient());
     }
 
     private void xiangqing(ProductDetailsBean result) {
