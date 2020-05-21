@@ -30,11 +30,13 @@ import com.example.project.interfaces.IBasePresenter;
 import com.example.project.interfaces.contract.MineContract;
 import com.example.project.presenter.HomePresenter;
 import com.example.project.presenter.MinePresenter;
+import com.example.project.ui.activity.BusinessActivity;
 import com.example.project.ui.activity.DetailsActivity;
 import com.example.project.ui.activity.MyQRActivity;
 import com.example.project.ui.activity.MyScanCodeActivity;
 import com.example.project.ui.activity.PersonalCenterActivity;
 import com.example.project.ui.activity.SelectAddressActivity;
+import com.example.project.ui.activity.SellActivity;
 import com.example.project.ui.activity.SynergicActivity;
 import com.example.project.ui.activity.WebCallCenterActivity;
 import com.example.project.ui.activity.login.LoginActivity;
@@ -195,9 +197,12 @@ public class MineFragment extends BaseFragment implements MineContract.View {
                 startActivity(intent03);
                 break;
             case R.id.lin_business: //商务拼团
+                intent03.setClass(context, BusinessActivity.class);
+                startActivity(intent03);
                 break;
             case R.id.lin_sales_unit://销售单元
-
+                intent03.setClass(context, SellActivity.class);
+                startActivity(intent03);
                 break;
             case R.id.re_CQ:  //公司资质
                 intent03.setClass(context, WebCallCenterActivity.class);

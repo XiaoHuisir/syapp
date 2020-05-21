@@ -1,7 +1,6 @@
 package com.example.project.ui.activity;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -9,10 +8,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.project.R;
-import com.example.project.adapter.SynergicAdapter;
+import com.example.project.adapter.SellAdapter;
 import com.example.project.base.BaseActivity;
 import com.example.project.bean.SynergicBean;
 import com.example.project.interfaces.IBasePresenter;
@@ -25,7 +23,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class SynergicActivity extends BaseActivity implements SynergiContract.View, SynergicAdapter.SynergicClick {
+public class SellActivity extends BaseActivity implements SynergiContract.View, SellAdapter.SellClick {
     @BindView(R.id.lin_wbeak)
     LinearLayout linWbeak;
     @BindView(R.id.recyc_synergic)
@@ -36,10 +34,9 @@ public class SynergicActivity extends BaseActivity implements SynergiContract.Vi
     ImageView onShuju;
     @BindView(R.id.tv_place)
     TextView tvPlace;
-    private List<SynergicBean.TeamListLV1Bean> teamListLV1;
-    private ArrayList<SynergicBean.TeamListLV1Bean> list;
-    private SynergicAdapter synergicAdapter;
-
+    private List<SynergicBean.TeamListLV3Bean> teamListLV3;
+    private ArrayList<SynergicBean.TeamListLV3Bean> list;
+    private SellAdapter sellAdapter;
 
     @Override
     protected IBasePresenter getPresenter() {
@@ -48,10 +45,8 @@ public class SynergicActivity extends BaseActivity implements SynergiContract.Vi
 
     @Override
     protected int getLayoutId() {
-        return R.layout.activity_synergic;
+        return R.layout.activit_sell;
     }
-
-
     @OnClick({R.id.lin_wbeak})
     public void onViewClicked(View view) {
         switch (view.getId()) {
@@ -65,9 +60,9 @@ public class SynergicActivity extends BaseActivity implements SynergiContract.Vi
     protected void initView() {
         recycSynergic.setLayoutManager(new LinearLayoutManager(context));
         list = new ArrayList<>();
-        synergicAdapter = new SynergicAdapter(list);
-        synergicAdapter.synitemClick = this;
-        recycSynergic.setAdapter(synergicAdapter);
+        sellAdapter = new SellAdapter(list);
+        sellAdapter.sellClick=this;
+        recycSynergic.setAdapter(sellAdapter);
     }
 
     @Override
@@ -79,7 +74,7 @@ public class SynergicActivity extends BaseActivity implements SynergiContract.Vi
     public void synergicRean(SynergicBean synergicBean) {
         if (synergicBean != null) {
             int id = synergicBean.getInTeam().getId();
-            if (id == 0 ) {
+            if (id == 0) {
                 onShuju.setVisibility(View.VISIBLE);
                 scrollShow.setVisibility(View.GONE);
                 return;
@@ -99,18 +94,25 @@ public class SynergicActivity extends BaseActivity implements SynergiContract.Vi
                         startActivity(intent);
                     }
                 });
-                if (synergicBean.getTeamListLV1().size() > 0) {
+                if (synergicBean.getTeamListLV3().size() > 0) {
 
-                    teamListLV1 = synergicBean.getTeamListLV1();
+                    teamListLV3 = synergicBean.getTeamListLV3();
                     list.clear();
-                    list.addAll(teamListLV1);
-                    synergicAdapter.notifyDataSetChanged();
+                    list.addAll(teamListLV3);
+                    sellAdapter.notifyDataSetChanged();
 
 
                 } else {//无合作数据
-
+//                    onShuju.setVisibility(View.VISIBLE);
+//                    scrollShow.setVisibility(View.GONE);
+//                return;
                 }
             }
+
+        }else {
+//            onShuju.setVisibility(View.VISIBLE);
+//            scrollShow.setVisibility(View.GONE);
+//            return;
         }
     }
 
@@ -119,9 +121,8 @@ public class SynergicActivity extends BaseActivity implements SynergiContract.Vi
 
     }
 
-
     @Override
-    public void synergiclick(SynergicBean.TeamListLV1Bean listxing) { //回调
+    public void selclick(SynergicBean.TeamListLV3Bean listxing) {
         if (listxing == null) {
             return;
         }
@@ -132,6 +133,6 @@ public class SynergicActivity extends BaseActivity implements SynergiContract.Vi
         intent.putExtra("e_id", id);
         intent.putExtra("nic_name", nick_name);
         startActivity(intent);
-
     }
+
 }

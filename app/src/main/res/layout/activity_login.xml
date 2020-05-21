@@ -151,7 +151,7 @@
             android:text=""
             android:textSize="@dimen/sp_24" />
 
-        <Button
+        <ImageView
             android:id="@+id/btn_show"
             android:layout_width="@dimen/dp_20"
             android:layout_height="@dimen/dp_20"

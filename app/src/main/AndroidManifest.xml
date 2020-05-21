@@ -118,6 +118,11 @@
         <activity android:name=".ui.activity.VerifyAccountActivity"/>
         <!--合作组-->
         <activity android:name=".ui.activity.SynergicActivity"/>
+        <!-- 商务拼团-->
+        <activity android:name=".ui.activity.BusinessActivity"/>
+        <!--销售单元-->
+        <activity android:name=".ui.activity.SellActivity"/>
+        <activity android:name=".ui.activity.SynergicXingActivity"/>
     </application>
 
     <!--友盟统计配置Appkey与Channel-->

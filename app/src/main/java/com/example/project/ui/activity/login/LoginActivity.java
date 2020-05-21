@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -54,7 +55,7 @@ public class LoginActivity extends BaseActivity implements LoginsContract.Views 
     @BindView(R.id.btn_login)
     Button btnLogin;
     @BindView(R.id.btn_show)
-    Button btnShow;
+    ImageView btnShow;
     @BindView(R.id.wxlogin)
     LinearLayout wxlogin;
     @BindView(R.id.tv_register)

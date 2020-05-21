@@ -38,4 +38,29 @@ public class SynergicPersenter extends BasePresenter<SynergiContract.View> imple
 
         );
     }
+
+    @Override
+    public void synergicxings(String teamId) {
+        addSubscribe(HttpUtils.getMyServer(Constant.BaseUrl).sybergicxingApi(teamId)
+                .compose(RxUtils.<SynergicBean>rxScheduler())
+                .subscribeWith(new CommonSubscriber<SynergicBean>(mView) {
+                    @Override
+                    public void onNext(SynergicBean synergicBean) {
+                        if (synergicBean
+                                != null) {
+                            if (mView != null) {
+                                mView.synergicxingRean(synergicBean);
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable t) {
+                        super.onError(t);
+                        Log.d(TAG, "onError: " + t);
+                    }
+                })
+
+        );
+    }
 }

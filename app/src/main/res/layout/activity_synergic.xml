@@ -32,7 +32,7 @@
     <ScrollView
         android:id="@+id/scroll_show"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:scrollbars="none">
 
         <LinearLayout
@@ -49,7 +49,7 @@
                 android:layout_marginTop="@dimen/dp_8"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="所在单元："
+                android:text="所在组："
                 android:textColor="#1B82D2"
                 android:textSize="@dimen/sp_19" />
 
@@ -80,7 +80,7 @@
                 android:layout_marginTop="@dimen/dp_8"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="我的单元："
+                android:text="我的组："
                 android:textColor="#1B82D2"
                 android:textSize="@dimen/sp_19" />
 

@@ -282,7 +282,7 @@ public class MyScanCodeActivity extends BaseActivity implements JoinContract.Vie
 //    "people_num": 4,
             String nick_name = joinBean.getNick_name(); //合作团名称
             int people_num = joinBean.getPeople_num();//团人数
-            new AlertDialog.Builder(this).setTitle(nick_name+"  "+"当前人数："+people_num+"人")
+            new AlertDialog.Builder(this).setTitle(nick_name + "  " + "当前人数：" + people_num + "人")
                     .setPositiveButton("是否加入", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
@@ -313,14 +313,18 @@ public class MyScanCodeActivity extends BaseActivity implements JoinContract.Vie
                 toast.setGravity(Gravity.CENTER, 0, 0);
                 toast.show();
                 intent.setClass(context, SynergicActivity.class);
+                finish();
             } else {//加入失败、已加入其他组
                 Toast toast = Toast.makeText(context, joinBean.getMsg(), Toast.LENGTH_SHORT);
                 toast.setGravity(Gravity.CENTER, 0, 0);
                 toast.show();
                 intent.setClass(context, SynergicActivity.class);
+                finish();
             }
 
             startActivity(intent);
+        } else {
+            return;
         }
     }
 }

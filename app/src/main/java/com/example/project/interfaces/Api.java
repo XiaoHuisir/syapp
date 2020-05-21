@@ -178,8 +178,12 @@ public interface Api {
 
     // （商，合）组 展示
     @POST("toTeamIndex")
-//    @FormUrlEncoded
     Flowable<SynergicBean> synergicApi(@Header("token") String tokens);
+
+    // （商，合）组 展示详情
+    @POST("toDetailTeam")
+    @FormUrlEncoded
+    Flowable<SynergicBean> sybergicxingApi(@Field("teamId") String tramid);
 
 
 //    {

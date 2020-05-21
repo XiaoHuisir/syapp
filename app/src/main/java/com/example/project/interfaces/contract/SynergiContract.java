@@ -7,8 +7,10 @@ import com.example.project.interfaces.IBaseView;
 public interface SynergiContract {
     interface  View extends IBaseView{
         void   synergicRean(SynergicBean synergicBean);
+        void   synergicxingRean(SynergicBean synergicBean);
     }
     interface  Presenter extends IBasePresenter<View>{
         void   synergics();
+        void   synergicxings(String teamId);
     }
 }

@@ -1,7 +1,6 @@
 package com.example.project.ui.activity;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -9,10 +8,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.project.R;
-import com.example.project.adapter.SynergicAdapter;
+import com.example.project.adapter.BusinessAdapter;
 import com.example.project.base.BaseActivity;
 import com.example.project.bean.SynergicBean;
 import com.example.project.interfaces.IBasePresenter;
@@ -25,7 +23,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class SynergicActivity extends BaseActivity implements SynergiContract.View, SynergicAdapter.SynergicClick {
+public class BusinessActivity extends BaseActivity implements SynergiContract.View, BusinessAdapter.BusinesClick {
     @BindView(R.id.lin_wbeak)
     LinearLayout linWbeak;
     @BindView(R.id.recyc_synergic)
@@ -36,10 +34,9 @@ public class SynergicActivity extends BaseActivity implements SynergiContract.Vi
     ImageView onShuju;
     @BindView(R.id.tv_place)
     TextView tvPlace;
-    private List<SynergicBean.TeamListLV1Bean> teamListLV1;
-    private ArrayList<SynergicBean.TeamListLV1Bean> list;
-    private SynergicAdapter synergicAdapter;
-
+    private List<SynergicBean.TeamListLV2Bean> teamListLV2;
+    private ArrayList<SynergicBean.TeamListLV2Bean> list;
+    private BusinessAdapter businessAdapter;
 
     @Override
     protected IBasePresenter getPresenter() {
@@ -48,7 +45,7 @@ public class SynergicActivity extends BaseActivity implements SynergiContract.Vi
 
     @Override
     protected int getLayoutId() {
-        return R.layout.activity_synergic;
+        return R.layout.activity_business;
     }
 
 
@@ -65,9 +62,10 @@ public class SynergicActivity extends BaseActivity implements SynergiContract.Vi
     protected void initView() {
         recycSynergic.setLayoutManager(new LinearLayoutManager(context));
         list = new ArrayList<>();
-        synergicAdapter = new SynergicAdapter(list);
-        synergicAdapter.synitemClick = this;
-        recycSynergic.setAdapter(synergicAdapter);
+        businessAdapter = new BusinessAdapter(list);
+        businessAdapter.busitemClick = this;
+        recycSynergic.setAdapter(businessAdapter);
+
     }
 
     @Override
@@ -79,7 +77,7 @@ public class SynergicActivity extends BaseActivity implements SynergiContract.Vi
     public void synergicRean(SynergicBean synergicBean) {
         if (synergicBean != null) {
             int id = synergicBean.getInTeam().getId();
-            if (id == 0 ) {
+            if (id == 0) {
                 onShuju.setVisibility(View.VISIBLE);
                 scrollShow.setVisibility(View.GONE);
                 return;
@@ -99,18 +97,19 @@ public class SynergicActivity extends BaseActivity implements SynergiContract.Vi
                         startActivity(intent);
                     }
                 });
-                if (synergicBean.getTeamListLV1().size() > 0) {
+                if (synergicBean.getTeamListLV2().size() > 0) {
 
-                    teamListLV1 = synergicBean.getTeamListLV1();
+                    teamListLV2 = synergicBean.getTeamListLV2();
                     list.clear();
-                    list.addAll(teamListLV1);
-                    synergicAdapter.notifyDataSetChanged();
+                    list.addAll(teamListLV2);
+                    businessAdapter.notifyDataSetChanged();
 
 
                 } else {//无合作数据
 
                 }
             }
+
         }
     }
 
@@ -119,9 +118,8 @@ public class SynergicActivity extends BaseActivity implements SynergiContract.Vi
 
     }
 
-
     @Override
-    public void synergiclick(SynergicBean.TeamListLV1Bean listxing) { //回调
+    public void busclick(SynergicBean.TeamListLV2Bean listxing) {
         if (listxing == null) {
             return;
         }
@@ -132,6 +130,5 @@ public class SynergicActivity extends BaseActivity implements SynergiContract.Vi
         intent.putExtra("e_id", id);
         intent.putExtra("nic_name", nick_name);
         startActivity(intent);
-
     }
 }

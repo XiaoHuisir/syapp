@@ -15,6 +15,15 @@ public class SynergicBean {
     private List<TeamListLV1Bean> teamListLV1;
     private List<TeamListLV2Bean> teamListLV2;
     private List<TeamListLV3Bean> teamListLV3;
+    /**
+     * status : 200
+     * data : [{"user_name":"j5ysz01","name":"杨素振"}]
+     * msg : 该组内的用户信息。
+     */
+
+    private int status;
+    private String msg;
+    private List<DataBean> data;
 
     public InTeamBean getInTeam() {
         return inTeam;
@@ -46,6 +55,30 @@ public class SynergicBean {
 
     public void setTeamListLV3(List<TeamListLV3Bean> teamListLV3) {
         this.teamListLV3 = teamListLV3;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    public String getMsg() {
+        return msg;
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
+    }
+
+    public List<DataBean> getData() {
+        return data;
+    }
+
+    public void setData(List<DataBean> data) {
+        this.data = data;
     }
 
     public static class InTeamBean {
@@ -349,6 +382,32 @@ public class SynergicBean {
 
         public void setTab_user(Object tab_user) {
             this.tab_user = tab_user;
+        }
+    }
+
+    public static class DataBean {
+        /**
+         * user_name : j5ysz01
+         * name : 杨素振
+         */
+
+        private String user_name;
+        private String name;
+
+        public String getUser_name() {
+            return user_name;
+        }
+
+        public void setUser_name(String user_name) {
+            this.user_name = user_name;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
         }
     }
 }

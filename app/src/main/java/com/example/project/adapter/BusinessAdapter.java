@@ -1,22 +1,19 @@
 package com.example.project.adapter;
 
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.project.R;
 import com.example.project.base.BaseAdapter;
-import com.example.project.bean.SubmitListBean;
 import com.example.project.bean.SynergicBean;
 
 import java.util.List;
 
-public class SynergicAdapter extends BaseAdapter {
-    public SynergicClick synitemClick;
+public class BusinessAdapter extends BaseAdapter {
+    public BusinesClick busitemClick;
 
-    public SynergicAdapter(List<SynergicBean.TeamListLV1Bean> mDatas) {
+    public BusinessAdapter(List<SynergicBean.TeamListLV2Bean> mDatas) {
         super(mDatas);
     }
 
@@ -29,22 +26,22 @@ public class SynergicAdapter extends BaseAdapter {
     protected void bindData(BaseViewHolder holder, int positon, Object o) {
         TextView tvname = (TextView) holder.getView(R.id.tv_daoyuan_name);
         LinearLayout linearbtn = (LinearLayout) holder.getView(R.id.linear_btn);
-        SynergicBean.TeamListLV1Bean lists = (SynergicBean.TeamListLV1Bean) mDatas.get(positon);
+        SynergicBean.TeamListLV2Bean lists = (SynergicBean.TeamListLV2Bean) mDatas.get(positon);
         tvname.setText(lists.getNick_name());
 
         linearbtn.setTag(mDatas.get(positon));
         linearbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SynergicBean.TeamListLV1Bean tag = (SynergicBean.TeamListLV1Bean) v.getTag();
-                if (synitemClick != null) {
-                    synitemClick.synergiclick(tag);
+                SynergicBean.TeamListLV2Bean tag = (SynergicBean.TeamListLV2Bean) v.getTag();
+                if (busitemClick != null) {
+                    busitemClick.busclick(tag);
                 }
             }
         });
     }
 
-    public interface SynergicClick {
-        void synergiclick(SynergicBean.TeamListLV1Bean listxing);
+    public interface BusinesClick {
+        void busclick(SynergicBean.TeamListLV2Bean listxing);
     }
 }
