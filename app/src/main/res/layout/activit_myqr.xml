@@ -3,11 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     android:orientation="vertical"
     tools:context=".ui.activity.MyQRActivity">
 
     <RelativeLayout
+        android:id="@+id/re1"
         android:layout_alignParentTop="true"
         android:layout_width="match_parent"
         android:layout_height="48dp"
@@ -56,4 +56,12 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:layout_marginTop="@dimen/dp_16" />
+    <ImageView
+        android:id="@+id/im_bug"
+        android:layout_below="@+id/re1"
+        android:visibility="gone"
+        android:scaleType="centerCrop"
+        android:background="@drawable/au8"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 </RelativeLayout>

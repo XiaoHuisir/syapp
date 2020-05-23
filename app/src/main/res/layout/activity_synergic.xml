@@ -40,72 +40,95 @@
             android:layout_height="wrap_content"
             android:background="@color/new_bag"
             android:orientation="vertical">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:orientation="vertical"
-            android:background="@color/whites"
-            android:layout_height="wrap_content">
-            <TextView
-                android:layout_marginTop="@dimen/dp_8"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="所在组："
-                android:textColor="#1B82D2"
-                android:textSize="@dimen/sp_19" />
 
-            <TextView
-                android:id="@+id/tv_place"
-                android:text=""
-                android:textSize="@dimen/sp_19"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dp_8"
-                android:textColor="#151515" />
-
-            <View
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_1"
-                android:layout_marginTop="@dimen/dp_4"
-                android:background="@color/line_gray" />
-
-        </LinearLayout>
-          <LinearLayout
-              android:layout_marginTop="@dimen/dp_8"
-              android:layout_width="match_parent"
-              android:background="@color/whites"
-              android:orientation="vertical"
-              android:layout_height="wrap_content">
-
-            <TextView
-                android:layout_marginTop="@dimen/dp_8"
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="我的组："
-                android:textColor="#1B82D2"
-                android:textSize="@dimen/sp_19" />
+                android:background="@color/whites"
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/dp_10">
 
-            <RelativeLayout
-                android:paddingTop="@dimen/dp_8"
-                android:layout_marginTop="@dimen/dp_4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_8"
+                    android:text="我所在的初级合作组："
+                    android:textColor="#1B82D2"
+                    android:textSize="@dimen/sp_19" />
 
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/recyc_synergic"
+                <TextView
+                    android:id="@+id/tv_place"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_8"
+                    android:text=""
+                    android:textColor="#151515"
+                    android:textSize="@dimen/sp_19" />
+
+                <TextView
+                    android:id="@+id/tv_suozai"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_8"
+                    android:text="你还没有加入任何一个初级合作组，请扫描邀请码加入！"
+                    android:textColor="#9c9c9c"
+                    android:textSize="@dimen/sp_15"
+                    android:visibility="gone" />
+
+                <View
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="@dimen/dp_1"
+                    android:layout_marginTop="@dimen/dp_8"
+                    android:background="@color/line_gray" />
 
-            </RelativeLayout>
-          </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_8"
+                android:background="@color/whites"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_8"
+                    android:text="我所拥有的初级合作组："
+                    android:textColor="#1B82D2"
+                    android:textSize="@dimen/sp_19" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_4"
+                    android:paddingTop="@dimen/dp_8">
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/recyc_synergic"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/tv_on"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="@dimen/dp_10"
+                        android:text="你还没拥有初级合作组，请继续努力！"
+                        android:textColor="#9c9c9c"
+                        android:textSize="@dimen/sp_15"
+                        android:visibility="gone" />
+                </RelativeLayout>
+            </LinearLayout>
 
         </LinearLayout>
 
     </ScrollView>
 
-    <ImageView
-        android:id="@+id/on_shuju"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:src="@drawable/au8"
-        android:visibility="gone" />
+    <!--<ImageView-->
+    <!--android:id="@+id/on_shuju"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:src="@drawable/au8"-->
+    <!--android:visibility="gone" />-->
 </LinearLayout>

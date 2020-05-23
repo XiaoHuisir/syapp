@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.project">
+    package="com.example.shiyuankeji">
     <!--value的值填写你在友盟后台申请的应用Appkey  5e828f8d167edd2e0a000052-->
 
     <!--友盟统计所需权限-->
@@ -30,7 +30,7 @@
         tools:replace="android:appComponentFactory">-->
     <!--新加 ：tools:replace="android:appComponentFactory"        android:appComponentFactory="app"-->
     <application
-        android:name=".app.MyApp"
+        android:name="com.example.shiyuankeji.app.MyApp"
         android:allowBackup="true"
         android:appComponentFactory="app"
         android:icon="@drawable/yjtp2"
@@ -42,7 +42,7 @@
         tools:replace="android:appComponentFactory">
         <!--  replac="android:theme"-->
         <!--登录  主--><!--login: Activity-->
-        <activity android:name=".ui.activity.login.SplashActivity">
+        <activity android:name="com.example.shiyuankeji.ui.activity.login.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -61,68 +61,68 @@
         </activity>
         <!--我的模块 登录-->
         <activity
-            android:name=".ui.activity.minelogin.MineLogin"
+            android:name="com.example.shiyuankeji.ui.activity.minelogin.MineLogin"
             android:theme="@style/TopDialogStyleBottomnoanim" />
         <!--主界面-->
         <!--android:launchMode="singleTask"-->
-        <activity android:name=".MainActivity">
+        <activity android:name="com.example.shiyuankeji.MainActivity">
             <!--<intent-filter>-->
             <!--<action android:name="android.intent.action.MAIN" />-->
             <!--<category android:name="android.intent.category.LAUNCHER" />-->
             <!--</intent-filter>-->
         </activity>
-        <activity android:name=".ui.activity.login.LoginActivity" />
+        <activity android:name="com.example.shiyuankeji.ui.activity.login.LoginActivity" />
         <!--底部弹窗-->
         <activity
-            android:name=".ui.activity.ExchangeActivity"
+            android:name="com.example.shiyuankeji.ui.activity.ExchangeActivity"
             android:launchMode="singleTask"
             android:theme="@style/TopDialogStyleBottom" />
         <!--微信-->
         <activity
-            android:name=".widgets.wxapi.WXEntryActivity"
+            android:name="com.example.shiyuankeji.widgets.wxapi.WXEntryActivity"
             android:exported="true" />
-        <activity android:name=".ui.activity.ProductDetailsActivity" />
+        <activity android:name="com.example.shiyuankeji.ui.activity.ProductDetailsActivity" />
         <!--提交订单-->
-        <activity android:name=".ui.activity.Submit0rdersActivity" />
+        <activity android:name="com.example.shiyuankeji.ui.activity.Submit0rdersActivity" />
         <!--（有）选中收货地址-->
-        <activity android:name=".ui.activity.SelectAddressActivity" />
+        <activity android:name="com.example.shiyuankeji.ui.activity.SelectAddressActivity" />
         <!--添加收货地址-->
-        <activity android:name=".ui.activity.AddressMessage" />
+        <activity android:name="com.example.shiyuankeji.ui.activity.AddressMessage" />
         <!--订单详情-->
-        <activity android:name=".ui.activity.IineItemActivity" />
+        <activity android:name="com.example.shiyuankeji.ui.activity.IineItemActivity" />
         <!--完成订单-->
-        <activity android:name=".ui.activity.CompleteOrderActivity" />
+        <activity android:name="com.example.shiyuankeji.ui.activity.CompleteOrderActivity" />
         <!--个人详情（相关信息）-->
-        <activity android:name=".ui.activity.DetailsActivity" />
+        <activity android:name="com.example.shiyuankeji.ui.activity.DetailsActivity" />
         <!--提现记录列表-->
-        <activity android:name=".ui.activity.RecordListActivity" />
+        <activity android:name="com.example.shiyuankeji.ui.activity.RecordListActivity" />
         <!--购物积分提现-->
-        <activity android:name=".ui.activity.ShopWBActivity" />
+        <activity android:name="com.example.shiyuankeji.ui.activity.ShopWBActivity" />
         <!--手机验证-->
-        <activity android:name=".ui.activity.VerfiyActivity" />
+        <activity android:name="com.example.shiyuankeji.ui.activity.VerfiyActivity" />
         <!--个人中心-->
-        <activity android:name=".ui.activity.PersonalCenterActivity" />
+        <activity android:name="com.example.shiyuankeji.ui.activity.PersonalCenterActivity" />
         <!--客服-->
-        <activity android:name=".ui.activity.WebCallCenterActivity" />
+        <activity android:name="com.example.shiyuankeji.ui.activity.WebCallCenterActivity" />
         <!--（个人）添加身份证号/银行卡号-->
-        <activity android:name=".ui.activity.ClickOnAddActivity" />
+        <activity android:name="com.example.shiyuankeji.ui.activity.ClickOnAddActivity" />
         <!--我的二维码-->
-        <activity android:name=".ui.activity.MyQRActivity" />
+        <activity android:name="com.example.shiyuankeji.ui.activity.MyQRActivity" />
         <!--我的扫码-->
-        <activity android:name=".ui.activity.MyScanCodeActivity" />
+        <activity android:name="com.example.shiyuankeji.ui.activity.MyScanCodeActivity" />
         <!--注册-->
-        <activity android:name=".ui.activity.login.RegisterActivity" />
+        <activity android:name="com.example.shiyuankeji.ui.activity.login.RegisterActivity" />
         <!--修改密码-->
-        <activity android:name=".ui.activity.UpdatePasswrdActivity" />
+        <activity android:name="com.example.shiyuankeji.ui.activity.UpdatePasswrdActivity" />
         <!--验证账号-->
-        <activity android:name=".ui.activity.VerifyAccountActivity"/>
+        <activity android:name="com.example.shiyuankeji.ui.activity.VerifyAccountActivity"/>
         <!--合作组-->
-        <activity android:name=".ui.activity.SynergicActivity"/>
+        <activity android:name="com.example.shiyuankeji.ui.activity.SynergicActivity"/>
         <!-- 商务拼团-->
-        <activity android:name=".ui.activity.BusinessActivity"/>
+        <activity android:name="com.example.shiyuankeji.ui.activity.BusinessActivity"/>
         <!--销售单元-->
-        <activity android:name=".ui.activity.SellActivity"/>
-        <activity android:name=".ui.activity.SynergicXingActivity"/>
+        <activity android:name="com.example.shiyuankeji.ui.activity.SellActivity"/>
+        <activity android:name="com.example.shiyuankeji.ui.activity.SynergicXingActivity"/>
     </application>
 
     <!--友盟统计配置Appkey与Channel-->

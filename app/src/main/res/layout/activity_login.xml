@@ -34,7 +34,7 @@
         android:layout_marginTop="@dimen/dp_100"
         android:text="欢迎使用识缘商城"
         android:textColor="@color/blackss"
-        android:textSize="@dimen/sp_24" />
+        android:textSize="@dimen/sp_20" />
 
     <!--<TextView-->
     <!--android:layout_width="@dimen/dp_144"-->
@@ -89,7 +89,7 @@
             android:layout_centerVertical="true"
             android:text="用户名"
             android:textColor="@color/blackss"
-            android:textSize="@dimen/sp_24" />
+            android:textSize="@dimen/sp_20" />
 
         <EditText
             android:id="@+id/ed_phone"
@@ -102,7 +102,7 @@
             android:layout_toRightOf="@id/tv_un"
             android:background="@null"
             android:hint="请输入您的手机号码"
-            android:textSize="@dimen/sp_24" />
+            android:textSize="@dimen/sp_20" />
     </RelativeLayout>
 
     <View
@@ -133,7 +133,7 @@
             android:layout_centerVertical="true"
             android:text="密码     "
             android:textColor="@color/blackss"
-            android:textSize="@dimen/sp_24" />
+            android:textSize="@dimen/sp_20" />
 
         <EditText
             android:id="@+id/ed_pw"
@@ -149,7 +149,7 @@
             android:inputType="number"
             android:password="true"
             android:text=""
-            android:textSize="@dimen/sp_24" />
+            android:textSize="@dimen/sp_20" />
 
         <ImageView
             android:id="@+id/btn_show"
@@ -192,7 +192,7 @@
     <Button
         android:id="@+id/btn_login"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_56"
+        android:layout_height="@dimen/dp_48"
         android:layout_gravity="center"
         android:layout_marginTop="@dimen/dp_50"
         android:background="#1B82D2"
@@ -212,7 +212,7 @@
             android:layout_height="wrap_content"
             android:text="没有识缘账号?"
             android:textColor="#9c9c9c"
-            android:textSize="@dimen/sp_19" />
+            android:textSize="@dimen/sp_16" />
 
         <TextView
             android:id="@+id/tv_register"
@@ -221,7 +221,7 @@
             android:layout_marginLeft="@dimen/dp_4"
             android:text="马上注册"
             android:textColor="#1B82D2"
-            android:textSize="@dimen/sp_19" />
+            android:textSize="@dimen/sp_16" />
     </LinearLayout>
 
 </LinearLayout>

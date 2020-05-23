@@ -42,6 +42,7 @@
             android:background="@color/new_bag"
             android:orientation="vertical">
             <LinearLayout
+                android:paddingBottom="@dimen/dp_10"
                 android:layout_width="match_parent"
                 android:orientation="vertical"
                 android:background="@color/whites"
@@ -62,7 +63,15 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp_8"
                     android:textColor="#151515" />
-
+                <TextView
+                    android:id="@+id/tv_suozai"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_8"
+                    android:text="你还没有加入任何一个销售单元，请请继续努力！"
+                    android:textColor="#9c9c9c"
+                    android:textSize="@dimen/sp_15"
+                    android:visibility="gone" />
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dp_1"
@@ -95,7 +104,15 @@
                         android:id="@+id/recyc_synergic"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
-
+                    <TextView
+                        android:id="@+id/tv_on"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="@dimen/dp_10"
+                        android:text="你还没拥有销售单元，请继续努力！"
+                        android:textColor="#9c9c9c"
+                        android:textSize="@dimen/sp_15"
+                        android:visibility="gone" />
                 </RelativeLayout>
             </LinearLayout>
 
@@ -103,10 +120,5 @@
 
     </ScrollView>
 
-    <ImageView
-        android:id="@+id/on_shuju"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:src="@drawable/au8"
-        android:visibility="gone" />
+
 </LinearLayout>

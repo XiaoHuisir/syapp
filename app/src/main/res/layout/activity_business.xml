@@ -43,13 +43,14 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:orientation="vertical"
+                android:paddingBottom="@dimen/dp_10"
                 android:background="@color/whites"
                 android:layout_height="wrap_content">
                 <TextView
                     android:layout_marginTop="@dimen/dp_8"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="所在团："
+                    android:text="我所在的商务拼团："
                     android:textColor="#1B82D2"
                     android:textSize="@dimen/sp_19" />
 
@@ -61,6 +62,15 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp_8"
                     android:textColor="#151515" />
+                <TextView
+                    android:id="@+id/tv_suozai"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_8"
+                    android:text="你还没有加入任何一个商务拼团，请请继续努力！"
+                    android:textColor="#9c9c9c"
+                    android:textSize="@dimen/sp_15"
+                    android:visibility="gone" />
 
                 <View
                     android:layout_width="match_parent"
@@ -80,7 +90,7 @@
                     android:layout_marginTop="@dimen/dp_8"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="我的团："
+                    android:text="我的商务拼团："
                     android:textColor="#1B82D2"
                     android:textSize="@dimen/sp_19" />
 
@@ -94,7 +104,15 @@
                         android:id="@+id/recyc_synergic"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
-
+                    <TextView
+                        android:id="@+id/tv_on"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="@dimen/dp_10"
+                        android:text="你还没拥有商务拼团，请继续努力！"
+                        android:textColor="#9c9c9c"
+                        android:textSize="@dimen/sp_15"
+                        android:visibility="gone" />
                 </RelativeLayout>
             </LinearLayout>
 
@@ -102,10 +120,5 @@
 
     </ScrollView>
 
-    <ImageView
-        android:id="@+id/on_shuju"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:src="@drawable/au8"
-        android:visibility="gone" />
+
 </LinearLayout>
