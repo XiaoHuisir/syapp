@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.view.Gravity;
 import android.view.View;
@@ -20,6 +21,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.shiyuankeji.MainActivity;
 import com.example.shiyuankeji.R;
 import com.example.shiyuankeji.app.Constant;
 import com.example.shiyuankeji.base.BaseActivity;
@@ -27,6 +29,7 @@ import com.example.shiyuankeji.bean.JoinBean;
 import com.example.shiyuankeji.interfaces.IBasePresenter;
 import com.example.shiyuankeji.interfaces.contract.JoinContract;
 import com.example.shiyuankeji.presenter.JoinPresenter;
+import com.example.shiyuankeji.utils.SharedPreferencesUtil;
 import com.example.shiyuankeji.utils.ToastUtil;
 import com.jwkj.libzxing.OnQRCodeScanCallback;
 import com.jwkj.libzxing.QRCodeManager;
@@ -63,32 +66,92 @@ public class MyScanCodeActivity extends BaseActivity implements JoinContract.Vie
 
     @Override
     protected void initView() {
-        //隐藏系统默认的标题
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.hide();
-        }
 
-        if (Constant.INXDLER == false) {
+//        //隐藏系统默认的标题
+//        ActionBar actionBar = getSupportActionBar();
+//        if (actionBar != null) {
+//            actionBar.hide();
+//        }
+        boolean isBool = SharedPreferencesUtil.getIsBool(context);
+        boolean xiangIsBool = SharedPreferencesUtil.getXiangIsBool(context);
 
-            camera(); //相机权限
+        if (isBool == false) {
+            new AlertDialog.Builder(this).setTitle("只有授权相机权限才可使用扫描功能，是否前往授权？")
+                    .setPositiveButton("是", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            camera(); //相机权限
+//                            same(); //相册权限
+                        }
+                    }).setNegativeButton("否", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    finish();
+
+                }
+            }).create().show();
+
         } else {
-            scancodes(); //扫描功能
+            if (xiangIsBool == false) {
+                new AlertDialog.Builder(this).setTitle("只有授权相册权限才可使用扫描功能，是否前往授权？")
+                        .setPositiveButton("是", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+//                            camera(); //相机权限
+                                same(); //相册权限
+                            }
+                        }).setNegativeButton("否", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
 
+                    }
+                }).create().show();
+            } else {
+
+                scancodes(); //扫描功能
+            }
         }
-
 
     }
 
     @Override
     protected void initData() {
-        if (Constant.INXDLER == false) {
 
-            scancodes(); //扫描功能
+    }
+
+    private void same() {
+        // 申请文件读写权限（部分朋友遇到相册选图需要读写权限的情况，这里一并写一下）
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            // 申请权限（储存）
+
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.READ_EXTERNAL_STORAGE)) {
+                new AlertDialog.Builder(MyScanCodeActivity.this).setTitle("点击相册授权才可使用扫描功能")
+                        .setPositiveButton("是", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+//                                 申请权限（储存）
+                                ActivityCompat.requestPermissions(MyScanCodeActivity.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 2);
+                                SharedPreferencesUtil.addXiangIsBool(context,true);
+                            }
+                        }).setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        SharedPreferencesUtil.addXiangIsBool(context, false);
+                        finish();
+                    }
+                }).create().show();
+            } else {
+                ActivityCompat.requestPermissions(MyScanCodeActivity.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 2);
+
+            }
+        }else {
+            return;
         }
     }
 
     private void camera() {
+//        same();
 //        checkSelfPermission 检测有没有 权限
 //        PackageManager.PERMISSION_GRANTED 有权限
 //        PackageManager.PERMISSION_DENIED  拒绝权限
@@ -97,18 +160,20 @@ public class MyScanCodeActivity extends BaseActivity implements JoinContract.Vie
             if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.CAMERA)) {
 
 
-                new AlertDialog.Builder(this).setTitle("点击授权才可使用扫描功能")
+                new AlertDialog.Builder(this).setTitle("点击相机授权才可使用扫描功能")
                         .setPositiveButton("是", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                // 请求授权
+                                // 请求授权 (相机)
                                 ActivityCompat.requestPermissions(MyScanCodeActivity.this, new String[]{Manifest.permission.CAMERA}, 1);
-                                Constant.INXDLER = true;
+
+//                                same();
                             }
                         }).setNegativeButton("取消", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Constant.INXDLER = false;
+                        SharedPreferencesUtil.addIsBool(context, false);
+                        finish();
                     }
                 }).create().show();
 
@@ -122,7 +187,10 @@ public class MyScanCodeActivity extends BaseActivity implements JoinContract.Vie
 
 //            camear(); //相机
 
+            return;
+
         }
+
 
     }
 
@@ -135,33 +203,78 @@ public class MyScanCodeActivity extends BaseActivity implements JoinContract.Vie
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 
+
         if (requestCode == 1) {
             // camear 权限回调
 
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
 
                 // 表示用户授权
-                Toast.makeText(this, " user Permission", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, " 允许授权", Toast.LENGTH_SHORT).show();
 
 //                camear();
-                scancodes(); //扫描功能
-                Constant.INXDLER = true;
-
+//                same();
+                SharedPreferencesUtil.addIsBool(context, true);
+//                SharedPreferencesUtil.addXiangIsBool(context,true);
+                if (SharedPreferencesUtil.getIsBool(context) == true && SharedPreferencesUtil.getXiangIsBool(context) == true) {
+                    scancodes(); //扫描功能
+                } else {
+                    same();
+                }
             } else {
                 //用户拒绝权限
-                Toast.makeText(this, " no Permission", Toast.LENGTH_SHORT).show();
-                Constant.INXDLER = false;
+                Toast.makeText(this, " 未允许授权", Toast.LENGTH_SHORT).show();
+//                same();
                 camera();
+                SharedPreferencesUtil.addIsBool(context, false);
+//                SharedPreferencesUtil.addXiangIsBool(context, false);
             }
 
 
         }
+        if (requestCode == 2) {
+            // camear 权限回调
+
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                                SharedPreferencesUtil.addXiangIsBool(context,true);
+                if (SharedPreferencesUtil.getIsBool(context) == true && SharedPreferencesUtil.getXiangIsBool(context) == true) {
+                    scancodes(); //扫描功能
+                } else {
+                    same();
+                }
+            }else {
+
+            //用户拒绝权限
+            Toast.makeText(this, " 未相册允许授权", Toast.LENGTH_SHORT).show();
+                same();
+//            camera();
+//            SharedPreferencesUtil.addIsBool(context, false);
+                SharedPreferencesUtil.addXiangIsBool(context, false);
+        }}
+//                // 表示用户授权
+//                Toast.makeText(this, " 允许授权", Toast.LENGTH_SHORT).show();
+//
+////                camear();
+////                scancodes(); //扫描功能
+////                same();
+//                SharedPreferencesUtil.addIsBool(context, true);
+//
+//            } else {
+//                //用户拒绝权限
+//                Toast.makeText(this, " 未允许授权", Toast.LENGTH_SHORT).show();
+//                same();
+////                camera();
+//                SharedPreferencesUtil.addIsBool(context, false);
+//            }
+
+
+//        }
 
     }
 
 
     private void scancodes() {
-
+//                same();
         QRCodeManager.getInstance().with(this).setReqeustType(0).scanningQRCode(new OnQRCodeScanCallback() {
             @Override
             public void onCompleted(String s) {
@@ -253,6 +366,7 @@ public class MyScanCodeActivity extends BaseActivity implements JoinContract.Vie
         //注册onActivityResult
         QRCodeManager.getInstance().with(this).onActivityResult(requestCode, resultCode, data);
 
+
     }
 
 //    public void camear(){
@@ -288,7 +402,8 @@ public class MyScanCodeActivity extends BaseActivity implements JoinContract.Vie
                     }).setNegativeButton("取消", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-                    return;
+
+                    finish();
                 }
             }).create().show();
         }

@@ -11,12 +11,15 @@
     <uses-permission android:name="android.permission.READ_PHONE_STATE"></uses-permission>
 
 
+
+
+
     <supports-screens
         android:anyDensity="true"
         android:largeScreens="true"
         android:normalScreens="true"
         android:smallScreens="true" />
-
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <!-- android:allowBackup="true"  tools:replace="android:allowBackup"   注释：改变 sp储存状态-->
     <!-- android:name="com.example.iwapp.app.MyApp"
         android:allowBackup="true"

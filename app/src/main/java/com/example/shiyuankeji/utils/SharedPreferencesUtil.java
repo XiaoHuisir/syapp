@@ -39,6 +39,7 @@ public class SharedPreferencesUtil {
         editor.commit();
     }
 
+
     /**
      * 获取用户token
      *
@@ -103,5 +104,38 @@ public class SharedPreferencesUtil {
         return context.getSharedPreferences("version", Context.MODE_PRIVATE).getInt("status", 0);
     }
 
-
+    /**
+     * 保存权限状态
+     * @param  context
+     * @param  isbool
+     * */
+    public static  void  addIsBool(Context context,boolean isbool){
+        editor = context.getSharedPreferences("booleans", Context.MODE_PRIVATE).edit();
+        editor.putBoolean("mode_bool", isbool);
+        editor.commit();
+    }
+    /**
+     * 获取保存的权限状态
+     * @param context;
+     * */
+    public  static  boolean getIsBool(Context context){
+        return  context.getSharedPreferences("booleans",Context.MODE_PRIVATE).getBoolean("mode_bool",false);
+    }
+    /**
+     * 保存(相机)权限状态
+     * @param  context
+     * @param  isxiangbool
+     * */
+    public static  void  addXiangIsBool(Context context,boolean isxiangbool){
+        editor = context.getSharedPreferences("boolxiangeans", Context.MODE_PRIVATE).edit();
+        editor.putBoolean("mode_xiangbool", isxiangbool);
+        editor.commit();
+    }
+    /**
+     * 获取保存(相机)的权限状态
+     * @param context;
+     * */
+    public  static  boolean getXiangIsBool(Context context){
+        return  context.getSharedPreferences("boolxiangeans",Context.MODE_PRIVATE).getBoolean("mode_xiangbool",false);
+    }
 }
