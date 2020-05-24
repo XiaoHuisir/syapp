@@ -90,8 +90,6 @@ public class SynergicActivity extends BaseActivity implements SynergiContract.Vi
             } else {
                 tvsuozai.setVisibility(View.GONE);
                 tvPlace.setVisibility(View.VISIBLE);
-                recycSynergic.setVisibility(View.VISIBLE);
-                tvon.setVisibility(View.GONE);
                 SynergicBean.InTeamVL1Bean inTeamVL1 = synergicBean.getInTeamVL1();
                 if (inTeamVL1 == null) {
                     tvPlace.setVisibility(View.GONE);
@@ -99,7 +97,12 @@ public class SynergicActivity extends BaseActivity implements SynergiContract.Vi
                     return;
                 }
                 final String nick_name = synergicBean.getInTeamVL1().getNick_name();
+                if (nick_name.equals("")){
+                    tvon.setVisibility(View.VISIBLE);
+                    recycSynergic.setVisibility(View.GONE);
+                }else {
                 tvPlace.setText(nick_name);
+                }
                 final int id1 = synergicBean.getInTeamVL1().getId();
                 tvPlace.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -123,6 +126,8 @@ public class SynergicActivity extends BaseActivity implements SynergiContract.Vi
 
                 }
             }
+        } else {
+            return;
         }
     }
 

@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.shiyuankeji.R;
 import com.example.shiyuankeji.adapter.BusinessAdapter;
@@ -88,8 +89,6 @@ public class BusinessActivity extends BaseActivity implements SynergiContract.Vi
             } else {
                 tvSuozai.setVisibility(View.GONE);
                 tvPlace.setVisibility(View.VISIBLE);
-                recycSynergic.setVisibility(View.VISIBLE);
-                tvOn.setVisibility(View.GONE);
                 SynergicBean.InTeamVL2Bean inTeamVL2 = synergicBean.getInTeamVL2();
                 if (inTeamVL2 == null) {
                     tvPlace.setVisibility(View.GONE);
@@ -97,7 +96,12 @@ public class BusinessActivity extends BaseActivity implements SynergiContract.Vi
                     return;
                 }
                 final String nick_name = synergicBean.getInTeamVL2().getNick_name();
+                if (nick_name.equals("")){
+                    tvPlace.setVisibility(View.GONE);
+                    tvSuozai.setVisibility(View.VISIBLE);
+                }else {
                 tvPlace.setText(nick_name);
+                }
                 final int id1 = synergicBean.getInTeamVL2().getId();
                 tvPlace.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -118,10 +122,12 @@ public class BusinessActivity extends BaseActivity implements SynergiContract.Vi
 
 
                 } else {//无合作数据
-
+                    Toast.makeText(context,"00000",Toast.LENGTH_SHORT).show();
                 }
             }
 
+        }else {
+            return;
         }
     }
 

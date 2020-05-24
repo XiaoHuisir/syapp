@@ -25,20 +25,28 @@ public class SellAdapter extends BaseAdapter {
     @Override
     protected void bindData(BaseViewHolder holder, int positon, Object o) {
         TextView tvname = (TextView) holder.getView(R.id.tv_daoyuan_name);
+        TextView tvnon = (TextView) holder.getView(R.id.tv_non);
         LinearLayout linearbtn = (LinearLayout) holder.getView(R.id.linear_btn);
         SynergicBean.TeamListLV3Bean lists = (SynergicBean.TeamListLV3Bean) mDatas.get(positon);
-        tvname.setText(lists.getNick_name());
+        if (lists.getId() == 0) {
+            tvnon.setVisibility(View.VISIBLE);
+            tvname.setVisibility(View.GONE);
+            tvnon.setText("你还没拥有销售单元，请继续努力！");
+        } else {
+            tvname.setText(lists.getNick_name());
 
-        linearbtn.setTag(mDatas.get(positon));
-        linearbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SynergicBean.TeamListLV3Bean tag = (SynergicBean.TeamListLV3Bean) v.getTag();
-                if (sellClick != null) {
-                    sellClick.selclick(tag);
+            linearbtn.setTag(mDatas.get(positon));
+            linearbtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    SynergicBean.TeamListLV3Bean tag = (SynergicBean.TeamListLV3Bean) v.getTag();
+                    if (sellClick != null) {
+                        sellClick.selclick(tag);
+                    }
                 }
-            }
-        });
+            });
+        }
+
     }
 
     public interface SellClick {

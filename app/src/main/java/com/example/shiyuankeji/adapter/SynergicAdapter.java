@@ -25,8 +25,15 @@ public class SynergicAdapter extends BaseAdapter {
     @Override
     protected void bindData(BaseViewHolder holder, int positon, Object o) {
         TextView tvname = (TextView) holder.getView(R.id.tv_daoyuan_name);
+        TextView tvnon = (TextView) holder.getView(R.id.tv_non);
         LinearLayout linearbtn = (LinearLayout) holder.getView(R.id.linear_btn);
         SynergicBean.TeamListLV1Bean lists = (SynergicBean.TeamListLV1Bean) mDatas.get(positon);
+        if (lists.getId()==0){
+            tvname.setVisibility(View.GONE);
+            tvnon.setVisibility(View.VISIBLE);
+            tvnon.setText("你还没拥有初级合作组，请继续努力！");
+        }else {
+
         tvname.setText(lists.getNick_name());
 
         linearbtn.setTag(mDatas.get(positon));
@@ -39,6 +46,7 @@ public class SynergicAdapter extends BaseAdapter {
                 }
             }
         });
+        }
     }
 
     public interface SynergicClick {

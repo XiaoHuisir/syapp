@@ -13,6 +13,14 @@
         android:layout_height="wrap_content"
         android:textColor="#151515"
         android:textSize="@dimen/sp_19" />
+    <TextView
+        android:id="@+id/tv_non"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#9c9c9c"
+        android:text=""
+        android:textSize="@dimen/sp_15" />
 
     <View
         android:layout_width="match_parent"

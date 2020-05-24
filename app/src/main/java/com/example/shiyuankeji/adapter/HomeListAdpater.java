@@ -53,7 +53,8 @@ public class HomeListAdpater extends RecyclerView.Adapter<HomeListAdpater.ViewHo
                 @Override
                 public void onClick(View v) {
                     int idsa = list.getIdsa();
-                    Intent intent = new Intent(context, ProductDetailsActivity.class);
+                    Intent intent = new Intent();
+                    intent.setClass(context, ProductDetailsActivity.class);
                     intent.putExtra("idsa", String.valueOf(idsa));
                     context.startActivity(intent);
 

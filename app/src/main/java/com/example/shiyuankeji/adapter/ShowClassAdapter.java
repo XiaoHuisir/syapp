@@ -50,7 +50,8 @@ public class ShowClassAdapter extends RecyclerView.Adapter<ShowClassAdapter.View
                 @Override
                 public void onClick(View v) {
                     int idsa = listBean.getIdsa();
-                    Intent intent = new Intent(context, ProductDetailsActivity.class);
+                    Intent intent = new Intent();
+                    intent.setClass(context, ProductDetailsActivity.class);
                     intent.putExtra("idsa", String.valueOf(idsa));
                     context.startActivity(intent);
                 }
