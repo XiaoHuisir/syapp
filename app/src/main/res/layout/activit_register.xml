@@ -60,6 +60,53 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_50"
+        android:layout_marginTop="@dimen/dp_16">
+
+        <!--<TextView-->
+            <!--android:id="@+id/t_name"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:layout_marginLeft="@dimen/dp_16"-->
+            <!--android:text="验证码"-->
+            <!--android:textColor="#151515"-->
+            <!--android:textSize="@dimen/sp_24" />-->
+
+        <EditText
+            android:id="@+id/ed_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dp_8"
+            android:layout_marginRight="@dimen/dp_16"
+            android:layout_toLeftOf="@id/getMsgCodeTv"
+         android:layout_alignParentLeft="true"
+            android:background="@null"
+            android:hint="请输入验证码"
+            android:textSize="@dimen/sp_24" />
+
+        <TextView
+            android:id="@+id/getMsgCodeTv"
+            android:layout_width="96dp"
+            android:layout_height="36dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="13dp"
+            android:background="@drawable/getmsgcodetv_bg"
+            android:gravity="center"
+            android:scaleType="fitXY"
+            android:text="获取验证码"
+            android:textColor="#0096ff" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_1"
+        android:background="@color/line_gray" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="@dimen/dp_48"
         android:layout_marginLeft="@dimen/dp_8"
         android:layout_marginTop="@dimen/dp_16">
@@ -109,9 +156,9 @@
         android:id="@+id/linshow"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_30"
         android:orientation="vertical"
-        android:visibility="gone"
-        android:layout_marginTop="@dimen/dp_30">
+        android:visibility="gone">
 
         <TextView
             android:id="@+id/tv_show1"

@@ -56,7 +56,7 @@ public interface Api {
     //注册
     @POST("addUser")
     @FormUrlEncoded
-    Flowable<AddUserBean> registerApi(@Field("user_name") String mobile, @Field("password") String password);
+    Flowable<AddUserBean> registerApi(@Field("user_name") String mobile,@Field("verifyCode") String verify, @Field("password") String password);
 
     //    修改密码   http://192.168.124.14:8080/updatePassword?password=456789
     @POST("updatePassword")

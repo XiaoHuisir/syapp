@@ -83,7 +83,7 @@ public class VerifyAccountActivity extends BaseActivity implements QueryTabContr
                 intent.setClass(context, WebCallCenterActivity.class);
                 startActivity(intent);
                 break;
-            case R.id.getMsgCodeTv:  //验证码  TODO 未完（待处理）。。。。。。。。
+            case R.id.getMsgCodeTv:  //验证码
                 if (edPho.getText().length() == 0) {
                     ToastUtil toastUtil2 = new ToastUtil(context, R.layout.toast_center_horizontal, "请输入正确手机号！");
                     toastUtil2.show();
