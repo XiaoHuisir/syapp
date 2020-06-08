@@ -4,6 +4,7 @@ package com.example.shiyuankeji.interfaces;
 import com.example.shiyuankeji.bean.AddOrderistBean;
 import com.example.shiyuankeji.bean.AddRBean;
 import com.example.shiyuankeji.bean.AddUserBean;
+import com.example.shiyuankeji.bean.AliPayBean;
 import com.example.shiyuankeji.bean.AnddressBean;
 import com.example.shiyuankeji.bean.BankBean;
 import com.example.shiyuankeji.bean.ClassBean;
@@ -23,6 +24,7 @@ import com.example.shiyuankeji.bean.QueryMinuteStockBean;
 import com.example.shiyuankeji.bean.QueryStockBean;
 import com.example.shiyuankeji.bean.QueryTabBean;
 import com.example.shiyuankeji.bean.ScanCodeBean;
+import com.example.shiyuankeji.bean.SmsSendBean;
 import com.example.shiyuankeji.bean.SubmitBean;
 import com.example.shiyuankeji.bean.SubmitListBean;
 import com.example.shiyuankeji.bean.SynergicBean;
@@ -59,7 +61,7 @@ public interface Api {
     //    修改密码   http://192.168.124.14:8080/updatePassword?password=456789
     @POST("updatePassword")
     @FormUrlEncoded
-    Flowable<UpdatePwdtBean> updatepwdApi(@Header("token") String tokens, @Field("password") String pwds);
+    Flowable<UpdatePwdtBean> updatepwdApi(@Field("user_name") String username, @Field("password") String pwds);
 
     //    匹配不成功校验  http://192.168.124.14:8080/queryTab_user?user_name=sf005&phone_number=18500398400&name=测试账号2
     @POST("queryTab_user")
@@ -184,6 +186,20 @@ public interface Api {
     @POST("toDetailTeam")
     @FormUrlEncoded
     Flowable<SynergicBean> sybergicxingApi(@Field("teamId") String tramid);
+
+    //支付宝
+    @POST("apppay")
+    @FormUrlEncoded
+    Flowable<AliPayBean> alipayApi(@Field("outTradeNo") String outtradeno, @Field("totalAmount") double totalamount, @Field("subject") String subjec);
+
+    //获取验证码
+    @POST("smsSend")
+    @FormUrlEncoded
+    Flowable<SmsSendBean> smsSendApi(@Field("phone") String outtradeno);
+//    校验验证码
+    @POST("isVerifyCode")
+    @FormUrlEncoded
+    Flowable<SmsSendBean> isVerifyCodeApi(@Field("phone") String outtradeno,@Field("verifyCode") String outr);
 
 
 //    {

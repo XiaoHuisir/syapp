@@ -30,6 +30,7 @@ import com.example.shiyuankeji.ui.activity.SelectAddressActivity;
 import com.example.shiyuankeji.ui.activity.SellActivity;
 import com.example.shiyuankeji.ui.activity.SynergicActivity;
 import com.example.shiyuankeji.ui.activity.WebCallCenterActivity;
+import com.example.shiyuankeji.ui.activity.YieldActivity;
 import com.example.shiyuankeji.ui.activity.login.LoginActivity;
 import com.example.shiyuankeji.utils.SharedPreferencesUtil;
 
@@ -54,6 +55,8 @@ public class MineFragment extends BaseFragment implements MineContract.View {
     RelativeLayout reSite;
     @BindView(R.id.re_exit)
     RelativeLayout reExit;
+    @BindView(R.id.re_yield)
+    RelativeLayout reYield;
     @BindView(R.id.tv_user_name)
     TextView tvUserName;
     @BindView(R.id.tv_score)
@@ -105,7 +108,8 @@ public class MineFragment extends BaseFragment implements MineContract.View {
 
     @Override
     protected void initView() {
-//        countDown();//我的模块登录状态初始化处理（判断是否登录）
+        //countDown();//我的模块登录状态初始化处理（判断是否登录） 带秒数的
+        StateHandling();//我的模块登录状态初始化处理（判断是否登录） 不带秒数的
         refress();
 
     }
@@ -128,24 +132,24 @@ public class MineFragment extends BaseFragment implements MineContract.View {
         });
     }
 
-    /**
-     * 倒计时显示
-     */
-    private void countDown() {
-        CountDownTimer timer = new CountDownTimer(3000, 1000) {
-            @Override
-            public void onTick(long millisUntilFinished) {
-            }
-
-            @Override
-            public void onFinish() {
-//                Toast.makeText(context, "时间就是生命", Toast.LENGTH_SHORT).show();
+//    /**
+//     * 倒计时显示
+//     */
+//    private void countDown() {
+//        CountDownTimer timer = new CountDownTimer(1000, 1000) {
+//            @Override
+//            public void onTick(long millisUntilFinished) {
+//            }
+//
+//            @Override
+//            public void onFinish() {
+////                Toast.makeText(context, "时间就是生命", Toast.LENGTH_SHORT).show();
 //                StateHandling();   //TODO 用Token进行判断用户是否是登录状态
-            }
-        }.start();
-
-
-    }
+//            }
+//        }.start();
+//
+//
+//    }
 
     private void StateHandling() {
         String token = SharedPreferencesUtil.getToken(MyApp.mApp);
@@ -168,13 +172,17 @@ public class MineFragment extends BaseFragment implements MineContract.View {
     }
 
 
-    @OnClick({R.id.lin_synergic, R.id.lin_business,
+    @OnClick({R.id.lin_synergic, R.id.lin_business, R.id.re_yield,
             R.id.lin_sales_unit, R.id.re_CQ, R.id.re_QR, R.id.im_sao_ma, R.id.lin_shop,
             R.id.lin_donate, R.id.lin_stock, R.id.lin_fh, R.id.re_personage, R.id.re_ID,
             R.id.re_site, R.id.re_exit})
     public void onViewClicked(View view) {
         Intent intent03 = new Intent();
         switch (view.getId()) {
+            case R.id.re_yield://我的收益
+                intent03.setClass(context, YieldActivity.class);
+                startActivity(intent03);
+                break;
             case R.id.lin_synergic://合作组
                 intent03.setClass(context, SynergicActivity.class);
                 startActivity(intent03);

@@ -1,18 +1,24 @@
 package com.example.shiyuankeji.ui.fragment;
 
 import android.content.Intent;
+import android.os.CountDownTimer;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 
 import com.example.shiyuankeji.R;
 import com.example.shiyuankeji.adapter.IndentListAdapter;
+import com.example.shiyuankeji.app.Constant;
+import com.example.shiyuankeji.app.MyApp;
 import com.example.shiyuankeji.base.BaseFragment;
 import com.example.shiyuankeji.bean.NewIndentBean;
 import com.example.shiyuankeji.interfaces.IBasePresenter;
 import com.example.shiyuankeji.interfaces.contract.IndentContract;
 import com.example.shiyuankeji.presenter.IndentPresenter;
 import com.example.shiyuankeji.ui.activity.IineItemActivity;
+import com.example.shiyuankeji.ui.activity.login.LoginActivity;
+import com.example.shiyuankeji.utils.SharedPreferencesUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,6 +48,8 @@ public class IndentFragment extends BaseFragment implements IndentContract.View,
 
     @Override
     protected void initView() {
+        //countDown();//我的模块登录状态初始化处理（判断是否登录） 带秒数的
+        StateHandling();//我的模块登录状态初始化处理（判断是否登录） 不带秒数的
         reIndentList.setHasFixedSize(true);
         reIndentList.setNestedScrollingEnabled(false);
         list = new ArrayList<>();
@@ -66,6 +74,37 @@ public class IndentFragment extends BaseFragment implements IndentContract.View,
                 }, 2000);
             }
         });
+    }
+
+    //    /**
+//     * 倒计时显示
+//     */
+//    private void countDown() {
+//        CountDownTimer timer = new CountDownTimer(1000, 1000) {
+//            @Override
+//            public void onTick(long millisUntilFinished) {
+//            }
+//
+//            @Override
+//            public void onFinish() {
+////                Toast.makeText(context, "时间就是生命", Toast.LENGTH_SHORT).show();
+//                StateHandling();   //TODO 用Token进行判断用户是否是登录状态
+//            }
+//        }.start();
+//    }
+    private void StateHandling() {
+        String token = SharedPreferencesUtil.getToken(MyApp.mApp);
+        Intent intent = new Intent();
+        if (TextUtils.isEmpty(token)) {
+            SharedPreferencesUtil.deleteToken(MyApp.mApp);
+            intent.setClass(context, LoginActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+            getActivity().finish();
+        } else {
+            Constant.token = token;
+//            intent.setClass(context, MainActivity.class);
+        }
     }
 
     @Override

@@ -115,5 +115,6 @@ dependencies {
     //方案（二） 二维码
     implementation 'com.google.zxing:core:3.3.0'
     implementation 'com.journeyapps:zxing-android-embedded:3.5.0'
-
+    //支付宝（sdk配置） 添加下面的内容
+    implementation (name: 'alipaySdk-15.5.7-20181023110917', ext: 'aar')
 }

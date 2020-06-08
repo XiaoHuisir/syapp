@@ -15,8 +15,8 @@ import static android.support.constraint.Constraints.TAG;
 public class UpdatePwdPresenter extends BasePresenter<UpdatePwdContract.View> implements UpdatePwdContract.Presenter {
 
     @Override
-    public void updatepwds(String pwds) {
-        addSubscribe(HttpUtils.getMyServer(Constant.BaseUrl).updatepwdApi(Constant.token, pwds)
+    public void updatepwds(String username,String pwds) {
+        addSubscribe(HttpUtils.getMyServer(Constant.BaseUrl).updatepwdApi(username, pwds)
                         .compose(RxUtils.<UpdatePwdtBean>rxScheduler())
                         .subscribeWith(new CommonSubscriber<UpdatePwdtBean>(mView) {
                             @Override

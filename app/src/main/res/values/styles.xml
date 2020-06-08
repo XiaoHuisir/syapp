@@ -70,5 +70,11 @@
         <!-- 模糊 -->
         <item name="android:windowSoftInputMode">adjustPan|stateHidden</item>
     </style>
-
+<!--支付宝-->
+    <style name="CustomCheckBoxTheme" parent="@android:style/Widget.CompoundButton.CheckBox">
+        <item name="android:button">@drawable/checkbox_style</item>
+    </style>
+    <style name="CustomCheckBoxThemes" parent="@android:style/Widget.CompoundButton.CheckBox">
+        <item name="android:button">@drawable/checkboxs_style</item>
+    </style>
 </resources>

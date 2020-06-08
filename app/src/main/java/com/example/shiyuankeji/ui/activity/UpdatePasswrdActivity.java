@@ -15,6 +15,8 @@ import com.example.shiyuankeji.bean.UpdatePwdtBean;
 import com.example.shiyuankeji.interfaces.IBasePresenter;
 import com.example.shiyuankeji.interfaces.contract.UpdatePwdContract;
 import com.example.shiyuankeji.presenter.UpdatePwdPresenter;
+import com.example.shiyuankeji.utils.SharedPreferencesUtil;
+import com.example.shiyuankeji.utils.ToastUtil;
 import com.example.shiyuankeji.utils.Validator;
 
 import butterknife.BindView;
@@ -28,6 +30,7 @@ public class UpdatePasswrdActivity extends BaseActivity implements UpdatePwdCont
     EditText edNew_pwd;
     private String pw_ = "";
     private String new_pwd = "";
+    private String pho_="";
 
     @Override
     protected IBasePresenter getPresenter() {
@@ -47,11 +50,14 @@ public class UpdatePasswrdActivity extends BaseActivity implements UpdatePwdCont
 
     @Override
     protected void initView() {
-        //初始化
-        if (Constant.DYNAMIC_PRICE == 123) {
-            pw_ = getIntent().getStringExtra("pw_");
-            edNew_pwd.setText(pw_);
-        }
+//        //初始化
+//        if (Constant.DYNAMIC_PRICE == 123) {
+//            pw_ = getIntent().getStringExtra("pw_");
+//            edNew_pwd.setText(pw_);
+//        }
+//        if (Constant.DYNAMIC_PRICE == 123){
+            pho_ = getIntent().getStringExtra("pho_");
+//        }
     }
 
 
@@ -69,7 +75,7 @@ public class UpdatePasswrdActivity extends BaseActivity implements UpdatePwdCont
                     }
                     return;
                 }
-                ((UpdatePwdPresenter) mPresenter).updatepwds(new_pwd);
+                ((UpdatePwdPresenter) mPresenter).updatepwds(pho_,new_pwd);
                 break;
         }
     }
@@ -80,13 +86,16 @@ public class UpdatePasswrdActivity extends BaseActivity implements UpdatePwdCont
         String msg = updatePwdtBean.getMsg();
         if (status == 200) {
             if (msg.equals("1")) { //修改成功
-                Toast.makeText(context, "修改成功！", Toast.LENGTH_LONG).show();
+                new ToastUtil(context,R.layout.ok_toast_center_horizontal,"密码修改成功").show();
+                String tokens = updatePwdtBean.getData().getToken();
+                SharedPreferencesUtil.addUserToken(context, tokens);// 添加保存token TODO
+                Constant.token = tokens;
                 Intent intent = new Intent();
                 intent.setClass(this, MainActivity.class);
                 startActivity(intent);
                 finish();
             } else {
-                Toast.makeText(context, "修改失败！", Toast.LENGTH_LONG).show();
+                new ToastUtil(context,R.layout.toast_center_horizontal,"密码修改失败").show();
             }
 
         }

@@ -9,6 +9,6 @@ public interface UpdatePwdContract {
         void   updatepwdRean(UpdatePwdtBean updatePwdtBean);
     }
     interface  Presenter extends IBasePresenter<View>{
-        void   updatepwds(String pwds);
+        void   updatepwds(String username ,String pwds);
     }
 }

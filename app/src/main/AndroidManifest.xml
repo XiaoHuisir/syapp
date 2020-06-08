@@ -3,15 +3,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.shiyuankeji">
     <!--value的值填写你在友盟后台申请的应用Appkey  5e828f8d167edd2e0a000052-->
-
+    <!--相册内容-->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <!--友盟统计所需权限-->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"></uses-permission>
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.INTERNET"></uses-permission>
     <uses-permission android:name="android.permission.READ_PHONE_STATE"></uses-permission>
 
-
-
+    <!--支付宝（sdk配置）-->
+    <!--android.permission.INTERNET
+android.permission.ACCESS_NETWORK_STATE
+android.permission.ACCESS_WIFI_STATE-->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
 
     <supports-screens
@@ -19,7 +24,6 @@
         android:largeScreens="true"
         android:normalScreens="true"
         android:smallScreens="true" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <!-- android:allowBackup="true"  tools:replace="android:allowBackup"   注释：改变 sp储存状态-->
     <!-- android:name="com.example.iwapp.app.MyApp"
         android:allowBackup="true"
@@ -46,6 +50,29 @@
         <!--  replac="android:theme"-->
         <!--登录  主--><!--login: Activity-->
         <activity android:name="com.example.shiyuankeji.ui.activity.login.SplashActivity">
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.MAIN" />-->
+                <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--</intent-filter>-->
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.VIEW" />-->
+
+                <!--<category android:name="android.intent.category.DEFAULT" />-->
+                <!--<category android:name="android.intent.category.BROWSABLE" />-->
+                <!--&lt;!&ndash;供h5调用&ndash;&gt;-->
+                <!--<data-->
+                    <!--android:host="com.example.project"-->
+                    <!--android:pathPrefix="/test/"-->
+                    <!--android:scheme="syapp" />-->
+            <!--</intent-filter>-->
+        </activity>
+        <!--我的模块 登录-->
+        <activity
+            android:name="com.example.shiyuankeji.ui.activity.minelogin.MineLogin"
+            android:theme="@style/TopDialogStyleBottomnoanim" />
+        <!--主界面-->
+        <!--android:launchMode="singleTask"-->
+        <activity android:name="com.example.shiyuankeji.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -61,14 +88,6 @@
                     android:pathPrefix="/test/"
                     android:scheme="syapp" />
             </intent-filter>
-        </activity>
-        <!--我的模块 登录-->
-        <activity
-            android:name="com.example.shiyuankeji.ui.activity.minelogin.MineLogin"
-            android:theme="@style/TopDialogStyleBottomnoanim" />
-        <!--主界面-->
-        <!--android:launchMode="singleTask"-->
-        <activity android:name="com.example.shiyuankeji.MainActivity">
             <!--<intent-filter>-->
             <!--<action android:name="android.intent.action.MAIN" />-->
             <!--<category android:name="android.intent.category.LAUNCHER" />-->
@@ -118,14 +137,16 @@
         <!--修改密码-->
         <activity android:name="com.example.shiyuankeji.ui.activity.UpdatePasswrdActivity" />
         <!--验证账号-->
-        <activity android:name="com.example.shiyuankeji.ui.activity.VerifyAccountActivity"/>
+        <activity android:name="com.example.shiyuankeji.ui.activity.VerifyAccountActivity" />
         <!--合作组-->
-        <activity android:name="com.example.shiyuankeji.ui.activity.SynergicActivity"/>
+        <activity android:name="com.example.shiyuankeji.ui.activity.SynergicActivity" />
         <!-- 商务拼团-->
-        <activity android:name="com.example.shiyuankeji.ui.activity.BusinessActivity"/>
+        <activity android:name="com.example.shiyuankeji.ui.activity.BusinessActivity" />
         <!--销售单元-->
-        <activity android:name="com.example.shiyuankeji.ui.activity.SellActivity"/>
-        <activity android:name="com.example.shiyuankeji.ui.activity.SynergicXingActivity"/>
+        <activity android:name="com.example.shiyuankeji.ui.activity.SellActivity" />
+        <activity android:name="com.example.shiyuankeji.ui.activity.SynergicXingActivity" />
+        <!--我的收益-->
+        <activity android:name=".ui.activity.YieldActivity"/>
     </application>
 
     <!--友盟统计配置Appkey与Channel-->

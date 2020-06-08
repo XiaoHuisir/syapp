@@ -1,7 +1,11 @@
 package com.example.shiyuankeji.ui.activity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Paint;
+import android.os.CountDownTimer;
+import android.text.TextUtils;
 import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -16,11 +20,14 @@ import com.bumptech.glide.Glide;
 import com.example.shiyuankeji.MainActivity;
 import com.example.shiyuankeji.R;
 import com.example.shiyuankeji.app.Constant;
+import com.example.shiyuankeji.app.MyApp;
 import com.example.shiyuankeji.base.BaseActivity;
 import com.example.shiyuankeji.bean.ProductDetailsBean;
 import com.example.shiyuankeji.interfaces.IBasePresenter;
 import com.example.shiyuankeji.interfaces.contract.ProductDetailsContract;
 import com.example.shiyuankeji.presenter.ProductDetailsPresenter;
+import com.example.shiyuankeji.ui.activity.login.LoginActivity;
+import com.example.shiyuankeji.utils.SharedPreferencesUtil;
 
 import java.util.ArrayList;
 
@@ -109,14 +116,8 @@ public class ProductDetailsActivity extends BaseActivity implements ProductDetai
                 finish();
                 break;
             case R.id.btn_exchang:
-                Intent intent2 = new Intent(context, ExchangeActivity.class);
-                intent2.putExtra("price", price);
-                intent2.putExtra("imgs", img);
-                intent2.putExtra("buynums", buynum);
-                intent2.putExtra("stock_", stock);
-                intent2.putExtra("idsas", idsa);
-//                intent2.putExtra("freight_",freight);
-                startActivity(intent2);
+//                countDown();//我的模块登录状态初始化处理（判断是否登录） 带秒数的
+                StateHandling();//我的模块登录状态初始化处理（判断是否登录） 不带秒数的
 
                 break;
             case R.id.im_beak:
@@ -128,6 +129,59 @@ public class ProductDetailsActivity extends BaseActivity implements ProductDetai
         }
     }
 
+    //    /**
+//     * 倒计时显示
+//     */
+//    private void countDown() {
+//        CountDownTimer timer = new CountDownTimer(1000, 1000) {
+//            @Override
+//            public void onTick(long millisUntilFinished) {
+//            }
+//
+//            @Override
+//            public void onFinish() {
+////                Toast.makeText(context, "时间就是生命", Toast.LENGTH_SHORT).show();
+//                StateHandling();   //TODO 用Token进行判断用户是否是登录状态
+//            }
+//        }.start();
+//
+//
+//    }
+    private void StateHandling() {
+        String token = SharedPreferencesUtil.getToken(MyApp.mApp);
+
+        if (TextUtils.isEmpty(token)) {
+            new AlertDialog.Builder(this).setTitle("登录后才可购买，是否前往登录!")
+                    .setPositiveButton("是", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Intent intent = new Intent();
+                            SharedPreferencesUtil.deleteToken(MyApp.mApp);
+                            intent.setClass(context, LoginActivity.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                            startActivity(intent);
+                            finish();
+                        }
+                    }).setNegativeButton("否", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    return;
+
+                }
+            }).create().show();
+
+        } else {
+            Constant.token = token;
+            Intent intent2 = new Intent(context, ExchangeActivity.class);
+            intent2.putExtra("price", price);
+            intent2.putExtra("imgs", img);
+            intent2.putExtra("buynums", buynum);
+            intent2.putExtra("stock_", stock);
+            intent2.putExtra("idsas", idsa);
+//                intent2.putExtra("freight_",freight);
+            startActivity(intent2);
+        }
+    }
 
     @Override
     public void ProductDetailsReturn(ProductDetailsBean result) {
@@ -166,7 +220,7 @@ public class ProductDetailsActivity extends BaseActivity implements ProductDetai
         newxingqing(sulimg);
     }
 
-    private void newxingqing(String  sulimg) {
+    private void newxingqing(String sulimg) {
         //webview图片自适应。
         WebSettings webSettings = webview.getSettings();
         webSettings.setJavaScriptEnabled(true);
@@ -178,7 +232,7 @@ public class ProductDetailsActivity extends BaseActivity implements ProductDetai
         webSettings.setBuiltInZoomControls(true); // 设置显示缩放按钮
         webSettings.setSupportZoom(true); // 支持缩放
         webSettings.setLoadWithOverviewMode(true);
-        webview.onResume() ;
+        webview.onResume();
         webview.setWebViewClient(new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {

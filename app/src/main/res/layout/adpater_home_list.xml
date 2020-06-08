@@ -1,27 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="wrap_content"
+    android:layout_width="@dimen/dp_184"
     android:layout_height="wrap_content"
-    app:cardBackgroundColor="@color/new_bag"
-    app:cardElevation="0dp"
-    app:cardUseCompatPadding="true"
-    >
+    android:background="@color/new_bag">
+
+    <View
+        android:id="@+id/v1"
+        android:layout_width="@dimen/dp_170"
+        android:layout_height="@dimen/dp_7"
+        android:layout_alignParentTop="true"
+        android:background="@color/new_bag" />
+
+    <View
+        android:id="@+id/v2"
+        android:layout_width="@dimen/dp_7"
+        android:layout_height="@dimen/dp_230"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:background="@color/new_bag" />
 
     <LinearLayout
         android:id="@+id/linear_item"
+        android:layout_width="@dimen/dp_170"
+        android:layout_height="@dimen/dp_230"
+        android:layout_below="@+id/v1"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/v2"
         android:background="@color/whites"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:orientation="vertical">
 
 
         <ImageView
             android:id="@+id/im_img"
-            android:layout_width="@dimen/dp_204"
-            android:background="@color/whites"
-            android:layout_height="@dimen/dp_204"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_170"
             android:layout_gravity="center"
+            android:background="@color/whites"
             android:scaleType="centerCrop"
             android:src="@color/col_blue" />
 
@@ -64,4 +80,4 @@
                 android:textSize="@dimen/sp_13" />
         </RelativeLayout>
     </LinearLayout>
-</android.support.v7.widget.CardView>
+</RelativeLayout>

@@ -186,8 +186,7 @@ public class LoginActivity extends BaseActivity implements LoginsContract.Views 
             pho = data.getData1();
             user_id = data.getData2();
             pwdss = data.getData3();
-            SharedPreferencesUtil.addUserToken(context, data.getToken());// 添加保存token TODO
-            Constant.token = result.getData().getToken();
+
             if (pwdss.equals("123456")) {
                 new AlertDialog.Builder(this).setTitle("为默认密码，请修改密码,并且同意权限，否则无法登录")
                         .setPositiveButton("是", new DialogInterface.OnClickListener() {
@@ -210,6 +209,8 @@ public class LoginActivity extends BaseActivity implements LoginsContract.Views 
                 }).create().show();
 
             } else {
+                SharedPreferencesUtil.addUserToken(context, data.getToken());// 添加保存token TODO
+                Constant.token = result.getData().getToken();
                 Intent intent = new Intent();
                 intent.setClass(this, MainActivity.class);
                 startActivity(intent);
@@ -271,8 +272,8 @@ public class LoginActivity extends BaseActivity implements LoginsContract.Views 
             //匹配成功 (修改密码)
             intent.setClass(this, UpdatePasswrdActivity.class);
 // pwdss
-            intent.putExtra("pw_", pwdss);
-            Constant.DYNAMIC_PRICE = 123;
+            intent.putExtra("pho_", pho);
+//            Constant.DYNAMIC_PRICE = 123;
         }
         startActivity(intent);
 

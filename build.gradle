@@ -18,7 +18,10 @@ allprojects {
     repositories {
         google()
         jcenter()
-
+        //  支付宝（sdk配置） 添加下面的内容
+        flatDir {
+            dirs 'libs'
+        }
 //        maven { url 'https://dl.bintray.com/umsdk/release' }
         mavenCentral()
         //加入此行 二维码

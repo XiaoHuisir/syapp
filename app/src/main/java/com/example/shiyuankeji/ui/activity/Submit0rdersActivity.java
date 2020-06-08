@@ -1,27 +1,38 @@
 package com.example.shiyuankeji.ui.activity;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.os.Handler;
+import android.os.Message;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.alipay.sdk.app.PayTask;
 import com.bumptech.glide.Glide;
 import com.example.shiyuankeji.MainActivity;
 import com.example.shiyuankeji.R;
 import com.example.shiyuankeji.app.Constant;
 import com.example.shiyuankeji.base.BaseActivity;
 import com.example.shiyuankeji.bean.AddOrderistBean;
+import com.example.shiyuankeji.bean.AliPayBean;
 import com.example.shiyuankeji.bean.SubmitBean;
 import com.example.shiyuankeji.interfaces.IBasePresenter;
 import com.example.shiyuankeji.interfaces.contract.SubmitContract;
 import com.example.shiyuankeji.presenter.SubmitPresenter;
+import com.example.shiyuankeji.widgets.alipay.util.PayResult;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -29,6 +40,23 @@ import butterknife.OnClick;
 //http://192.168.124.13:8080/toConfirmOrderList?user_name=sf003&idsa=2011
 public class Submit0rdersActivity extends BaseActivity implements SubmitContract.View {
 
+    @BindView(R.id.wechat_check)
+    CheckBox wechatCheck;
+    @BindView(R.id.ali_ch)
+    CheckBox jifenCheck;
+    @BindView(R.id.ll_wechat)
+    LinearLayout llWechat;
+    @BindView(R.id.imageView14)
+    ImageView imageView14;
+    @BindView(R.id.ali_check)
+    CheckBox aliCheck;
+    @BindView(R.id.ll_ali)
+    LinearLayout llAli;
+    @BindView(R.id.ll_jifen)
+    LinearLayout llJifen;
+
+    //    private IWXAPI api;
+    private static final int SDK_PAY_FLAG = 1;
 
     @BindView(R.id.re_on)
     RelativeLayout reOn;
@@ -90,16 +118,31 @@ public class Submit0rdersActivity extends BaseActivity implements SubmitContract
 
 
     //TODO
-    @OnClick({R.id.re_site_ok, R.id.btn_exchangOn, R.id.relative_on_, R.id.re_on})
+    @OnClick({R.id.re_site_ok, R.id.btn_exchangOn, R.id.relative_on_, R.id.re_on, R.id.ll_wechat, R.id.ll_jifen, R.id.ll_ali})
     public void onViewClicked(View view) {
         switch (view.getId()) {
+            case R.id.ll_wechat:
+                aliCheck.setChecked(false);
+                jifenCheck.setChecked(false);
+                wechatCheck.setChecked(!wechatCheck.isChecked());
+                break;
+            case R.id.ll_ali:
+                wechatCheck.setChecked(false);
+                jifenCheck.setChecked(false);
+                aliCheck.setChecked(!aliCheck.isChecked());
+                break;
+            case R.id.ll_jifen:
+                wechatCheck.setChecked(false);
+                aliCheck.setChecked(false);
+                jifenCheck.setChecked(!jifenCheck.isChecked());
+                break;
             case R.id.re_site_ok: //有 地址管理
                 Intent intent = new Intent();
                 intent.setClass(context, SelectAddressActivity.class);
                 intent.putExtra("typeid_", typeid);
                 intent.putExtra("num_", num);
-                Constant.IS_MINE=false;
-                Constant.IS_MINE_IS="1";
+                Constant.IS_MINE = false;
+                Constant.IS_MINE_IS = "1";
                 startActivity(intent);
                 finish();
                 break;
@@ -108,34 +151,24 @@ public class Submit0rdersActivity extends BaseActivity implements SubmitContract
                 intent1.setClass(context, SelectAddressActivity.class);
                 intent1.putExtra("typeid_", typeid);
                 intent1.putExtra("num_", num);
-                Constant.IS_MINE=false;
-                Constant.IS_MINE_IS="1";
+                Constant.IS_MINE = false;
+                Constant.IS_MINE_IS = "1";
                 startActivity(intent1);
                 finish();
                 break;
             case R.id.btn_exchangOn: //有 立即兑换 提交订单
-//                String tvnum = tvNum.getText().toString(); //数量
-                String tvname = txtName.getText().toString();//用户姓名
-                String tvDahao = textDahao.getText().toString();//用户电话
-                String tvDizhi = textDizhi.getText().toString();//用户地址
-                String tviphoneName = tvIphoneName.getText().toString();//商品名称
-//                String tvJifen = textJifen.getText().toString();//商品价格
-//                String tvfreight = tvFreight.getText().toString();//运费
-                String tvZong = textZong.getText().toString();//总价格
-                HashMap<String, String> maps = new HashMap<>();
-//                maps.put("name", "sf003");
-                maps.put("num", String.valueOf(Constant.NUM));//num
-                maps.put("user_name", tvname);
-                maps.put("user_phone", tvDahao);
-                maps.put("user_add", tvDizhi);
-//                maps.put("user_id", String.valueOf(15));//用户id
-                maps.put("item_img", Constant.IMG);//img
-                maps.put("item_name", Constant.NAME);//tviphoneName
-                maps.put("item_price", String.valueOf(Constant.SRC_PRICE));//src_price
-                maps.put("item_freight", String.valueOf(freight));
-                maps.put("order_price", String.valueOf(Constant.ZONG_JIA));//tvZong
-                maps.put("idsa", String.valueOf(Constant.IDSAS)); //商品编号idsas
-                ((SubmitPresenter) mPresenter).addOrders(maps);
+                if (aliCheck.isChecked()) {
+                    Toast.makeText(this, "支付宝支付", Toast.LENGTH_SHORT).show();
+                    getAliPayResult();
+                } else if (wechatCheck.isChecked()) {
+                    Toast.makeText(this, "微信支付", Toast.LENGTH_SHORT).show();
+//                    weChatPay();
+                } else if (jifenCheck.isChecked()) {
+                    Toast.makeText(this, "积分支付", Toast.LENGTH_SHORT).show();
+                    jifezhifu();
+                } else {
+                    Toast.makeText(this, "请选择支付方式", Toast.LENGTH_SHORT).show();
+                }
 
 
                 break;
@@ -143,6 +176,105 @@ public class Submit0rdersActivity extends BaseActivity implements SubmitContract
                 finish();
                 break;
         }
+    }
+
+    @SuppressLint("HandlerLeak")
+    private Handler mHandler = new Handler() {
+        @SuppressWarnings("unused")
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case SDK_PAY_FLAG: {
+                    @SuppressWarnings("unchecked")
+                    PayResult payResult = new PayResult((Map<String, String>) msg.obj);
+                    /**
+                     对于支付结果，请商户依赖服务端的异步通知结果。同步通知结果，仅作为支付结束的通知。
+                     */
+                    String resultInfo = payResult.getResult();// 同步返回需要验证的信息
+                    String resultStatus = payResult.getResultStatus();
+                    // 判断resultStatus 为9000则代表支付成功
+                    if (TextUtils.equals(resultStatus, "9000")) {
+                        // 该笔订单是否真实支付成功，需要依赖服务端的异步通知。
+//                        if(courseInfoBean != null){
+//                            ZhuGeUtil.getmInstance().addEvent(ZGEventNameConfig.FINISH_BUY_COURSE,"课程标题",courseInfoBean.getCourse_name());
+//                        }
+                        Toast.makeText(Submit0rdersActivity.this, "支付成功", Toast.LENGTH_SHORT).show();
+                        finish();
+                    } else {
+                        // 该笔订单真实的支付结果，需要依赖服务端的异步通知。
+                        Toast.makeText(Submit0rdersActivity.this, "支付失败", Toast.LENGTH_SHORT).show();
+                        finish();
+                    }
+                    break;
+                }
+                default:
+                    break;
+            }
+        }
+
+
+    };
+
+    public void getAliPayResult() {
+        ((SubmitPresenter) mPresenter).alipay(String.valueOf(Constant.IDSAS), Double.valueOf(Constant.ZONG_JIA), Constant.NAME);
+        //TODO
+//        String point = courseInfoBean.getPrice();
+//        String course_id = courseInfoBean.getCourse_id();
+//        String course_name = courseInfoBean.getCourse_name();
+//        CIOTimesNet.AliPay(course_id, point, course_name, new TextHttpResponseHandler() {
+//            @Override
+//            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+//            }
+
+//            @Override
+//            public void onSuccess(int statusCode, Header[] headers, String responseString) {
+//                AliPayBean aliPayBean = JSON.parseObject(responseString, AliPayBean.class);
+//                aliPay("<form name='punchout_form' method='post' action='https://openapi.alipay.com/gateway.do?charset=utf-8&method=alipay.trade.wap.pay&sign=ClkejmooRph4U1jlIXmK%2BWc14jr5v0EB5qt%2Fi7zQHfPNHHOvlWL9OxCBFkVnJ5cotafq61CUQoXAVS9pcrM%2B385eC5XN9EKVEyKZbsZTrHjfUHWlS7qu4K4j5JA%2BAKHDTEy9Betk%2B9yHZMKRi3ZgrwzglInM%2FQE425ptEsBIhekKliheoIFGqbCWAtyPCLzKlWpxutTDa24UpMutwSW7pr4u7ZDKMHCepJ%2Bh0wdoeOzEf4%2F6S1vfABP2g7fxE86w97jvpH0ssdjuc1uSyzBf6bIOSx0IWSXydygG7Ajsf0pkgPFBHZoLlJmwYktk199z%2FrgFptTs%2BMqAu17mL2Le1A%3D%3D&return_url=http%3A%2F%2Flocalhost%3A8080%2Falipay.trade.page.pay-JAVA-UTF-8%2Freturn_url.jsp&notify_url=http%3A%2F%2Flocalhost%3A8080%2Falipay.trade.page.pay-JAVA-UTF-8%2Fnotify_url.jsp&version=1.0&app_id=2021001165677698&sign_type=RSA2&timestamp=2020-06-04+17%3A01%3A18&alipay_sdk=alipay-sdk-java-dynamicVersionNo&format=json'> <input type='hidden' name='biz_content' value='{&quot;body&quot;:&quot;商品名称&quot;,&quot;out_trade_no&quot;:&quot;122&quot;,&quot;product_code&quot;:&quot;QUICK_WAP_WAY&quot;,&quot;subject&quot;:&quot;12&quot;,&quot;timeout_express&quot;:&quot;2m&quot;,&quot;total_amount&quot;:&quot;1&quot;}'> <input type='submit' value='立即支付' style='display:none' > </form> <script>document.forms[0].submit();</script>");
+
+//            }
+//        });
+    }
+
+    private void aliPay(final String requestUrl) {
+        Runnable payRunnable = new Runnable() {
+            @Override
+            public void run() {
+                PayTask alipay = new PayTask(Submit0rdersActivity.this);
+                Map<String, String> result = alipay.payV2(requestUrl, true);
+                Log.i("msp", result.toString());
+                Message msg = new Message();
+                msg.what = SDK_PAY_FLAG;
+                msg.obj = result;
+                mHandler.sendMessage(msg);
+            }
+        };
+
+        Thread payThread = new Thread(payRunnable);
+        payThread.start();
+    }
+
+    private void jifezhifu() {
+        //                String tvnum = tvNum.getText().toString(); //数量
+        String tvname = txtName.getText().toString();//用户姓名
+        String tvDahao = textDahao.getText().toString();//用户电话
+        String tvDizhi = textDizhi.getText().toString();//用户地址
+        String tviphoneName = tvIphoneName.getText().toString();//商品名称
+//                String tvJifen = textJifen.getText().toString();//商品价格
+//                String tvfreight = tvFreight.getText().toString();//运费
+        String tvZong = textZong.getText().toString();//总价格
+        HashMap<String, String> maps = new HashMap<>();
+//                maps.put("name", "sf003");
+        maps.put("num", String.valueOf(Constant.NUM));//num
+        maps.put("user_name", tvname);
+        maps.put("user_phone", tvDahao);
+        maps.put("user_add", tvDizhi);
+//                maps.put("user_id", String.valueOf(15));//用户id
+        maps.put("item_img", Constant.IMG);//img
+        maps.put("item_name", Constant.NAME);//tviphoneName
+        maps.put("item_price", String.valueOf(Constant.SRC_PRICE));//src_price
+        maps.put("item_freight", String.valueOf(freight));
+        maps.put("order_price", String.valueOf(Constant.ZONG_JIA));//tvZong
+        maps.put("idsa", String.valueOf(Constant.IDSAS)); //商品编号idsas
+        ((SubmitPresenter) mPresenter).addOrders(maps);
     }
 
     @Override
@@ -274,6 +406,19 @@ public class Submit0rdersActivity extends BaseActivity implements SubmitContract
 
                     }
                 });
+            }
+        }
+    }
+
+    //支付宝返回值
+    @Override
+    public void alipayRean(AliPayBean aliPayBean) {
+        if (aliPayBean != null) {
+            String resultStatus = aliPayBean.getBody();
+            if (resultStatus != null) {
+                aliPay(resultStatus);
+            } else {
+                return;
             }
         }
     }
