@@ -2,6 +2,7 @@ package com.example.shiyuankeji.app;
 
 import android.app.Application;
 import android.content.Context;
+import android.support.multidex.MultiDex;
 import android.util.Log;
 
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
@@ -24,6 +25,8 @@ public class MyApp extends Application {
         super.onCreate();
         Log.e("MyApplication", "onCreate: ");
         mApp = this;
+        // 初始化MultiDex（解决bugly大小问题）
+        MultiDex.install(this);
         um(); //友盟统计
     }
 

@@ -15,6 +15,8 @@ import com.example.shiyuankeji.ui.fragment.ClassifyFragment;
 import com.example.shiyuankeji.ui.fragment.HomeFragment;
 import com.example.shiyuankeji.ui.fragment.IndentFragment;
 import com.example.shiyuankeji.ui.fragment.MineFragment;
+import com.tencent.bugly.Bugly;
+import com.tencent.bugly.beta.Beta;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,6 +62,8 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void initView() {
+//        初始化 bugly 检测版本是否为最新 （是 更新 ，否 不更新）
+        buglys();
 //                    Bundle arguments = getArguments();
 //                    int typeID = arguments.getInt("typeID");
         initFragment();
@@ -86,6 +90,16 @@ public class MainActivity extends BaseActivity {
             }
         });
 
+    }
+
+    private void buglys() {
+// 腾讯bugly版本升级,第二个参数就是你的appid
+        Bugly.init(MainActivity.this, "99f695bf69", true);
+        Beta.canShowUpgradeActs.add(MainActivity.class); //添加可显示弹窗的Activity
+        Beta.enableNotification = true; //设置是否显示消息通知
+//        设置是否显示弹窗中的apk信息
+        Beta.canShowApkInfo = true;
+        Beta.enableHotfix = true; //关闭热更新能力
     }
 
     private Bundle getArguments() {
@@ -129,7 +143,7 @@ public class MainActivity extends BaseActivity {
 
 
         }
-        if (id==3){
+        if (id == 3) {
             targetBottomPosition = 2;
             if (currentBottomPosition == 2) {
                 return;

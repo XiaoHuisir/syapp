@@ -18,6 +18,18 @@ android.permission.ACCESS_WIFI_STATE-->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
+    <!--bugly-->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+
+    <uses-permission android:name="android.permission.READ_LOGS" />
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <supports-screens
         android:anyDensity="true"
@@ -47,6 +59,13 @@ android.permission.ACCESS_WIFI_STATE-->
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:appComponentFactory">
+
+        <!--bugly版本更新-->
+        <activity
+            android:name="com.tencent.bugly.beta.ui.BetaActivity"
+            android:theme="@android:style/Theme.Translucent" />
+
+
         <!--  replac="android:theme"-->
         <!--登录  主--><!--login: Activity-->
         <activity android:name="com.example.shiyuankeji.ui.activity.login.SplashActivity">
