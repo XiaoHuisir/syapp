@@ -9,6 +9,6 @@ public interface LineItemConreact {
         void  lineitemReant(LineItemBean lineItemBean);
     }
     interface Presenter extends IBasePresenter<View>{
-        void  lineitems(int id);
+        void  lineitems(String id);
     }
 }

@@ -1,64 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="wrap_content"
     android:id="@+id/linear_new"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:background="@color/new_bag"
+    android:background="@color/tou_ming"
     android:orientation="vertical">
+    <RelativeLayout
+        android:layout_width="@dimen/dp_173"
+        android:layout_height="wrap_content">
 
+<View
+    android:id="@+id/vone"
+    android:layout_alignParentTop="true"
+    android:layout_width="@dimen/dp_173"
+    android:background="@color/tou_ming"
+    android:layout_height="@dimen/dp_13"/>
+        <View
+            android:id="@+id/vtwo"
+            android:layout_alignParentTop="true"
+            android:layout_width="@dimen/dp_13"
+            android:background="@color/tou_ming"
+            android:layout_height="@dimen/dp_220"/>
     <android.support.v7.widget.CardView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:cardBackgroundColor="@color/white"
-        app:cardElevation="0dp"
-        app:cardUseCompatPadding="true">
+        android:layout_below="@id/vone"
+        android:layout_width="@dimen/dp_160"
+        android:layout_height="207dp"
+        android:layout_toRightOf="@id/vtwo"
+        app:cardBackgroundColor="@color/tou_ming"
+        app:cardCornerRadius="@dimen/dp_2"
+        app:cardUseCompatPadding="false">
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:background="@color/white"
-
             android:orientation="vertical">
 
             <ImageView
                 android:id="@+id/im"
-                android:layout_width="@dimen/dp_204"
-                android:layout_height="@dimen/dp_204"
-                android:scaleType="centerCrop"
-                android:background="@color/red" />
+                android:layout_width="@dimen/dp_160"
+                android:layout_height="@dimen/dp_160"
+                android:background="@drawable/no_banner"
+                android:scaleType="centerCrop" />
 
             <TextView
                 android:id="@+id/tv_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="@dimen/dp_6"
+                android:ellipsize="end"
+                android:maxLines="1"
                 android:text="111"
-                android:layout_marginLeft="16dp"
-                android:textSize="16sp" />
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            >
-            <TextView
-                android:id="@+id/tv_ji"
-                android:layout_marginLeft="16dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/red"
+                android:textColor="#1f1f1f"
+                android:textSize="13sp" />
 
-                android:text="1积分" />
-            <TextView
-                android:id="@+id/tv_ji_jian"
-                android:layout_marginLeft="16dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/col_grays"
-                android:text="50" />
-        </LinearLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_17"
+                android:layout_marginLeft="@dimen/dp_15"
+                android:layout_marginTop="@dimen/dp_5">
+
+                <TextView
+                    android:id="@+id/tv_ji"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentBottom="true"
+                    android:text="1"
+                    android:textColor="#fd5002"
+                    android:textSize="@dimen/sp_15" />
+
+                <TextView
+                    android:id="@+id/tv_ji_jian"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginLeft="7dp"
+                    android:layout_toRightOf="@id/tv_ji"
+                    android:text="50"
+                    android:layout_marginTop="@dimen/dp_3"
+                    android:textColor="#aaaaaa"
+                    android:textSize="@dimen/sp_12" />
+            </RelativeLayout>
 
         </LinearLayout>
     </android.support.v7.widget.CardView>
+    </RelativeLayout>
 
 
 </LinearLayout>

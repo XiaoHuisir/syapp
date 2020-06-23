@@ -20,10 +20,10 @@ import java.util.ArrayList;
 public class IndentListAdapter extends RecyclerView.Adapter<IndentListAdapter.ViewHolder> {
     public IndentItemClick itemClick;
     private Context context;
-    private ArrayList<NewIndentBean.OrderListsBean> list;
+    private ArrayList<NewIndentBean.OrderListListBean> list;
     //    0，订单待确认、1，待发货、2，待收货、3，兑换完成、4，积分不够
 
-    public IndentListAdapter(Context context, ArrayList<NewIndentBean.OrderListsBean> list) {
+    public IndentListAdapter(Context context, ArrayList<NewIndentBean.OrderListListBean> list) {
         this.context = context;
         this.list = list;
 
@@ -37,7 +37,7 @@ public class IndentListAdapter extends RecyclerView.Adapter<IndentListAdapter.Vi
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-        NewIndentBean.OrderListsBean orderListsBean = list.get(i);
+        NewIndentBean.OrderListListBean orderListsBean = list.get(i);
 //      -  order_state //订单状态
         int order_state = orderListsBean.getOrder_state(); //订单状态
         if (order_state == Constant.ORDER_STATE_0) {
@@ -53,12 +53,12 @@ public class IndentListAdapter extends RecyclerView.Adapter<IndentListAdapter.Vi
         }
 
         viewHolder.mTvOdd.setText("订单号:" + orderListsBean.getOrder_num());//订单号
-        viewHolder.mTxtName.setText(orderListsBean.getItem_name()); //name
-        viewHolder.txtjiaqian.setText(orderListsBean.getItem_price() + "积分");//价格
+        viewHolder.mTxtName.setText(orderListsBean.getItems().getName()); //name
+        viewHolder.txtjiaqian.setText(orderListsBean.getItems().getRmb_price() + "积分");//价格
         viewHolder.mTxtZhongji.setText(orderListsBean.getOrder_price() + "积分");//交易价格
         viewHolder.txtItem_freight.setText("(含运费:" + orderListsBean.getItem_freight() + "积分)");//运费 (含运费:0积分)
         viewHolder.mTxtShuliang.setText("X" + orderListsBean.getNum());//数量
-        Glide.with(context).load(orderListsBean.getItem_img()).into(viewHolder.mImager);
+        Glide.with(context).load(orderListsBean.getItems().getImg()).into(viewHolder.mImager);
 
 
 
@@ -67,7 +67,7 @@ public class IndentListAdapter extends RecyclerView.Adapter<IndentListAdapter.Vi
         viewHolder.mLinXiangqing.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                NewIndentBean.OrderListsBean indentlist = (NewIndentBean.OrderListsBean)v.getTag();
+                NewIndentBean.OrderListListBean indentlist = (NewIndentBean.OrderListListBean)v.getTag();
                 itemClick.indentclick(indentlist);
             }
         });
@@ -109,6 +109,6 @@ public class IndentListAdapter extends RecyclerView.Adapter<IndentListAdapter.Vi
     }
 
     public interface IndentItemClick {
-        void indentclick(NewIndentBean.OrderListsBean orderListsBean);
+        void indentclick(NewIndentBean.OrderListListBean orderListsBean);
     }
 }

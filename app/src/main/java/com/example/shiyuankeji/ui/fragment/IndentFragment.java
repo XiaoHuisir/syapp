@@ -31,7 +31,7 @@ public class IndentFragment extends BaseFragment implements IndentContract.View,
     RecyclerView reIndentList;
     @BindView(R.id.indent_swipeRefeash)
     SwipeRefreshLayout indentSwipeRefeash;
-    private ArrayList<NewIndentBean.OrderListsBean> list;
+    private ArrayList<NewIndentBean.OrderListListBean> list;
     private IndentListAdapter indentListAdapter;
 
 
@@ -114,7 +114,7 @@ public class IndentFragment extends BaseFragment implements IndentContract.View,
 
     @Override
     public void indentRean(NewIndentBean newIndentBean) {
-        List<NewIndentBean.OrderListsBean> order_lists = newIndentBean.getOrder_lists();
+        List<NewIndentBean.OrderListListBean> order_lists = newIndentBean.getOrder_listList();
         if (order_lists != null) {
             list.clear();
             list.addAll(order_lists);
@@ -124,9 +124,9 @@ public class IndentFragment extends BaseFragment implements IndentContract.View,
 
     //回调 跳转订单详情
     @Override
-    public void indentclick(NewIndentBean.OrderListsBean orderListsBean) {
+    public void indentclick(NewIndentBean.OrderListListBean orderListsBean) {
         if (orderListsBean != null) {
-            int id = orderListsBean.getId();
+            String id = orderListsBean.getOrder_num();
             Intent intent = new Intent();
             intent.setClass(context, IineItemActivity.class);
             intent.putExtra("indent_id", id);

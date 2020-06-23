@@ -75,8 +75,8 @@ public class HomeFragment extends BaseFragment implements HomeCotract.View {
         homeAdapter = new HomeAdapter(listTetle, context);
         hotRecyler.setAdapter(homeAdapter);
         //刷新
-        refress();  //效果一 简单刷新
-//        newrefres(); 效果二  自动刷新
+//        refress();  //效果一 简单刷新
+        newrefres(); //效果二  自动刷新
     }
 
     private void refress() {
@@ -115,7 +115,7 @@ public class HomeFragment extends BaseFragment implements HomeCotract.View {
     private void newrefres() {
         //设置刷新球颜色
         swipeRefres.setColorSchemeColors(Color.BLUE, Color.RED, Color.YELLOW);
-        swipeRefres.setProgressBackgroundColorSchemeColor(Color.parseColor("#BBFFFF"));
+        swipeRefres.setProgressBackgroundColorSchemeColor(Color.parseColor("#ffffff"));//#BBFFFF
         ViewTreeObserver obeser = swipeRefres.getViewTreeObserver();
         obeser.addOnWindowFocusChangeListener(new ViewTreeObserver.OnWindowFocusChangeListener() {
             @Override
@@ -208,7 +208,7 @@ public class HomeFragment extends BaseFragment implements HomeCotract.View {
         //设置是否为自动轮播，默认是“是”。
         ban.isAutoPlay(true);
         //设置指示器的位置，小点点，左中右。
-        ban.setIndicatorGravity(BannerConfig.RIGHT)
+        ban.setIndicatorGravity(BannerConfig.CENTER)
                 //以上内容都可写成链式布局，这是轮播图的监听。比较重要。方法在下面。
                 //必须最后调用的方法，启动轮播图。
                 .start();

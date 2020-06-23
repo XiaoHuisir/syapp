@@ -3,7 +3,7 @@ package com.example.shiyuankeji.bean;
 public class SubmitBean {
 
     /**
-     * items : {"id":8,"idsa":2011,"name":"追风马4g儿童手表","img":"https://cdn.knowfate.com.cn/web/images/product/zfm4gsb/00.jpg","img2":"22","price":699,"src_price":599,"stock":100,"weight":6,"cateid":4,"isshow":1,"imgs":"https://cdn.knowfate.com.cn/web/images/product/zfm4gsb/01.jpg,https://cdn.knowfate.com.cn/web/images/product/zfm4gsb/02.jpg,https://cdn.knowfate.com.cn/web/images/product/zfm4gsb/03.jpg,https://cdn.knowfate.com.cn/web/images/product/zfm4gsb/04.jpg,https://cdn.knowfate.com.cn/web/images/product/zfm4gsb/05.jpg,https://cdn.knowfate.com.cn/web/images/product/zfm4gsb/06.jpg,https://cdn.knowfate.com.cn/web/images/product/zfm4gsb/07.jpg,https://cdn.knowfate.com.cn/web/images/product/zfm4gsb/08.jpg,https://cdn.knowfate.com.cn/web/images/product/zfm4gsb/09.jpg,https://cdn.knowfate.com.cn/web/images/product/zfm4gsb/10.jpg,https://cdn.knowfate.com.cn/web/images/product/zfm4gsb/11.jpg,https://cdn.knowfate.com.cn/web/images/product/zfm4gsb/12.jpg,https://cdn.knowfate.com.cn/web/images/product/zfm4gsb/13.jpg,https://cdn.knowfate.com.cn/web/images/product/zfm4gsb/14.jpg,https://cdn.knowfate.com.cn/web/images/product/zfm4gsb/15.jpg,https://cdn.knowfate.com.cn/web/images/product/zfm4gsb/16.jpg,https://cdn.knowfate.com.cn/web/images/product/zfm4gsb/17.jpg,https://cdn.knowfate.com.cn/web/images/product/zfm4gsb/18.jpg","freight":10,"buynum":10,"des":"","list":"","times":"2020-04-21T09:58:33.000+0000","addtime":"2020-04-13T22:36:47.000+0000","listing_Time":null,"offshelf_Time":null,"cate":{"id":8,"cateid":4,"name":"追风马4g儿童手表","weight":6,"isshow":1,"itemsList":null}}
+     * items : {"id":8,"idsa":2011,"name":"追风马4g儿童手表","img":"https://cdn.knowfate.com.cn/web/images/product/zfm4gsb/00.jpg","img2":"22","code_price":699,"src_price_code":599,"stock":100,"weight":6,"cateid":4,"isshow":1,"imgs":"https://cdn.knowfate.com.cn/web/images/product/zfm4gsb/01.jpg,https://cdn.knowfate.com.cn/web/images/product/zfm4gsb/02.jpg,https://cdn.knowfate.com.cn/web/images/product/zfm4gsb/03.jpg,https://cdn.knowfate.com.cn/web/images/product/zfm4gsb/04.jpg,https://cdn.knowfate.com.cn/web/images/product/zfm4gsb/05.jpg,https://cdn.knowfate.com.cn/web/images/product/zfm4gsb/06.jpg,https://cdn.knowfate.com.cn/web/images/product/zfm4gsb/07.jpg,https://cdn.knowfate.com.cn/web/images/product/zfm4gsb/08.jpg,https://cdn.knowfate.com.cn/web/images/product/zfm4gsb/09.jpg,https://cdn.knowfate.com.cn/web/images/product/zfm4gsb/10.jpg,https://cdn.knowfate.com.cn/web/images/product/zfm4gsb/11.jpg,https://cdn.knowfate.com.cn/web/images/product/zfm4gsb/12.jpg,https://cdn.knowfate.com.cn/web/images/product/zfm4gsb/13.jpg,https://cdn.knowfate.com.cn/web/images/product/zfm4gsb/14.jpg,https://cdn.knowfate.com.cn/web/images/product/zfm4gsb/15.jpg,https://cdn.knowfate.com.cn/web/images/product/zfm4gsb/16.jpg,https://cdn.knowfate.com.cn/web/images/product/zfm4gsb/17.jpg,https://cdn.knowfate.com.cn/web/images/product/zfm4gsb/18.jpg","freight":10,"buynum":10,"des":"","list":"","times":"2020-04-21T09:58:33.000+0000","addtime":"2020-04-13T22:36:47.000+0000","listing_Time":null,"offshelf_Time":null,"cate":{"id":8,"cateid":4,"name":"追风马4g儿童手表","weight":6,"isshow":1,"itemsList":null}}
      * user_address : {"id":1,"user_name":"sf003","is_default":1,"name":"胡德政","phone":"18911410154","address":"北京市昌平区天通苑北二区39号楼3单元1102"}
      */
 
@@ -33,8 +33,8 @@ public class SubmitBean {
          * name : 追风马4g儿童手表
          * img : https://cdn.knowfate.com.cn/web/images/product/zfm4gsb/00.jpg
          * img2 : 22
-         * price : 699
-         * src_price : 599
+         * code_price : 699
+         * src_price_code : 599
          * stock : 100
          * weight : 6.0
          * cateid : 4
@@ -56,8 +56,8 @@ public class SubmitBean {
         private String name;
         private String img;
         private String img2;
-        private int price;
-        private int src_price;
+        private int code_price;
+        private int src_price_code;
         private int stock;
         private double weight;
         private int cateid;
@@ -72,6 +72,24 @@ public class SubmitBean {
         private Object listing_Time;
         private Object offshelf_Time;
         private CateBean cate;
+        private  int  rmb_price;
+        private  int  src_price_rmb;
+
+        public int getRmb_price() {
+            return rmb_price;
+        }
+
+        public void setRmb_price(int rmb_price) {
+            this.rmb_price = rmb_price;
+        }
+
+        public int getSrc_price_rmb() {
+            return src_price_rmb;
+        }
+
+        public void setSrc_price_rmb(int src_price_rmb) {
+            this.src_price_rmb = src_price_rmb;
+        }
 
         public int getId() {
             return id;
@@ -113,20 +131,20 @@ public class SubmitBean {
             this.img2 = img2;
         }
 
-        public int getPrice() {
-            return price;
+        public int getCode_price() {
+            return code_price;
         }
 
-        public void setPrice(int price) {
-            this.price = price;
+        public void setCode_price(int code_price) {
+            this.code_price = code_price;
         }
 
-        public int getSrc_price() {
-            return src_price;
+        public int getSrc_price_code() {
+            return src_price_code;
         }
 
-        public void setSrc_price(int src_price) {
-            this.src_price = src_price;
+        public void setSrc_price_code(int src_price_code) {
+            this.src_price_code = src_price_code;
         }
 
         public int getStock() {

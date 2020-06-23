@@ -43,9 +43,9 @@ public class HomeListAdpater extends RecyclerView.Adapter<HomeListAdpater.ViewHo
             final HomeBean.MainListTitleBean.ItemsListBean list = itemsList.get(i);
             //img
             Glide.with(context).load(list.getImg()).into(viewHolder.imImg);
-            viewHolder.textName.setText(list.getName());
-            viewHolder.textPrice.setText(String.valueOf(list.getPrice()));
-            viewHolder.textSrcPrice.setText(String.valueOf(list.getSrc_price()));
+            viewHolder.textName.setText(list.getName()); //src_price_code  code_price
+            viewHolder.textPrice.setText(String.valueOf(list.getSrc_price_code()));
+            viewHolder.textSrcPrice.setText(String.valueOf(list.getCode_price()));
             viewHolder.textPrice.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
 
 

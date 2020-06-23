@@ -10,8 +10,8 @@ public class ProductDetailsBean {
      * img : https://cdn.knowfate.com.cn/web/images/product/xxkjpdj/00.jpg
      * img2 : 22
      * imges : http://bc.knowfate.com.cn/4g.html
-     * price : 499
-     * src_price : 5999
+     * code_price : 499
+     * src_price_code : 5999
      * stock : 55
      * weight : 9.0
      * cateid : 4
@@ -34,8 +34,8 @@ public class ProductDetailsBean {
     private String img;
     private String img2;
     private String imges;
-    private int price;
-    private int src_price;
+    private int code_price;
+    private int src_price_code;
     private int stock;
     private double weight;
     private int cateid;
@@ -99,20 +99,20 @@ public class ProductDetailsBean {
         this.imges = imges;
     }
 
-    public int getPrice() {
-        return price;
+    public int getCode_price() {
+        return code_price;
     }
 
-    public void setPrice(int price) {
-        this.price = price;
+    public void setCode_price(int code_price) {
+        this.code_price = code_price;
     }
 
-    public int getSrc_price() {
-        return src_price;
+    public int getSrc_price_code() {
+        return src_price_code;
     }
 
-    public void setSrc_price(int src_price) {
-        this.src_price = src_price;
+    public void setSrc_price_code(int src_price_code) {
+        this.src_price_code = src_price_code;
     }
 
     public int getStock() {

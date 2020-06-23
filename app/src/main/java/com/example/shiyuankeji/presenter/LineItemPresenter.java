@@ -14,7 +14,7 @@ public class LineItemPresenter extends BasePresenter<LineItemConreact.View> impl
     private static final String TAG = "lineitem";
 
     @Override
-    public void lineitems(int id) {
+    public void lineitems(String id) {
         addSubscribe(HttpUtils.getMyServer(Constant.BaseUrl).lineitemApi(id)
                 .compose(RxUtils.<LineItemBean>rxScheduler())
                 .subscribeWith(new CommonSubscriber<LineItemBean>(mView) {

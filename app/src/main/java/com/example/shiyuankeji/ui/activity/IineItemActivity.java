@@ -47,12 +47,12 @@ public class IineItemActivity extends BaseActivity implements LineItemConreact.V
     TextView tvLeaveWord;
     @BindView(R.id.tv_order_price)
     TextView tvOrderPrice;
-    private int indent_id;
+    private String indent_id;
 
     @Override
     protected void initView() {
         Intent intent = getIntent();
-        indent_id = intent.getIntExtra("indent_id", 0);
+        indent_id = intent.getStringExtra("indent_id");
 
     }
 
@@ -87,19 +87,19 @@ public class IineItemActivity extends BaseActivity implements LineItemConreact.V
     public void lineitemReant(LineItemBean lineItemBean) {
         if (lineItemBean != null) {
             // order_state //订单状态
-            int order_state = lineItemBean.getOrder_state();
+            int order_state = lineItemBean.getOrder_list().getOrder_state();
             initOrderState(order_state);
 
-            tvOrderNum.setText("订单号：" + lineItemBean.getOrder_num());
-            txtName.setText("收货人：" + lineItemBean.getUser_name());
-            tvUserPhone.setText(lineItemBean.getUser_phone());
-            tvUserAdd.setText(lineItemBean.getUser_add());
-            Glide.with(context).load(lineItemBean.getItem_img()).into(imItemImg);
-            tvItemName.setText(lineItemBean.getItem_name());
-            tvItemPrice.setText(lineItemBean.getItem_price() + "积分");
-            tvNum.setText("X" + lineItemBean.getNum());
-            tvItemFreight.setText(lineItemBean.getItem_freight() + "积分");
-            tvOrderPrice.setText(lineItemBean.getOrder_price() + "积分");
+            tvOrderNum.setText("订单号：" + lineItemBean.getOrder_list().getOrder_num());
+            txtName.setText("收货人：" + lineItemBean.getUser_address().getName());
+            tvUserPhone.setText(lineItemBean.getUser_address().getPhone());
+            tvUserAdd.setText(lineItemBean.getUser_address().getAddress());
+            Glide.with(context).load(lineItemBean.getItems().getImg()).into(imItemImg);
+            tvItemName.setText(lineItemBean.getItems().getName());
+            tvItemPrice.setText(lineItemBean.getItems().getCode_price() + "积分");
+            tvNum.setText("X" + lineItemBean.getOrder_list().getNum());
+            tvItemFreight.setText(lineItemBean.getItems().getFreight() + "积分");
+            tvOrderPrice.setText(lineItemBean.getOrder_list().getOrder_price() + "积分");
 
         }
     }

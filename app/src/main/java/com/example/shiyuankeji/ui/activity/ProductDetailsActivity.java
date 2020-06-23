@@ -4,7 +4,6 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Paint;
-import android.os.CountDownTimer;
 import android.text.TextUtils;
 import android.view.View;
 import android.webkit.WebSettings;
@@ -197,8 +196,8 @@ public class ProductDetailsActivity extends BaseActivity implements ProductDetai
         idsa = result.getIdsa();
         String name = result.getName();
         //价格
-        price = result.getPrice();
-        int src_price = result.getSrc_price(); //原价
+        price = result.getCode_price();
+        int src_price = result.getSrc_price_code(); //原价
         //库存
         stock = result.getStock();
         //图

@@ -18,6 +18,7 @@ import com.example.shiyuankeji.bean.LoginsBean;
 import com.example.shiyuankeji.bean.MineBean;
 import com.example.shiyuankeji.bean.NewIndentBean;
 import com.example.shiyuankeji.bean.ProductDetailsBean;
+import com.example.shiyuankeji.bean.QueryEarningsBean;
 import com.example.shiyuankeji.bean.QueryIntegralBean;
 import com.example.shiyuankeji.bean.QueryLastWeekStockBean;
 import com.example.shiyuankeji.bean.QueryMinuteStockBean;
@@ -29,6 +30,7 @@ import com.example.shiyuankeji.bean.SubmitBean;
 import com.example.shiyuankeji.bean.SubmitListBean;
 import com.example.shiyuankeji.bean.SynergicBean;
 import com.example.shiyuankeji.bean.UpdatePwdtBean;
+import com.example.shiyuankeji.bean.YieDetailsBean;
 
 import java.util.Map;
 
@@ -126,7 +128,7 @@ public interface Api {
     //订单详情页
     @POST("detailOrder_listById")
     @FormUrlEncoded
-    Flowable<LineItemBean> lineitemApi(@Field("id") int id);
+    Flowable<LineItemBean> lineitemApi(@Field("order_num") String id);
 
     //我的模块
     @POST("query_User")
@@ -200,6 +202,14 @@ public interface Api {
     @POST("isVerifyCode")
     @FormUrlEncoded
     Flowable<SmsSendBean> isVerifyCodeApi(@Field("phone") String outtradeno,@Field("verifyCode") String outr);
+
+//我的收益
+@POST("queryEarnings")
+Flowable<QueryEarningsBean> queryEarningsApi(@Header("token") String tokens);
+//我的收益详情
+    @POST("queryDetail")
+    @FormUrlEncoded
+    Flowable<YieDetailsBean> querydetailApi(@Header("token") String tokens, @Field("order_num") String order);
 
 
 //    {

@@ -38,7 +38,11 @@
     <color name="new_bag">#F4F4F4</color>
     <color name="tou_ming">#00000000</color>
     <color name="ban_touming">#80000000</color>
+    <color name="tabhei">#000000</color>
     <color name="ce_shi">#4Dca0d0d</color>
+    <color name="newnew_bg">#1677ff</color>
+    <color name="newnew_newbg">#f5f5f5</color>
+    <color name="tabbg">#1676ff</color>
     <!-- 下拉刷新时，颜色值 -->
     <color name="swiperefresh_color1">#ff00ddff</color>
     <color name="swiperefresh_color2">#ffffbb33</color>

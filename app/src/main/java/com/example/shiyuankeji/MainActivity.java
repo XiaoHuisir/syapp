@@ -6,8 +6,12 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.PopupWindow;
+import android.widget.TextView;
 
 import com.example.shiyuankeji.base.BaseActivity;
 import com.example.shiyuankeji.interfaces.IBasePresenter;
@@ -77,11 +81,14 @@ public class MainActivity extends BaseActivity {
                 int position = tab.getPosition();
                 curType = position;
                 showFragment(position);
+
+                //设置字体颜色
+                changeTabSelect(tab);
             }
 
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
-
+                changeTabNormal(tab);
             }
 
             @Override
@@ -165,13 +172,27 @@ public class MainActivity extends BaseActivity {
     public void onSaveInstanceState(Bundle outState, PersistableBundle outPersistentState) {
         super.onSaveInstanceState(outState, outPersistentState);
     }
-
+    // Tab自定义view
+    public View getTabView(String title, int image_src) {
+        View v = LayoutInflater.from(getApplicationContext()).inflate(R.layout.tab_item_view, null);
+        TextView textView = (TextView) v.findViewById(R.id.textview);
+        textView.setText(title);
+        ImageView imageView = (ImageView) v.findViewById(R.id.imageview);
+        imageView.setImageResource(image_src);
+        return v;
+    }
     private void initFragment() {
         manager = getSupportFragmentManager();
         mTl.addTab(mTl.newTab().setText("首页").setIcon(R.drawable.home));
         mTl.addTab(mTl.newTab().setText("分类").setIcon(R.drawable.classify));
         mTl.addTab(mTl.newTab().setText("订单").setIcon(R.drawable.indent));
         mTl.addTab(mTl.newTab().setText("我的").setIcon(R.drawable.mine));
+// 修改样式，主要是调近了图标与文字之间的距离
+        mTl.getTabAt(0).setCustomView(getTabView("首页",R.drawable.home));
+        mTl.getTabAt(1).setCustomView(getTabView("分类",R.drawable.classify));
+        mTl.getTabAt(2).setCustomView(getTabView("订单",R.drawable.indent));
+        mTl.getTabAt(3).setCustomView(getTabView("我的",R.drawable.mine));
+
         homeFragment = new HomeFragment();
         classifyFragment = new ClassifyFragment();
         indentFragment = new IndentFragment();
@@ -184,7 +205,38 @@ public class MainActivity extends BaseActivity {
 
 
     }
+    // 切换颜色
+    private void changeTabSelect(TabLayout.Tab tab) {
+        View view = tab.getCustomView();
+        ImageView img_title = (ImageView) view.findViewById(R.id.imageview);
+        TextView txt_title = (TextView) view.findViewById(R.id.textview);
+        txt_title.setTextColor(getResources().getColor(R.color.tabbg));
+        if (txt_title.getText().toString().equals("首页")) {
 
+            img_title.setImageResource(R.drawable.home);
+        } else if (txt_title.getText().toString().equals("分类")) {
+            img_title.setImageResource(R.drawable.classify);
+        }  else if (txt_title.getText().toString().equals("订单")) {
+            img_title.setImageResource(R.drawable.indent);
+        }  else if (txt_title.getText().toString().equals("我的")) {
+            img_title.setImageResource(R.drawable.mine);
+        }
+    }
+    private void changeTabNormal(TabLayout.Tab tab) {
+        View view = tab.getCustomView();
+        ImageView img_title = (ImageView) view.findViewById(R.id.imageview);
+        TextView txt_title = (TextView) view.findViewById(R.id.textview);
+        txt_title.setTextColor(getResources().getColor(R.color.tabhei));
+        if (txt_title.getText().toString().equals("首页")) {
+            img_title.setImageResource(R.drawable.home);
+        } else if (txt_title.getText().toString().equals("分类")) {
+            img_title.setImageResource(R.drawable.classify);
+        }  else if (txt_title.getText().toString().equals("订单")) {
+            img_title.setImageResource(R.drawable.indent);
+        }  else if (txt_title.getText().toString().equals("我的")) {
+            img_title.setImageResource(R.drawable.mine);
+        }
+    }
     private void showFragment(int type) {
         FragmentTransaction fragmentTransaction = manager.beginTransaction();
         switch (type) {

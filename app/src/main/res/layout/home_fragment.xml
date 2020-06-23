@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/swipeRefresh"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -9,25 +10,291 @@
         android:id="@+id/scr_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scrollbars="none"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:focusableInTouchMode="true"
+        android:scrollbars="none">
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/new_bag"
+            android:paddingBottom="@dimen/dp_12"
+            android:background="@color/newnew_newbg"
             android:orientation="vertical">
 
-            <com.youth.banner.Banner
-                android:id="@+id/ban"
+            <View
+                android:id="@+id/vi1"
                 android:layout_width="match_parent"
-                android:layout_height="160dp"
-                android:background="@color/new_bag" />
+                android:layout_height="@dimen/dp_117"
+                android:layout_alignParentTop="true"
+                android:background="@mipmap/bg_new_bg" />
+
+            <LinearLayout
+                android:id="@+id/ll1"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/dp_27"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="@dimen/dp_13"
+                android:layout_marginTop="@dimen/dp_31"
+                android:layout_marginRight="@dimen/dp_13"
+                android:background="@mipmap/search_kuang"
+                android:orientation="horizontal">
+
+
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="@dimen/sp_10"
+                        android:src="@mipmap/search" />
+
+
+                <!--<EditText-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:background="@null"-->
+                <!--android:hint="输入您想查询的内容"-->
+                <!--android:textColor="#8d8d8d"-->
+                <!--android:textSize="@dimen/sp_11" />-->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@null"
+                    android:layout_marginLeft="@dimen/dp_6"
+                    android:gravity="center_vertical"
+                    android:hint="输入您想查询的内容"
+                    android:textColor="#8d8d8d"
+                    android:textSize="@dimen/sp_11" />
+            </LinearLayout>
+
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/ln2"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/dp_127"
+                android:layout_below="@id/ll1"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="@dimen/dp_11"
+                android:layout_marginTop="@dimen/dp_7"
+                android:layout_marginRight="@dimen/dp_10"
+                app:cardUseCompatPadding="true"
+                app:cardElevation="@dimen/dp_1"
+                app:cardPreventCornerOverlap="true"
+                app:cardMaxElevation="@dimen/dp_1"
+                android:background="@drawable/bkg_mien_login"
+                android:orientation="horizontal"
+                app:cardCornerRadius="@dimen/dp_3">
+
+
+                <com.youth.banner.Banner
+                    android:id="@+id/ban"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/no_banner" />
+
+            </android.support.v7.widget.CardView>
+
+            <RelativeLayout
+                android:id="@+id/classfy_AppBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ln2"
+                android:background="@color/new_bag">
+
+                <LinearLayout
+                    android:id="@+id/li1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="@dimen/dp_13"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="@dimen/dp_46"
+                            android:layout_height="@dimen/dp_48"
+                            android:src="@mipmap/phone" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_marginTop="@dimen/dp_1"
+                            android:layout_height="wrap_content"
+                            android:text="手机"
+                            android:textColor="#5a5a5a"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="@dimen/dp_46"
+                            android:layout_height="@dimen/dp_48"
+                            android:src="@mipmap/jiqiren" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dp_1"
+                            android:text="机器人"
+                            android:textColor="#5a5a5a"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="@dimen/dp_46"
+                            android:layout_height="@dimen/dp_48"
+                            android:src="@mipmap/jiyinjiance" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="基因检测"
+                            android:layout_marginTop="@dimen/dp_1"
+                            android:textColor="#5a5a5a"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="@dimen/dp_46"
+                            android:layout_height="@dimen/dp_48"
+                            android:src="@mipmap/aistudy" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="AI学习"
+                            android:layout_marginTop="@dimen/dp_1"
+                            android:textColor="#5a5a5a"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/li1"
+                    android:layout_marginTop="@dimen/dp_13"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="@dimen/dp_46"
+                            android:layout_height="@dimen/dp_48"
+                            android:src="@mipmap/aihome" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="AI家居"
+                            android:textColor="#5a5a5a"
+                            android:layout_marginTop="@dimen/dp_1"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="@dimen/dp_46"
+                            android:layout_height="@dimen/dp_48"
+                            android:src="@mipmap/aiheaith" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="AI健康"
+                            android:textColor="#5a5a5a"
+                            android:layout_marginTop="@dimen/dp_1"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="@dimen/dp_46"
+                            android:layout_height="@dimen/dp_48"
+                            android:src="@mipmap/aikids" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="AI儿童"
+                            android:textColor="#5a5a5a"
+                            android:layout_marginTop="@dimen/dp_1"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="@dimen/dp_46"
+                            android:layout_height="@dimen/dp_48"
+                            android:src="@mipmap/aishuma" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="AI数码"
+                            android:textColor="#5a5a5a"
+                            android:layout_marginTop="@dimen/dp_1"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+                </LinearLayout>
+            </RelativeLayout>
 
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/classfy_AppBar"
                 android:background="@color/new_bag">
 
 
@@ -37,6 +304,6 @@
                     android:layout_height="wrap_content" />
 
             </RelativeLayout>
-        </LinearLayout>
+        </RelativeLayout>
     </ScrollView>
 </android.support.v4.widget.SwipeRefreshLayout>

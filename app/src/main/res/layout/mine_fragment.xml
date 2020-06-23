@@ -23,7 +23,7 @@
                 android:layout_alignParentTop="true"
                 android:layout_marginTop="0dp"
                 android:scaleType="centerCrop"
-                android:src="#1B82D2" />
+                android:src="@color/newnew_bg" />
 
             <ImageView
                 android:id="@+id/im_SUF"

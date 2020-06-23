@@ -217,7 +217,7 @@ public class Submit0rdersActivity extends BaseActivity implements SubmitContract
     public void getAliPayResult() {
         ((SubmitPresenter) mPresenter).alipay(String.valueOf(Constant.IDSAS), Double.valueOf(Constant.ZONG_JIA), Constant.NAME);
         //TODO
-//        String point = courseInfoBean.getPrice();
+//        String point = courseInfoBean.getCode_price();
 //        String course_id = courseInfoBean.getCourse_id();
 //        String course_name = courseInfoBean.getCourse_name();
 //        CIOTimesNet.AliPay(course_id, point, course_name, new TextHttpResponseHandler() {
@@ -327,7 +327,7 @@ public class Submit0rdersActivity extends BaseActivity implements SubmitContract
             freight = items.getFreight();
             img = items.getImg(); //图
             //产品价格
-            src_price = items.getPrice();
+            src_price = items.getCode_price();
             idsas = items.getIdsa(); //商品编号
 
             Constant.IMG = img; //图

@@ -1,6 +1,8 @@
 package com.example.shiyuankeji.base;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -37,13 +39,13 @@ public abstract class BaseActivity<V extends IBaseView, P extends IBasePresenter
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         getWindow().setBackgroundDrawable(null);
         super.onCreate(savedInstanceState);
-        setStatusBar();
+//        setStatusBar(); //old 状态栏
 
         setContentView(getLayoutId());
         unbinder = ButterKnife.bind(this);
         activity = this;
         context = this;
-
+        newsetStatusBar(); //新沉浸式状态栏
         mPresenter = getPresenter();
         if (mPresenter != null) {
             mPresenter.attchView(this);
@@ -63,8 +65,17 @@ public abstract class BaseActivity<V extends IBaseView, P extends IBasePresenter
 
     }
 
+    protected void newsetStatusBar() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            View decorView=getWindow().getDecorView();
+            int option=View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN;
+            decorView.setSystemUiVisibility(option);
+            getWindow().setStatusBarColor(Color.TRANSPARENT);
+        }  //这个是 透明  白色
+    }
+
     protected void setStatusBar(){
-        StatusBarUtil.setColor(this, ContextCompat.getColor(this,R.color.tou_ming),50);
+        StatusBarUtil.setColor(this, ContextCompat.getColor(this,R.color.newnew_bg),31);
         //StatusBarUtil.setDarkMode(this);
     }
 

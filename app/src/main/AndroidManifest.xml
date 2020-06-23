@@ -166,6 +166,8 @@ android.permission.ACCESS_WIFI_STATE-->
         <activity android:name="com.example.shiyuankeji.ui.activity.SynergicXingActivity" />
         <!--我的收益-->
         <activity android:name=".ui.activity.YieldActivity"/>
+        <!--我的收益详情-->
+        <activity android:name=".ui.activity.YiedetailsActivity"/>
     </application>
 
     <!--友盟统计配置Appkey与Channel-->
