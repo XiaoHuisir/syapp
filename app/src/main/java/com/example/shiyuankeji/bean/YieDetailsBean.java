@@ -74,6 +74,15 @@ public class YieDetailsBean {
         private Object rmb_price;
         private String create_time;
         private Object sharetype;
+        private  String img;
+
+        public String getImg() {
+            return img;
+        }
+
+        public void setImg(String img) {
+            this.img = img;
+        }
 
         public String getOrder_num() {
             return order_num;

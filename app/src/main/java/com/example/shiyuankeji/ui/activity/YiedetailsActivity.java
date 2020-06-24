@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.shiyuankeji.R;
 import com.example.shiyuankeji.adapter.YiedetailsAdapter;
 import com.example.shiyuankeji.base.BaseActivity;
@@ -90,7 +91,8 @@ public class YiedetailsActivity extends BaseActivity implements QueryEarningsCon
                 tvTilet.setText(share.getName());
                 tvCodeNum.setText(share.getOrder_num());
                 tvTime.setText(share.getCreate_time());
-
+                String img = share.getImg();
+                Glide.with(context).load(img).into(imTu);
             }
             List<YieDetailsBean.ShareInfoVosBean> shareInfoVos = yieDetailsBean.getShareInfoVos();
             sharelist.addAll(shareInfoVos);
