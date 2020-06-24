@@ -74,6 +74,7 @@ public class YiedetailsActivity extends BaseActivity implements QueryEarningsCon
             case R.id.lli_back:
                 finish();
                 break;
+
         }
     }
 

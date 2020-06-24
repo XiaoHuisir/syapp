@@ -76,6 +76,7 @@ public class YieldActivity extends BaseActivity implements QueryEarningsContract
         if (queryEarningsBean != null) {
             List<QueryEarningsBean.ShareInfoVoBean> shareInfoVo = queryEarningsBean.getShareInfoVo();
             listyieid.addAll(shareInfoVo);
+
             yieldAdapter.notifyDataSetChanged();
 
             tvNow.setText(String.valueOf(queryEarningsBean.getTotalprice()));
