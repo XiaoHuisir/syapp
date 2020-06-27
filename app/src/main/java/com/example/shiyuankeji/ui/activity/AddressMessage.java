@@ -21,6 +21,7 @@ import com.example.shiyuankeji.bean.AnddressBean;
 import com.example.shiyuankeji.interfaces.IBasePresenter;
 import com.example.shiyuankeji.interfaces.contract.AddressContract;
 import com.example.shiyuankeji.presenter.AddressPresenter;
+import com.example.shiyuankeji.utils.SharedPreferencesUtil;
 import com.example.shiyuankeji.utils.Validator;
 import com.lljjcoder.style.citypickerview.CityPickerView;
 
@@ -366,6 +367,7 @@ public class AddressMessage extends BaseActivity implements AddressContract.View
 
     @Override
     public void addressReaun(AnddressBean anddressBean) {
+        SharedPreferencesUtil.setDeliveryAddress(context, true); //保存有、无 地址状态
         upid = anddressBean.getId();
         Toast.makeText(context, "修改成功", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(context, Submit0rdersActivity.class);
@@ -393,6 +395,7 @@ public class AddressMessage extends BaseActivity implements AddressContract.View
 
     @Override
     public void addReaun(AddRBean addRBean) {
+        SharedPreferencesUtil.setDeliveryAddress(context, true); //保存有、无 地址状态
         addid = addRBean.getId();
         Intent intent = new Intent(context, Submit0rdersActivity.class);
         if (is_upid == true) {

@@ -106,36 +106,64 @@ public class SharedPreferencesUtil {
 
     /**
      * 保存权限状态
-     * @param  context
-     * @param  isbool
-     * */
-    public static  void  addIsBool(Context context,boolean isbool){
+     *
+     * @param context
+     * @param isbool
+     */
+    public static void addIsBool(Context context, boolean isbool) {
         editor = context.getSharedPreferences("booleans", Context.MODE_PRIVATE).edit();
         editor.putBoolean("mode_bool", isbool);
         editor.commit();
     }
+
     /**
      * 获取保存的权限状态
+     *
      * @param context;
-     * */
-    public  static  boolean getIsBool(Context context){
-        return  context.getSharedPreferences("booleans",Context.MODE_PRIVATE).getBoolean("mode_bool",false);
+     */
+    public static boolean getIsBool(Context context) {
+        return context.getSharedPreferences("booleans", Context.MODE_PRIVATE).getBoolean("mode_bool", false);
     }
+
     /**
      * 保存(相机)权限状态
-     * @param  context
-     * @param  isxiangbool
-     * */
-    public static  void  addXiangIsBool(Context context,boolean isxiangbool){
+     *
+     * @param context
+     * @param isxiangbool
+     */
+    public static void addXiangIsBool(Context context, boolean isxiangbool) {
         editor = context.getSharedPreferences("boolxiangeans", Context.MODE_PRIVATE).edit();
         editor.putBoolean("mode_xiangbool", isxiangbool);
         editor.commit();
     }
+
     /**
      * 获取保存(相机)的权限状态
-     * @param context;
-     * */
-    public  static  boolean getXiangIsBool(Context context){
-        return  context.getSharedPreferences("boolxiangeans",Context.MODE_PRIVATE).getBoolean("mode_xiangbool",false);
+     *
+     * @param context
+     */
+    public static boolean getXiangIsBool(Context context) {
+        return context.getSharedPreferences("boolxiangeans", Context.MODE_PRIVATE).getBoolean("mode_xiangbool", false);
+    }
+
+    /**
+     * 保存收货地址状态
+     *
+     * @param context
+     * @param setaddress
+     */
+    public static void setDeliveryAddress(Context context, boolean setaddress) {
+        editor = context.getSharedPreferences("isaddress", Context.MODE_PRIVATE).edit();
+        editor.putBoolean("okaddress", setaddress);
+        editor.commit();
+    }
+
+    /**
+     * 获取收货地址状态
+     *
+     * @param context
+     */
+    public static boolean getDeliveryAddress(Context context) {
+        return context.getSharedPreferences("isaddress", Context.MODE_PRIVATE).getBoolean("okaddress", false);
     }
 }

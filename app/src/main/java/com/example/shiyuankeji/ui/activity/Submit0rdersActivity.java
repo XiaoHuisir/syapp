@@ -29,6 +29,8 @@ import com.example.shiyuankeji.bean.SubmitBean;
 import com.example.shiyuankeji.interfaces.IBasePresenter;
 import com.example.shiyuankeji.interfaces.contract.SubmitContract;
 import com.example.shiyuankeji.presenter.SubmitPresenter;
+import com.example.shiyuankeji.utils.SharedPreferencesUtil;
+import com.example.shiyuankeji.utils.ToastUtil;
 import com.example.shiyuankeji.widgets.alipay.util.PayResult;
 
 import java.util.HashMap;
@@ -161,17 +163,22 @@ public class Submit0rdersActivity extends BaseActivity implements SubmitContract
                 finish();
                 break;
             case R.id.btn_exchangOn: //有 立即兑换 提交订单
-                if (aliCheck.isChecked()) {
-                    Toast.makeText(this, "支付宝支付", Toast.LENGTH_SHORT).show();
-                    getAliPayResult();
-                } else if (wechatCheck.isChecked()) {
-                    Toast.makeText(this, "微信支付", Toast.LENGTH_SHORT).show();
+                if (SharedPreferencesUtil.getDeliveryAddress(context) == true) {
+                    if (aliCheck.isChecked()) {
+                        Toast.makeText(this, "支付宝支付", Toast.LENGTH_SHORT).show();
+                        getAliPayResult();
+                    } else if (wechatCheck.isChecked()) {
+                        Toast.makeText(this, "微信支付", Toast.LENGTH_SHORT).show();
 //                    weChatPay();
-                } else if (jifenCheck.isChecked()) {
-                    Toast.makeText(this, "积分支付", Toast.LENGTH_SHORT).show();
-                    jifezhifu();
-                } else {
-                    Toast.makeText(this, "请选择支付方式", Toast.LENGTH_SHORT).show();
+                    } else if (jifenCheck.isChecked()) {
+                        Toast.makeText(this, "积分支付", Toast.LENGTH_SHORT).show();
+                        jifezhifu();
+                    } else {
+                        Toast.makeText(this, "请选择支付方式", Toast.LENGTH_SHORT).show();
+                    }
+                }else {
+                    new ToastUtil(context,R.layout.toast_center_horizontal,"请选择收货地址").show();
+
                 }
 
 
@@ -224,11 +231,18 @@ public class Submit0rdersActivity extends BaseActivity implements SubmitContract
     };
 
     public void getAliPayResult() {
-//        ((SubmitPresenter) mPresenter).alipay(String.valueOf(Constant.IDSAS), Double.valueOf(Constant.ZONG_JIA), Constant.NAME);
-
-        HashMap<String, String> maps = new HashMap<>();
+        if (Constant.INXDLER == false) {
+            //                String tvnum = tvNum.getText().toString(); //数量
+            String tvname = txtName.getText().toString();//用户姓名
+            String tvDahao = textDahao.getText().toString();//用户电话
+            String tvDizhi = textDizhi.getText().toString();//用户地址
+            String tviphoneName = tvIphoneName.getText().toString();//商品名称
+//                String tvJifen = textJifen.getText().toString();//商品价格
+//                String tvfreight = tvFreight.getText().toString();//运费
+            String tvZong = textZong.getText().toString();//总价格
+            HashMap<String, String> maps = new HashMap<>();
 //                maps.put("name", "sf003");
-        maps.put("num", String.valueOf(Constant.NUM));//num
+            maps.put("num", String.valueOf(Constant.NUM));//num
 //        maps.put("user_name", tvname);
 //        maps.put("user_phone", tvDahao);
 //        maps.put("user_add", tvDizhi);
@@ -237,27 +251,72 @@ public class Submit0rdersActivity extends BaseActivity implements SubmitContract
 //        maps.put("item_name", Constant.NAME);//tviphoneName
 //        maps.put("item_price", String.valueOf(Constant.SRC_PRICE));//src_price
 //        maps.put("item_freight", String.valueOf(freight));
-        maps.put("order_price", String.valueOf(Constant.ZONG_JIA));//tvZong
-        maps.put("idsa", String.valueOf(Constant.IDSAS)); //商品编号idsas
-        maps.put("addressid", isid);
-        maps.put("paymentMethod", String.valueOf(1));
-        ((SubmitPresenter) mPresenter).addOrders(maps);
-        //TODO
-//        String point = courseInfoBean.getCode_price();
-//        String course_id = courseInfoBean.getCourse_id();
-//        String course_name = courseInfoBean.getCourse_name();
-//        CIOTimesNet.AliPay(course_id, point, course_name, new TextHttpResponseHandler() {
-//            @Override
-//            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
-//            }
-
-//            @Override
-//            public void onSuccess(int statusCode, Header[] headers, String responseString) {
-//                AliPayBean aliPayBean = JSON.parseObject(responseString, AliPayBean.class);
-//                aliPay("<form name='punchout_form' method='post' action='https://openapi.alipay.com/gateway.do?charset=utf-8&method=alipay.trade.wap.pay&sign=ClkejmooRph4U1jlIXmK%2BWc14jr5v0EB5qt%2Fi7zQHfPNHHOvlWL9OxCBFkVnJ5cotafq61CUQoXAVS9pcrM%2B385eC5XN9EKVEyKZbsZTrHjfUHWlS7qu4K4j5JA%2BAKHDTEy9Betk%2B9yHZMKRi3ZgrwzglInM%2FQE425ptEsBIhekKliheoIFGqbCWAtyPCLzKlWpxutTDa24UpMutwSW7pr4u7ZDKMHCepJ%2Bh0wdoeOzEf4%2F6S1vfABP2g7fxE86w97jvpH0ssdjuc1uSyzBf6bIOSx0IWSXydygG7Ajsf0pkgPFBHZoLlJmwYktk199z%2FrgFptTs%2BMqAu17mL2Le1A%3D%3D&return_url=http%3A%2F%2Flocalhost%3A8080%2Falipay.trade.page.pay-JAVA-UTF-8%2Freturn_url.jsp&notify_url=http%3A%2F%2Flocalhost%3A8080%2Falipay.trade.page.pay-JAVA-UTF-8%2Fnotify_url.jsp&version=1.0&app_id=2021001165677698&sign_type=RSA2&timestamp=2020-06-04+17%3A01%3A18&alipay_sdk=alipay-sdk-java-dynamicVersionNo&format=json'> <input type='hidden' name='biz_content' value='{&quot;body&quot;:&quot;商品名称&quot;,&quot;out_trade_no&quot;:&quot;122&quot;,&quot;product_code&quot;:&quot;QUICK_WAP_WAY&quot;,&quot;subject&quot;:&quot;12&quot;,&quot;timeout_express&quot;:&quot;2m&quot;,&quot;total_amount&quot;:&quot;1&quot;}'> <input type='submit' value='立即支付' style='display:none' > </form> <script>document.forms[0].submit();</script>");
-
-//            }
-//        });
+            maps.put("order_price", String.valueOf(Constant.ZONG_JIA));//tvZong
+            maps.put("idsa", String.valueOf(Constant.IDSAS)); //商品编号idsas
+            maps.put("addressid", isid);
+            maps.put("paymentMethod", String.valueOf(1));
+            ((SubmitPresenter) mPresenter).addOrders(maps);
+        } else if (Constant.INXDLER == true) {
+            //                String tvnum = tvNum.getText().toString(); //数量
+            String tvname = txtName.getText().toString();//用户姓名
+            String tvDahao = textDahao.getText().toString();//用户电话
+            String tvDizhi = textDizhi.getText().toString();//用户地址
+            String tviphoneName = tvIphoneName.getText().toString();//商品名称
+//                String tvJifen = textJifen.getText().toString();//商品价格
+//                String tvfreight = tvFreight.getText().toString();//运费
+            String tvZong = textZong.getText().toString();//总价格
+            HashMap<String, String> maps = new HashMap<>();
+//                maps.put("name", "sf003");
+            maps.put("num", String.valueOf(Constant.NUM));//num
+//        maps.put("user_name", tvname);
+//        maps.put("user_phone", tvDahao);
+//        maps.put("user_add", tvDizhi);
+//                maps.put("user_id", String.valueOf(15));//用户id
+//        maps.put("item_img", Constant.IMG);//img
+//        maps.put("item_name", Constant.NAME);//tviphoneName
+//        maps.put("item_price", String.valueOf(Constant.SRC_PRICE));//src_price
+//        maps.put("item_freight", String.valueOf(freight));
+            maps.put("order_price", String.valueOf(Constant.ZONG_JIA));//tvZong
+            maps.put("idsa", String.valueOf(Constant.IDSAS)); //商品编号idsas
+            maps.put("addressid", onid);
+            maps.put("paymentMethod", String.valueOf(1));
+            ((SubmitPresenter) mPresenter).addOrders(maps);
+        }
+//        TODO
+////        ((SubmitPresenter) mPresenter).alipay(String.valueOf(Constant.IDSAS), Double.valueOf(Constant.ZONG_JIA), Constant.NAME);
+//
+//        HashMap<String, String> maps = new HashMap<>();
+////                maps.put("name", "sf003");
+//        maps.put("num", String.valueOf(Constant.NUM));//num
+////        maps.put("user_name", tvname);
+////        maps.put("user_phone", tvDahao);
+////        maps.put("user_add", tvDizhi);
+////                maps.put("user_id", String.valueOf(15));//用户id
+////        maps.put("item_img", Constant.IMG);//img
+////        maps.put("item_name", Constant.NAME);//tviphoneName
+////        maps.put("item_price", String.valueOf(Constant.SRC_PRICE));//src_price
+////        maps.put("item_freight", String.valueOf(freight));
+//        maps.put("order_price", String.valueOf(Constant.ZONG_JIA));//tvZong
+//        maps.put("idsa", String.valueOf(Constant.IDSAS)); //商品编号idsas
+//        maps.put("addressid", isid);
+//        maps.put("paymentMethod", String.valueOf(1));
+//        ((SubmitPresenter) mPresenter).addOrders(maps);
+//        //TODO
+////        String point = courseInfoBean.getCode_price();
+////        String course_id = courseInfoBean.getCourse_id();
+////        String course_name = courseInfoBean.getCourse_name();
+////        CIOTimesNet.AliPay(course_id, point, course_name, new TextHttpResponseHandler() {
+////            @Override
+////            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+////            }
+//
+////            @Override
+////            public void onSuccess(int statusCode, Header[] headers, String responseString) {
+////                AliPayBean aliPayBean = JSON.parseObject(responseString, AliPayBean.class);
+////                aliPay("<form name='punchout_form' method='post' action='https://openapi.alipay.com/gateway.do?charset=utf-8&method=alipay.trade.wap.pay&sign=ClkejmooRph4U1jlIXmK%2BWc14jr5v0EB5qt%2Fi7zQHfPNHHOvlWL9OxCBFkVnJ5cotafq61CUQoXAVS9pcrM%2B385eC5XN9EKVEyKZbsZTrHjfUHWlS7qu4K4j5JA%2BAKHDTEy9Betk%2B9yHZMKRi3ZgrwzglInM%2FQE425ptEsBIhekKliheoIFGqbCWAtyPCLzKlWpxutTDa24UpMutwSW7pr4u7ZDKMHCepJ%2Bh0wdoeOzEf4%2F6S1vfABP2g7fxE86w97jvpH0ssdjuc1uSyzBf6bIOSx0IWSXydygG7Ajsf0pkgPFBHZoLlJmwYktk199z%2FrgFptTs%2BMqAu17mL2Le1A%3D%3D&return_url=http%3A%2F%2Flocalhost%3A8080%2Falipay.trade.page.pay-JAVA-UTF-8%2Freturn_url.jsp&notify_url=http%3A%2F%2Flocalhost%3A8080%2Falipay.trade.page.pay-JAVA-UTF-8%2Fnotify_url.jsp&version=1.0&app_id=2021001165677698&sign_type=RSA2&timestamp=2020-06-04+17%3A01%3A18&alipay_sdk=alipay-sdk-java-dynamicVersionNo&format=json'> <input type='hidden' name='biz_content' value='{&quot;body&quot;:&quot;商品名称&quot;,&quot;out_trade_no&quot;:&quot;122&quot;,&quot;product_code&quot;:&quot;QUICK_WAP_WAY&quot;,&quot;subject&quot;:&quot;12&quot;,&quot;timeout_express&quot;:&quot;2m&quot;,&quot;total_amount&quot;:&quot;1&quot;}'> <input type='submit' value='立即支付' style='display:none' > </form> <script>document.forms[0].submit();</script>");
+//
+////            }
+////        });
     }
 
     private void aliPay(final String requestUrl) {
@@ -371,9 +430,11 @@ public class Submit0rdersActivity extends BaseActivity implements SubmitContract
         isid = String.valueOf(submitBean.getUser_address().getId());
         Constant.INXDLER = false;
         if (submitBean.getUser_address().getId() != Constant.IS_ID) {
+            SharedPreferencesUtil.setDeliveryAddress(context, true); //保存有、无 地址状态
             reOn.setVisibility(View.GONE);
             Toast.makeText(context, "有地址", Toast.LENGTH_SHORT).show();
         } else {
+            SharedPreferencesUtil.setDeliveryAddress(context, false);
             reSiteOk.setVisibility(View.GONE);
             Toast.makeText(context, "无地址", Toast.LENGTH_SHORT).show();
         }

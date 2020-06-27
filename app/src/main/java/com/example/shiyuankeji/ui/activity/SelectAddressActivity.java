@@ -17,6 +17,7 @@ import com.example.shiyuankeji.bean.SubmitListBean;
 import com.example.shiyuankeji.interfaces.IBasePresenter;
 import com.example.shiyuankeji.interfaces.contract.SubmitListContract;
 import com.example.shiyuankeji.presenter.SubmitListPresenter;
+import com.example.shiyuankeji.utils.SharedPreferencesUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -138,7 +139,7 @@ public class SelectAddressActivity extends BaseActivity implements SubmitListCon
     }
 
 
-    //submitlistadapter AddressMessage 回调方法
+    //submitlistadapter AddressMessage 回调方法（回调订单提交页）
     @Override
     public void addressclick(SubmitListBean.UserAddressLIstBean listSubmit) {
 
@@ -163,6 +164,7 @@ public class SelectAddressActivity extends BaseActivity implements SubmitListCon
     @Override
     public void Submit0rdersclick(SubmitListBean.UserAddressLIstBean listSubmit) {
         if (Constant.IS_MINE==false) {
+            SharedPreferencesUtil.setDeliveryAddress(context, true); //保存有、无 地址状态
             Toast.makeText(context,"-----------",Toast.LENGTH_SHORT).show();
         Intent intent = new Intent();
         intent.setClass(context, Submit0rdersActivity.class);
