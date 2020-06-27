@@ -12,18 +12,18 @@ public class AddRBean  {
      * address : 高碑店东方纽伦堡16楼1622号
      */
 
-    private Object id;
+    private int id;
     private String user_name;
     private int is_default;
     private String name;
     private String phone;
     private String address;
 
-    public Object getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Object id) {
+    public void setId(int id) {
         this.id = id;
     }
 

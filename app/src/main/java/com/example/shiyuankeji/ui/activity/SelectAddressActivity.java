@@ -171,6 +171,8 @@ public class SelectAddressActivity extends BaseActivity implements SubmitListCon
         intent.putExtra("getphone", listSubmit.getPhone());
         intent.putExtra("indx_0", 100);
         intent.putExtra("type_id", typeid_);
+        intent.putExtra("onid",String.valueOf(listSubmit.getId()));
+            Constant.INXDLER=true;
         intent.putExtra("num", num_);
         startActivity(intent);
         finish();

@@ -106,6 +106,10 @@ public class Submit0rdersActivity extends BaseActivity implements SubmitContract
     private int src_price;
     private int freight;
 
+    private String isid = "";
+    private String onid = "";
+
+
     @Override
     protected IBasePresenter getPresenter() {
         return new SubmitPresenter();
@@ -198,6 +202,11 @@ public class Submit0rdersActivity extends BaseActivity implements SubmitContract
 //                            ZhuGeUtil.getmInstance().addEvent(ZGEventNameConfig.FINISH_BUY_COURSE,"课程标题",courseInfoBean.getCourse_name());
 //                        }
                         Toast.makeText(Submit0rdersActivity.this, "支付成功", Toast.LENGTH_SHORT).show();
+                        Intent intent2 = new Intent();
+                        intent2.setClass(context, MainActivity.class);
+                        intent2.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                        intent2.putExtra("id", Constant.TWO_TYPE_3);
+                        startActivityForResult(intent2, Constant.TWO_TYPE_3);
                         finish();
                     } else {
                         // 该笔订单真实的支付结果，需要依赖服务端的异步通知。
@@ -215,7 +224,24 @@ public class Submit0rdersActivity extends BaseActivity implements SubmitContract
     };
 
     public void getAliPayResult() {
-        ((SubmitPresenter) mPresenter).alipay(String.valueOf(Constant.IDSAS), Double.valueOf(Constant.ZONG_JIA), Constant.NAME);
+//        ((SubmitPresenter) mPresenter).alipay(String.valueOf(Constant.IDSAS), Double.valueOf(Constant.ZONG_JIA), Constant.NAME);
+
+        HashMap<String, String> maps = new HashMap<>();
+//                maps.put("name", "sf003");
+        maps.put("num", String.valueOf(Constant.NUM));//num
+//        maps.put("user_name", tvname);
+//        maps.put("user_phone", tvDahao);
+//        maps.put("user_add", tvDizhi);
+//                maps.put("user_id", String.valueOf(15));//用户id
+//        maps.put("item_img", Constant.IMG);//img
+//        maps.put("item_name", Constant.NAME);//tviphoneName
+//        maps.put("item_price", String.valueOf(Constant.SRC_PRICE));//src_price
+//        maps.put("item_freight", String.valueOf(freight));
+        maps.put("order_price", String.valueOf(Constant.ZONG_JIA));//tvZong
+        maps.put("idsa", String.valueOf(Constant.IDSAS)); //商品编号idsas
+        maps.put("addressid", isid);
+        maps.put("paymentMethod", String.valueOf(1));
+        ((SubmitPresenter) mPresenter).addOrders(maps);
         //TODO
 //        String point = courseInfoBean.getCode_price();
 //        String course_id = courseInfoBean.getCourse_id();
@@ -253,28 +279,58 @@ public class Submit0rdersActivity extends BaseActivity implements SubmitContract
     }
 
     private void jifezhifu() {
-        //                String tvnum = tvNum.getText().toString(); //数量
-        String tvname = txtName.getText().toString();//用户姓名
-        String tvDahao = textDahao.getText().toString();//用户电话
-        String tvDizhi = textDizhi.getText().toString();//用户地址
-        String tviphoneName = tvIphoneName.getText().toString();//商品名称
+        if (Constant.INXDLER == false) {
+            //                String tvnum = tvNum.getText().toString(); //数量
+            String tvname = txtName.getText().toString();//用户姓名
+            String tvDahao = textDahao.getText().toString();//用户电话
+            String tvDizhi = textDizhi.getText().toString();//用户地址
+            String tviphoneName = tvIphoneName.getText().toString();//商品名称
 //                String tvJifen = textJifen.getText().toString();//商品价格
 //                String tvfreight = tvFreight.getText().toString();//运费
-        String tvZong = textZong.getText().toString();//总价格
-        HashMap<String, String> maps = new HashMap<>();
+            String tvZong = textZong.getText().toString();//总价格
+            HashMap<String, String> maps = new HashMap<>();
 //                maps.put("name", "sf003");
-        maps.put("num", String.valueOf(Constant.NUM));//num
-        maps.put("user_name", tvname);
-        maps.put("user_phone", tvDahao);
-        maps.put("user_add", tvDizhi);
+            maps.put("num", String.valueOf(Constant.NUM));//num
+//        maps.put("user_name", tvname);
+//        maps.put("user_phone", tvDahao);
+//        maps.put("user_add", tvDizhi);
 //                maps.put("user_id", String.valueOf(15));//用户id
-        maps.put("item_img", Constant.IMG);//img
-        maps.put("item_name", Constant.NAME);//tviphoneName
-        maps.put("item_price", String.valueOf(Constant.SRC_PRICE));//src_price
-        maps.put("item_freight", String.valueOf(freight));
-        maps.put("order_price", String.valueOf(Constant.ZONG_JIA));//tvZong
-        maps.put("idsa", String.valueOf(Constant.IDSAS)); //商品编号idsas
-        ((SubmitPresenter) mPresenter).addOrders(maps);
+//        maps.put("item_img", Constant.IMG);//img
+//        maps.put("item_name", Constant.NAME);//tviphoneName
+//        maps.put("item_price", String.valueOf(Constant.SRC_PRICE));//src_price
+//        maps.put("item_freight", String.valueOf(freight));
+            maps.put("order_price", String.valueOf(Constant.ZONG_JIA));//tvZong
+            maps.put("idsa", String.valueOf(Constant.IDSAS)); //商品编号idsas
+            maps.put("addressid", isid);
+            maps.put("paymentMethod", String.valueOf(3));
+            ((SubmitPresenter) mPresenter).addOrders(maps);
+        } else if (Constant.INXDLER == true) {
+            //                String tvnum = tvNum.getText().toString(); //数量
+            String tvname = txtName.getText().toString();//用户姓名
+            String tvDahao = textDahao.getText().toString();//用户电话
+            String tvDizhi = textDizhi.getText().toString();//用户地址
+            String tviphoneName = tvIphoneName.getText().toString();//商品名称
+//                String tvJifen = textJifen.getText().toString();//商品价格
+//                String tvfreight = tvFreight.getText().toString();//运费
+            String tvZong = textZong.getText().toString();//总价格
+            HashMap<String, String> maps = new HashMap<>();
+//                maps.put("name", "sf003");
+            maps.put("num", String.valueOf(Constant.NUM));//num
+//        maps.put("user_name", tvname);
+//        maps.put("user_phone", tvDahao);
+//        maps.put("user_add", tvDizhi);
+//                maps.put("user_id", String.valueOf(15));//用户id
+//        maps.put("item_img", Constant.IMG);//img
+//        maps.put("item_name", Constant.NAME);//tviphoneName
+//        maps.put("item_price", String.valueOf(Constant.SRC_PRICE));//src_price
+//        maps.put("item_freight", String.valueOf(freight));
+            maps.put("order_price", String.valueOf(Constant.ZONG_JIA));//tvZong
+            maps.put("idsa", String.valueOf(Constant.IDSAS)); //商品编号idsas
+            maps.put("addressid", onid);
+            maps.put("paymentMethod", String.valueOf(3));
+            ((SubmitPresenter) mPresenter).addOrders(maps);
+        }
+
     }
 
     @Override
@@ -298,6 +354,7 @@ public class Submit0rdersActivity extends BaseActivity implements SubmitContract
         getphone = getIntent().getStringExtra("getphone");
         getaddress = getIntent().getStringExtra("getaddress");
         int indx_0 = getIntent().getIntExtra("indx_0", 0);
+        onid = getIntent().getStringExtra("onid");
         type = indx_0;
     }
 
@@ -311,8 +368,9 @@ public class Submit0rdersActivity extends BaseActivity implements SubmitContract
     public void submitRetrun(SubmitBean submitBean) {
 
 
-        Integer is_id = submitBean.getUser_address().getId();
-        if (is_id != Constant.IS_ID) {
+        isid = String.valueOf(submitBean.getUser_address().getId());
+        Constant.INXDLER = false;
+        if (submitBean.getUser_address().getId() != Constant.IS_ID) {
             reOn.setVisibility(View.GONE);
             Toast.makeText(context, "有地址", Toast.LENGTH_SHORT).show();
         } else {
@@ -375,28 +433,33 @@ public class Submit0rdersActivity extends BaseActivity implements SubmitContract
     @Override
     public void addOrderRean(AddOrderistBean addOrderistBean) {
         if (addOrderistBean != null) {
-            int order_state = addOrderistBean.getOrder_state();
-            if (order_state == Constant.ORDER_STATE_0) {
-                Toast.makeText(context, "提交订单成功", Toast.LENGTH_SHORT).show();
+            int order_state = addOrderistBean.getStatus();
+            if (order_state == 200) {
+                Toast.makeText(context, addOrderistBean.getMsg(), Toast.LENGTH_SHORT).show();
                 Intent intent2 = new Intent();
                 intent2.setClass(context, MainActivity.class);
                 intent2.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent2.putExtra("id", Constant.TWO_TYPE_3);
                 startActivityForResult(intent2, Constant.TWO_TYPE_3);
                 finish();
-            } else if (order_state == Constant.ORDER_STATE_4) {
+            } else if (order_state == 201) {
+                String data = addOrderistBean.getData();
+                if (!data.equals("") && data != null) {
+                    aliPay(data);
+                }
+            } else {
                 LayoutInflater inflater = getLayoutInflater();
                 //引入自定义好的对话框.xml布局
                 View layout = inflater.inflate(R.layout.is_submit_layout, null);
                 //实列提示对话框对象，并将加载的试图对象设置给对话框对象
-                final AlertDialog alertDialog = new AlertDialog.Builder(this).setTitle(" ").setView(layout).show();
+                final AlertDialog alertDialog = new AlertDialog.Builder(this).setTitle(addOrderistBean.getMsg()).setView(layout).show();
                 final RelativeLayout yes = layout.findViewById(R.id.relative_update);
                 final RelativeLayout no = layout.findViewById(R.id.relative_cancel);
                 yes.setOnClickListener(new View.OnClickListener() {  //是
                     @Override
                     public void onClick(View v) {
                         alertDialog.dismiss();
-                        Toast.makeText(context, "还未实现，敬请期待！", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(context, addOrderistBean.getMsg(), Toast.LENGTH_SHORT).show();
                     }
                 });
                 no.setOnClickListener(new View.OnClickListener() {  //否
@@ -413,13 +476,13 @@ public class Submit0rdersActivity extends BaseActivity implements SubmitContract
     //支付宝返回值
     @Override
     public void alipayRean(AliPayBean aliPayBean) {
-        if (aliPayBean != null) {
-            String resultStatus = aliPayBean.getBody();
-            if (resultStatus != null) {
-                aliPay(resultStatus);
-            } else {
-                return;
-            }
-        }
+//        if (aliPayBean != null) {
+//            String resultStatus = aliPayBean.getBody();
+//            if (resultStatus != null) {
+//                aliPay(resultStatus);
+//            } else {
+//                return;
+//            }
+//        }
     }
 }

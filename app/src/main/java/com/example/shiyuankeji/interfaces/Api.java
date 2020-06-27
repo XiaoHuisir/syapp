@@ -114,7 +114,7 @@ public interface Api {
     @FormUrlEncoded
     Flowable<AddRBean> addr(@Header("token") String tokens, @Field("name") String name, @Field("is_default") int is_default, @Field("phone") String phone, @Field("address") String address);
 
-    //提交订单
+    //提交订单（积分支付）
     @POST("addOrder_list")  //TODO ?????
     @FormUrlEncoded
     Flowable<AddOrderistBean> addOrderApi(@Header("token") String tokens, @FieldMap Map<String, String> map);

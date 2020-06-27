@@ -6,7 +6,7 @@ public class ClassListBean {
 
     /**
      * cateList : null
-     * itemsList : [{"id":null,"idsa":3013,"name":"女性疾病易感基因检测","img":"https://cdn.knowfate.com.cn/web/images/product/jyjc/ygjyjc00.png","img2":null,"price":6880,"src_price":599,"stock":null,"weight":0,"cateid":null,"isshow":1,"imgs":null,"freight":null,"buynum":null,"des":null,"list":null,"times":null,"addtime":null,"listing_Time":null,"offshelf_Time":null,"cate":null},{"id":null,"idsa":3011,"name":"儿童天赋能力基因检测","img":"https://cdn.knowfate.com.cn/web/images/product/jyjc/ettf00.png","img2":null,"price":1580,"src_price":2658,"stock":null,"weight":0,"cateid":null,"isshow":1,"imgs":null,"freight":null,"buynum":null,"des":null,"list":null,"times":null,"addtime":null,"listing_Time":null,"offshelf_Time":null,"cate":null}]
+     * itemsList : [{"id":null,"idsa":3013,"name":"女性疾病易感基因检测","img":"https://cdn.knowfate.com.cn/web/images/product/jyjc/ygjyjc00.png","img2":null,"code_price":6880,"src_price_code":599,"stock":null,"weight":0,"cateid":null,"isshow":1,"imgs":null,"freight":null,"buynum":null,"des":null,"list":null,"times":null,"addtime":null,"listing_Time":null,"offshelf_Time":null,"cate":null},{"id":null,"idsa":3011,"name":"儿童天赋能力基因检测","img":"https://cdn.knowfate.com.cn/web/images/product/jyjc/ettf00.png","img2":null,"code_price":1580,"src_price_code":2658,"stock":null,"weight":0,"cateid":null,"isshow":1,"imgs":null,"freight":null,"buynum":null,"des":null,"list":null,"times":null,"addtime":null,"listing_Time":null,"offshelf_Time":null,"cate":null}]
      */
 
     private Object cateList;
@@ -35,8 +35,8 @@ public class ClassListBean {
          * name : 女性疾病易感基因检测
          * img : https://cdn.knowfate.com.cn/web/images/product/jyjc/ygjyjc00.png
          * img2 : null
-         * price : 6880
-         * src_price : 599
+         * code_price : 6880
+         * src_price_code : 599
          * stock : null
          * weight : 0.0
          * cateid : null
@@ -58,8 +58,11 @@ public class ClassListBean {
         private String name;
         private String img;
         private Object img2;
-        private int price;
-        private int src_price;
+        private int code_price;
+        private int src_price_code;
+        private  int rmb_price;
+        private  int src_price_rmb;
+
         private Object stock;
         private double weight;
         private Object cateid;
@@ -74,6 +77,22 @@ public class ClassListBean {
         private Object listing_Time;
         private Object offshelf_Time;
         private Object cate;
+
+        public int getRmb_price() {
+            return rmb_price;
+        }
+
+        public void setRmb_price(int rmb_price) {
+            this.rmb_price = rmb_price;
+        }
+
+        public int getSrc_price_rmb() {
+            return src_price_rmb;
+        }
+
+        public void setSrc_price_rmb(int src_price_rmb) {
+            this.src_price_rmb = src_price_rmb;
+        }
 
         public Object getId() {
             return id;
@@ -115,20 +134,20 @@ public class ClassListBean {
             this.img2 = img2;
         }
 
-        public int getPrice() {
-            return price;
+        public int getCode_price() {
+            return code_price;
         }
 
-        public void setPrice(int price) {
-            this.price = price;
+        public void setCode_price(int code_price) {
+            this.code_price = code_price;
         }
 
-        public int getSrc_price() {
-            return src_price;
+        public int getSrc_price_code() {
+            return src_price_code;
         }
 
-        public void setSrc_price(int src_price) {
-            this.src_price = src_price;
+        public void setSrc_price_code(int src_price_code) {
+            this.src_price_code = src_price_code;
         }
 
         public Object getStock() {
