@@ -176,8 +176,8 @@ public class Submit0rdersActivity extends BaseActivity implements SubmitContract
                     } else {
                         Toast.makeText(this, "请选择支付方式", Toast.LENGTH_SHORT).show();
                     }
-                }else {
-                    new ToastUtil(context,R.layout.toast_center_horizontal,"请选择收货地址").show();
+                } else {
+                    new ToastUtil(context, R.layout.toast_center_horizontal, "请选择收货地址").show();
 
                 }
 
@@ -232,50 +232,16 @@ public class Submit0rdersActivity extends BaseActivity implements SubmitContract
 
     public void getAliPayResult() {
         if (Constant.INXDLER == false) {
-            //                String tvnum = tvNum.getText().toString(); //数量
-            String tvname = txtName.getText().toString();//用户姓名
-            String tvDahao = textDahao.getText().toString();//用户电话
-            String tvDizhi = textDizhi.getText().toString();//用户地址
-            String tviphoneName = tvIphoneName.getText().toString();//商品名称
-//                String tvJifen = textJifen.getText().toString();//商品价格
-//                String tvfreight = tvFreight.getText().toString();//运费
-            String tvZong = textZong.getText().toString();//总价格
             HashMap<String, String> maps = new HashMap<>();
-//                maps.put("name", "sf003");
             maps.put("num", String.valueOf(Constant.NUM));//num
-//        maps.put("user_name", tvname);
-//        maps.put("user_phone", tvDahao);
-//        maps.put("user_add", tvDizhi);
-//                maps.put("user_id", String.valueOf(15));//用户id
-//        maps.put("item_img", Constant.IMG);//img
-//        maps.put("item_name", Constant.NAME);//tviphoneName
-//        maps.put("item_price", String.valueOf(Constant.SRC_PRICE));//src_price
-//        maps.put("item_freight", String.valueOf(freight));
             maps.put("order_price", String.valueOf(Constant.ZONG_JIA));//tvZong
             maps.put("idsa", String.valueOf(Constant.IDSAS)); //商品编号idsas
             maps.put("addressid", isid);
             maps.put("paymentMethod", String.valueOf(1));
             ((SubmitPresenter) mPresenter).addOrders(maps);
         } else if (Constant.INXDLER == true) {
-            //                String tvnum = tvNum.getText().toString(); //数量
-            String tvname = txtName.getText().toString();//用户姓名
-            String tvDahao = textDahao.getText().toString();//用户电话
-            String tvDizhi = textDizhi.getText().toString();//用户地址
-            String tviphoneName = tvIphoneName.getText().toString();//商品名称
-//                String tvJifen = textJifen.getText().toString();//商品价格
-//                String tvfreight = tvFreight.getText().toString();//运费
-            String tvZong = textZong.getText().toString();//总价格
             HashMap<String, String> maps = new HashMap<>();
-//                maps.put("name", "sf003");
             maps.put("num", String.valueOf(Constant.NUM));//num
-//        maps.put("user_name", tvname);
-//        maps.put("user_phone", tvDahao);
-//        maps.put("user_add", tvDizhi);
-//                maps.put("user_id", String.valueOf(15));//用户id
-//        maps.put("item_img", Constant.IMG);//img
-//        maps.put("item_name", Constant.NAME);//tviphoneName
-//        maps.put("item_price", String.valueOf(Constant.SRC_PRICE));//src_price
-//        maps.put("item_freight", String.valueOf(freight));
             maps.put("order_price", String.valueOf(Constant.ZONG_JIA));//tvZong
             maps.put("idsa", String.valueOf(Constant.IDSAS)); //商品编号idsas
             maps.put("addressid", onid);
@@ -339,50 +305,19 @@ public class Submit0rdersActivity extends BaseActivity implements SubmitContract
 
     private void jifezhifu() {
         if (Constant.INXDLER == false) {
-            //                String tvnum = tvNum.getText().toString(); //数量
-            String tvname = txtName.getText().toString();//用户姓名
-            String tvDahao = textDahao.getText().toString();//用户电话
-            String tvDizhi = textDizhi.getText().toString();//用户地址
-            String tviphoneName = tvIphoneName.getText().toString();//商品名称
-//                String tvJifen = textJifen.getText().toString();//商品价格
-//                String tvfreight = tvFreight.getText().toString();//运费
-            String tvZong = textZong.getText().toString();//总价格
+
+
             HashMap<String, String> maps = new HashMap<>();
-//                maps.put("name", "sf003");
+
             maps.put("num", String.valueOf(Constant.NUM));//num
-//        maps.put("user_name", tvname);
-//        maps.put("user_phone", tvDahao);
-//        maps.put("user_add", tvDizhi);
-//                maps.put("user_id", String.valueOf(15));//用户id
-//        maps.put("item_img", Constant.IMG);//img
-//        maps.put("item_name", Constant.NAME);//tviphoneName
-//        maps.put("item_price", String.valueOf(Constant.SRC_PRICE));//src_price
-//        maps.put("item_freight", String.valueOf(freight));
             maps.put("order_price", String.valueOf(Constant.ZONG_JIA));//tvZong
             maps.put("idsa", String.valueOf(Constant.IDSAS)); //商品编号idsas
             maps.put("addressid", isid);
             maps.put("paymentMethod", String.valueOf(3));
             ((SubmitPresenter) mPresenter).addOrders(maps);
         } else if (Constant.INXDLER == true) {
-            //                String tvnum = tvNum.getText().toString(); //数量
-            String tvname = txtName.getText().toString();//用户姓名
-            String tvDahao = textDahao.getText().toString();//用户电话
-            String tvDizhi = textDizhi.getText().toString();//用户地址
-            String tviphoneName = tvIphoneName.getText().toString();//商品名称
-//                String tvJifen = textJifen.getText().toString();//商品价格
-//                String tvfreight = tvFreight.getText().toString();//运费
-            String tvZong = textZong.getText().toString();//总价格
             HashMap<String, String> maps = new HashMap<>();
-//                maps.put("name", "sf003");
             maps.put("num", String.valueOf(Constant.NUM));//num
-//        maps.put("user_name", tvname);
-//        maps.put("user_phone", tvDahao);
-//        maps.put("user_add", tvDizhi);
-//                maps.put("user_id", String.valueOf(15));//用户id
-//        maps.put("item_img", Constant.IMG);//img
-//        maps.put("item_name", Constant.NAME);//tviphoneName
-//        maps.put("item_price", String.valueOf(Constant.SRC_PRICE));//src_price
-//        maps.put("item_freight", String.valueOf(freight));
             maps.put("order_price", String.valueOf(Constant.ZONG_JIA));//tvZong
             maps.put("idsa", String.valueOf(Constant.IDSAS)); //商品编号idsas
             maps.put("addressid", onid);

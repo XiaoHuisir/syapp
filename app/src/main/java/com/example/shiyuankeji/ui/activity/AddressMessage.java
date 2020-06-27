@@ -157,19 +157,14 @@ public class AddressMessage extends BaseActivity implements AddressContract.View
         final AlertDialog alertDialog = new AlertDialog.Builder(AddressMessage.this).setTitle(" ").setView(layout).show();
         final RelativeLayout yes = layout.findViewById(R.id.relative_update);
         final RelativeLayout no = layout.findViewById(R.id.relative_cancel);
-        if (Constant.IS_MINE_IS.equals("2")) {
+        if (Constant.IS_MINE_IS.equals("2")) {  //我的模块打开
             if (Constant.CURTYPE.equals("编辑")) {
                 yes.setOnClickListener(new View.OnClickListener() {  //是
                     @Override
                     public void onClick(View v) {
                         alertDialog.dismiss();
                         ((AddressPresenter) mPresenter).addressRe(getname, id_dizhi, Constant.STUDY_TYPE_2, getphone, getaddress);//+ " " + edstreets
-                        Intent intent = new Intent(context, SelectAddressActivity.class);
-                        intent.putExtra("type_id", id_s);
-                        intent.putExtra("num", nu_m);
-//                        intent.putExtra("onid",String.valueOf(upid));
-                        startActivity(intent);
-                        finish();
+                        is_appid = true;
                     }
                 });
                 no.setOnClickListener(new View.OnClickListener() {  //否
@@ -177,16 +172,7 @@ public class AddressMessage extends BaseActivity implements AddressContract.View
                     public void onClick(View v) {
                         alertDialog.dismiss();
                         ((AddressPresenter) mPresenter).addressRe(getname, id_dizhi, Constant.STUDY_TYPE_1, getphone, getaddress);//+ " " + edstreets
-                        Intent intent1 = new Intent(context, SelectAddressActivity.class);
-                        intent1.putExtra("get_name", getname);
-                        intent1.putExtra("get_phone", getphone);
-                        intent1.putExtra("get_address", getaddress);
-                        intent1.putExtra("type_0", false);
-                        intent1.putExtra("type_id", id_s);
-//                        intent1.putExtra("onid",String.valueOf(upid));
-                        intent1.putExtra("num", nu_m);
-                        startActivity(intent1);
-                        finish();
+                        is_appid = false;
                     }
                 });
 
@@ -197,12 +183,8 @@ public class AddressMessage extends BaseActivity implements AddressContract.View
                     public void onClick(View v) {
                         alertDialog.dismiss();
                         ((AddressPresenter) mPresenter).addR(getname, Constant.STUDY_TYPE_2, getphone, getaddress);//+ " " + edstreets
-                        Intent intent = new Intent(context, SelectAddressActivity.class);
-                        intent.putExtra("type_id", id_s);
-                        intent.putExtra("num", nu_m);
-//                        intent.putExtra("onid",String.valueOf(addid));
-                        startActivity(intent);
-                        finish();
+                        is_upid = true;
+
                     }
                 });
                 no.setOnClickListener(new View.OnClickListener() {  //否
@@ -210,20 +192,12 @@ public class AddressMessage extends BaseActivity implements AddressContract.View
                     public void onClick(View v) {
                         alertDialog.dismiss();
                         ((AddressPresenter) mPresenter).addR(getname, Constant.STUDY_TYPE_1, getphone, getaddress);//+ " " + edstreets
-                        Intent intent1 = new Intent(context, SelectAddressActivity.class);
-                        intent1.putExtra("get_name", getname);
-                        intent1.putExtra("get_phone", getphone);
-                        intent1.putExtra("get_address", getaddress);
-                        intent1.putExtra("type_0", false);
-                        intent1.putExtra("type_id", id_s);
-//                        intent1.putExtra("onid",String.valueOf(addid));
-                        intent1.putExtra("num", nu_m);
-                        startActivity(intent1);
-                        finish();
+                        is_upid = false;
+
                     }
                 });
             }
-        } else {
+        } else {  //地址管理模块打开
 
             if (Constant.CURTYPE.equals("编辑")) {
                 yes.setOnClickListener(new View.OnClickListener() {  //是
@@ -367,55 +341,100 @@ public class AddressMessage extends BaseActivity implements AddressContract.View
 
     @Override
     public void addressReaun(AnddressBean anddressBean) {
-        SharedPreferencesUtil.setDeliveryAddress(context, true); //保存有、无 地址状态
-        upid = anddressBean.getId();
-        Toast.makeText(context, "修改成功", Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(context, Submit0rdersActivity.class);
-        if (is_appid == true) {
-            intent.putExtra("type_id", id_s);
-            intent.putExtra("num", nu_m);
-            intent.putExtra("onid", String.valueOf(upid));
-        }
-        if (is_appid == false) {
+        if (Constant.IS_MINE == true) { //等于 true 为 我的模块 打开
+            Intent intent = new Intent(context, SelectAddressActivity.class);
+            if (is_appid == true) {
+                intent.putExtra("type_id", id_s);
+                intent.putExtra("num", nu_m);
+//                        intent.putExtra("onid",String.valueOf(upid));
+            }
+            if (is_appid == false) {
+                intent.putExtra("get_name", getname);
+                intent.putExtra("get_phone", getphone);
+                intent.putExtra("get_address", getaddress);
+                intent.putExtra("type_0", false);
+                intent.putExtra("type_id", id_s);
+//                        intent1.putExtra("onid",String.valueOf(upid));
+                intent.putExtra("num", nu_m);
 
-            intent.putExtra("get_name", getname);
-            intent.putExtra("get_phone", getphone);
-            intent.putExtra("get_address", getaddress);
-            intent.putExtra("type_0", false);
-            intent.putExtra("type_id", id_s);
-            intent.putExtra("onid", String.valueOf(upid));
-            intent.putExtra("num", nu_m);
+            }
+            startActivity(intent);
+            finish();
+        } else {
+            SharedPreferencesUtil.setDeliveryAddress(context, true); //保存有、无 地址状态
+            upid = anddressBean.getId();
+            Toast.makeText(context, "修改成功", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(context, Submit0rdersActivity.class);
+            if (is_appid == true) {
+                intent.putExtra("type_id", id_s);
+                intent.putExtra("num", nu_m);
+                intent.putExtra("onid", String.valueOf(upid));
+            }
+            if (is_appid == false) {
+
+                intent.putExtra("get_name", getname);
+                intent.putExtra("get_phone", getphone);
+                intent.putExtra("get_address", getaddress);
+                intent.putExtra("type_0", false);
+                intent.putExtra("type_id", id_s);
+                intent.putExtra("onid", String.valueOf(upid));
+                intent.putExtra("num", nu_m);
 //            startActivity(intent1);
 //            finish();
+            }
+            startActivity(intent);
+            finish();
         }
-        startActivity(intent);
-        finish();
     }
 
 
     @Override
     public void addReaun(AddRBean addRBean) {
-        SharedPreferencesUtil.setDeliveryAddress(context, true); //保存有、无 地址状态
-        addid = addRBean.getId();
-        Intent intent = new Intent(context, Submit0rdersActivity.class);
-        if (is_upid == true) {
-            intent.putExtra("type_id", id_s);
-            intent.putExtra("num", nu_m);
-            intent.putExtra("onid", String.valueOf(addid));
+        if (Constant.IS_MINE == true) {
+            Intent intent = new Intent(context, SelectAddressActivity.class);
+            if (is_upid == true) {
+                intent.putExtra("type_id", id_s);
+                intent.putExtra("num", nu_m);
+//                        intent.putExtra("onid",String.valueOf(addid));
 
-        }
-        if (is_upid == false) {
-            intent.putExtra("get_name", getname);
-            intent.putExtra("get_phone", getphone);
-            intent.putExtra("get_address", getaddress);
-            intent.putExtra("type_0", false);
-            intent.putExtra("type_id", id_s);
-            intent.putExtra("onid", String.valueOf(addid));
-            intent.putExtra("num", nu_m);
+            }
+            if (is_upid == false) {
 
+                intent.putExtra("get_name", getname);
+                intent.putExtra("get_phone", getphone);
+                intent.putExtra("get_address", getaddress);
+                intent.putExtra("type_0", false);
+                intent.putExtra("type_id", id_s);
+//                        intent1.putExtra("onid",String.valueOf(addid));
+                intent.putExtra("num", nu_m);
+
+            }
+            startActivity(intent);
+            finish();
+        } else {
+            SharedPreferencesUtil.setDeliveryAddress(context, true); //保存有、无 地址状态
+            addid = addRBean.getId();
+            Intent intent = new Intent(context, Submit0rdersActivity.class);
+            if (is_upid == true) {
+                intent.putExtra("type_id", id_s);
+                intent.putExtra("num", nu_m);
+                intent.putExtra("onid", String.valueOf(addid));
+
+            }
+            if (is_upid == false) {
+                intent.putExtra("get_name", getname);
+                intent.putExtra("get_phone", getphone);
+                intent.putExtra("get_address", getaddress);
+                intent.putExtra("type_0", false);
+                intent.putExtra("type_id", id_s);
+                intent.putExtra("onid", String.valueOf(addid));
+                intent.putExtra("num", nu_m);
+
+            }
+            startActivity(intent);
+            finish();
         }
-        startActivity(intent);
-        finish();
+
         Toast.makeText(context, "添加成功", Toast.LENGTH_SHORT).show();
 
     }
