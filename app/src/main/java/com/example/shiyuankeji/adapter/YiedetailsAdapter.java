@@ -89,10 +89,10 @@ public class YiedetailsAdapter extends BaseAdapter {
             tname.setText("商务合作人分成（北）");
             tqian.setText(String.valueOf(list.getTotalprice()));
         } else if (sharetype == 20) {
-            tname.setText("商务合作人分成（南）");
+            tname.setText("商务合作人分成（西）");
             tqian.setText(String.valueOf(list.getTotalprice()));
         } else if (sharetype == 21) {
-            tname.setText("商务合作人分成（西）");
+            tname.setText("商务合作人分成（南）");
             tqian.setText(String.valueOf(list.getTotalprice()));
         } else if (sharetype == 22) {
             tname.setText("商务合作人分成（东）");

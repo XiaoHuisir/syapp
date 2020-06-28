@@ -15,6 +15,7 @@
         android:background="#E5E5E5">
 
         <RelativeLayout
+            android:layout_marginTop="@dimen/dp_32"
             android:id="@+id/relative_on_"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp_48"

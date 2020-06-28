@@ -74,9 +74,9 @@
     <style name="CustomCheckBoxTheme" parent="@android:style/Widget.CompoundButton.CheckBox">
         <item name="android:button">@drawable/checkbox_style</item>
     </style>
-    <style name="CustomCheckBoxThemes" parent="@android:style/Widget.CompoundButton.CheckBox">
-        <item name="android:button">@drawable/checkboxs_style</item>
-    </style>
+    <!--<style name="CustomCheckBoxThemes" parent="@android:style/Widget.CompoundButton.CheckBox">-->
+        <!--<item name="android:button">@drawable/checkboxs_style</item>-->
+    <!--</style>-->
 <!--设置字体大小-->
     <style name="TabLayoutTextStyle">
         <item name="android:textSize">@dimen/sp_14</item>

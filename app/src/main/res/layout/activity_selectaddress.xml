@@ -8,6 +8,7 @@
     tools:context=".ui.activity.SelectAddressActivity">
 
     <RelativeLayout
+        android:layout_marginTop="@dimen/dp_32"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_48"
 
