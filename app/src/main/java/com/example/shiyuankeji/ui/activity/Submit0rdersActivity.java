@@ -397,7 +397,7 @@ public class Submit0rdersActivity extends BaseActivity implements SubmitContract
             tvNum.setText("X" + Constant.NUM);//num
             //add_price
             textZong.setText(Constant.ZONG_JIA + "");//总价钱(src_price * num + freight)
-            tvJifenOn.setText(Constant.ZONG_JIA + "积分");//(src_price * num + freight)
+            tvJifenOn.setText(Constant.ZONG_JIA + "");//(src_price * num + freight)
 
         }
         SubmitBean.UserAddressBean user_address = submitBean.getUser_address();

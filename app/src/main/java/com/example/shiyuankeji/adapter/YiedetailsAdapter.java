@@ -4,6 +4,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.shiyuankeji.R;
@@ -26,7 +27,7 @@ public class YiedetailsAdapter extends BaseAdapter {
     @Override
     protected void bindData(BaseViewHolder holder, int positon, Object o) {
         YieDetailsBean.ShareInfoVosBean list = (YieDetailsBean.ShareInfoVosBean) mDatas.get(positon);
-        LinearLayout le_ = (LinearLayout) holder.getView(R.id.le_);
+        RelativeLayout le_ = (RelativeLayout) holder.getView(R.id.le_);
         TextView tname = (TextView) holder.getView(R.id.t_name);
         TextView tqian = (TextView) holder.getView(R.id.t_qian);
 

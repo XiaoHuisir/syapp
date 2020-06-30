@@ -53,7 +53,8 @@ public class YieldActivity extends BaseActivity implements QueryEarningsContract
 
     @Override
     protected void initView() {
-//        TODO 适配器逻辑 （等接口）未完。。。。。。。。。。。。。。。。。
+        reeYield.setHasFixedSize(true);
+        reeYield.setNestedScrollingEnabled(false);
         listyieid = new ArrayList<>();
         reeYield.setLayoutManager(new LinearLayoutManager(context));//管理器
         //适配器

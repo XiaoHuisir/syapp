@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.shiyuankeji.R;
@@ -44,7 +45,7 @@ public class DetailsActivity extends BaseActivity implements IntegralDetailsCont
     @BindView(R.id.tv_tilte)
     TextView tvTilte;
     @BindView(R.id.lin_wbeak)
-    LinearLayout linWbeak;
+    RelativeLayout linWbeak;
     @BindView(R.id.tv_tilte_name)
     TextView tvTilteName;
     @BindView(R.id.re_queryIntegral)

@@ -6,7 +6,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:background="@color/whites"
-        android:layout_height="@dimen/dp_48">
+        android:layout_height="@dimen/dp_37">
 
         <TextView
             android:id="@+id/tv_name_lsit"
@@ -14,18 +14,18 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/dp_16"
+            android:layout_marginLeft="@dimen/dp_13"
             android:text="1111"
             android:textColor="@color/black"
-            android:textSize="@dimen/sp_16" />
+            android:textSize="@dimen/sp_13" />
         <TextView
             android:id="@+id/tv_itme_list"
-            android:textColor="@color/main_gray"
+            android:textColor="#b4b4b4"
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="@dimen/dp_16"
+            android:layout_marginRight="@dimen/dp_13"
             android:text="111"
-            android:textSize="@dimen/sp_16"
+            android:textSize="@dimen/sp_12"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </RelativeLayout>

@@ -43,7 +43,7 @@ public class PersonalCenterActivity extends BaseActivity implements MineContract
     @BindView(R.id.text_indent)
     TextView textIndent;
     @BindView(R.id.line_break)
-    LinearLayout lineBreak;
+    RelativeLayout lineBreak;
     @BindView(R.id.tv_bank_address)
     TextView tv_bank_address;
     @BindView(R.id.tv_bank_name)

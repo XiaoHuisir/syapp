@@ -36,12 +36,12 @@ public class YieldAdapter extends BaseAdapter {
         TextView tv_code_price = (TextView) holder.getView(R.id.tv_code_price);
         TextView tv_rmb_price = (TextView) holder.getView(R.id.tv_rmb_price);
         LinearLayout lin_yie = (LinearLayout) holder.getView(R.id.lin_yie);
-        Glide.with(mContext).load(listbean.getItems().getImg()).into(im);
-        tv_code_price.setText(String.valueOf(listbean.getItems().getRmb_price()));
+        Glide.with(mContext).load(listbean.getImg()).into(im);
+        tv_code_price.setText(String.valueOf(listbean.getRmb_price()));
         order_num.setText(listbean.getOrder_num());
         tv_rmb_price.setText(String.valueOf(listbean.getTotalprice()));
-        tv_tilet.setText(listbean.getItems().getName());
-        tv_createtime.setText(listbean.getCreatetime());
+        tv_tilet.setText(listbean.getName());
+        tv_createtime.setText(listbean.getCreate_time());
         lin_yie.setTag(mDatas.get(positon));
         lin_yie.setOnClickListener(new View.OnClickListener() {
             @Override

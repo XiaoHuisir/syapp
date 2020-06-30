@@ -26,8 +26,10 @@ public class QueryintegralAdapter extends BaseAdapter {
         QueryIntegralBean.UserAddLogListBean list = (QueryIntegralBean.UserAddLogListBean) mDatas.get(positon);
         int add_val = list.getAdd_val();
         if (add_val >= 0) {
+            namelist.setTextColor(mContext.getResources().getColor(R.color.newnew_bg));
             namelist.setText("增加" + add_val + "积分");
         } else {
+            namelist.setTextColor(mContext.getResources().getColor(R.color.col_score));
             namelist.setText("减少" + add_val + "积分");
         }
         String time = list.getTime();

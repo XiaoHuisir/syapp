@@ -1,35 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/whites"
+    android:background="@drawable/mine_bgg"
 >
 
 
 
-        <LinearLayout
+        <RelativeLayout
             android:id="@+id/le_"
+            android:paddingBottom="@dimen/dp_20"
             android:layout_alignParentTop="true"
-            android:layout_width="@dimen/dp_120"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:paddingBottom="@dimen/dp_12"
-            android:orientation="vertical">
+           >
 
             <TextView
                 android:id="@+id/t_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="1"
-                android:textSize="@dimen/dp_13" />
+                android:text="1111"
+                android:textColor="@color/black"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="@dimen/dp_10"
+                android:layout_alignParentLeft="true"
+                android:layout_marginTop="@dimen/dp_13"
+                android:textSize="@dimen/sp_13" />
 
             <TextView
+
+                android:layout_below="@id/t_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2020-6-29"
+                android:layout_marginTop="@dimen/dp_7"
+                android:textColor="#9f9f9f"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="@dimen/dp_10"
+                android:textSize="@dimen/sp_10" />
+            <TextView
                 android:id="@+id/t_qian"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="@dimen/dp_21"
+
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="1"
-                android:textSize="@dimen/dp_13" />
-        </LinearLayout>
+                android:textStyle="bold"
+                android:textColor="@color/newnew_bg"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/dp_10"
+                android:textSize="@dimen/sp_13" />
+        </RelativeLayout>
 
 
 

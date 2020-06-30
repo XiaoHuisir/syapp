@@ -2,10 +2,12 @@ package com.example.shiyuankeji.ui.activity;
 
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -28,7 +30,7 @@ import butterknife.OnClick;
 public class YiedetailsActivity extends BaseActivity implements QueryEarningsContract.View {
 
     @BindView(R.id.lli_back)
-    LinearLayout lliBack;
+    RelativeLayout lliBack;
     @BindView(R.id.im_tu)
     ImageView imTu;
     @BindView(R.id.tv_tilet)
@@ -57,7 +59,7 @@ public class YiedetailsActivity extends BaseActivity implements QueryEarningsCon
     protected void initView() {
         order = getIntent().getStringExtra("order");
         sharelist = new ArrayList<>();
-        recyclerYiedetailes.setLayoutManager(new GridLayoutManager(context,3));
+        recyclerYiedetailes.setLayoutManager(new LinearLayoutManager(context));
         yiedetailsAdapter = new YiedetailsAdapter(sharelist);
         recyclerYiedetailes.setAdapter(yiedetailsAdapter);
     }
