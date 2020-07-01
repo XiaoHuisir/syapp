@@ -71,20 +71,24 @@
 
         <View
             android:id="@+id/vv"
-            android:layout_width="@dimen/dp_307"
+            android:layout_width="wrap_content"
             android:layout_height="@dimen/dp_1"
             android:layout_below="@+id/tv_createtime"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="@dimen/dp_11"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/dp_11"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/dp_22"
             android:background="#f0f0f0" />
         <LinearLayout
             android:layout_below="@+id/vv"
-            android:layout_toRightOf="@id/image_yie"
             android:layout_width="wrap_content"
             android:orientation="horizontal"
+            android:layout_alignParentLeft="true"
             android:layout_alignParentRight="true"
             android:layout_marginRight="@dimen/dp_13"
-            android:layout_marginLeft="@dimen/dp_12"
+            android:layout_marginLeft="@dimen/dp_13"
             android:layout_height="@dimen/dp_38">
             <LinearLayout
             android:layout_width="@dimen/dp_0"
@@ -96,7 +100,7 @@
             <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="销售金额:" />
+            android:text="销售金额：" />
 
             <TextView
             android:id="@+id/tv_code_price"
@@ -115,7 +119,7 @@
             <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="收益金额:" />
+            android:text="收益金额：" />
 
             <TextView
             android:id="@+id/tv_rmb_price"

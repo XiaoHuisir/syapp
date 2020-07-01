@@ -11,6 +11,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.Priority;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.shiyuankeji.R;
 import com.example.shiyuankeji.adapter.YiedetailsAdapter;
 import com.example.shiyuankeji.base.BaseActivity;
@@ -19,6 +22,7 @@ import com.example.shiyuankeji.bean.YieDetailsBean;
 import com.example.shiyuankeji.interfaces.IBasePresenter;
 import com.example.shiyuankeji.interfaces.contract.QueryEarningsContract;
 import com.example.shiyuankeji.presenter.QueryEarningsPresenter;
+import com.example.shiyuankeji.utils.GlideRoundTransform;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -92,10 +96,17 @@ public class YiedetailsActivity extends BaseActivity implements QueryEarningsCon
             if (shareInfoVo.size() > 0 && shareInfoVo != null) {
                 YieDetailsBean.ShareInfoVoBean share = shareInfoVo.get(0);
                 tvTilet.setText(share.getName());
-                tvCodeNum.setText(share.getOrder_num());
-                tvTime.setText(share.getCreate_time());
+                tvCodeNum.setText("订单号："+share.getOrder_num());
+                tvTime.setText("下单时间："+share.getCreate_time());
                 String img = share.getImg();
-                Glide.with(context).load(img).into(imTu);
+                RequestOptions options = new RequestOptions()
+                                .centerCrop()
+                                 .placeholder(R.drawable.no_banner) //预加载图片
+                                 .error(R.drawable.no_banner) //加载失败图片
+                                 .priority(Priority.HIGH) //优先级
+                                .diskCacheStrategy(DiskCacheStrategy.NONE) //缓存
+                                .transform(new GlideRoundTransform(3)); //圆角
+                Glide.with(context).load(img).apply(options).into(imTu);
             }
             List<YieDetailsBean.ShareInfoVosBean> shareInfoVos = yieDetailsBean.getShareInfoVos();
             sharelist.addAll(shareInfoVos);

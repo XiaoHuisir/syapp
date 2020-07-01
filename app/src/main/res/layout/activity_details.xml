@@ -15,7 +15,7 @@
     <RelativeLayout
         android:id="@+id/lin_wbeak"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="@dimen/dp_32"
+        android:layout_marginTop="@dimen/dp_42"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/tou_ming"
@@ -24,7 +24,7 @@
         <ImageView
             android:id="@+id/im_wbeak"
             android:layout_width="@dimen/dp_8"
-            android:layout_marginLeft="@dimen/dp_13"
+            android:layout_marginLeft="@dimen/dp_16"
             android:layout_height="@dimen/dp_15"
             android:layout_centerVertical="true"
             android:layout_alignParentLeft="true"
@@ -38,7 +38,7 @@
             android:layout_height="wrap_content"
             android:text="xx"
             android:textColor="@color/white"
-            android:textSize="15sp" />
+            android:textSize="@dimen/sp_15" />
     </RelativeLayout>
 
     <!--<View-->

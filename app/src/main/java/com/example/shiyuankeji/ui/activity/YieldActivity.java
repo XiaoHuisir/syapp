@@ -6,6 +6,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.shiyuankeji.R;
@@ -27,6 +28,8 @@ import butterknife.OnClick;
 public class YieldActivity extends BaseActivity implements QueryEarningsContract.View, YieldAdapter.YieContextItem {
     @BindView(R.id.lli_back)
     LinearLayout lliBack;
+    @BindView(R.id.rell)
+    RelativeLayout rells;
     @BindView(R.id.ree_yield)
     RecyclerView reeYield;
     @BindView(R.id.tv_now)
@@ -63,10 +66,10 @@ public class YieldActivity extends BaseActivity implements QueryEarningsContract
         reeYield.setAdapter(yieldAdapter);
     }
 
-    @OnClick({R.id.lli_back})
+    @OnClick({R.id.rell})
     public void onViewClicked(View view) {
         switch (view.getId()) {
-            case R.id.lli_back:
+            case R.id.rell:
                 finish();
                 break;
         }

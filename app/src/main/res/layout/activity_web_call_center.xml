@@ -4,10 +4,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/newnew_newbg"
     tools:context=".ui.activity.WebCallCenterActivity">
 
     <RelativeLayout
         android:id="@+id/rl_web_top"
+        android:layout_marginTop="@dimen/dp_32"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:background="@color/swiperefresh_color1">

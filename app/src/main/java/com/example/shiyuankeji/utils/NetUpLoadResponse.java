@@ -1,7 +1,7 @@
 package com.example.shiyuankeji.utils;
 
 /**
- * Created by louyulin on 2019/3/19.
+ * Created by zhanghui on 2019/3/19.
  */
 
 public interface NetUpLoadResponse {

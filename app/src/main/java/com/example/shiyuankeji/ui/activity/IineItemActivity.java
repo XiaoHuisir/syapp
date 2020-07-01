@@ -7,6 +7,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.Priority;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.shiyuankeji.R;
 import com.example.shiyuankeji.app.Constant;
 import com.example.shiyuankeji.base.BaseActivity;
@@ -14,6 +17,7 @@ import com.example.shiyuankeji.bean.LineItemBean;
 import com.example.shiyuankeji.interfaces.IBasePresenter;
 import com.example.shiyuankeji.interfaces.contract.LineItemConreact;
 import com.example.shiyuankeji.presenter.LineItemPresenter;
+import com.example.shiyuankeji.utils.GlideRoundTransform;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -94,12 +98,19 @@ public class IineItemActivity extends BaseActivity implements LineItemConreact.V
             txtName.setText("收货人：" + lineItemBean.getUser_address().getName());
             tvUserPhone.setText(lineItemBean.getUser_address().getPhone());
             tvUserAdd.setText(lineItemBean.getUser_address().getAddress());
-            Glide.with(context).load(lineItemBean.getItems().getImg()).into(imItemImg);
+            RequestOptions options = new RequestOptions()
+                    .centerCrop()
+                    .placeholder(R.drawable.no_banner) //预加载图片
+                    .error(R.drawable.no_banner) //加载失败图片
+                    .priority(Priority.HIGH) //优先级
+                    .diskCacheStrategy(DiskCacheStrategy.NONE) //缓存
+                    .transform(new GlideRoundTransform(3)); //圆角
+            Glide.with(context).load(lineItemBean.getItems().getImg()).apply(options).into(imItemImg);
             tvItemName.setText(lineItemBean.getItems().getName());
             tvItemPrice.setText(lineItemBean.getItems().getCode_price() + "积分");
             tvNum.setText("X" + lineItemBean.getOrder_list().getNum());
             tvItemFreight.setText(lineItemBean.getItems().getFreight() + "积分");
-            tvOrderPrice.setText(lineItemBean.getOrder_list().getOrder_price() + "积分");
+            tvOrderPrice.setText(lineItemBean.getOrder_list().getOrder_price() + "");
 
         }
     }

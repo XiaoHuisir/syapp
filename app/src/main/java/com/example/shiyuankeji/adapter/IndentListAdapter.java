@@ -10,9 +10,13 @@ import android.widget.TextView;
 import android.support.annotation.NonNull;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.Priority;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.shiyuankeji.R;
 import com.example.shiyuankeji.app.Constant;
 import com.example.shiyuankeji.bean.NewIndentBean;
+import com.example.shiyuankeji.utils.GlideRoundTransform;
 
 import java.util.ArrayList;
 
@@ -58,8 +62,14 @@ public class IndentListAdapter extends RecyclerView.Adapter<IndentListAdapter.Vi
         viewHolder.mTxtZhongji.setText(orderListsBean.getOrder_price() + "积分");//交易价格
         viewHolder.txtItem_freight.setText("(含运费:" + orderListsBean.getItem_freight() + "积分)");//运费 (含运费:0积分)
         viewHolder.mTxtShuliang.setText("X" + orderListsBean.getNum());//数量
-        Glide.with(context).load(orderListsBean.getItems().getImg()).into(viewHolder.mImager);
-
+        RequestOptions options = new RequestOptions()
+                .centerCrop()
+                .placeholder(R.drawable.no_banner) //预加载图片
+                .error(R.drawable.no_banner) //加载失败图片
+                .priority(Priority.HIGH) //优先级
+                .diskCacheStrategy(DiskCacheStrategy.NONE) //缓存
+                .transform(new GlideRoundTransform(3)); //圆角
+        Glide.with(context).load(orderListsBean.getItems().getImg()).apply(options).into(viewHolder.mImager);
 
 
 // 回调 跳转订单详情
@@ -67,7 +77,7 @@ public class IndentListAdapter extends RecyclerView.Adapter<IndentListAdapter.Vi
         viewHolder.mLinXiangqing.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                NewIndentBean.OrderListListBean indentlist = (NewIndentBean.OrderListListBean)v.getTag();
+                NewIndentBean.OrderListListBean indentlist = (NewIndentBean.OrderListListBean) v.getTag();
                 itemClick.indentclick(indentlist);
             }
         });
