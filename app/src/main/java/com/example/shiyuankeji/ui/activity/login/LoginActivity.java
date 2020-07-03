@@ -10,6 +10,7 @@ import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.CardView;
 import android.telephony.TelephonyManager;
 import android.text.InputType;
 import android.text.TextUtils;
@@ -33,6 +34,8 @@ import com.example.shiyuankeji.interfaces.contract.LoginsContract;
 import com.example.shiyuankeji.presenter.login.LoginsPresenter;
 import com.example.shiyuankeji.ui.activity.UpdatePasswrdActivity;
 import com.example.shiyuankeji.ui.activity.VerifyAccountActivity;
+import com.example.shiyuankeji.utils.CardUtils;
+import com.example.shiyuankeji.utils.NoDoubleClickListener;
 import com.example.shiyuankeji.utils.SharedPreferencesUtil;
 import com.example.shiyuankeji.utils.ToastUtil;
 import com.tencent.mm.opensdk.modelmsg.SendAuth;
@@ -52,14 +55,16 @@ public class LoginActivity extends BaseActivity implements LoginsContract.Views 
     EditText edPw;
     @BindView(R.id.re)
     RelativeLayout re;
-    @BindView(R.id.btn_login)
-    Button btnLogin;
+//    @BindView(R.id.btn_login)
+//    LinearLayout btnLogin;
     @BindView(R.id.btn_show)
     ImageView btnShow;
     @BindView(R.id.wxlogin)
     LinearLayout wxlogin;
-    @BindView(R.id.tv_register)
-    TextView tvRegister;
+//    @BindView(R.id.tv_register)
+//    TextView tvRegister;
+    @BindView(R.id.c1)
+    CardView card;
     private String mobile;
     private String password;
     private int code;
@@ -69,6 +74,8 @@ public class LoginActivity extends BaseActivity implements LoginsContract.Views 
     private String pho = "";
     private String user_id = "";
     private String pwdss = "";
+    private LinearLayout btnLogin;
+    private TextView tvRegister;
 
 
     @Override
@@ -78,6 +85,7 @@ public class LoginActivity extends BaseActivity implements LoginsContract.Views 
 
     @Override
     protected void initView() {
+        CardUtils.setCardShadowColor(card, getResources().getColor(R.color.newnew_bg), getResources().getColor(R.color.newnew_bg));
         //判断是否有登录过
         String username = SharedPreferencesUtil.getUserName(MyApp.mApp);
         String pw = SharedPreferencesUtil.getPw(MyApp.mApp);
@@ -94,34 +102,14 @@ public class LoginActivity extends BaseActivity implements LoginsContract.Views 
 
 //        edPw.setSelection(edPw.getText().length());
         edPw.setInputType(InputType.TYPE_TEXT_VARIATION_PASSWORD | InputType.TYPE_CLASS_TEXT);//设置密码不可见
-
+            initFindViewById();
     }
 
-    @Override
-    protected IBasePresenter getPresenter() {
-        return new LoginsPresenter();
-    }
-
-
-    @OnClick({R.id.btn_login, R.id.btn_show, R.id.ed_pw, R.id.ed_phone, R.id.wxlogin, R.id.tv_register})
-    public void onViewClicked(View view) {
-        switch (view.getId()) {
-            case R.id.tv_register: //注册
-                Intent intent = new Intent();
-                intent.setClass(context, RegisterActivity.class);
-                intent.putExtra("type_", REGISTER);
-                startActivityForResult(intent, REGISTER);
-                break;
-            case R.id.wxlogin://微信登录
-                loginWX();
-                Toast.makeText(context, "欢迎使用微信三方登录", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.ed_pw:
-
-//                edPhone.setInputType(InputType.TYPE_CLASS_NUMBER);
-//                edPhone.setInputType(EditorInfo.TYPE_CLASS_PHONE);//设置数字键盘显示
-                break;
-            case R.id.btn_login:
+    private void initFindViewById() {
+        btnLogin = findViewById(R.id.btn_login);
+        btnLogin.setOnClickListener(new NoDoubleClickListener() { //登录
+            @Override
+            protected void onNoDoubleClick(View v) {
                 mobile = edPhone.getText().toString();
                 password = edPw.getText().toString();
                 closeKeyboard();
@@ -143,8 +131,68 @@ public class LoginActivity extends BaseActivity implements LoginsContract.Views 
 
                 ((LoginsPresenter) mPresenter).logins(mobile, password);
 
+            }
+        });
+        tvRegister = findViewById(R.id.tv_register);
+        tvRegister.setOnClickListener(new NoDoubleClickListener() { //去注册
+            @Override
+            protected void onNoDoubleClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(context, RegisterActivity.class);
+                intent.putExtra("type_", REGISTER);
+                startActivityForResult(intent, REGISTER);
+            }
+        });
+    }
 
+    @Override
+    protected IBasePresenter getPresenter() {
+        return new LoginsPresenter();
+    }
+
+
+    @OnClick({ R.id.btn_show, R.id.ed_pw, R.id.ed_phone, R.id.wxlogin})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+//            case R.id.tv_register: //去注册
+//                Intent intent = new Intent();
+//                intent.setClass(context, RegisterActivity.class);
+//                intent.putExtra("type_", REGISTER);
+//                startActivityForResult(intent, REGISTER);
+//                break;
+            case R.id.wxlogin://微信登录
+                loginWX();
+                Toast.makeText(context, "欢迎使用微信三方登录", Toast.LENGTH_SHORT).show();
                 break;
+            case R.id.ed_pw:
+
+//                edPhone.setInputType(InputType.TYPE_CLASS_NUMBER);
+//                edPhone.setInputType(EditorInfo.TYPE_CLASS_PHONE);//设置数字键盘显示
+                break;
+//            case R.id.btn_login:
+//                mobile = edPhone.getText().toString();
+//                password = edPw.getText().toString();
+//                closeKeyboard();
+//                closeKeyboardedPhone();
+//
+////                edPw.setInputType(EditorInfo.TYPE_CLASS_PHONE);//设置数字键盘显示
+//                Constant.mobiles = mobile;
+//                Constant.passwords = password;
+//                if (TextUtils.isEmpty(mobile) || TextUtils.isEmpty(password)) {
+//                    Toast.makeText(context, "请输入用户名和密码", Toast.LENGTH_SHORT).show();
+//                    if (!TextUtils.isEmpty(mobile) && TextUtils.isEmpty(password)) {
+//                        Toast.makeText(context, "请输入密码", Toast.LENGTH_SHORT).show();
+//                    }
+//                    if (TextUtils.isEmpty(mobile) && !TextUtils.isEmpty(password)) {
+//                        Toast.makeText(context, "请输入用户名", Toast.LENGTH_SHORT).show();
+//                    }
+//                    return;
+//                }
+//
+//                ((LoginsPresenter) mPresenter).logins(mobile, password);
+//
+//
+//                break;
             case R.id.btn_show:
                 if (btnShow.isSelected()) {
                     btnShow.setSelected(false);

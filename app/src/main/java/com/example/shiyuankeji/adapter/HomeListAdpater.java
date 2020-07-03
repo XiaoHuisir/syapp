@@ -15,6 +15,7 @@ import com.bumptech.glide.Glide;
 import com.example.shiyuankeji.R;
 import com.example.shiyuankeji.bean.HomeBean;
 import com.example.shiyuankeji.ui.activity.ProductDetailsActivity;
+import com.example.shiyuankeji.utils.NoDoubleClickListener;
 
 import java.util.List;
 
@@ -49,15 +50,14 @@ public class HomeListAdpater extends RecyclerView.Adapter<HomeListAdpater.ViewHo
             viewHolder.textPrice.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
 
 
-            viewHolder.linearItem.setOnClickListener(new View.OnClickListener() {
+            viewHolder.linearItem.setOnClickListener(new NoDoubleClickListener() {
                 @Override
-                public void onClick(View v) {
+                protected void onNoDoubleClick(View v) {
                     int idsa = list.getIdsa();
                     Intent intent = new Intent();
                     intent.setClass(context, ProductDetailsActivity.class);
                     intent.putExtra("idsa", String.valueOf(idsa));
                     context.startActivity(intent);
-
                 }
             });
 

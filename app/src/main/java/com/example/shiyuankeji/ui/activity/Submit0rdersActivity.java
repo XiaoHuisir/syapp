@@ -29,6 +29,7 @@ import com.example.shiyuankeji.bean.SubmitBean;
 import com.example.shiyuankeji.interfaces.IBasePresenter;
 import com.example.shiyuankeji.interfaces.contract.SubmitContract;
 import com.example.shiyuankeji.presenter.SubmitPresenter;
+import com.example.shiyuankeji.utils.NoDoubleClickListener;
 import com.example.shiyuankeji.utils.SharedPreferencesUtil;
 import com.example.shiyuankeji.utils.ToastUtil;
 import com.example.shiyuankeji.widgets.alipay.util.PayResult;
@@ -60,14 +61,14 @@ public class Submit0rdersActivity extends BaseActivity implements SubmitContract
     //    private IWXAPI api;
     private static final int SDK_PAY_FLAG = 1;
 
-    @BindView(R.id.re_on)
-    RelativeLayout reOn;
-    @BindView(R.id.re_site_ok)
-    RelativeLayout reSiteOk;
+//    @BindView(R.id.re_on)
+//    RelativeLayout reOn;
+//    @BindView(R.id.re_site_ok)
+//    RelativeLayout reSiteOk;
     @BindView(R.id.relative_on_)
     RelativeLayout relativeOn_;
-    @BindView(R.id.btn_exchangOn)
-    Button btnExchangOn;
+//    @BindView(R.id.btn_exchangOn)
+//    Button btnExchangOn;
     @BindView(R.id.im_1)
     ImageView im_;
     @BindView(R.id.tv_iphone_name)
@@ -110,6 +111,9 @@ public class Submit0rdersActivity extends BaseActivity implements SubmitContract
 
     private String isid = "";
     private String onid = "";
+    private RelativeLayout reSiteOk;
+    private RelativeLayout reOn;
+    private Button btnExchangOn;
 
 
     @Override
@@ -124,7 +128,7 @@ public class Submit0rdersActivity extends BaseActivity implements SubmitContract
 
 
     //TODO
-    @OnClick({R.id.re_site_ok, R.id.btn_exchangOn, R.id.relative_on_, R.id.re_on, R.id.ll_wechat, R.id.ll_jifen, R.id.ll_ali})
+    @OnClick({  R.id.relative_on_,  R.id.ll_wechat, R.id.ll_jifen, R.id.ll_ali})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.ll_wechat:
@@ -142,47 +146,47 @@ public class Submit0rdersActivity extends BaseActivity implements SubmitContract
                 aliCheck.setChecked(false);
                 jifenCheck.setChecked(!jifenCheck.isChecked());
                 break;
-            case R.id.re_site_ok: //有 地址管理
-                Intent intent = new Intent();
-                intent.setClass(context, SelectAddressActivity.class);
-                intent.putExtra("typeid_", typeid);
-                intent.putExtra("num_", num);
-                Constant.IS_MINE = false;
-                Constant.IS_MINE_IS = "1";
-                startActivity(intent);
-                finish();
-                break;
-            case R.id.re_on: //无 地址管理
-                Intent intent1 = new Intent();
-                intent1.setClass(context, SelectAddressActivity.class);
-                intent1.putExtra("typeid_", typeid);
-                intent1.putExtra("num_", num);
-                Constant.IS_MINE = false;
-                Constant.IS_MINE_IS = "1";
-                startActivity(intent1);
-                finish();
-                break;
-            case R.id.btn_exchangOn: //有 立即兑换 提交订单
-                if (SharedPreferencesUtil.getDeliveryAddress(context) == true) {
-                    if (aliCheck.isChecked()) {
-                        Toast.makeText(this, "支付宝支付", Toast.LENGTH_SHORT).show();
-                        getAliPayResult();
-                    } else if (wechatCheck.isChecked()) {
-                        Toast.makeText(this, "微信支付", Toast.LENGTH_SHORT).show();
-//                    weChatPay();
-                    } else if (jifenCheck.isChecked()) {
-                        Toast.makeText(this, "积分支付", Toast.LENGTH_SHORT).show();
-                        jifezhifu();
-                    } else {
-                        Toast.makeText(this, "请选择支付方式", Toast.LENGTH_SHORT).show();
-                    }
-                } else {
-                    new ToastUtil(context, R.layout.toast_center_horizontal, "请选择收货地址").show();
-
-                }
-
-
-                break;
+//            case R.id.re_site_ok: //有 地址管理
+//                Intent intent = new Intent();
+//                intent.setClass(context, SelectAddressActivity.class);
+//                intent.putExtra("typeid_", typeid);
+//                intent.putExtra("num_", num);
+//                Constant.IS_MINE = false;
+//                Constant.IS_MINE_IS = "1";
+//                startActivity(intent);
+//                finish();
+//                break;
+//            case R.id.re_on: //无 地址管理
+//                Intent intent1 = new Intent();
+//                intent1.setClass(context, SelectAddressActivity.class);
+//                intent1.putExtra("typeid_", typeid);
+//                intent1.putExtra("num_", num);
+//                Constant.IS_MINE = false;
+//                Constant.IS_MINE_IS = "1";
+//                startActivity(intent1);
+//                finish();
+//                break;
+//            case R.id.btn_exchangOn: //有 立即兑换 提交订单
+//                if (SharedPreferencesUtil.getDeliveryAddress(context) == true) {
+//                    if (aliCheck.isChecked()) {
+//                        Toast.makeText(this, "支付宝支付", Toast.LENGTH_SHORT).show();
+//                        getAliPayResult();
+//                    } else if (wechatCheck.isChecked()) {
+//                        Toast.makeText(this, "微信支付", Toast.LENGTH_SHORT).show();
+////                    weChatPay();
+//                    } else if (jifenCheck.isChecked()) {
+//                        Toast.makeText(this, "积分支付", Toast.LENGTH_SHORT).show();
+//                        jifezhifu();
+//                    } else {
+//                        Toast.makeText(this, "请选择支付方式", Toast.LENGTH_SHORT).show();
+//                    }
+//                } else {
+//                    new ToastUtil(context, R.layout.toast_center_horizontal, "请选择收货地址").show();
+//
+//                }
+//
+//
+//                break;
             case R.id.relative_on_:
                 finish();
                 break;
@@ -350,6 +354,61 @@ public class Submit0rdersActivity extends BaseActivity implements SubmitContract
         int indx_0 = getIntent().getIntExtra("indx_0", 0);
         onid = getIntent().getStringExtra("onid");
         type = indx_0;
+        initFindViewById();
+    }
+
+    private void initFindViewById() {
+        reSiteOk = findViewById(R.id.re_site_ok);
+        reOn = findViewById(R.id.re_on);
+        btnExchangOn = findViewById(R.id.btn_exchangOn);
+        btnExchangOn.setOnClickListener(new NoDoubleClickListener() {
+            @Override
+            protected void onNoDoubleClick(View v) {
+                if (SharedPreferencesUtil.getDeliveryAddress(context) == true) {
+                    if (aliCheck.isChecked()) {
+                        Toast.makeText(context, "支付宝支付", Toast.LENGTH_SHORT).show();
+                        getAliPayResult();
+                    } else if (wechatCheck.isChecked()) {
+                        Toast.makeText(context, "微信支付", Toast.LENGTH_SHORT).show();
+//                    weChatPay();
+                    } else if (jifenCheck.isChecked()) {
+                        Toast.makeText(context, "积分支付", Toast.LENGTH_SHORT).show();
+                        jifezhifu();
+                    } else {
+                        Toast.makeText(context, "请选择支付方式", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    new ToastUtil(context, R.layout.toast_center_horizontal, "请选择收货地址").show();
+
+                }
+            }
+        });
+        reOn.setOnClickListener(new NoDoubleClickListener() {  //无 地址管理
+            @Override
+            protected void onNoDoubleClick(View v) {
+                Intent intent1 = new Intent();
+                intent1.setClass(context, SelectAddressActivity.class);
+                intent1.putExtra("typeid_", typeid);
+                intent1.putExtra("num_", num);
+                Constant.IS_MINE = false;
+                Constant.IS_MINE_IS = "1";
+                startActivity(intent1);
+                finish();
+            }
+        });
+        reSiteOk.setOnClickListener(new NoDoubleClickListener() { //有 地址管理
+            @Override
+            protected void onNoDoubleClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(context, SelectAddressActivity.class);
+                intent.putExtra("typeid_", typeid);
+                intent.putExtra("num_", num);
+                Constant.IS_MINE = false;
+                Constant.IS_MINE_IS = "1";
+                startActivity(intent);
+                finish();
+            }
+        });
     }
 
     @Override
@@ -408,18 +467,18 @@ public class Submit0rdersActivity extends BaseActivity implements SubmitContract
             String address = user_address.getAddress();//用户地址
 //            tvOrderNum.setText("订单号 "+phone);
             if (indxler == true) {
-                txtName.setText(name);
+                txtName.setText("收货人："+name);
                 textDahao.setText(phone);
-                textDizhi.setText(address);
+                textDizhi.setText("收货地址："+address);
             } else {
-                txtName.setText(get_name);
+                txtName.setText("收货人："+get_name);
                 textDahao.setText(get_phone);
-                textDizhi.setText(get_address);
+                textDizhi.setText("收货地址："+get_address);
             }
             if (type == 100) {
-                txtName.setText(getname);
+                txtName.setText("收货人："+getname);
                 textDahao.setText(getphone);
-                textDizhi.setText(getaddress);
+                textDizhi.setText("收货地址："+getaddress);
             }
 
 

@@ -3,24 +3,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/whitess"
+    android:background="@color/newnew_newbg"
     android:orientation="vertical"
     tools:context=".ui.activity.SelectAddressActivity">
 
     <RelativeLayout
-        android:layout_marginTop="@dimen/dp_32"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_48"
-
-        android:textColor="@color/whitess">
+        android:layout_marginTop="@dimen/dp_32"
+        android:textColor="@color/tou_ming">
 
         <ImageView
             android:id="@+id/im_break_select"
-            android:layout_width="@dimen/dp_40"
-            android:layout_height="@dimen/dp_40"
+            android:layout_width="@dimen/dp_8"
+            android:layout_height="@dimen/dp_15"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/dp_20"
-            android:src="@mipmap/back_hui" />
+            android:layout_marginLeft="@dimen/dp_13"
+            android:src="@mipmap/backk" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -29,7 +28,7 @@
             android:layout_centerVertical="true"
             android:text="选择收货地址"
             android:textColor="@color/black"
-            android:textSize="@dimen/sp_21" />
+            android:textSize="@dimen/sp_15" />
 
         <TextView
             android:id="@+id/tv_add_site"
@@ -40,7 +39,7 @@
             android:layout_marginRight="@dimen/dp_20"
             android:text="添加新地址"
             android:textColor="@color/gray_g"
-            android:textSize="13sp" />
+            android:textSize="12sp" />
     </RelativeLayout>
 
     <!--<ScrollView-->
@@ -50,18 +49,29 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/line_gray"
+        android:layout_marginTop="@dimen/dp_7"
+        android:layout_marginLeft="@dimen/dp_13"
+        android:layout_marginRight="@dimen/dp_13"
+        android:background="@color/tou_ming"
         android:orientation="vertical">
 
         <android.support.v4.widget.SwipeRefreshLayout
             android:id="@+id/recyclerefresh"
             android:layout_width="match_parent"
+            android:background="@color/tou_ming"
             android:layout_height="wrap_content">
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/re_submitList"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:background="@color/newnew_newbg"
+                android:layout_height="wrap_content">
+
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/re_submitList"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </RelativeLayout>
         </android.support.v4.widget.SwipeRefreshLayout>
 
     </LinearLayout>

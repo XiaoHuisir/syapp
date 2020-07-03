@@ -11,8 +11,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.Priority;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.shiyuankeji.R;
 import com.example.shiyuankeji.app.Constant;
+import com.example.shiyuankeji.utils.GlideRoundTransform;
+import com.example.shiyuankeji.utils.NoDoubleClickListener;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -25,8 +30,8 @@ public class ExchangeActivity extends Activity {
     ImageView imAdd;
     @BindView(R.id.im_jian)
     ImageView imMinus;
-    @BindView(R.id.btn_exchang)
-    Button btnExchang;
+//    @BindView(R.id.btn_exchang)
+//    Button btnExchang;
     @BindView(R.id.textv_price)
     TextView textPrice;
     @BindView(R.id.im_styling)
@@ -46,6 +51,7 @@ public class ExchangeActivity extends Activity {
     private String im_g;
     private String imgs;
     private int stock;
+    private Button btnExchang;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,15 +78,39 @@ public class ExchangeActivity extends Activity {
         buynums = intent.getIntExtra("buynums", 0); //限购数量
         //库存数量
         stock = intent.getIntExtra("stock_", 0);
-
-        Glide.with(this).load(imgs).into(imStyling);
+        RequestOptions options = new RequestOptions()
+                .centerCrop()
+                .placeholder(R.drawable.no_banner) //预加载图片
+                .error(R.drawable.no_banner) //加载失败图片
+                .priority(Priority.HIGH) //优先级
+                .diskCacheStrategy(DiskCacheStrategy.NONE) //缓存
+                .transform(new GlideRoundTransform(3)); //圆角
+        Glide.with(this).load(imgs).apply(options).into(imStyling);
         //初始化兑换数量 1
         tvShu.setText("兑换数量：" + String.valueOf(Constant.DYNAMIC_DIGITAL));
         textShuRAM.setText(String.valueOf(Constant.DYNAMIC_DIGITAL));
         textPrice.setText(price + "积分");//价格
+
+        initFindViewById();
+
     }
 
-    @OnClick({R.id.cancel, R.id.btn_exchang, R.id.im_jian, R.id.im_add})
+    private void initFindViewById() {
+        btnExchang = findViewById(R.id.btn_exchang);
+        btnExchang.setOnClickListener(new NoDoubleClickListener() {
+            @Override
+            protected void onNoDoubleClick(View v) {
+                Intent intent = new Intent(ExchangeActivity.this, Submit0rdersActivity.class);
+                intent.putExtra("type_id", ids);//id
+                intent.putExtra("num", Constant.DYNAMIC_DIGITAL); // 交易数量
+                startActivity(intent);
+                finish();
+            }
+        });
+
+    }
+
+    @OnClick({R.id.cancel, R.id.im_jian, R.id.im_add})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.cancel:
@@ -112,13 +142,7 @@ public class ExchangeActivity extends Activity {
 
                 }
                 break;
-            case R.id.btn_exchang:
-                Intent intent = new Intent(ExchangeActivity.this, Submit0rdersActivity.class);
-                intent.putExtra("type_id", ids);//id
-                intent.putExtra("num", Constant.DYNAMIC_DIGITAL); // 交易数量
-                startActivity(intent);
-                finish();
-                break;
+
         }
     }
 }

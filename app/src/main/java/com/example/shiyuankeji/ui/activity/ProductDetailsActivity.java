@@ -4,8 +4,14 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Paint;
+import android.os.Build;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
+import android.webkit.CookieManager;
+import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -18,6 +24,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.example.shiyuankeji.MainActivity;
 import com.example.shiyuankeji.R;
+import com.example.shiyuankeji.adapter.WebStringAdapter;
 import com.example.shiyuankeji.app.Constant;
 import com.example.shiyuankeji.app.MyApp;
 import com.example.shiyuankeji.base.BaseActivity;
@@ -26,23 +33,26 @@ import com.example.shiyuankeji.interfaces.IBasePresenter;
 import com.example.shiyuankeji.interfaces.contract.ProductDetailsContract;
 import com.example.shiyuankeji.presenter.ProductDetailsPresenter;
 import com.example.shiyuankeji.ui.activity.login.LoginActivity;
+import com.example.shiyuankeji.utils.NoDoubleClickListener;
 import com.example.shiyuankeji.utils.SharedPreferencesUtil;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 
 //toItemsDetail idsa
-public class ProductDetailsActivity extends BaseActivity implements ProductDetailsContract.View {
-    @BindView(R.id.lin_home)
-    LinearLayout linHome;
-    @BindView(R.id.lin_classfy)
-    LinearLayout linClassfy;
-    @BindView(R.id.btn_exchang)
-    Button btnExchang;
-    @BindView(R.id.im_beak)
-    ImageView imBeak;
+public class ProductDetailsActivity extends BaseActivity implements ProductDetailsContract.View, View.OnClickListener {
+    private static final String TAG = "stringtimp";
+//    @BindView(R.id.lin_home)
+//    LinearLayout linHome;
+//    @BindView(R.id.lin_classfy)
+//    LinearLayout linClassfy;
+//    @BindView(R.id.btn_exchang)
+//    ImageView btnExchang;
+//    @BindView(R.id.im_beak)
+//    ImageView imBeak;
     @BindView(R.id.tv_old_price)
     TextView tvOldIntegral;
     @BindView(R.id.im_head)
@@ -56,10 +66,11 @@ public class ProductDetailsActivity extends BaseActivity implements ProductDetai
     TextView tvFreight;
     @BindView(R.id.tv_stock)
     TextView tvStock;
-    @BindView(R.id.web_xiang)
-    WebView webview;
-    @BindView(R.id.lin_call_center)
-    LinearLayout linCallCenter;
+
+//    @BindView(R.id.lin_call_center)
+//    LinearLayout linCallCenter;
+    @BindView(R.id.relat_string)
+    RecyclerView  reatString;
 
     private String ids;
     private ArrayList<StringBuffer> ims;
@@ -69,6 +80,13 @@ public class ProductDetailsActivity extends BaseActivity implements ProductDetai
     private int idsa;
     private int freight;
     private int stock;
+    private ArrayList<String> strings;
+    private WebStringAdapter webStringAdapter;
+    private LinearLayout linHome;
+    private LinearLayout linClassfy;
+    private ImageView btnExchang;
+    private ImageView imBeak;
+    private LinearLayout linCallCenter;
     //   @BindView(R.id.tv_old_integral)
 //    TextView imBeak;
 
@@ -84,8 +102,64 @@ public class ProductDetailsActivity extends BaseActivity implements ProductDetai
 
     @Override
     protected void initView() {
+
+        reatString.setHasFixedSize(true);
+        reatString.setNestedScrollingEnabled(false);
         ids = getIntent().getStringExtra("idsa");
         tvOldIntegral.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG); //中间横线
+
+        initFindviewById();
+
+    }
+
+    private void initFindviewById() {
+        linHome = findViewById(R.id.lin_home);
+        linClassfy = findViewById(R.id.lin_classfy);
+        btnExchang = findViewById(R.id.btn_exchang);
+        imBeak = findViewById(R.id.im_beak);
+        linCallCenter = findViewById(R.id.lin_call_center);
+        linHome.setOnClickListener(new NoDoubleClickListener() {
+            @Override
+            protected void onNoDoubleClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(context, MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);//设置栈顶模式
+                intent.putExtra("id", Constant.ONE_TYPE_1);
+                startActivityForResult(intent, Constant.ONE_TYPE_1);
+                finish();
+            }
+        });
+        linClassfy.setOnClickListener(new NoDoubleClickListener() {
+            @Override
+            protected void onNoDoubleClick(View v) {
+                Intent intent1 = new Intent();
+                intent1.setClass(context, MainActivity.class);
+                intent1.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent1.putExtra("id", Constant.TWO_TYPE_2);
+                startActivityForResult(intent1, Constant.TWO_TYPE_2);
+                finish();
+            }
+        });
+        btnExchang.setOnClickListener(new NoDoubleClickListener() {
+            @Override
+            protected void onNoDoubleClick(View v) {
+                //                countDown();//我的模块登录状态初始化处理（判断是否登录） 带秒数的
+                StateHandling();//我的模块登录状态初始化处理（判断是否登录） 不带秒数的
+
+            }
+        });
+        imBeak.setOnClickListener(new NoDoubleClickListener() {
+            @Override
+            protected void onNoDoubleClick(View v) {
+                finish();
+            }
+        });
+        linCallCenter.setOnClickListener(new NoDoubleClickListener() {
+            @Override
+            protected void onNoDoubleClick(View v) {
+                startActivity(new Intent(context, WebCallCenterActivity.class));
+            }
+        });
     }
 
     @Override
@@ -95,38 +169,44 @@ public class ProductDetailsActivity extends BaseActivity implements ProductDetai
     }
 
 
-    @OnClick({R.id.lin_home, R.id.lin_classfy, R.id.btn_exchang, R.id.im_beak, R.id.lin_call_center})
-    public void onViewClicked(View view) {
-        switch (view.getId()) {
-            case R.id.lin_home: //TODO 这里是跳转到 mainActivity的 HomeFragment(首页)
-                Intent intent = new Intent();
-                intent.setClass(context, MainActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);//设置栈顶模式
-                intent.putExtra("id", Constant.ONE_TYPE_1);
-                startActivityForResult(intent, Constant.ONE_TYPE_1);
-                finish();
-                break;
-            case R.id.lin_classfy://TODO 这里是跳转到 mainActivity的 ClassfyFragment（分类）
-                Intent intent1 = new Intent();
-                intent1.setClass(context, MainActivity.class);
-                intent1.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent1.putExtra("id", Constant.TWO_TYPE_2);
-                startActivityForResult(intent1, Constant.TWO_TYPE_2);
-                finish();
-                break;
-            case R.id.btn_exchang:
-//                countDown();//我的模块登录状态初始化处理（判断是否登录） 带秒数的
-                StateHandling();//我的模块登录状态初始化处理（判断是否登录） 不带秒数的
-
-                break;
-            case R.id.im_beak:
-                finish();
-                break;
-            case R.id.lin_call_center: //客服
-                startActivity(new Intent(context, WebCallCenterActivity.class));
-                break;
-        }
-    }
+//    @OnClick({R.id.lin_home, R.id.lin_classfy, R.id.btn_exchang, R.id.im_beak, R.id.lin_call_center})
+//    public void onViewClicked(View view) {
+//        view.setOnClickListener(new NoDoubleClickListener() {
+//            @Override
+//            protected void onNoDoubleClick(View v) {
+//                switch (v.getId()) {
+//                    case R.id.lin_home: //TODO 这里是跳转到 mainActivity的 HomeFragment(首页)
+//                        Intent intent = new Intent();
+//                        intent.setClass(context, MainActivity.class);
+//                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);//设置栈顶模式
+//                        intent.putExtra("id", Constant.ONE_TYPE_1);
+//                        startActivityForResult(intent, Constant.ONE_TYPE_1);
+//                        finish();
+//                        break;
+//                    case R.id.lin_classfy://TODO 这里是跳转到 mainActivity的 ClassfyFragment（分类）
+//                        Intent intent1 = new Intent();
+//                        intent1.setClass(context, MainActivity.class);
+//                        intent1.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+//                        intent1.putExtra("id", Constant.TWO_TYPE_2);
+//                        startActivityForResult(intent1, Constant.TWO_TYPE_2);
+//                        finish();
+//                        break;
+//                    case R.id.btn_exchang:
+////                countDown();//我的模块登录状态初始化处理（判断是否登录） 带秒数的
+//                        StateHandling();//我的模块登录状态初始化处理（判断是否登录） 不带秒数的
+//
+//                        break;
+//                    case R.id.im_beak:
+//                        finish();
+//                        break;
+//                    case R.id.lin_call_center: //客服
+//                        startActivity(new Intent(context, WebCallCenterActivity.class));
+//                        break;
+//                }
+//            }
+//        });
+//
+//    }
 
     //    /**
 //     * 倒计时显示
@@ -215,59 +295,158 @@ public class ProductDetailsActivity extends BaseActivity implements ProductDetai
         tvStock.setText("库存：" + String.valueOf(stock));
 
 
-//        xiangqing(result); // TODO 详情 ？？？
-        newxingqing(sulimg);
+//        xiangqing(sulimg); // TODO 详情 ？？？
+//        newxingqing(sulimg);
+        stringtemp(sulimg);
     }
 
-    private void newxingqing(String sulimg) {
-        //webview图片自适应。
-        WebSettings webSettings = webview.getSettings();
-        webSettings.setJavaScriptEnabled(true);
-        webSettings.setJavaScriptCanOpenWindowsAutomatically(true);
-        webSettings.setUseWideViewPort(true);//关键点
-        webSettings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
-        webSettings.setDisplayZoomControls(false);
-        webSettings.setAllowFileAccess(true); // 允许访问文件
-        webSettings.setBuiltInZoomControls(true); // 设置显示缩放按钮
-        webSettings.setSupportZoom(true); // 支持缩放
-        webSettings.setLoadWithOverviewMode(true);
-        webview.onResume();
-        webview.setWebViewClient(new WebViewClient() {
-            @Override
-            public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                return super.shouldOverrideUrlLoading(view, url);
-            }
-        });
-        webview.loadUrl(sulimg);
-//        webview.setWebViewClient(new WebViewClient());
-    }
+    private void stringtemp(String sulimg) {
+        strings = new ArrayList<>();
+        reatString.setLayoutManager(new LinearLayoutManager(context));
+        webStringAdapter = new WebStringAdapter(strings);
+        reatString.setAdapter(webStringAdapter);
+        String[] temp;
+        String delimeter = ",";
+        temp = sulimg.split(delimeter);
+        for (int i = 0; i < temp.length; i++) {
 
-    private void xiangqing(ProductDetailsBean result) {
-
-        String im = result.getImgs();
-
-        StringBuffer sb = new StringBuffer();
-//        以>对数据进行切割 返回一个字符串数组
-        String[] split = im.split(",");
-
-        for (int i = 0; i < split.length; i++) {
-//            用<img src=“http:  来替换<img src=”
-//            这里的\是为了保留当前的“
-            String replace = split[i].replace("<img src=\"", "<img src=\"https:");
-            //拼接
-            sb.append(replace + " ");
-
+            Log.d(TAG, "onCreate: "+temp[i]);
+            String s = temp.toString();
+            strings.addAll(Collections.singleton(temp[i]));
         }
-        //转成字符串
-        String s = sb.toString();
-        ArrayList<String> listimage = new ArrayList<>();
-        listimage.add(s);
+        webStringAdapter.notifyDataSetChanged();
 
     }
+
+//    private void newxingqing(String urlsulimg) {
+//
+//
+//        WebSettings settings = webview.getSettings();
+//        // 设置WebView支持JavaScript
+//        settings.setJavaScriptEnabled(true);
+//        //支持自动适配
+//        settings.setUseWideViewPort(true);
+//        settings.setLoadWithOverviewMode(true);
+//        settings.setSupportZoom(true);  //支持放大缩小
+//        settings.setBuiltInZoomControls(true); //显示缩放按钮
+//        settings.setBlockNetworkImage(true);// 把图片加载放在最后来加载渲染
+//        settings.setAllowFileAccess(true); // 允许访问文件
+//        settings.setSaveFormData(true);
+//        settings.setGeolocationEnabled(true);
+//        settings.setDomStorageEnabled(true);
+//        settings.setJavaScriptCanOpenWindowsAutomatically(true);/// 支持通过JS打开新窗口
+//        settings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.NARROW_COLUMNS);
+//        settings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
+//        //设置不让其跳转浏览器
+//        webview.setWebViewClient(new WebViewClient() {
+//            @Override
+//            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+//                return false;
+//            }
+//        });
+//
+//        // 添加客户端支持
+//        webview.setWebChromeClient(new WebChromeClient());
+////        mWebView.loadUrl(TEXTURL);
+//
+//        //不加这个图片显示不出来
+//        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP) {
+//            webview.getSettings().setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
+//        }
+//        webview.getSettings().setBlockNetworkImage(false);
+//
+////允许cookie 不然有的网站无法登陆
+//        CookieManager mCookieManager = CookieManager.getInstance();
+//        mCookieManager.setAcceptCookie(true);
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+//            mCookieManager.setAcceptThirdPartyCookies(webview, true);
+//        }
+//
+//        webview.loadUrl(urlsulimg);
+//
+//        //-------------------------
+////        webview.getSettings()
+////                .setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
+////
+////        webview.getSettings().setLoadWithOverviewMode(true);
+////        // 支持javascript
+////        webview.getSettings().setJavaScriptEnabled(true);
+////        webview.getSettings().setUseWideViewPort(true);
+////        webview.getSettings().setLoadWithOverviewMode(true);
+////        webview.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
+////        // 设置可以支持缩放
+////        webview.getSettings().setSupportZoom(false);
+////        webview.getSettings().setUseWideViewPort(true);
+////        webview.getSettings().setAllowFileAccess(true); // 允许访问文件
+////        // 设置出现缩放工具
+////        webview.getSettings().setBuiltInZoomControls(false);
+////        // 扩大比例的缩放
+////        webview.getSettings().setUseWideViewPort(false);
+////        webview.getSettings().setDefaultTextEncodingName("UTF-8");
+////        webview.getSettings().setLoadsImagesAutomatically(true);  //支持自动加载图片
+////        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+////            webview.getSettings().setMediaPlaybackRequiresUserGesture(false);
+////        }
+////webview.loadUrl(sulimg);
+//        //---------------------------------
+//        //webview图片自适应。
+////        WebSettings webSettings = webview.getSettings();
+////        webSettings.setJavaScriptEnabled(true);
+////        webSettings.setJavaScriptCanOpenWindowsAutomatically(true);
+////        webSettings.setUseWideViewPort(true);//关键点
+////        webSettings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
+////        webSettings.setDisplayZoomControls(false);
+////        webSettings.setAllowFileAccess(true); // 允许访问文件
+////        webSettings.setBuiltInZoomControls(true); // 设置显示缩放按钮
+////        webSettings.setSupportZoom(true); // 支持缩放
+////        webSettings.setLoadWithOverviewMode(true);
+////        webview.onResume();
+////        webview.setWebViewClient(new WebViewClient() {
+////            @Override
+////            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+////                return super.shouldOverrideUrlLoading(view, url);
+////            }
+////        });
+////        webview.loadUrl(urlsulimg);
+//////        webview.setWebViewClient(new WebViewClient());
+//
+//    }
+
+//    private void xiangqing(String result) {
+//
+//
+//
+//        StringBuffer sb = new StringBuffer();
+////        以>对数据进行切割 返回一个字符串数组
+//        String[] split = result.split(",");
+//
+//        for (int i = 0; i < split.length; i++) {
+////            用<img src=“http:  来替换<img src=”
+////            这里的\是为了保留当前的“
+//            String replace = split[i].replace("<img src=\"", "<img src=\"https:");
+//            //拼接
+//            sb.append(replace + " ");
+//
+//        }
+//        //转成字符串
+//        String s = sb.toString();
+//        ArrayList<String> listimage = new ArrayList<>();
+//        listimage.add(s);
+//
+//    }
 
     private void failedings() {
         Toast.makeText(context, "商品详情请求失败", Toast.LENGTH_SHORT).show();
     }
 
 
+    @Override
+    public void onClick(View v) {
+        v.setOnClickListener(new NoDoubleClickListener() {
+            @Override
+            protected void onNoDoubleClick(View v) {
+
+            }
+        });
+    }
 }

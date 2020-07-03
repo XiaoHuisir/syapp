@@ -36,7 +36,7 @@
                 android:layout_alignParentTop="true"
                 android:layout_alignParentRight="true"
                 android:layout_marginLeft="@dimen/dp_13"
-                android:layout_marginTop="@dimen/dp_31"
+                android:layout_marginTop="@dimen/dp_37"
                 android:layout_marginRight="@dimen/dp_13"
                 android:background="@mipmap/search_kuang"
                 android:orientation="horizontal">

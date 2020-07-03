@@ -4,13 +4,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/newnew_newbg"
     tools:context=".ui.activity.MyScanCodeActivity">
 
     <RelativeLayout
         android:id="@+id/rl_web_top"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:background="@color/swiperefresh_color1">
+        android:layout_marginTop="@dimen/dp_32"
+        android:background="@color/tou_ming">
 
         <!--<TextView-->
         <!--android:id="@+id/nav_title"-->

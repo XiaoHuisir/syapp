@@ -6,160 +6,190 @@
     android:background="@color/new_bag"
     tools:context=".ui.activity.ProductDetailsActivity">
 
-    <LinearLayout
-        android:id="@+id/lin_1"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_48"
-        android:layout_alignParentTop="true"
-        android:background="#1B82D2"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
+    <!--<LinearLayout-->
+    <!--android:id="@+id/lin_1"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="@dimen/dp_48"-->
+    <!--android:layout_alignParentTop="true"-->
+    <!--android:background="#1B82D2"-->
+    <!--android:gravity="center_vertical"-->
+    <!--android:orientation="horizontal">-->
 
-        <ImageView
-            android:id="@+id/im_beak"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginLeft="16dp"
-            android:src="@mipmap/back_hite" />
-    </LinearLayout>
+    <!--<ImageView-->
+    <!--android:id="@+id/im_beak"-->
+    <!--android:layout_width="30dp"-->
+    <!--android:layout_height="30dp"-->
+    <!--android:layout_marginLeft="16dp"-->
+    <!--android:src="@mipmap/back_hite" />-->
+    <!--</LinearLayout>-->
 
     <LinearLayout
         android:id="@+id/lin_2"
-        android:background="@color/new_bag"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/lin_1"
-        android:layout_marginBottom="61dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="53dp"
+        android:background="@color/new_bag"
         android:orientation="vertical">
 
         <ScrollView
             android:layout_width="match_parent"
-            android:scrollbars="none"
-
             android:layout_height="match_parent"
-            android:background="@color/new_bag">
+            android:background="@color/new_bag"
+            android:scrollbars="none">
 
             <LinearLayout
-                android:background="@color/new_bag"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/newnew_newbg"
                 android:orientation="vertical">
 
                 <ImageView
                     android:id="@+id/im_head"
                     android:layout_width="match_parent"
-                    android:layout_height="260dp"
+                    android:layout_height="360dp"
                     android:scaleType="centerCrop"
-                    android:src="@mipmap/p20" />
+                    android:src="@drawable/no_banner" />
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="66dp"
-                    android:background="@color/white">
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:paddingBottom="@dimen/dp_13">
 
-                    <TextView
-                        android:id="@+id/tv_telet"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentTop="true"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginTop="2dp"
-                        android:text="识缘手机 K10 5G"
-                        android:textColor="#151515"
-                        android:textSize="14sp" />
 
                     <TextView
                         android:id="@+id/tv_price"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/tv_telet"
                         android:layout_alignParentLeft="true"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginTop="2dp"
+                        android:layout_marginLeft="13dp"
+                        android:layout_marginTop="13dp"
                         android:text="9966积分"
-                        android:textColor="#E02E24"
-                        android:textSize="16sp" />
+                        android:textColor="#fd5002"
+                        android:textSize="20sp" />
 
                     <TextView
                         android:id="@+id/tv_old_price"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/tv_telet"
-                        android:layout_marginLeft="4dp"
-                        android:layout_marginTop="4dp"
+                        android:layout_alignBottom="@+id/tv_price"
+                        android:layout_marginLeft="14dp"
                         android:layout_toRightOf="@id/tv_price"
                         android:text="6666"
-                        android:textColor="#9c9c9c" />
-                </RelativeLayout>
+                        android:layout_marginBottom="@dimen/dp_2"
+                        android:textColor="#aaaaaa"
+                        android:textSize="@dimen/sp_15" />
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/dp_1" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="33dp"
-                    android:background="@color/white"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/tv_telet"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tv_price"
+                        android:layout_marginLeft="13dp"
+                        android:layout_marginTop="@dimen/dp_10"
+                        android:text="识缘手机 K10 5G"
+                        android:textColor="#151515"
+                        android:textSize="14sp" />
 
                     <TextView
                         android:id="@+id/tv_freight"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="16dp"
+                        android:layout_below="@+id/tv_telet"
+                        android:layout_marginLeft="13dp"
+                        android:layout_marginTop="@dimen/sp_13"
                         android:text="运费：10积分"
-                        android:textColor="#585858"
+                        android:textColor="#6f6f6f"
                         android:textSize="10sp" />
 
                     <TextView
                         android:id="@+id/tv_stock"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_alignBottom="@+id/tv_freight"
+                        android:layout_alignParentRight="true"
                         android:layout_marginLeft="16dp"
+                        android:layout_marginRight="@dimen/dp_13"
                         android:text="库存：20"
-                        android:textColor="#585858"
+                        android:textColor="#6f6f6f"
                         android:textSize="10sp" />
-                </LinearLayout>
+                </RelativeLayout>
+
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_marginTop="6dp"
-                    android:background="@color/white"
-                    android:gravity="center_vertical"
+                    android:layout_height="@dimen/dp_30"
+                    android:background="@color/tou_ming"
+                    android:gravity="center"
                     android:orientation="horizontal">
+
+                    <View
+                        android:layout_width="@dimen/dp_50"
+                        android:layout_height="@dimen/dp_1"
+                        android:background="#a0a0a0" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="16dp"
                         android:text="商品详情"
-                        android:textColor="#585858"
-                        android:textSize="14sp" />
+                        android:layout_marginLeft="@dimen/dp_6"
+                        android:layout_marginRight="@dimen/dp_6"
+                        android:textColor="#a0a0a0"
+                        android:textSize="10sp" />
+
+                    <View
+                        android:layout_width="@dimen/dp_50"
+                        android:layout_height="@dimen/dp_1"
+                        android:background="#a0a0a0" />
                 </LinearLayout>
 
-                <LinearLayout
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="@dimen/dp_6"
+                    android:layout_height="wrap_content"
+
                     android:background="@color/whites"
                     android:orientation="vertical">
 
 
-                    <WebView
-                        android:id="@+id/web_xiang"
+                    <!--<WebView-->
+                        <!--android:id="@+id/web_xiang"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content" />-->
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/relat_string"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-                </LinearLayout>
+                        android:layout_height="wrap_content"/>
+                </RelativeLayout>
             </LinearLayout>
         </ScrollView>
     </LinearLayout>
 
+    <!--<RelativeLayout-->
+    <!--android:layout_width="@dimen/dp_60"-->
+    <!--android:layout_height="@dimen/dp_60"-->
+    <!--android:layout_alignParentLeft="true"-->
+    <!--android:layout_alignParentTop="true"-->
+    <!--android:layout_marginLeft="@dimen/dp_13"-->
+    <!--android:layout_marginTop="@dimen/dp_45">-->
+
+    <ImageView
+        android:id="@+id/im_beak"
+        android:layout_width="@dimen/dp_35"
+        android:layout_height="@dimen/dp_35"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/dp_13"
+        android:layout_marginTop="@dimen/dp_45"
+        android:src="@mipmap/backxiang" />
+    <!--</RelativeLayout>-->
+
     <android.support.constraint.ConstraintLayout
         android:id="@+id/con_1"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="53dp"
         android:layout_alignParentBottom="true">
 
         <RelativeLayout
@@ -169,7 +199,7 @@
             android:orientation="horizontal">
 
             <LinearLayout
-                android:layout_width="218dp"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_alignParentTop="true"
                 android:layout_toLeftOf="@id/btn_exchang">
@@ -183,16 +213,17 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:src="@mipmap/home" />
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@mipmap/shouye" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="首页"
-                        android:textColor="#64505050"
-                        android:textSize="16sp" />
+                        android:layout_marginTop="@dimen/dp_4"
+                        android:textColor="@color/black"
+                        android:textSize="10sp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -204,16 +235,17 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:src="@mipmap/car" />
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@mipmap/fenlei" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="分类"
-                        android:textColor="#64505050"
-                        android:textSize="16sp" />
+                        android:layout_marginTop="@dimen/dp_4"
+                        android:textColor="@color/black"
+                        android:textSize="10sp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -225,31 +257,40 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:src="@drawable/man_01_none" />
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@mipmap/kefus" />
 
                     <TextView
                         android:id="@+id/tv_call_center"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="客服"
-                        android:textColor="#64505050"
-                        android:textSize="16sp" />
+                        android:layout_marginTop="@dimen/dp_4"
+                        android:textColor="@color/black"
+                        android:textSize="10sp" />
                 </LinearLayout>
             </LinearLayout>
-
-            <Button
+            <ImageView
                 android:id="@+id/btn_exchang"
-                android:layout_width="120dp"
-                android:layout_height="40dp"
+                android:layout_width="@dimen/dp_80"
+                android:src="@drawable/lijiduihuan"
                 android:layout_alignParentRight="true"
+                android:scaleType="centerCrop"
                 android:layout_centerVertical="true"
-                android:layout_marginRight="6dp"
-                android:background="#1B82D2"
-                android:text="立即兑换"
-                android:textColor="@color/white"
-                android:textSize="@dimen/sp_21" />
+                android:layout_marginRight="@dimen/dp_13"
+                android:layout_height="@dimen/dp_27" />
+            <!--<Button-->
+                <!--android:id="@+id/btn_exchang"-->
+                <!--android:layout_width="@dimen/dp_80"-->
+                <!--android:layout_height="@dimen/dp_27"-->
+                <!--android:layout_alignParentRight="true"-->
+                <!--android:layout_centerVertical="true"-->
+                <!--android:layout_marginRight="@dimen/dp_13"-->
+                <!--android:background="@drawable/btn_blue"-->
+                <!--android:text="立即兑换"-->
+                <!--android:textColor="@color/white"-->
+                <!--android:textSize="@dimen/sp_13" />-->
         </RelativeLayout>
     </android.support.constraint.ConstraintLayout>
 </RelativeLayout>

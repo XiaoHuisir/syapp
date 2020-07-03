@@ -2,9 +2,11 @@ package com.example.shiyuankeji.ui.activity.login;
 
 
 import android.content.Intent;
+import android.support.v7.widget.CardView;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,6 +22,8 @@ import com.example.shiyuankeji.interfaces.contract.RegisterContract;
 import com.example.shiyuankeji.presenter.QueryTabPresenter;
 import com.example.shiyuankeji.presenter.register.RegisterPresenter;
 import com.example.shiyuankeji.ui.activity.VerifyAccountActivity;
+import com.example.shiyuankeji.utils.CardUtils;
+import com.example.shiyuankeji.utils.NoDoubleClickListener;
 import com.example.shiyuankeji.utils.SharedPreferencesUtil;
 import com.example.shiyuankeji.utils.ToastUtil;
 import com.example.shiyuankeji.utils.Validator;
@@ -35,20 +39,22 @@ public class RegisterActivity extends BaseActivity implements RegisterContract.V
     EditText edReUserpho;
     @BindView(R.id.ed_re_pwd)
     EditText edRePwd;
-    @BindView(R.id.lin_register)
-    LinearLayout linRegister;
+    //    @BindView(R.id.lin_register)
+//    LinearLayout linRegister;
     @BindView(R.id.linshow)
     LinearLayout linshows;
     @BindView(R.id.lins_break)
-    LinearLayout linsBreak;
+    ImageView linsBreak;
     @BindView(R.id.tv_pwd01)
     TextView tvPwd01;
-    @BindView(R.id.tv_show)
-    TextView tvShow;
+    //    @BindView(R.id.tv_show)
+//    TextView tvShow;
     @BindView(R.id.ed_name)
     EditText edName;
     @BindView(R.id.getMsgCodeTv)
     TextView getmsgCodeTv;
+    @BindView(R.id.re_shuru1)
+    CardView cardShou;
     private MyThread myThread;
     private int time = 0;  //限制注册次数
     private boolean indxler = false;
@@ -56,7 +62,9 @@ public class RegisterActivity extends BaseActivity implements RegisterContract.V
     private String pwd = "";
     private int type_;
     public static boolean sending = false;
-    private String edname="";
+    private String edname = "";
+    private LinearLayout linRegister;
+    private TextView tvShow;
 
     @Override
     protected IBasePresenter getPresenter() {
@@ -70,55 +78,23 @@ public class RegisterActivity extends BaseActivity implements RegisterContract.V
 
     @Override
     protected void initView() {
+        CardUtils.setCardShadowColor(cardShou, getResources().getColor(R.color.newnew_bg), getResources().getColor(R.color.newnew_bg));
+//        CardUtils.init();
         type_ = getIntent().getIntExtra("type_", 0);
         tvPwd01.setVisibility(View.VISIBLE);
         tvPwd01.setText("请输入最少6位最多12位的数字加字母组合的密码");
+        initFindViewById();
     }
 
-    @Override
-    protected void initData() {
-    }
-
-    @OnClick({R.id.lin_register, R.id.tv_show, R.id.lins_break,R.id.getMsgCodeTv})
-    public void onViewClicked(View view) {
-        Intent intent = new Intent();
-        switch (view.getId()) {
-            case R.id.getMsgCodeTv: //验证码
-                if (edReUserpho.getText().length() == 0) {
-                    ToastUtil toastUtil2 = new ToastUtil(context, R.layout.toast_center_horizontal, "请输入正确手机号！");
-                    toastUtil2.show();
-                    return;
-                }
-                if (!NetUtil.checkNet(context)) {
-                    ToastUtil toastUtil2 = new ToastUtil(context, R.layout.toast_center_horizontal, "当前网络不可用,请检查网络设置！");
-                    toastUtil2.show();
-                    return;
-                }
-                if (!sending) {
-                    ProgressDialogShowUtil.showProgressDialog(context, "正在请求");
-                    initSDK();
-                    getSMSCode();
-                }
-                break;
-            case R.id.lins_break:
-                intent.setClass(context, LoginActivity.class);
-                intent.putExtra("uname_", "");
-                intent.putExtra("pawd_", "");
-                setResult(type_, intent);
-                finish();
-                break;
-            case R.id.tv_show: //去登陆
-                intent.setClass(context, LoginActivity.class);
-                intent.putExtra("uname_", "");
-                intent.putExtra("pawd_", "");
-                setResult(type_, intent);
-                finish();
-                break;
-            case R.id.lin_register:  //注册按钮
+    private void initFindViewById() {
+        linRegister = findViewById(R.id.lin_register);
+        linRegister.setOnClickListener(new NoDoubleClickListener() { //注册按钮
+            @Override
+            protected void onNoDoubleClick(View v) {
                 userpho = edReUserpho.getText().toString();
                 pwd = edRePwd.getText().toString();
                 edname = edName.getText().toString();//验证码
-                if (TextUtils.isEmpty(userpho) && TextUtils.isEmpty(pwd)&&TextUtils.isEmpty(edname)) {
+                if (TextUtils.isEmpty(userpho) && TextUtils.isEmpty(pwd) && TextUtils.isEmpty(edname)) {
                     Toast.makeText(context, "手机号、密码和验证码不能为空！", Toast.LENGTH_SHORT).show();
                     tvPwd01.setText("手机号、密码和验证码不能为空！");
                     return;
@@ -150,7 +126,7 @@ public class RegisterActivity extends BaseActivity implements RegisterContract.V
                     toastUtil2.show();
                     return;
                 }
-                if (Validator.shuziss(pwd)==true){
+                if (Validator.shuziss(pwd) == true) {
                     tvPwd01.setText("请输入最少6位最多12位的数字加字母组合的密码");
                     ToastUtil toastUtil2 = new ToastUtil(context, R.layout.toast_center_horizontal, "请输入最少6位最多12位的数字加字母组合的密码");
                     toastUtil2.show();
@@ -158,19 +134,128 @@ public class RegisterActivity extends BaseActivity implements RegisterContract.V
                 }
 
 
-                if (!TextUtils.isEmpty(userpho) && !TextUtils.isEmpty(pwd) &&!TextUtils.isEmpty(edname)&&
+                if (!TextUtils.isEmpty(userpho) && !TextUtils.isEmpty(pwd) && !TextUtils.isEmpty(edname) &&
                         Validator.isMobile(userpho) == true && Validator.isPwd(pwd) == true) {
                     Toast.makeText(context, "走注册！", Toast.LENGTH_SHORT).show();
                     tvPwd01.setVisibility(View.GONE);
-                    ((RegisterPresenter) mPresenter).registers(userpho,edname, pwd);
+                    ((RegisterPresenter) mPresenter).registers(userpho, edname, pwd);
+                }
+            }
+        });
+        tvShow = findViewById(R.id.tv_show);
+        tvShow.setOnClickListener(new NoDoubleClickListener() { //去登陆
+            @Override
+            protected void onNoDoubleClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(context, LoginActivity.class);
+                intent.putExtra("uname_", "");
+                intent.putExtra("pawd_", "");
+                setResult(type_, intent);
+                finish();
+            }
+        });
+    }
+
+    @Override
+    protected void initData() {
+
+
+    }
+
+    @OnClick({R.id.lins_break, R.id.getMsgCodeTv})
+    public void onViewClicked(View view) {
+        Intent intent = new Intent();
+        switch (view.getId()) {
+            case R.id.getMsgCodeTv: //验证码
+                if (edReUserpho.getText().length() == 0) {
+                    ToastUtil toastUtil2 = new ToastUtil(context, R.layout.toast_center_horizontal, "请输入正确手机号！");
+                    toastUtil2.show();
+                    return;
+                }
+                if (!NetUtil.checkNet(context)) {
+                    ToastUtil toastUtil2 = new ToastUtil(context, R.layout.toast_center_horizontal, "当前网络不可用,请检查网络设置！");
+                    toastUtil2.show();
+                    return;
+                }
+                if (!sending) {
+                    ProgressDialogShowUtil.showProgressDialog(context, "正在请求");
+                    initSDK();
+                    getSMSCode();
                 }
                 break;
+            case R.id.lins_break:
+                intent.setClass(context, LoginActivity.class);
+                intent.putExtra("uname_", "");
+                intent.putExtra("pawd_", "");
+                setResult(type_, intent);
+                finish();
+                break;
+//            case R.id.tv_show: //去登陆
+//                intent.setClass(context, LoginActivity.class);
+//                intent.putExtra("uname_", "");
+//                intent.putExtra("pawd_", "");
+//                setResult(type_, intent);
+//                finish();
+//                break;
+//            case R.id.lin_register:  //注册按钮
+//                userpho = edReUserpho.getText().toString();
+//                pwd = edRePwd.getText().toString();
+//                edname = edName.getText().toString();//验证码
+//                if (TextUtils.isEmpty(userpho) && TextUtils.isEmpty(pwd)&&TextUtils.isEmpty(edname)) {
+//                    Toast.makeText(context, "手机号、密码和验证码不能为空！", Toast.LENGTH_SHORT).show();
+//                    tvPwd01.setText("手机号、密码和验证码不能为空！");
+//                    return;
+//                }
+//                if (!TextUtils.isEmpty(userpho) && TextUtils.isEmpty(pwd)) {
+//                    tvPwd01.setVisibility(View.VISIBLE);
+//                    tvPwd01.setText("请输入密码");
+//                    return;
+//                }
+//                if (TextUtils.isEmpty(userpho) && !TextUtils.isEmpty(pwd)) {
+//                    tvPwd01.setVisibility(View.VISIBLE);
+//                    tvPwd01.setText("请输入手机号");
+//                    return;
+//                }
+//                if (Validator.isMobile(userpho) == false) {
+//                    tvPwd01.setVisibility(View.VISIBLE);
+//                    tvPwd01.setText("请输入正确的手机号！");
+//                    return;
+//                }
+//                if (Validator.isPwd(pwd) == false) {
+//                    tvPwd01.setText("请输入最少6位最多12位的数字加字母组合的密码");
+//                    ToastUtil toastUtil2 = new ToastUtil(context, R.layout.toast_center_horizontal, "请输入最少6位最多12位的数字加字母组合的密码");
+//                    toastUtil2.show();
+//                    return;
+//                }
+//                if (Validator.isMobile(userpho) == false || Validator.isPwd(pwd) == false) {
+//                    tvPwd01.setText("请输入最少6位最多12位的数字加字母组合的密码");
+//                    ToastUtil toastUtil2 = new ToastUtil(context, R.layout.toast_center_horizontal, "请输入最少6位最多12位的数字加字母组合的密码");
+//                    toastUtil2.show();
+//                    return;
+//                }
+//                if (Validator.shuziss(pwd)==true){
+//                    tvPwd01.setText("请输入最少6位最多12位的数字加字母组合的密码");
+//                    ToastUtil toastUtil2 = new ToastUtil(context, R.layout.toast_center_horizontal, "请输入最少6位最多12位的数字加字母组合的密码");
+//                    toastUtil2.show();
+//                    return;
+//                }
+//
+//
+//                if (!TextUtils.isEmpty(userpho) && !TextUtils.isEmpty(pwd) &&!TextUtils.isEmpty(edname)&&
+//                        Validator.isMobile(userpho) == true && Validator.isPwd(pwd) == true) {
+//                    Toast.makeText(context, "走注册！", Toast.LENGTH_SHORT).show();
+//                    tvPwd01.setVisibility(View.GONE);
+//                    ((RegisterPresenter) mPresenter).registers(userpho,edname, pwd);
+//                }
+//                break;
         }
     }
+
     private void timerTv() {
         myThread = new MyThread();
         myThread.start();
     }
+
     private void initSDK() {
 //        // 初始化短信SDK
 //        EventHandler eventHandler = new EventHandler() {
@@ -209,6 +294,7 @@ public class RegisterActivity extends BaseActivity implements RegisterContract.V
 //            }
 //        }
     }
+
     private class MyThread extends Thread {
         @Override
         public void run() {
@@ -219,7 +305,9 @@ public class RegisterActivity extends BaseActivity implements RegisterContract.V
                     RegisterActivity.this.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            getmsgCodeTv.setText(finalI + "s");
+                            if (getmsgCodeTv != null) {
+                                getmsgCodeTv.setText(finalI + "s");
+                            }
                         }
                     });
                     try {
@@ -242,6 +330,7 @@ public class RegisterActivity extends BaseActivity implements RegisterContract.V
             }
         }
     }
+
     @Override
     public void registerRean(AddUserBean addUserBean) {
         if (addUserBean != null) {
@@ -249,9 +338,9 @@ public class RegisterActivity extends BaseActivity implements RegisterContract.V
             if (status == 200) {
                 tvShow.setVisibility(View.INVISIBLE);
                 String tokens = addUserBean.getData().getToken();
-                SharedPreferencesUtil.addUserToken(context,tokens);// 添加保存token TODO
+                SharedPreferencesUtil.addUserToken(context, tokens);// 添加保存token TODO
                 Constant.token = tokens;
-                ToastUtil toastUtil2 = new ToastUtil(context, R.layout.ok_toast_center_horizontal,"注册成功！" );
+                ToastUtil toastUtil2 = new ToastUtil(context, R.layout.ok_toast_center_horizontal, "注册成功！");
                 toastUtil2.show();
 //                if (!tokens.equals("")){
 //                Intent intent = new Intent();
@@ -285,7 +374,7 @@ public class RegisterActivity extends BaseActivity implements RegisterContract.V
                 return;
 //                new ToastUtil(context, R.layout.toast_center_horizontal, smsSendBean.getErrorMsg()).show();
             }
-        }else {
+        } else {
             return;
         }
     }
