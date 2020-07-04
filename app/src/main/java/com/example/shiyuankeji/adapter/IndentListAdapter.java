@@ -17,6 +17,7 @@ import com.example.shiyuankeji.R;
 import com.example.shiyuankeji.app.Constant;
 import com.example.shiyuankeji.bean.NewIndentBean;
 import com.example.shiyuankeji.utils.GlideRoundTransform;
+import com.example.shiyuankeji.utils.NoDoubleClickListener;
 
 import java.util.ArrayList;
 
@@ -73,10 +74,10 @@ public class IndentListAdapter extends RecyclerView.Adapter<IndentListAdapter.Vi
 
 
 // 回调 跳转订单详情
-        viewHolder.mLinXiangqing.setTag(list.get(i));
-        viewHolder.mLinXiangqing.setOnClickListener(new View.OnClickListener() {
+        viewHolder.mLiBnt.setTag(list.get(i));
+        viewHolder.mLiBnt.setOnClickListener(new NoDoubleClickListener() {
             @Override
-            public void onClick(View v) {
+            protected void onNoDoubleClick(View v) {
                 NewIndentBean.OrderListListBean indentlist = (NewIndentBean.OrderListListBean) v.getTag();
                 itemClick.indentclick(indentlist);
             }

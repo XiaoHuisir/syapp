@@ -18,6 +18,7 @@ import com.example.shiyuankeji.interfaces.IBasePresenter;
 import com.example.shiyuankeji.interfaces.contract.SubmitListContract;
 import com.example.shiyuankeji.presenter.SubmitListPresenter;
 import com.example.shiyuankeji.utils.SharedPreferencesUtil;
+import com.example.shiyuankeji.utils.UtilsClicktime;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -104,6 +105,9 @@ public class SelectAddressActivity extends BaseActivity implements SubmitListCon
 //                finish();
 //                break;
             case R.id.tv_add_site:
+                if (UtilsClicktime.isFastDoubleClick()){
+                    return;
+                }
                 Intent intent = new Intent();
                 intent.setClass(context, AddressMessage.class);
                 Constant.CURTYPE = "添加";

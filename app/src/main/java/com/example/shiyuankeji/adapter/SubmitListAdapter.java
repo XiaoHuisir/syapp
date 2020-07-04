@@ -7,6 +7,7 @@ import android.widget.TextView;
 import com.example.shiyuankeji.R;
 import com.example.shiyuankeji.base.BaseAdapter;
 import com.example.shiyuankeji.bean.SubmitListBean;
+import com.example.shiyuankeji.utils.UtilsClicktime;
 
 import java.util.List;
 
@@ -48,6 +49,9 @@ public class SubmitListAdapter extends BaseAdapter {
        tvEditor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (UtilsClicktime.isFastDoubleClick()){
+                    return;
+                }
                 SubmitListBean.UserAddressLIstBean addresslist =(SubmitListBean.UserAddressLIstBean) v.getTag();
                 if (itemClick!=null){
                     itemClick.addressclick(addresslist);
@@ -67,6 +71,9 @@ public class SubmitListAdapter extends BaseAdapter {
         re_choose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (UtilsClicktime.isFastDoubleClick()){
+                    return;
+                }
                 SubmitListBean.UserAddressLIstBean submitorerslist =(SubmitListBean.UserAddressLIstBean) v.getTag();
                 if (submitordersClick!=null){
                     submitordersClick.Submit0rdersclick(submitorerslist);

@@ -15,6 +15,7 @@ import com.bumptech.glide.Glide;
 import com.example.shiyuankeji.R;
 import com.example.shiyuankeji.bean.ClassListBean;
 import com.example.shiyuankeji.ui.activity.ProductDetailsActivity;
+import com.example.shiyuankeji.utils.NoDoubleClickListener;
 
 import java.util.ArrayList;
 
@@ -46,9 +47,9 @@ public class ShowClassAdapter extends RecyclerView.Adapter<ShowClassAdapter.View
             viewHodler.mTvName.setText(listBean.getName());
             viewHodler.jian.setText(String.valueOf(listBean.getCode_price()));
             viewHodler.jian.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG); //中间横线
-            viewHodler.linearNew.setOnClickListener(new View.OnClickListener() {
+            viewHodler.linearNew.setOnClickListener(new NoDoubleClickListener() {
                 @Override
-                public void onClick(View v) {
+                protected void onNoDoubleClick(View v) {
                     int idsa = listBean.getIdsa();
                     Intent intent = new Intent();
                     intent.setClass(context, ProductDetailsActivity.class);
@@ -56,6 +57,9 @@ public class ShowClassAdapter extends RecyclerView.Adapter<ShowClassAdapter.View
                     context.startActivity(intent);
                 }
             });
+
+
+
         }
 
     }

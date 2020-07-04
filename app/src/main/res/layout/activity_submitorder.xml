@@ -368,8 +368,8 @@
             <CheckBox
                 android:id="@+id/wechat_check"
                 style="@style/CustomCheckBoxTheme"
-                android:layout_width="17dp"
-                android:layout_height="17dp"
+                android:layout_width="@dimen/dp_25"
+                android:layout_height="@dimen/dp_25"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="16dp"
                 android:clickable="false" />
@@ -407,8 +407,8 @@
             <CheckBox
                 android:id="@+id/ali_check"
                 style="@style/CustomCheckBoxTheme"
-                android:layout_width="17dp"
-                android:layout_height="17dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="16dp"
                 android:clickable="false" />
@@ -446,8 +446,8 @@
             <CheckBox
                 android:id="@+id/ali_ch"
                 style="@style/CustomCheckBoxTheme"
-                android:layout_width="17dp"
-                android:layout_height="17dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="16dp"
                 android:clickable="false" />

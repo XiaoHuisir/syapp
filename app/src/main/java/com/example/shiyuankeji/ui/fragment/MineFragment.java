@@ -3,7 +3,6 @@ package com.example.shiyuankeji.ui.fragment;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.CountDownTimer;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.text.TextUtils;
 import android.view.View;
@@ -33,6 +32,7 @@ import com.example.shiyuankeji.ui.activity.WebCallCenterActivity;
 import com.example.shiyuankeji.ui.activity.YieldActivity;
 import com.example.shiyuankeji.ui.activity.login.LoginActivity;
 import com.example.shiyuankeji.utils.SharedPreferencesUtil;
+import com.example.shiyuankeji.utils.UtilsClicktime;
 
 
 import butterknife.BindView;
@@ -111,8 +111,8 @@ public class MineFragment extends BaseFragment implements MineContract.View {
         //countDown();//我的模块登录状态初始化处理（判断是否登录） 带秒数的
         StateHandling();//我的模块登录状态初始化处理（判断是否登录） 不带秒数的
         refress();
-
     }
+
 
     private void refress() {
         swipeRefres.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -180,60 +180,96 @@ public class MineFragment extends BaseFragment implements MineContract.View {
         Intent intent03 = new Intent();
         switch (view.getId()) {
             case R.id.re_yield://我的收益
+                if (UtilsClicktime.isFastDoubleClick()){
+                    return;
+                }
                 intent03.setClass(context, YieldActivity.class);
                 startActivity(intent03);
                 break;
             case R.id.lin_synergic://合作组
+                if (UtilsClicktime.isFastDoubleClick()){
+                    return;
+                }
                 intent03.setClass(context, SynergicActivity.class);
                 startActivity(intent03);
                 break;
             case R.id.lin_business: //商务拼团
+                if (UtilsClicktime.isFastDoubleClick()){
+                    return;
+                }
                 intent03.setClass(context, BusinessActivity.class);
                 startActivity(intent03);
                 break;
             case R.id.lin_sales_unit://销售单元
+                if (UtilsClicktime.isFastDoubleClick()){
+                    return;
+                }
                 intent03.setClass(context, SellActivity.class);
                 startActivity(intent03);
                 break;
             case R.id.re_CQ:  //公司资质
+                if (UtilsClicktime.isFastDoubleClick()){
+                    return;
+                }
                 intent03.setClass(context, WebCallCenterActivity.class);
                 startActivity(intent03);
                 break;
             case R.id.re_QR: //我的二维码
+                if (UtilsClicktime.isFastDoubleClick()){
+                    return;
+                }
                 intent03.setClass(context, MyQRActivity.class);
 //                intent03.putExtra("qr_", invitation_code);
                 intent03.putExtra("user_names_", user_name);
                 startActivity(intent03);
                 break;
             case R.id.im_sao_ma: //扫码
+                if (UtilsClicktime.isFastDoubleClick()){
+                    return;
+                }
                 intent03.setClass(context, MyScanCodeActivity.class);
                 startActivity(intent03);
                 break;
             case R.id.lin_shop: //购物积分（详情）
+                if (UtilsClicktime.isFastDoubleClick()){
+                    return;
+                }
                 intent03.setClass(context, DetailsActivity.class);
                 intent03.putExtra("jifen", "购物积分");
                 intent03.putExtra("score_", score);
                 startActivity(intent03);
                 break;
             case R.id.lin_donate: //赠送积分（详情）
+                if (UtilsClicktime.isFastDoubleClick()){
+                    return;
+                }
                 intent03.setClass(context, DetailsActivity.class);
                 intent03.putExtra("jifen", "赠送积分");
                 intent03.putExtra("score4_", score4);
                 startActivity(intent03);
                 break;
             case R.id.lin_stock: //识缘股（详情）
+                if (UtilsClicktime.isFastDoubleClick()){
+                    return;
+                }
                 intent03.setClass(context, DetailsActivity.class);
                 intent03.putExtra("jifen", "识缘股");
                 intent03.putExtra("score2_", score2);
                 startActivity(intent03);
                 break;
             case R.id.lin_fh:  //周分红(股)（详情）
+                if (UtilsClicktime.isFastDoubleClick()){
+                    return;
+                }
                 intent03.setClass(context, DetailsActivity.class);
                 intent03.putExtra("jifen", "周分红");
                 intent03.putExtra("score3_1_", score3_1);
                 startActivity(intent03);
                 break;
             case R.id.re_personage: //个人信息（详情）
+                if (UtilsClicktime.isFastDoubleClick()){
+                    return;
+                }
                 Intent intent = new Intent();
                 intent.setClass(context, PersonalCenterActivity.class);
 //                intent.putExtra("user_name_", user_name);
@@ -243,6 +279,9 @@ public class MineFragment extends BaseFragment implements MineContract.View {
                 startActivity(intent);
                 break;
             case R.id.re_ID:  //订单管理（详情）
+                if (UtilsClicktime.isFastDoubleClick()){
+                    return;
+                }
                 Intent intents = new Intent();
                 intents.setClass(context, MainActivity.class);
                 intents.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -251,6 +290,9 @@ public class MineFragment extends BaseFragment implements MineContract.View {
                 getActivity().finish();
                 break;
             case R.id.re_site:  //收货地址（详情）
+                if (UtilsClicktime.isFastDoubleClick()){
+                    return;
+                }
                 Intent intent1 = new Intent();
                 intent1.setClass(getActivity(), SelectAddressActivity.class);
                 intent1.putExtra("mine_", "个人中心");
@@ -259,7 +301,9 @@ public class MineFragment extends BaseFragment implements MineContract.View {
                 startActivity(intent1);
                 break;
             case R.id.re_exit:  //退出
-
+                if (UtilsClicktime.isFastDoubleClick()){
+                    return;
+                }
                 new AlertDialog.Builder(getActivity()).setTitle("是否退出账号")
                         .setPositiveButton("是", new DialogInterface.OnClickListener() {
                             @Override

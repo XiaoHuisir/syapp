@@ -21,7 +21,8 @@
             android:id="@+id/li_bnt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/whites"
+            android:paddingBottom="@dimen/dp_13"
+            android:background="@drawable/mine_bgg"
             android:orientation="vertical">
 
 
@@ -198,10 +199,6 @@
             <!--android:background="@color/line_gray" />-->
         </LinearLayout>
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_13"
-            android:background="@color/whites" />
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp_13"
