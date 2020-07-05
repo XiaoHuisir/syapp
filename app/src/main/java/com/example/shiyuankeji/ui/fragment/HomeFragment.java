@@ -18,12 +18,14 @@ import com.example.shiyuankeji.MainActivity;
 import com.example.shiyuankeji.R;
 import com.example.shiyuankeji.adapter.HomeAdapter;
 import com.example.shiyuankeji.app.Constant;
+import com.example.shiyuankeji.app.MyApp;
 import com.example.shiyuankeji.base.BaseFragment;
 import com.example.shiyuankeji.bean.HomeBean;
 import com.example.shiyuankeji.interfaces.IBasePresenter;
 import com.example.shiyuankeji.interfaces.contract.HomeCotract;
 import com.example.shiyuankeji.presenter.HomePresenter;
 import com.example.shiyuankeji.ui.activity.ProductDetailsActivity;
+import com.example.shiyuankeji.utils.SharedPreferencesUtil;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.Transformer;
@@ -69,6 +71,9 @@ public class HomeFragment extends BaseFragment implements HomeCotract.View {
 
     @Override
     protected void initView() {
+        String token = SharedPreferencesUtil.getToken(MyApp.mApp);
+        SharedPreferencesUtil.addUserToken(context,token);
+        Constant.token = token;
         LinearLayoutManager layoutManager = new LinearLayoutManager(context);
         hotRecyler.setLayoutManager(layoutManager);
         listTetle = new ArrayList<>();

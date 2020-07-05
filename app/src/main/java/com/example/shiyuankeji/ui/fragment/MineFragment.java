@@ -332,17 +332,23 @@ public class MineFragment extends BaseFragment implements MineContract.View {
 
     @Override
     public void logintokenReaun(LoginTokenBean loginTokenBean) {
-        String token = SharedPreferencesUtil.getToken(MyApp.mApp);
+
         msg = loginTokenBean.getMsg();
         Intent intent = new Intent();
         if (msg.equals("001")) {
+
 //            StateHandling();
             SharedPreferencesUtil.deleteToken(MyApp.mApp);
+            String token = SharedPreferencesUtil.getToken(MyApp.mApp);
+            SharedPreferencesUtil.addUserToken(context,token);
+            Constant.token = token;
             intent.setClass(context, LoginActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
             getActivity().finish();
         }else {
+            String token = SharedPreferencesUtil.getToken(MyApp.mApp);
+            SharedPreferencesUtil.addUserToken(context,token);
             Constant.token = token;
         }
     }
