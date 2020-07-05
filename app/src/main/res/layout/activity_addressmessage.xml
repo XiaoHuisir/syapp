@@ -15,7 +15,7 @@
         android:background="@color/tou_ming">
 
         <ImageView
-            android:layout_width="@dimen/dp_8"
+            android:layout_width="@dimen/dp_15"
             android:layout_height="@dimen/dp_15"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"

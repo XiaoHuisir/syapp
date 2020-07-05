@@ -9,22 +9,21 @@
 
     <TextView
         android:id="@+id/tv_daoyuan_name"
+        android:layout_marginLeft="@dimen/dp_13"
+        android:layout_marginTop="@dimen/dp_8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="#151515"
-        android:textSize="@dimen/sp_19" />
+        android:textColor="@color/black"
+        android:textSize="@dimen/sp_16" />
     <TextView
         android:id="@+id/tv_non"
         android:visibility="gone"
+        android:layout_marginLeft="@dimen/dp_13"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="#9c9c9c"
+        android:textColor="#aaaaaa"
         android:text=""
-        android:textSize="@dimen/sp_15" />
+        android:textSize="@dimen/sp_16" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_marginTop="@dimen/dp_8"
-        android:layout_height="@dimen/dp_1"
-        android:background="@color/line_gray" />
+
 </LinearLayout>

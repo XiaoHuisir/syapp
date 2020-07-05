@@ -15,6 +15,7 @@ import com.example.shiyuankeji.bean.SynergicBean;
 import com.example.shiyuankeji.interfaces.IBasePresenter;
 import com.example.shiyuankeji.interfaces.contract.SynergiContract;
 import com.example.shiyuankeji.presenter.SynergicPersenter;
+import com.example.shiyuankeji.utils.UtilsClicktime;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -79,8 +80,11 @@ public class SynergicActivity extends BaseActivity implements SynergiContract.Vi
     @Override
     public void synergicRean(SynergicBean synergicBean) {
         if (synergicBean != null) {
-
-            int id = synergicBean.getInTeamVL1().getId();
+            SynergicBean.InTeamVL1Bean inTeamVL11 = synergicBean.getInTeamVL1();
+            if (inTeamVL11==null){
+                return;
+            }
+            int id = inTeamVL11.getId();
             if (id == 0) {
                 tvPlace.setVisibility(View.GONE);
                 tvsuozai.setVisibility(View.VISIBLE);
@@ -107,6 +111,9 @@ public class SynergicActivity extends BaseActivity implements SynergiContract.Vi
                 tvPlace.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        if (UtilsClicktime.isFastDoubleClick()){
+                            return;
+                        }
                         Intent intent = new Intent();
                         intent.setClass(context, SynergicXingActivity.class);
                         intent.putExtra("e_id", id1);

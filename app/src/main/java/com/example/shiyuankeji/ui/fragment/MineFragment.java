@@ -16,6 +16,7 @@ import com.example.shiyuankeji.R;
 import com.example.shiyuankeji.app.Constant;
 import com.example.shiyuankeji.app.MyApp;
 import com.example.shiyuankeji.base.BaseFragment;
+import com.example.shiyuankeji.bean.LoginTokenBean;
 import com.example.shiyuankeji.bean.MineBean;
 import com.example.shiyuankeji.interfaces.IBasePresenter;
 import com.example.shiyuankeji.interfaces.contract.MineContract;
@@ -93,7 +94,8 @@ public class MineFragment extends BaseFragment implements MineContract.View {
     private String score4 = "";
     private String score2 = "";
     private String score3_1 = "";
-//    private String invitation_code = ""; //二维码
+    private String msg;
+    //    private String invitation_code = ""; //二维码
 
     @Override
     protected IBasePresenter getPresenter() {
@@ -109,7 +111,7 @@ public class MineFragment extends BaseFragment implements MineContract.View {
     @Override
     protected void initView() {
         //countDown();//我的模块登录状态初始化处理（判断是否登录） 带秒数的
-        StateHandling();//我的模块登录状态初始化处理（判断是否登录） 不带秒数的
+//        StateHandling();//我的模块登录状态初始化处理（判断是否登录） 不带秒数的
         refress();
     }
 
@@ -168,6 +170,7 @@ public class MineFragment extends BaseFragment implements MineContract.View {
 
     @Override
     protected void initData() {
+        ((MinePresenter) mPresenter).logintokens();//校验是否登录状态
         ((MinePresenter) mPresenter).mines();
     }
 
@@ -180,42 +183,42 @@ public class MineFragment extends BaseFragment implements MineContract.View {
         Intent intent03 = new Intent();
         switch (view.getId()) {
             case R.id.re_yield://我的收益
-                if (UtilsClicktime.isFastDoubleClick()){
+                if (UtilsClicktime.isFastDoubleClick()) {
                     return;
                 }
                 intent03.setClass(context, YieldActivity.class);
                 startActivity(intent03);
                 break;
             case R.id.lin_synergic://合作组
-                if (UtilsClicktime.isFastDoubleClick()){
+                if (UtilsClicktime.isFastDoubleClick()) {
                     return;
                 }
                 intent03.setClass(context, SynergicActivity.class);
                 startActivity(intent03);
                 break;
             case R.id.lin_business: //商务拼团
-                if (UtilsClicktime.isFastDoubleClick()){
+                if (UtilsClicktime.isFastDoubleClick()) {
                     return;
                 }
                 intent03.setClass(context, BusinessActivity.class);
                 startActivity(intent03);
                 break;
             case R.id.lin_sales_unit://销售单元
-                if (UtilsClicktime.isFastDoubleClick()){
+                if (UtilsClicktime.isFastDoubleClick()) {
                     return;
                 }
                 intent03.setClass(context, SellActivity.class);
                 startActivity(intent03);
                 break;
             case R.id.re_CQ:  //公司资质
-                if (UtilsClicktime.isFastDoubleClick()){
+                if (UtilsClicktime.isFastDoubleClick()) {
                     return;
                 }
                 intent03.setClass(context, WebCallCenterActivity.class);
                 startActivity(intent03);
                 break;
             case R.id.re_QR: //我的二维码
-                if (UtilsClicktime.isFastDoubleClick()){
+                if (UtilsClicktime.isFastDoubleClick()) {
                     return;
                 }
                 intent03.setClass(context, MyQRActivity.class);
@@ -224,14 +227,14 @@ public class MineFragment extends BaseFragment implements MineContract.View {
                 startActivity(intent03);
                 break;
             case R.id.im_sao_ma: //扫码
-                if (UtilsClicktime.isFastDoubleClick()){
+                if (UtilsClicktime.isFastDoubleClick()) {
                     return;
                 }
                 intent03.setClass(context, MyScanCodeActivity.class);
                 startActivity(intent03);
                 break;
             case R.id.lin_shop: //购物积分（详情）
-                if (UtilsClicktime.isFastDoubleClick()){
+                if (UtilsClicktime.isFastDoubleClick()) {
                     return;
                 }
                 intent03.setClass(context, DetailsActivity.class);
@@ -240,7 +243,7 @@ public class MineFragment extends BaseFragment implements MineContract.View {
                 startActivity(intent03);
                 break;
             case R.id.lin_donate: //赠送积分（详情）
-                if (UtilsClicktime.isFastDoubleClick()){
+                if (UtilsClicktime.isFastDoubleClick()) {
                     return;
                 }
                 intent03.setClass(context, DetailsActivity.class);
@@ -249,7 +252,7 @@ public class MineFragment extends BaseFragment implements MineContract.View {
                 startActivity(intent03);
                 break;
             case R.id.lin_stock: //识缘股（详情）
-                if (UtilsClicktime.isFastDoubleClick()){
+                if (UtilsClicktime.isFastDoubleClick()) {
                     return;
                 }
                 intent03.setClass(context, DetailsActivity.class);
@@ -258,7 +261,7 @@ public class MineFragment extends BaseFragment implements MineContract.View {
                 startActivity(intent03);
                 break;
             case R.id.lin_fh:  //周分红(股)（详情）
-                if (UtilsClicktime.isFastDoubleClick()){
+                if (UtilsClicktime.isFastDoubleClick()) {
                     return;
                 }
                 intent03.setClass(context, DetailsActivity.class);
@@ -267,7 +270,7 @@ public class MineFragment extends BaseFragment implements MineContract.View {
                 startActivity(intent03);
                 break;
             case R.id.re_personage: //个人信息（详情）
-                if (UtilsClicktime.isFastDoubleClick()){
+                if (UtilsClicktime.isFastDoubleClick()) {
                     return;
                 }
                 Intent intent = new Intent();
@@ -279,7 +282,7 @@ public class MineFragment extends BaseFragment implements MineContract.View {
                 startActivity(intent);
                 break;
             case R.id.re_ID:  //订单管理（详情）
-                if (UtilsClicktime.isFastDoubleClick()){
+                if (UtilsClicktime.isFastDoubleClick()) {
                     return;
                 }
                 Intent intents = new Intent();
@@ -290,7 +293,7 @@ public class MineFragment extends BaseFragment implements MineContract.View {
                 getActivity().finish();
                 break;
             case R.id.re_site:  //收货地址（详情）
-                if (UtilsClicktime.isFastDoubleClick()){
+                if (UtilsClicktime.isFastDoubleClick()) {
                     return;
                 }
                 Intent intent1 = new Intent();
@@ -301,7 +304,7 @@ public class MineFragment extends BaseFragment implements MineContract.View {
                 startActivity(intent1);
                 break;
             case R.id.re_exit:  //退出
-                if (UtilsClicktime.isFastDoubleClick()){
+                if (UtilsClicktime.isFastDoubleClick()) {
                     return;
                 }
                 new AlertDialog.Builder(getActivity()).setTitle("是否退出账号")
@@ -326,6 +329,23 @@ public class MineFragment extends BaseFragment implements MineContract.View {
         }
     }
 
+
+    @Override
+    public void logintokenReaun(LoginTokenBean loginTokenBean) {
+        String token = SharedPreferencesUtil.getToken(MyApp.mApp);
+        msg = loginTokenBean.getMsg();
+        Intent intent = new Intent();
+        if (msg.equals("001")) {
+//            StateHandling();
+            SharedPreferencesUtil.deleteToken(MyApp.mApp);
+            intent.setClass(context, LoginActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+            getActivity().finish();
+        }else {
+            Constant.token = token;
+        }
+    }
 
     @Override
     public void mineReand(MineBean mineBean) {

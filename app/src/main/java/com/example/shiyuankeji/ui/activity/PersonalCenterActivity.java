@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.example.shiyuankeji.R;
 import com.example.shiyuankeji.base.BaseActivity;
+import com.example.shiyuankeji.bean.LoginTokenBean;
 import com.example.shiyuankeji.bean.MineBean;
 import com.example.shiyuankeji.interfaces.IBasePresenter;
 import com.example.shiyuankeji.interfaces.contract.MineContract;
@@ -170,6 +171,11 @@ public class PersonalCenterActivity extends BaseActivity implements MineContract
             tvBankCard.setVisibility(View.GONE);
             reBank.setVisibility(View.VISIBLE);
         }
+    }
+
+    @Override
+    public void logintokenReaun(LoginTokenBean loginTokenBean) {
+
     }
 
     @Override

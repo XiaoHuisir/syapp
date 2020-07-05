@@ -8,9 +8,10 @@
     tools:context=".ui.activity.BusinessActivity">
 
     <LinearLayout
+        android:layout_marginTop="@dimen/dp_32"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_45"
-        android:background="@color/col_blue"
+        android:background="@color/tou_ming"
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
@@ -19,12 +20,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
+            android:layout_marginLeft="@dimen/dp_3"
             android:padding="@dimen/dp_10">
 
             <ImageView
-                android:layout_width="@dimen/dp_30"
-                android:layout_height="30dp"
-                android:src="@mipmap/beak47" />
+                android:layout_width="@dimen/dp_15"
+                android:layout_height="@dimen/dp_15"
+                android:src="@mipmap/backk" />
         </LinearLayout>
 
     </LinearLayout>
@@ -39,64 +41,65 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/new_bag"
+            android:layout_marginLeft="@dimen/dp_13"
+            android:layout_marginRight="@dimen/dp_13"
             android:orientation="vertical">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:orientation="vertical"
-                android:paddingBottom="@dimen/dp_10"
-                android:background="@color/whites"
+                android:paddingBottom="@dimen/dp_24"
+                android:background="@drawable/mine_bgg"
                 android:layout_height="wrap_content">
                 <TextView
-                    android:layout_marginTop="@dimen/dp_8"
+                    android:layout_marginTop="@dimen/dp_24"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="我所在的商务拼团："
-                    android:textColor="#1B82D2"
-                    android:textSize="@dimen/sp_19" />
+                    android:layout_marginLeft="@dimen/dp_13"
+                    android:textColor="@color/newnew_bg"
+                    android:textSize="@dimen/sp_15" />
 
                 <TextView
                     android:id="@+id/tv_place"
                     android:text=""
-                    android:textSize="@dimen/sp_19"
+                    android:textSize="@dimen/sp_16"
                     android:layout_width="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_13"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp_8"
-                    android:textColor="#151515" />
+                    android:textColor="@color/black" />
                 <TextView
                     android:id="@+id/tv_suozai"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_13"
                     android:layout_marginTop="@dimen/dp_8"
                     android:text="你还没有加入任何一个商务拼团，请请继续努力！"
-                    android:textColor="#9c9c9c"
-                    android:textSize="@dimen/sp_15"
+                    android:textColor="#aaaaaa"
+                    android:textSize="@dimen/sp_16"
                     android:visibility="gone" />
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/dp_1"
-                    android:layout_marginTop="@dimen/dp_4"
-                    android:background="@color/line_gray" />
+
 
             </LinearLayout>
             <LinearLayout
                 android:layout_marginTop="@dimen/dp_8"
                 android:layout_width="match_parent"
-                android:background="@color/whites"
+                android:background="@drawable/mine_bgg"
+                android:paddingBottom="@dimen/dp_24"
                 android:orientation="vertical"
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:layout_marginTop="@dimen/dp_8"
+                    android:layout_marginTop="@dimen/dp_24"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="我的商务拼团："
-                    android:textColor="#1B82D2"
-                    android:textSize="@dimen/sp_19" />
+                    android:layout_marginLeft="@dimen/dp_13"
+                    android:textColor="@color/newnew_bg"
+                    android:textSize="@dimen/sp_15" />
 
                 <RelativeLayout
-                    android:paddingTop="@dimen/dp_8"
-                    android:layout_marginTop="@dimen/dp_4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
@@ -108,10 +111,12 @@
                         android:id="@+id/tv_on"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:paddingBottom="@dimen/dp_10"
+                        android:layout_marginTop="@dimen/dp_8"
+                        android:layout_alignParentTop="true"
                         android:text="你还没拥有商务拼团，请继续努力！"
-                        android:textColor="#9c9c9c"
-                        android:textSize="@dimen/sp_15"
+                        android:textColor="#aaaaaa"
+                        android:layout_marginLeft="@dimen/dp_13"
+                        android:textSize="@dimen/sp_16"
                         android:visibility="gone" />
                 </RelativeLayout>
             </LinearLayout>

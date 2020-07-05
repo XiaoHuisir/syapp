@@ -3,14 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/new_bag"
+    android:background="@color/newnew_newbg"
     android:orientation="vertical"
     tools:context=".ui.activity.SynergicActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_45"
-        android:background="@color/col_blue"
+        android:layout_marginTop="@dimen/dp_32"
+        android:background="@color/tou_ming"
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
@@ -18,13 +19,14 @@
             android:id="@+id/lin_wbeak"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_3"
             android:gravity="center"
             android:padding="@dimen/dp_10">
 
             <ImageView
-                android:layout_width="@dimen/dp_30"
-                android:layout_height="30dp"
-                android:src="@mipmap/beak47" />
+                android:layout_width="@dimen/dp_15"
+                android:layout_height="@dimen/dp_15"
+                android:src="@mipmap/backk" />
         </LinearLayout>
 
     </LinearLayout>
@@ -39,47 +41,48 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/new_bag"
+            android:layout_marginLeft="@dimen/dp_13"
+            android:layout_marginRight="@dimen/dp_13"
             android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/whites"
+
+                android:background="@drawable/mine_bgg"
                 android:orientation="vertical"
-                android:paddingBottom="@dimen/dp_10">
+                android:paddingBottom="@dimen/dp_24">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dp_8"
+                    android:layout_marginLeft="@dimen/dp_13"
+                    android:layout_marginTop="@dimen/dp_24"
                     android:text="我所在的初级合作组："
-                    android:textColor="#1B82D2"
-                    android:textSize="@dimen/sp_19" />
+                    android:textColor="@color/newnew_bg"
+                    android:textSize="@dimen/sp_15" />
 
                 <TextView
                     android:id="@+id/tv_place"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_13"
                     android:layout_marginTop="@dimen/dp_8"
                     android:text=""
-                    android:textColor="#151515"
-                    android:textSize="@dimen/sp_19" />
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/sp_16" />
 
                 <TextView
                     android:id="@+id/tv_suozai"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_13"
                     android:layout_marginTop="@dimen/dp_8"
                     android:text="你还没有加入任何一个初级合作组，请扫描邀请码加入！"
-                    android:textColor="#9c9c9c"
-                    android:textSize="@dimen/sp_15"
+                    android:textColor="#aaaaaa"
+                    android:textSize="@dimen/sp_16"
                     android:visibility="gone" />
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/dp_1"
-                    android:layout_marginTop="@dimen/dp_8"
-                    android:background="@color/line_gray" />
 
             </LinearLayout>
 
@@ -87,22 +90,22 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp_8"
-                android:background="@color/whites"
-                android:orientation="vertical">
+                android:background="@drawable/mine_bgg"
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/dp_24">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dp_8"
+                    android:layout_marginLeft="@dimen/dp_13"
+                    android:layout_marginTop="@dimen/dp_24"
                     android:text="我所拥有的初级合作组："
-                    android:textColor="#1B82D2"
-                    android:textSize="@dimen/sp_19" />
+                    android:textColor="@color/newnew_bg"
+                    android:textSize="@dimen/sp_15" />
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dp_4"
-                    android:paddingTop="@dimen/dp_8">
+                    android:layout_height="wrap_content">
 
                     <android.support.v7.widget.RecyclerView
                         android:id="@+id/recyc_synergic"
@@ -113,10 +116,12 @@
                         android:id="@+id/tv_on"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:paddingBottom="@dimen/dp_10"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginLeft="@dimen/dp_13"
+                        android:layout_marginTop="@dimen/dp_8"
                         android:text="你还没拥有初级合作组，请继续努力！"
-                        android:textColor="#9c9c9c"
-                        android:textSize="@dimen/sp_15"
+                        android:textColor="#aaaaaa"
+                        android:textSize="@dimen/sp_16"
                         android:visibility="gone" />
                 </RelativeLayout>
             </LinearLayout>

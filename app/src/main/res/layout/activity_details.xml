@@ -23,7 +23,7 @@
 
         <ImageView
             android:id="@+id/im_wbeak"
-            android:layout_width="@dimen/dp_8"
+            android:layout_width="@dimen/dp_15"
             android:layout_marginLeft="@dimen/dp_16"
             android:layout_height="@dimen/dp_15"
             android:layout_centerVertical="true"
@@ -53,6 +53,7 @@
         android:layout_marginLeft="@dimen/dp_16"
         android:layout_marginRight="@dimen/dp_16"
         android:layout_marginTop="@dimen/dp_14"
+        android:paddingBottom="@dimen/dp_24"
         android:layout_below="@+id/lin_wbeak"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

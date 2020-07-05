@@ -28,6 +28,7 @@ import com.example.shiyuankeji.adapter.WebStringAdapter;
 import com.example.shiyuankeji.app.Constant;
 import com.example.shiyuankeji.app.MyApp;
 import com.example.shiyuankeji.base.BaseActivity;
+import com.example.shiyuankeji.bean.LoginTokenBean;
 import com.example.shiyuankeji.bean.ProductDetailsBean;
 import com.example.shiyuankeji.interfaces.IBasePresenter;
 import com.example.shiyuankeji.interfaces.contract.ProductDetailsContract;
@@ -87,6 +88,7 @@ public class ProductDetailsActivity extends BaseActivity implements ProductDetai
     private ImageView btnExchang;
     private ImageView imBeak;
     private LinearLayout linCallCenter;
+    private String msg="";
     //   @BindView(R.id.tv_old_integral)
 //    TextView imBeak;
 
@@ -143,8 +145,9 @@ public class ProductDetailsActivity extends BaseActivity implements ProductDetai
         btnExchang.setOnClickListener(new NoDoubleClickListener() {
             @Override
             protected void onNoDoubleClick(View v) {
+                ((ProductDetailsPresenter) mPresenter).logintokens(); //校验是否登录
                 //                countDown();//我的模块登录状态初始化处理（判断是否登录） 带秒数的
-                StateHandling();//我的模块登录状态初始化处理（判断是否登录） 不带秒数的
+//                StateHandling();//我的模块登录状态初始化处理（判断是否登录） 不带秒数的
 
             }
         });
@@ -165,6 +168,7 @@ public class ProductDetailsActivity extends BaseActivity implements ProductDetai
     @Override
     protected void initData() {
         ((ProductDetailsPresenter) mPresenter).productDetails(Integer.parseInt(ids));
+
 
     }
 
@@ -227,9 +231,9 @@ public class ProductDetailsActivity extends BaseActivity implements ProductDetai
 //
 //    }
     private void StateHandling() {
-        String token = SharedPreferencesUtil.getToken(MyApp.mApp);
 
-        if (TextUtils.isEmpty(token)) {
+
+        if (msg.equals("001")) {
             new AlertDialog.Builder(this).setTitle("登录后才可购买，是否前往登录!")
                     .setPositiveButton("是", new DialogInterface.OnClickListener() {
                         @Override
@@ -250,6 +254,25 @@ public class ProductDetailsActivity extends BaseActivity implements ProductDetai
             }).create().show();
 
         } else {
+//            Constant.token = token;
+//            Intent intent2 = new Intent(context, ExchangeActivity.class);
+//            intent2.putExtra("price", price);
+//            intent2.putExtra("imgs", img);
+//            intent2.putExtra("buynums", buynum);
+//            intent2.putExtra("stock_", stock);
+//            intent2.putExtra("idsas", idsa);
+////                intent2.putExtra("freight_",freight);
+//            startActivity(intent2);
+        }
+    }
+
+    @Override
+    public void logintokenReaun(LoginTokenBean loginTokenBean) { //校验是否登录状态
+        String token = SharedPreferencesUtil.getToken(MyApp.mApp);
+        msg = loginTokenBean.getMsg();
+        if (msg.equals("001")) {
+            StateHandling();
+        }else {
             Constant.token = token;
             Intent intent2 = new Intent(context, ExchangeActivity.class);
             intent2.putExtra("price", price);
@@ -260,6 +283,7 @@ public class ProductDetailsActivity extends BaseActivity implements ProductDetai
 //                intent2.putExtra("freight_",freight);
             startActivity(intent2);
         }
+
     }
 
     @Override

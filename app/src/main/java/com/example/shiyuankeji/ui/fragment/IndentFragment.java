@@ -12,10 +12,12 @@ import com.example.shiyuankeji.adapter.IndentListAdapter;
 import com.example.shiyuankeji.app.Constant;
 import com.example.shiyuankeji.app.MyApp;
 import com.example.shiyuankeji.base.BaseFragment;
+import com.example.shiyuankeji.bean.LoginTokenBean;
 import com.example.shiyuankeji.bean.NewIndentBean;
 import com.example.shiyuankeji.interfaces.IBasePresenter;
 import com.example.shiyuankeji.interfaces.contract.IndentContract;
 import com.example.shiyuankeji.presenter.IndentPresenter;
+import com.example.shiyuankeji.presenter.MinePresenter;
 import com.example.shiyuankeji.ui.activity.IineItemActivity;
 import com.example.shiyuankeji.ui.activity.login.LoginActivity;
 import com.example.shiyuankeji.utils.SharedPreferencesUtil;
@@ -33,6 +35,7 @@ public class IndentFragment extends BaseFragment implements IndentContract.View,
     SwipeRefreshLayout indentSwipeRefeash;
     private ArrayList<NewIndentBean.OrderListListBean> list;
     private IndentListAdapter indentListAdapter;
+    private String msg;
 
 
     @Override
@@ -49,7 +52,7 @@ public class IndentFragment extends BaseFragment implements IndentContract.View,
     @Override
     protected void initView() {
         //countDown();//我的模块登录状态初始化处理（判断是否登录） 带秒数的
-        StateHandling();//我的模块登录状态初始化处理（判断是否登录） 不带秒数的
+//        StateHandling();//我的模块登录状态初始化处理（判断是否登录） 不带秒数的
         reIndentList.setHasFixedSize(true);
         reIndentList.setNestedScrollingEnabled(false);
         list = new ArrayList<>();
@@ -109,7 +112,25 @@ public class IndentFragment extends BaseFragment implements IndentContract.View,
 
     @Override
     protected void initData() {
+        ((IndentPresenter) mPresenter).logintokens();  //校验是否登录状态
         ((IndentPresenter) mPresenter).indents();
+    }
+
+    @Override
+    public void logintokenReaun(LoginTokenBean loginTokenBean) {
+        String token = SharedPreferencesUtil.getToken(MyApp.mApp);
+        msg = loginTokenBean.getMsg();
+        Intent intent = new Intent();
+        if (msg.equals("001")) {
+//            StateHandling();
+            SharedPreferencesUtil.deleteToken(MyApp.mApp);
+            intent.setClass(context, LoginActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+            getActivity().finish();
+        }else {
+            Constant.token = token;
+        }
     }
 
     @Override

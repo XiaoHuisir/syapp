@@ -16,6 +16,7 @@ import com.example.shiyuankeji.bean.SynergicBean;
 import com.example.shiyuankeji.interfaces.IBasePresenter;
 import com.example.shiyuankeji.interfaces.contract.SynergiContract;
 import com.example.shiyuankeji.presenter.SynergicPersenter;
+import com.example.shiyuankeji.utils.UtilsClicktime;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -106,6 +107,9 @@ public class BusinessActivity extends BaseActivity implements SynergiContract.Vi
                 tvPlace.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        if (UtilsClicktime.isFastDoubleClick()){
+                            return;
+                        }
                         Intent intent = new Intent();
                         intent.setClass(context, SynergicXingActivity.class);
                         intent.putExtra("e_id", id1);

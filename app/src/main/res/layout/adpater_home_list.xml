@@ -95,7 +95,7 @@
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@+id/text_src_price"
                     android:layout_marginLeft="@dimen/dp_5"
-                    android:layout_alignParentBottom="true"
+                   android:layout_alignBottom="@+id/text_src_price"
                     android:text="000"
                     android:textColor="#aaaaaa"
                     android:textSize="@dimen/sp_12" />

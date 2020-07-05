@@ -2,14 +2,20 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="@dimen/dp_48"
+    android:paddingBottom="@dimen/dp_13"
     android:background="@color/whites"
     android:gravity="center_vertical"
     android:orientation="vertical">
 
     <LinearLayout
+        android:id="@+id/ll"
         android:layout_centerVertical="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp_13"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="@dimen/dp_8"
+        android:layout_alignParentTop="true"
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
@@ -18,10 +24,10 @@
             android:id="@+id/t_uname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/dp_4"
+
             android:text=""
-            android:textColor="#9c9c9c"
-            android:textSize="@dimen/sp_19" />
+            android:textColor="#aaaaaa"
+            android:textSize="@dimen/sp_16" />
 
         <TextView
             android:id="@+id/t_name"
@@ -29,13 +35,16 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/dp_6"
             android:text=""
-            android:textColor="#9c9c9c"
-            android:textSize="@dimen/sp_19" />
-    </LinearLayout>
+            android:textColor="#aaaaaa"
+            android:textSize="@dimen/sp_16" />
 
+    </LinearLayout>
     <View
-        android:layout_alignParentBottom="true"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_1"
-        android:background="@color/new_bag" />
+        android:layout_below="@+id/ll"
+        android:layout_marginTop="@dimen/dp_5"
+        android:layout_marginLeft="@dimen/dp_13"
+        android:layout_marginRight="@dimen/dp_13"
+        android:layout_width="wrap_content"
+        android:background="#aaaaaa"
+        android:layout_height="@dimen/dp_1"/>
 </RelativeLayout>

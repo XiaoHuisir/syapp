@@ -7,6 +7,7 @@ import android.widget.TextView;
 import com.example.shiyuankeji.R;
 import com.example.shiyuankeji.base.BaseAdapter;
 import com.example.shiyuankeji.bean.SynergicBean;
+import com.example.shiyuankeji.utils.UtilsClicktime;
 
 import java.util.List;
 
@@ -39,6 +40,9 @@ public class BusinessAdapter extends BaseAdapter {
             linearbtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    if (UtilsClicktime.isFastDoubleClick()){
+                        return;
+                    }
                     SynergicBean.TeamListLV2Bean tag = (SynergicBean.TeamListLV2Bean) v.getTag();
                     if (busitemClick != null) {
                         busitemClick.busclick(tag);
