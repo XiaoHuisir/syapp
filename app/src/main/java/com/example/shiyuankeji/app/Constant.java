@@ -56,7 +56,7 @@ public class Constant {
     public static final int STUDY_TYPE_3 = 3; //
 
     public static final int ONE_CODE = 10000;
-
+    public  static  String  IDS_CLASSFY="";
     public static String CURTYPE = "";
     public static String MINE = "";
     public static final String STUD_TYPE_0 = "0";
@@ -86,5 +86,6 @@ public class Constant {
     public static String IS_MINE_IS = "";
 
     public static boolean INXDLER = false;
+    public static boolean CLASS_BOOLEAN = false;
 
 }

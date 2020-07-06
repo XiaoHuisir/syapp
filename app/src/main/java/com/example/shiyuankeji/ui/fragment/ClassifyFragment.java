@@ -7,6 +7,7 @@ import android.widget.Toast;
 
 import com.example.shiyuankeji.R;
 import com.example.shiyuankeji.adapter.FragmentApader;
+import com.example.shiyuankeji.app.Constant;
 import com.example.shiyuankeji.base.BaseFragment;
 import com.example.shiyuankeji.bean.ClassBean;
 import com.example.shiyuankeji.interfaces.IBasePresenter;
@@ -49,9 +50,6 @@ public class ClassifyFragment extends BaseFragment implements ClassifyContract.V
     }
 
 
-
-
-
     @Override
     protected void initData() {
         ((ClassifyPresenter) mPresenter).classify();
@@ -81,6 +79,14 @@ public class ClassifyFragment extends BaseFragment implements ClassifyContract.V
                     new FragmentApader(getFragmentManager(), mFragmentList, strlist);
             vpClassfy.setAdapter(apader);
             tabClassfy.setupWithViewPager(vpClassfy);
+            if (Constant.CLASS_BOOLEAN == true) {
+                vpClassfy.setCurrentItem(Integer.parseInt(Constant.IDS_CLASSFY));
+                Constant.CLASS_BOOLEAN = false;
+                Constant.IDS_CLASSFY=" ";
+            } else {
+                vpClassfy.setCurrentItem(0);
+            }
+            Constant.CLASS_BOOLEAN = false;
         } else {
             Toast.makeText(context, "失败", Toast.LENGTH_SHORT).show();
         }

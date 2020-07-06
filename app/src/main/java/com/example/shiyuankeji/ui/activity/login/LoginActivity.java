@@ -85,7 +85,7 @@ public class LoginActivity extends BaseActivity implements LoginsContract.Views 
 
     @Override
     protected void initView() {
-        CardUtils.setCardShadowColor(card, getResources().getColor(R.color.newnew_bg), getResources().getColor(R.color.newnew_bg));
+//        CardUtils.setCardShadowColor(card, getResources().getColor(R.color.newnew_bg), getResources().getColor(R.color.newnew_bg));
         //判断是否有登录过
         String username = SharedPreferencesUtil.getUserName(MyApp.mApp);
         String pw = SharedPreferencesUtil.getPw(MyApp.mApp);

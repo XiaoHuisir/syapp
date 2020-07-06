@@ -78,7 +78,7 @@ public class RegisterActivity extends BaseActivity implements RegisterContract.V
 
     @Override
     protected void initView() {
-        CardUtils.setCardShadowColor(cardShou, getResources().getColor(R.color.newnew_bg), getResources().getColor(R.color.newnew_bg));
+//        CardUtils.setCardShadowColor(cardShou, getResources().getColor(R.color.newnew_bg), getResources().getColor(R.color.newnew_bg));
 //        CardUtils.init();
         type_ = getIntent().getIntExtra("type_", 0);
         tvPwd01.setVisibility(View.VISIBLE);

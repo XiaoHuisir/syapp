@@ -72,7 +72,7 @@ public class HomeFragment extends BaseFragment implements HomeCotract.View {
     @Override
     protected void initView() {
         String token = SharedPreferencesUtil.getToken(MyApp.mApp);
-        SharedPreferencesUtil.addUserToken(context,token);
+        SharedPreferencesUtil.addUserToken(context, token);
         Constant.token = token;
         LinearLayoutManager layoutManager = new LinearLayoutManager(context);
         hotRecyler.setLayoutManager(layoutManager);
@@ -229,7 +229,9 @@ public class HomeFragment extends BaseFragment implements HomeCotract.View {
                     intent.putExtra("idsa", ids2);
                     startActivity(intent);
                 }
-                if (type2 == TWO_TYPE_) {  // TODO 分类 ??
+                if (type2 == TWO_TYPE_) {  // 分类
+                    Constant.IDS_CLASSFY = ids2; //TODO ??
+                    Constant.CLASS_BOOLEAN=true;
                     Intent intent = new Intent();
                     intent.setClass(getActivity(), MainActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
