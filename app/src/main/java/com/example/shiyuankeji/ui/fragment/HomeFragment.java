@@ -26,6 +26,7 @@ import com.example.shiyuankeji.interfaces.contract.HomeCotract;
 import com.example.shiyuankeji.presenter.HomePresenter;
 import com.example.shiyuankeji.ui.activity.ProductDetailsActivity;
 import com.example.shiyuankeji.utils.SharedPreferencesUtil;
+import com.example.shiyuankeji.utils.ToastUtil;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.Transformer;
@@ -127,6 +128,8 @@ public class HomeFragment extends BaseFragment implements HomeCotract.View {
             public void onWindowFocusChanged(boolean hasFocus) {
                 swipeRefres.setRefreshing(true);
                 Toast.makeText(context, "刷新", Toast.LENGTH_SHORT).show();
+//                ToastUtil toastUtil2 = new ToastUtil(context, R.layout.ok_toast_center_horizontal, "登录成功！");
+//                toastUtil2.show();
                 ((HomePresenter) mPresenter).home();
 //                Log.i("11getMeasuredHeight",mSwipeRefreshLayout.getMeasuredHeight()+"");
                 swipeRefres.postDelayed(new Runnable() {
@@ -238,7 +241,7 @@ public class HomeFragment extends BaseFragment implements HomeCotract.View {
                     intent.putExtra("id", Constant.TWO_TYPE_2);
                     startActivityForResult(intent, Constant.TWO_TYPE_2);
                     startActivity(intent);
-                    Toast.makeText(context, "跳 分类", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(context, "跳 分类", Toast.LENGTH_SHORT).show();
 
                 }
             }

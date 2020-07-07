@@ -18,6 +18,7 @@ import com.example.shiyuankeji.interfaces.IBasePresenter;
 import com.example.shiyuankeji.interfaces.contract.SubmitListContract;
 import com.example.shiyuankeji.presenter.SubmitListPresenter;
 import com.example.shiyuankeji.utils.SharedPreferencesUtil;
+import com.example.shiyuankeji.utils.ToastUtil;
 import com.example.shiyuankeji.utils.UtilsClicktime;
 
 import java.util.ArrayList;
@@ -128,12 +129,14 @@ public class SelectAddressActivity extends BaseActivity implements SubmitListCon
     public void submitlistReane(SubmitListBean submitListBean) {
         List<SubmitListBean.UserAddressLIstBean> user_addressLIst = submitListBean.getUser_addressLIst();
         if (user_addressLIst != null) {
-            Toast.makeText(context, "list", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(context, "list", Toast.LENGTH_SHORT).show();
             list.clear();
             list.addAll(user_addressLIst);
             submitListAdapter.notifyDataSetChanged();
         } else {
-            Toast.makeText(context, "请添加新地址", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(context, "请添加新地址", Toast.LENGTH_SHORT).show();
+            ToastUtil toastUtil2 = new ToastUtil(context, R.layout.toast_center_horizontal, "请添加新地址！");
+            toastUtil2.show();
         }
     }
 
@@ -169,7 +172,7 @@ public class SelectAddressActivity extends BaseActivity implements SubmitListCon
     public void Submit0rdersclick(SubmitListBean.UserAddressLIstBean listSubmit) {
         if (Constant.IS_MINE==false) {
             SharedPreferencesUtil.setDeliveryAddress(context, true); //保存有、无 地址状态
-            Toast.makeText(context,"-----------",Toast.LENGTH_SHORT).show();
+//            Toast.makeText(context,"-----------",Toast.LENGTH_SHORT).show();
         Intent intent = new Intent();
         intent.setClass(context, Submit0rdersActivity.class);
         intent.putExtra("getaddress", listSubmit.getAddress());
@@ -183,7 +186,9 @@ public class SelectAddressActivity extends BaseActivity implements SubmitListCon
         startActivity(intent);
         finish();
         } else {
-            Toast.makeText(context, "个人中心", Toast.LENGTH_LONG).show();
+//            Toast.makeText(context, "个人中心", Toast.LENGTH_LONG).show();
+            ToastUtil toastUtil2 = new ToastUtil(context, R.layout.putong_toast_center_horizontal, "个人中心！");
+            toastUtil2.show();
         }
     }
 }

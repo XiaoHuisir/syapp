@@ -215,8 +215,9 @@ public class VerifyAccountActivity extends BaseActivity implements QueryTabContr
 
             String code = smsSendBean.getCode();
             if (code.equals("0")) {
-                new ToastUtil(context, R.layout.ok_toast_center_horizontal, "发送短息成功").show();
-
+//                new ToastUtil(context, R.layout.ok_toast_center_horizontal, "发送短息成功").show();
+                ToastUtil toastUtil2 = new ToastUtil(context, R.layout.ok_toast_center_horizontal, "发送短息成功！");
+                toastUtil2.show();
             } else {
                 return;
 //                new ToastUtil(context, R.layout.toast_center_horizontal, smsSendBean.getErrorMsg()).show();

@@ -278,9 +278,9 @@ public class MyScanCodeActivity extends BaseActivity implements JoinContract.Vie
         QRCodeManager.getInstance().with(this).setReqeustType(0).scanningQRCode(new OnQRCodeScanCallback() {
             @Override
             public void onCompleted(String s) {
-                Toast toast = Toast.makeText(context, "结果:" + s, Toast.LENGTH_SHORT);
-                toast.setGravity(Gravity.CENTER, 0, 0);
-                toast.show();
+//                Toast toast = Toast.makeText(context, "结果:" + s, Toast.LENGTH_SHORT);
+//                toast.setGravity(Gravity.CENTER, 0, 0);
+//                toast.show();
                 Pattern p = Pattern.compile(".*shiyuanInvitationCode.*"); //判断是否为识缘指定字段 shiyuanInvitationCode
                 Matcher m = p.matcher(s);
                 boolean isValid = m.matches();
@@ -289,8 +289,8 @@ public class MyScanCodeActivity extends BaseActivity implements JoinContract.Vie
                     String str = s.substring(0, s.indexOf("="));
                     // 截取=号后的字符串
                     String bb = s.substring(str.length() + 1, s.length());
-                    ToastUtil toastUtil2 = new ToastUtil(context, R.layout.toast_center_horizontal, "为识缘指定字段code:" + bb);
-                    toastUtil2.show();
+//                    ToastUtil toastUtil2 = new ToastUtil(context, R.layout.toast_center_horizontal, "为识缘指定字段code:" + bb);
+//                    toastUtil2.show();
                     if (bb != null) {
                         ((JoinPresenter) mPresenter).isjoin(bb);
                     }
@@ -305,9 +305,8 @@ public class MyScanCodeActivity extends BaseActivity implements JoinContract.Vie
             @Override
             public void onError(Throwable throwable) {
                 String s = throwable.toString();
-                Toast toast = Toast.makeText(context, "扫描错误信息：" + s, Toast.LENGTH_LONG);
-                toast.setGravity(Gravity.CENTER, 0, 0);
-                toast.show();
+                ToastUtil toastUtil2 = new ToastUtil(context, R.layout.toast_center_horizontal, "扫描错误信息：" + s);
+                toastUtil2.show();
             }
 
             @Override
@@ -362,7 +361,7 @@ public class MyScanCodeActivity extends BaseActivity implements JoinContract.Vie
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        Toast.makeText(context, "走了:", Toast.LENGTH_SHORT).show();
+//        Toast.makeText(context, "走了:", Toast.LENGTH_SHORT).show();
         //注册onActivityResult
         QRCodeManager.getInstance().with(this).onActivityResult(requestCode, resultCode, data);
 
@@ -421,15 +420,19 @@ public class MyScanCodeActivity extends BaseActivity implements JoinContract.Vie
 
             Intent intent = new Intent();
             if (status == 200) {//加入成功
-                Toast toast = Toast.makeText(context, "成功：" + joinBean.getMsg(), Toast.LENGTH_SHORT);
-                toast.setGravity(Gravity.CENTER, 0, 0);
-                toast.show();
+//                Toast toast = Toast.makeText(context, "成功：" + joinBean.getMsg(), Toast.LENGTH_SHORT);
+//                toast.setGravity(Gravity.CENTER, 0, 0);
+//                toast.show();
+                ToastUtil toastUtil2 = new ToastUtil(context, R.layout.ok_toast_center_horizontal,  "成功：" + joinBean.getMsg());
+                toastUtil2.show();
                 intent.setClass(context, SynergicActivity.class);
                 finish();
             } else {//加入失败、已加入其他组
-                Toast toast = Toast.makeText(context, joinBean.getMsg(), Toast.LENGTH_SHORT);
-                toast.setGravity(Gravity.CENTER, 0, 0);
-                toast.show();
+//                Toast toast = Toast.makeText(context, joinBean.getMsg(), Toast.LENGTH_SHORT);
+//                toast.setGravity(Gravity.CENTER, 0, 0);
+//                toast.show();
+                ToastUtil toastUtil2 = new ToastUtil(context, R.layout.toast_center_horizontal,  "失败：" + joinBean.getMsg());
+                toastUtil2.show();
                 intent.setClass(context, SynergicActivity.class);
                 finish();
             }

@@ -14,6 +14,7 @@ import com.example.shiyuankeji.bean.ClassListBean;
 import com.example.shiyuankeji.interfaces.IBasePresenter;
 import com.example.shiyuankeji.interfaces.contract.ClassListifyContract;
 import com.example.shiyuankeji.presenter.ClassListifyPresenter;
+import com.example.shiyuankeji.utils.ToastUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -92,7 +93,8 @@ public class ShowClassfyFragment extends BaseFragment implements ClassListifyCon
             list.addAll(itemsList);
             showClassAdapter.notifyDataSetChanged();
         } else {
-            Toast.makeText(context, "分类列表请求失败", Toast.LENGTH_SHORT).show();
+            ToastUtil toastUtil2 = new ToastUtil(context, R.layout.toast_center_horizontal, "分类列表请求失败！");
+            toastUtil2.show();
 
         }
     }

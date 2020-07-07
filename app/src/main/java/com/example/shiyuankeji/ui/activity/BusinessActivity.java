@@ -16,6 +16,7 @@ import com.example.shiyuankeji.bean.SynergicBean;
 import com.example.shiyuankeji.interfaces.IBasePresenter;
 import com.example.shiyuankeji.interfaces.contract.SynergiContract;
 import com.example.shiyuankeji.presenter.SynergicPersenter;
+import com.example.shiyuankeji.utils.ToastUtil;
 import com.example.shiyuankeji.utils.UtilsClicktime;
 
 import java.util.ArrayList;
@@ -126,7 +127,8 @@ public class BusinessActivity extends BaseActivity implements SynergiContract.Vi
 
 
                 } else {//无合作数据
-                    Toast.makeText(context,"00000",Toast.LENGTH_SHORT).show();
+                    ToastUtil toastUtil2 = new ToastUtil(context, R.layout.toast_center_horizontal, "无合作数据！");
+                    toastUtil2.show();
                 }
             }
 

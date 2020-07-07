@@ -99,11 +99,11 @@ public class AddressMessage extends BaseActivity implements AddressContract.View
                 if (Constant.IS_MINE_IS.equals("2")) {
                     if (Constant.CURTYPE.equals("编辑")) {
                         tvTilet.setText("修改收货地址");
-                        Toast.makeText(context, "编辑001124545", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(context, "编辑001124545", Toast.LENGTH_SHORT).show();
                         biajineirong(getname, getphone, getaddress, edstreets);
                     } else if (Constant.CURTYPE.equals("添加")) {
                         tvTilet.setText("添加收货地址");
-                        Toast.makeText(context, "添加收货地址0000000", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(context, "添加收货地址0000000", Toast.LENGTH_SHORT).show();
                         biajineirong(getname, getphone, getaddress, edstreets);
                     }
                 } else {
@@ -111,11 +111,11 @@ public class AddressMessage extends BaseActivity implements AddressContract.View
 
                     if (Constant.CURTYPE.equals("编辑")) {
                         tvTilet.setText("修改收货地址");
-                        Toast.makeText(context, "编辑001124545", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(context, "编辑001124545", Toast.LENGTH_SHORT).show();
                         biajineirong(getname, getphone, getaddress, edstreets);
                     } else if (Constant.CURTYPE.equals("添加")) {
                         tvTilet.setText("添加收货地址");
-                        Toast.makeText(context, "添加收货地址0000000", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(context, "添加收货地址0000000", Toast.LENGTH_SHORT).show();
                         biajineirong(getname, getphone, getaddress, edstreets);
                     }
 

@@ -27,6 +27,8 @@ import com.example.shiyuankeji.bean.ScanCodeBean;
 import com.example.shiyuankeji.interfaces.IBasePresenter;
 import com.example.shiyuankeji.interfaces.contract.ScancodeContract;
 import com.example.shiyuankeji.presenter.ScancodePresenter;
+import com.example.shiyuankeji.utils.ToastUtil;
+import com.example.shiyuankeji.utils.UtilsClicktime;
 import com.jwkj.libzxing.QRCodeManager;
 
 import java.io.ByteArrayOutputStream;
@@ -111,6 +113,9 @@ public class MyQRActivity extends BaseActivity implements ScancodeContract.View 
                 finish();
                 break;
                 case R.id.lin_poster:
+                    if (UtilsClicktime.isFastDoubleClick()){
+                        return;
+                    }
                     screenShot = getScreenShot();
                     imbug.setImageBitmap(screenShot);
                     saveScreenShot(screenShot);
@@ -135,11 +140,14 @@ public class MyQRActivity extends BaseActivity implements ScancodeContract.View 
             Intent intent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
             Uri uri = Uri.fromFile(file);intent.setData(uri);
             sendBroadcast(intent);//这个广播的目的就是更新图库，发了这个广播进入相册就可以找到你保存的图片了！
-            Toast.makeText(this,"saved",
-                    Toast.LENGTH_SHORT).show();
+
+            ToastUtil toastUtil2 = new ToastUtil(context, R.layout.ok_toast_center_horizontal, "生成成功！");
+            toastUtil2.show();
         } catch(Exception e) {
-            Toast.makeText(this, "exception:" + e,
-                    Toast.LENGTH_SHORT).show();
+//            Toast.makeText(this, "exception:" + e,
+//                    Toast.LENGTH_SHORT).show();
+            ToastUtil toastUtil2 = new ToastUtil(context, R.layout.toast_center_horizontal, "生成失败！");
+            toastUtil2.show();
 
         }
     }

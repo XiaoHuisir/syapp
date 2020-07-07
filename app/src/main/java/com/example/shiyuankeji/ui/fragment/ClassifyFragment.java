@@ -13,6 +13,7 @@ import com.example.shiyuankeji.bean.ClassBean;
 import com.example.shiyuankeji.interfaces.IBasePresenter;
 import com.example.shiyuankeji.interfaces.contract.ClassifyContract;
 import com.example.shiyuankeji.presenter.ClassifyPresenter;
+import com.example.shiyuankeji.utils.ToastUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -59,8 +60,7 @@ public class ClassifyFragment extends BaseFragment implements ClassifyContract.V
     @Override
     public void classifyReturn(ClassBean result) {
         if (result != null) {
-            Toast.makeText(context, "成功", Toast.LENGTH_SHORT).show();
-//            //TODO ??
+//            Toast.makeText(context, "成功", Toast.LENGTH_SHORT).show();
             cateList = result.getCateList();
 
             for (int i = 0; i < cateList.size(); i++) {
@@ -88,7 +88,9 @@ public class ClassifyFragment extends BaseFragment implements ClassifyContract.V
             }
             Constant.CLASS_BOOLEAN = false;
         } else {
-            Toast.makeText(context, "失败", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(context, "失败", Toast.LENGTH_SHORT).show();
+            ToastUtil toastUtil2 = new ToastUtil(context, R.layout.toast_center_horizontal, "失败！");
+            toastUtil2.show();
         }
     }
 

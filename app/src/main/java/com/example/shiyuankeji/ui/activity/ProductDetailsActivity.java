@@ -296,7 +296,7 @@ public class ProductDetailsActivity extends BaseActivity implements ProductDetai
     }
 
     private void winings(ProductDetailsBean result) {
-        Toast.makeText(context, "商品详情成功", Toast.LENGTH_SHORT).show();
+//        Toast.makeText(context, "商品详情成功", Toast.LENGTH_SHORT).show();
         idsa = result.getIdsa();
         String name = result.getName();
         //价格
@@ -460,7 +460,7 @@ public class ProductDetailsActivity extends BaseActivity implements ProductDetai
 //    }
 
     private void failedings() {
-        Toast.makeText(context, "商品详情请求失败", Toast.LENGTH_SHORT).show();
+//        Toast.makeText(context, "商品详情请求失败", Toast.LENGTH_SHORT).show();
     }
 
 
