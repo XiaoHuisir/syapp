@@ -1,6 +1,7 @@
 package com.example.shiyuankeji.adapter;
 
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -31,9 +32,14 @@ public class SubmitListAdapter extends BaseAdapter {
         TextView textUserPhone = (TextView) holder.getView(R.id.text_user_phone);//用户手机号
         TextView tvEditor = (TextView) holder.getView(R.id.text_editor);//编辑
         RelativeLayout re_choose = (RelativeLayout) holder.getView(R.id.re_choose);//选择
-        tvUserAdd.setText(listSubmit.getAddress());
-        tvUserName.setText(listSubmit.getName());
-        textUserPhone.setText(String.valueOf(listSubmit.getPhone()));
+        LinearLayout linMoren = (LinearLayout) holder.getView(R.id.lin_moren);//选择
+        tvUserAdd.setText("地址："+listSubmit.getAddress());
+        tvUserName.setText("姓名："+listSubmit.getName());
+        textUserPhone.setText("手机号："+String.valueOf(listSubmit.getPhone()));
+        int is_default = listSubmit.getIs_default();//判断是否为默认地址 1 默认 0 不是
+        if (is_default==1){
+            linMoren.setVisibility(View.VISIBLE);
+        }
         holder.itemView.setTag(positon);
 //          layout.setTag(String.valueOf(data.getCurriculum_id()));
 //        layout.setOnClickListener(new View.OnClickListener() {

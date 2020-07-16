@@ -310,7 +310,7 @@ public class Submit0rdersActivity extends BaseActivity implements SubmitContract
         Thread payThread = new Thread(payRunnable);
         payThread.start();
     }
-
+        //TODO 积分支付
     private void jifezhifu() {
         if (Constant.INXDLER == false) {
 
@@ -491,7 +491,7 @@ public class Submit0rdersActivity extends BaseActivity implements SubmitContract
 
         }
     }
-
+//TODO 积分不足
     @Override
     public void addOrderRean(AddOrderistBean addOrderistBean) {
         if (addOrderistBean != null) {
@@ -509,12 +509,15 @@ public class Submit0rdersActivity extends BaseActivity implements SubmitContract
                 if (!data.equals("") && data != null) {
                     aliPay(data);
                 }
-            } else {
+            } else if (order_state==206){
+                ToastUtil toastUtil = new ToastUtil(context, R.layout.toast_center_horizontal, "库存不足！");
+                toastUtil.show();
+            }else if (order_state==204){
                 LayoutInflater inflater = getLayoutInflater();
                 //引入自定义好的对话框.xml布局
                 View layout = inflater.inflate(R.layout.is_submit_layout, null);
                 //实列提示对话框对象，并将加载的试图对象设置给对话框对象
-                final AlertDialog alertDialog = new AlertDialog.Builder(this).setTitle(addOrderistBean.getMsg()).setView(layout).show();
+                final AlertDialog alertDialog = new AlertDialog.Builder(this).setTitle("").setView(layout).show();
                 final RelativeLayout yes = layout.findViewById(R.id.relative_update);
                 final RelativeLayout no = layout.findViewById(R.id.relative_cancel);
                 yes.setOnClickListener(new View.OnClickListener() {  //是

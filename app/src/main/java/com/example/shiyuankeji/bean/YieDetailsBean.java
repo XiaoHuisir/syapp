@@ -1,5 +1,6 @@
 package com.example.shiyuankeji.bean;
 
+import java.util.Date;
 import java.util.List;
 
 public class YieDetailsBean {
@@ -141,6 +142,7 @@ public class YieDetailsBean {
          * rmb_price : null
          * create_time : null
          * sharetype : 3
+         * createtime:2012.06.12
          */
 
         private Object order_num;
@@ -149,6 +151,15 @@ public class YieDetailsBean {
         private Object rmb_price;
         private Object create_time;
         private int sharetype;
+        private String createtime;
+
+        public String getCreatetime() {
+            return createtime;
+        }
+
+        public void setCreatetime(String createtime) {
+            this.createtime = createtime;
+        }
 
         public Object getOrder_num() {
             return order_num;

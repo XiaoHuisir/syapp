@@ -10,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.Toast;
 
@@ -48,6 +49,10 @@ public class HomeFragment extends BaseFragment implements HomeCotract.View {
     SwipeRefreshLayout swipeRefres;
     @BindView(R.id.scr_view)
     ScrollView scrView;
+    @BindView(R.id.re_no_data)
+    RelativeLayout reNoData;
+    @BindView(R.id.re_gone)
+    RelativeLayout reGone;
 
 
     private HomeAdapter homeAdapter;
@@ -184,9 +189,14 @@ public class HomeFragment extends BaseFragment implements HomeCotract.View {
         }
         mainList_title = result.getMainList_title();
         if (mainList_title != null && mainList_title.size() > 0) {
+            reGone.setVisibility(View.VISIBLE);
+            reNoData.setVisibility(View.GONE);
             listTetle.clear();
             listTetle.addAll(mainList_title);
             homeAdapter.notifyDataSetChanged();
+        }else {
+            reGone.setVisibility(View.GONE);
+            reNoData.setVisibility(View.VISIBLE);
         }
 
     }

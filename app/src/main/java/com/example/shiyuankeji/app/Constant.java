@@ -73,6 +73,7 @@ public class Constant {
     public static final int ORDER_STATE_2 = 2;
     public static final int ORDER_STATE_3 = 3;
     public static final int ORDER_STATE_4 = 4;
+    public static final int ORDER_STATE_5 = 5;
 
     public static String IMG = "";
     public static String NAME = "";

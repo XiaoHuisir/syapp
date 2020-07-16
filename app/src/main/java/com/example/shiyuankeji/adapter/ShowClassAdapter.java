@@ -43,9 +43,9 @@ public class ShowClassAdapter extends RecyclerView.Adapter<ShowClassAdapter.View
             String img = listBean.getImg();
             Glide.with(context).load(img).into(viewHodler.mIm);
 
-            viewHodler.mTvJi.setText(String.valueOf(listBean.getSrc_price_code()));
+            viewHodler.mTvJi.setText(String.valueOf(listBean.getCode_price()));
             viewHodler.mTvName.setText(listBean.getName());
-            viewHodler.jian.setText(String.valueOf(listBean.getCode_price()));
+            viewHodler.jian.setText(String.valueOf(listBean.getSrc_price_code()));
             viewHodler.jian.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG); //中间横线
             viewHodler.linearNew.setOnClickListener(new NoDoubleClickListener() {
                 @Override

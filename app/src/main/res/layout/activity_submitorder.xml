@@ -141,6 +141,7 @@
                     android:layout_alignParentLeft="true"
                     android:layout_marginLeft="@dimen/dp_13"
                     android:layout_marginTop="@dimen/dp_14"
+                    android:layout_toLeftOf="@+id/re_one"
                     android:ellipsize="end"
                     android:maxLines="2"
                     android:text="收货地址："
@@ -338,6 +339,7 @@
 
         <LinearLayout
             android:id="@+id/ll_wechat"
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_below="@id/re_r4"

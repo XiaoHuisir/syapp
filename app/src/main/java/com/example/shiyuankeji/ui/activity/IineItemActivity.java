@@ -51,6 +51,10 @@ public class IineItemActivity extends BaseActivity implements LineItemConreact.V
     TextView tvLeaveWord;
     @BindView(R.id.tv_order_price)
     TextView tvOrderPrice;
+    @BindView(R.id.tv_way)
+    TextView tvWay;
+    @BindView(R.id.t1)
+    TextView tzhuangtai;
     private String indent_id;
 
     @Override
@@ -98,6 +102,8 @@ public class IineItemActivity extends BaseActivity implements LineItemConreact.V
             txtName.setText("收货人：" + lineItemBean.getUser_address().getName());
             tvUserPhone.setText(lineItemBean.getUser_address().getPhone());
             tvUserAdd.setText(lineItemBean.getUser_address().getAddress());
+
+
             RequestOptions options = new RequestOptions()
                     .centerCrop()
                     .placeholder(R.drawable.no_banner) //预加载图片
@@ -106,11 +112,47 @@ public class IineItemActivity extends BaseActivity implements LineItemConreact.V
                     .diskCacheStrategy(DiskCacheStrategy.NONE) //缓存
                     .transform(new GlideRoundTransform(3)); //圆角
             Glide.with(context).load(lineItemBean.getItems().getImg()).apply(options).into(imItemImg);
-            tvItemName.setText(lineItemBean.getItems().getName());
-            tvItemPrice.setText(lineItemBean.getItems().getCode_price() + "积分");
-            tvNum.setText("X" + lineItemBean.getOrder_list().getNum());
-            tvItemFreight.setText(lineItemBean.getItems().getFreight() + "积分");
-            tvOrderPrice.setText(lineItemBean.getOrder_list().getOrder_price() + "");
+            int inxdler = lineItemBean.getOrder_list().getPaymentMethod();
+            if (inxdler == 1) {
+                tvWay.setText("支付方式：支付宝支付");
+                tvItemName.setText(lineItemBean.getItems().getName());
+                tvItemPrice.setText(lineItemBean.getItems().getCode_price() + "元");
+                tvNum.setText("X" + lineItemBean.getOrder_list().getNum());
+                tvItemFreight.setText(lineItemBean.getOrder_list().getFreight() + "元"); //运费
+                tvOrderPrice.setText(lineItemBean.getOrder_list().getPaymentPrice() + ""); //TODO
+                tzhuangtai.setText("元");
+            } else if (inxdler == 2) {
+                tvWay.setText("支付方式：微信支付");
+                tvItemName.setText(lineItemBean.getItems().getName());
+                tvItemPrice.setText(lineItemBean.getItems().getCode_price() + "元");
+                tvNum.setText("X" + lineItemBean.getOrder_list().getNum());
+                tvItemFreight.setText(lineItemBean.getOrder_list().getFreight() + "元");
+                tvOrderPrice.setText(lineItemBean.getOrder_list().getPaymentPrice() + ""); //TODO
+                tzhuangtai.setText("元");
+            } else if (inxdler == 3) {
+                tvWay.setText("支付方式：积分支付");
+                tvItemName.setText(lineItemBean.getItems().getName());
+                tvItemPrice.setText(lineItemBean.getItems().getCode_price() + "积分");
+                tvNum.setText("X" + lineItemBean.getOrder_list().getNum());
+                tvItemFreight.setText(lineItemBean.getOrder_list().getFreight() + "积分");
+                tvOrderPrice.setText(lineItemBean.getOrder_list().getPayPoints() + ""); //TODO
+                tzhuangtai.setText("积分");
+            } else if (inxdler == 4) {
+                //TODO  支付宝+积分
+
+            } else if (inxdler == 5) {
+                //TODO  .微信+积分
+
+            } else if (inxdler == 0) {
+                tvWay.setText("支付方式：默认值订单没有支付");
+                tvItemName.setText(lineItemBean.getItems().getName());
+                tvItemPrice.setText(lineItemBean.getItems().getCode_price() + "积分");
+                tvNum.setText("X" + lineItemBean.getOrder_list().getNum());
+                tvItemFreight.setText(lineItemBean.getOrder_list().getFreight() + "积分");
+                tvOrderPrice.setText("0");
+                tzhuangtai.setText("");
+            }
+
 
         }
     }

@@ -4,6 +4,8 @@ import android.annotation.SuppressLint;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 
@@ -28,7 +30,10 @@ public class ShowClassfyFragment extends BaseFragment implements ClassListifyCon
     RecyclerView recyclerShowclassfy;
     @BindView(R.id.swipeRefresh)
     SwipeRefreshLayout swipeRefr;
-
+    @BindView(R.id.re_no_data)
+    RelativeLayout reNoData;
+    @BindView(R.id.re_class_gone)
+    RelativeLayout reClassGone;
 
     private ArrayList<ClassListBean.ItemsListBean> list;
     private int type;
@@ -89,9 +94,16 @@ public class ShowClassfyFragment extends BaseFragment implements ClassListifyCon
     public void classListReturn(ClassListBean result) {
         if (result != null) {
             List<ClassListBean.ItemsListBean> itemsList = result.getItemsList();
+            if (itemsList.size()>0&&itemsList!=null){
+                reNoData.setVisibility(View.GONE);
+                reClassGone.setVisibility(View.VISIBLE);
             list.clear();
             list.addAll(itemsList);
             showClassAdapter.notifyDataSetChanged();
+            }else {
+                reNoData.setVisibility(View.VISIBLE);
+                reClassGone.setVisibility(View.GONE);
+            }
         } else {
             ToastUtil toastUtil2 = new ToastUtil(context, R.layout.toast_center_horizontal, "分类列表请求失败！");
             toastUtil2.show();

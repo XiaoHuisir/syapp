@@ -9,14 +9,14 @@
 
     <RelativeLayout
         android:id="@+id/lin_return"
-        android:layout_marginTop="@dimen/dp_32"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_48"
+        android:layout_marginTop="@dimen/dp_32"
         android:background="@color/tou_ming">
 
         <ImageView
             android:id="@+id/image_back"
-            android:layout_width="@dimen/dp_8"
+            android:layout_width="@dimen/dp_15"
             android:layout_height="@dimen/dp_15"
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/dp_13"
@@ -81,8 +81,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/dp_13"
-        android:layout_marginRight="@dimen/dp_13"
         android:layout_marginTop="@dimen/dp_7"
+        android:layout_marginRight="@dimen/dp_13"
         android:background="@color/newnew_newbg">
 
         <RelativeLayout
@@ -97,8 +97,7 @@
                 android:layout_height="@dimen/dp_24"
                 android:layout_alignParentLeft="true"
                 android:layout_marginLeft="@dimen/dp_8"
-                android:layout_marginTop="@dimen/dp_16"
-               >
+                android:layout_marginTop="@dimen/dp_16">
 
                 <TextView
                     android:id="@+id/txt_name"
@@ -114,9 +113,9 @@
                     android:id="@+id/tv_user_phone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                   android:layout_toRightOf="@+id/txt_name"
-                    android:layout_marginLeft="@dimen/dp_14"
                     android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/dp_14"
+                    android:layout_toRightOf="@+id/txt_name"
                     android:text="00000"
                     android:textColor="@color/black"
                     android:textSize="@dimen/sp_12" />
@@ -137,18 +136,18 @@
                 android:textSize="@dimen/sp_12" />
 
             <!--<RelativeLayout-->
-                <!--android:id="@+id/re_one"-->
-                <!--android:layout_width="@dimen/dp_64"-->
-                <!--android:layout_height="match_parent"-->
-                <!--android:layout_alignParentRight="true">-->
+            <!--android:id="@+id/re_one"-->
+            <!--android:layout_width="@dimen/dp_64"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_alignParentRight="true">-->
 
-                <!--&lt;!&ndash;<ImageView&ndash;&gt;-->
-                <!--&lt;!&ndash;android:id="@+id/im_beak_ok"&ndash;&gt;-->
-                <!--&lt;!&ndash;android:layout_width="36dp"&ndash;&gt;-->
-                <!--&lt;!&ndash;android:layout_height="36dp"&ndash;&gt;-->
-                <!--&lt;!&ndash;android:layout_centerHorizontal="true"&ndash;&gt;-->
-                <!--&lt;!&ndash;android:layout_centerVertical="true"&ndash;&gt;-->
-                <!--&lt;!&ndash;android:src="@mipmap/back_h" />&ndash;&gt;-->
+            <!--&lt;!&ndash;<ImageView&ndash;&gt;-->
+            <!--&lt;!&ndash;android:id="@+id/im_beak_ok"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_width="36dp"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_height="36dp"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_centerHorizontal="true"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_centerVertical="true"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:src="@mipmap/back_h" />&ndash;&gt;-->
             <!--</RelativeLayout>-->
 
         </RelativeLayout>
@@ -157,9 +156,10 @@
         <RelativeLayout
             android:id="@+id/re_2"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_180"
+            android:layout_height="wrap_content"
             android:layout_below="@id/re_site_k"
             android:layout_marginTop="7dp"
+            android:paddingBottom="@dimen/dp_27"
             android:background="@drawable/mine_bgg">
 
             <ImageView
@@ -178,8 +178,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="13dp"
                 android:layout_marginTop="@dimen/dp_27"
-                android:layout_toLeftOf="@+id/tv_item_price"
                 android:layout_marginRight="@dimen/dp_4"
+                android:layout_toLeftOf="@+id/tv_item_price"
                 android:layout_toRightOf="@id/im_item_img"
                 android:ellipsize="end"
                 android:maxLines="1"
@@ -210,58 +210,74 @@
                 android:text="X 0"
                 android:textColor="@color/black"
                 android:textSize="9sp" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/im_item_img"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="@dimen/dp_8"
-                android:text="运费："
                 android:layout_toLeftOf="@+id/tv_item_freight"
-                android:layout_alignBottom="@id/im_item_img"
+                android:text="运费："
                 android:textColor="@color/black"
                 android:textSize="@dimen/sp_11" />
+
             <TextView
                 android:id="@+id/tv_item_freight"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/im_item_img"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="@dimen/dp_13"
                 android:text="0积分"
-                android:layout_alignBottom="@id/im_item_img"
                 android:textColor="@color/black"
                 android:textSize="@dimen/sp_11" />
+
             <TextView
                 android:id="@+id/tv_leave_word"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+              android:layout_alignBottom="@+id/tv_order_price"
                 android:layout_toLeftOf="@id/tv_order_price"
                 android:text="合计："
-                android:layout_alignParentBottom="true"
-                android:layout_marginBottom="@dimen/dp_27"
                 android:textColor="@color/black"
                 android:textSize="@dimen/sp_11" />
+
             <TextView
                 android:id="@+id/tv_order_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-              android:layout_toLeftOf="@+id/t1"
-               android:layout_alignParentBottom="true"
-                android:layout_marginBottom="@dimen/dp_25"
+
                 android:layout_marginRight="@dimen/dp_4"
+                android:layout_alignBottom="@+id/t1"
+                android:layout_toLeftOf="@+id/t1"
                 android:text="00"
                 android:textColor="@color/red"
                 android:textSize="@dimen/sp_17" />
+
             <TextView
                 android:id="@+id/t1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:layout_alignParentBottom="true"
-                android:layout_marginBottom="@dimen/dp_27"
+                android:layout_marginTop="@dimen/dp_20"
+                android:layout_below="@+id/tv_item_freight"
                 android:layout_marginRight="@dimen/dp_13"
                 android:text="积分"
                 android:textColor="@color/red"
                 android:textSize="@dimen/sp_11" />
+
+            <TextView
+                android:id="@+id/tv_way"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/tabbg"
+                android:textSize="@dimen/sp_15"
+                android:layout_marginTop="@dimen/dp_20"
+                android:layout_below="@+id/t1"
+                android:layout_marginRight="@dimen/dp_13"
+                android:layout_alignParentRight="true"
+                android:text="方式：xxx" />
         </RelativeLayout>
     </RelativeLayout>
 

@@ -58,8 +58,12 @@ public class MyQRActivity extends BaseActivity implements ScancodeContract.View 
     LinearLayout btnNaBack;
     @BindView(R.id.lin_poster)
     LinearLayout linPoster;
+    @BindView(R.id.btn_na_back_no)
+    LinearLayout btnNoBack;
     @BindView(R.id.re_ok)
     RelativeLayout reOk;
+    @BindView(R.id.re_no_data)
+    RelativeLayout reNoData;
     private Bitmap screenShot;
     private Uri uri;//照片uri
     private String[] permissions = {Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE};
@@ -106,10 +110,13 @@ public class MyQRActivity extends BaseActivity implements ScancodeContract.View 
     }
 
 
-    @OnClick({R.id.btn_na_back, R.id.lin_poster})
+    @OnClick({R.id.btn_na_back, R.id.lin_poster,R.id.btn_na_back_no})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_na_back:
+                finish();
+                break;
+                case R.id.btn_na_back_no:
                 finish();
                 break;
                 case R.id.lin_poster:
@@ -259,15 +266,15 @@ public class MyQRActivity extends BaseActivity implements ScancodeContract.View 
     public void scancodeRean(ScanCodeBean scanCodeBean) {
         int status = scanCodeBean.getStatus();
         if (status == 200) {
-            imbug.setVisibility(View.INVISIBLE);
+            reNoData.setVisibility(View.INVISIBLE);
 //            txtUserName.setVisibility(View.VISIBLE);
-            imViewQr.setVisibility(View.VISIBLE);
+            reOk.setVisibility(View.VISIBLE);
             String data = scanCodeBean.getData();
             myqr(data);
         } else {
-            imbug.setVisibility(View.VISIBLE);
+            reNoData.setVisibility(View.VISIBLE);
 //            txtUserName.setVisibility(View.INVISIBLE);
-            imViewQr.setVisibility(View.INVISIBLE);
+            reOk.setVisibility(View.INVISIBLE);
             return;
         }
     }

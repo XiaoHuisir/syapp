@@ -30,7 +30,7 @@ public class ExchangeActivity extends Activity {
     ImageView imAdd;
     @BindView(R.id.im_jian)
     ImageView imMinus;
-//    @BindView(R.id.btn_exchang)
+    //    @BindView(R.id.btn_exchang)
 //    Button btnExchang;
     @BindView(R.id.textv_price)
     TextView textPrice;
@@ -104,6 +104,8 @@ public class ExchangeActivity extends Activity {
                 intent.putExtra("type_id", ids);//id
                 intent.putExtra("num", Constant.DYNAMIC_DIGITAL); // 交易数量
                 startActivity(intent);
+                Constant.DYNAMIC_DIGITAL=1;
+
                 finish();
             }
         });

@@ -431,6 +431,7 @@ public class LineItemBean {
          * paymentMethod : 1
          * create_time : 2020-06-12
          * payment_time : 2020-06-22T14:58:41.000+0000
+         * freight :1
          */
 
         private int id;
@@ -447,6 +448,15 @@ public class LineItemBean {
         private int paymentMethod;
         private String create_time;
         private String payment_time;
+        private  int  freight;
+
+        public int getFreight() {
+            return freight;
+        }
+
+        public void setFreight(int freight) {
+            this.freight = freight;
+        }
 
         public int getId() {
             return id;

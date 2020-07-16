@@ -2,58 +2,52 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/mine_bgg"
->
+    android:background="@drawable/mine_bgg">
 
 
+    <RelativeLayout
+        android:id="@+id/le_"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:paddingBottom="@dimen/dp_34">
 
-        <RelativeLayout
-            android:id="@+id/le_"
-            android:paddingBottom="@dimen/dp_34"
-            android:layout_alignParentTop="true"
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/t_name"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-           >
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:layout_marginTop="@dimen/dp_17"
+            android:text="1111"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp_15" />
 
-            <TextView
-                android:id="@+id/t_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="1111"
-                android:textColor="@color/black"
-                android:layout_alignParentTop="true"
-                android:layout_marginLeft="@dimen/dp_10"
-                android:layout_alignParentLeft="true"
-                android:layout_marginTop="@dimen/dp_17"
-                android:textSize="@dimen/sp_15" />
+        <TextView
+            android:id="@+id/tv_createtime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/t_name"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:layout_marginTop="@dimen/dp_10"
+            android:text="0-0-0"
+            android:textColor="#9f9f9f"
+            android:textSize="@dimen/sp_13" />
 
-            <TextView
-
-                android:layout_below="@id/t_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="2020-6-29"
-                android:layout_marginTop="@dimen/dp_10"
-                android:textColor="#9f9f9f"
-                android:layout_alignParentLeft="true"
-                android:layout_marginLeft="@dimen/dp_10"
-                android:textSize="@dimen/sp_13" />
-            <TextView
-                android:id="@+id/t_qian"
-                android:layout_alignParentTop="true"
-                android:layout_marginTop="@dimen/dp_28"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="1"
-                android:textColor="@color/newnew_bg"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="@dimen/dp_13"
-                android:textSize="@dimen/sp_16" />
-        </RelativeLayout>
-
-
-
-
+        <TextView
+            android:id="@+id/t_qian"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="@dimen/dp_28"
+            android:layout_marginRight="@dimen/dp_13"
+            android:text="1"
+            android:textColor="@color/newnew_bg"
+            android:textSize="@dimen/sp_16" />
+    </RelativeLayout>
 
 
 </RelativeLayout>

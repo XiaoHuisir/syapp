@@ -6,6 +6,8 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.view.View;
+import android.widget.RelativeLayout;
 
 import com.example.shiyuankeji.R;
 import com.example.shiyuankeji.adapter.IndentListAdapter;
@@ -33,6 +35,10 @@ public class IndentFragment extends BaseFragment implements IndentContract.View,
     RecyclerView reIndentList;
     @BindView(R.id.indent_swipeRefeash)
     SwipeRefreshLayout indentSwipeRefeash;
+    @BindView(R.id.re_no_data)
+    RelativeLayout reNoData;
+    @BindView(R.id.re_ind_gone)
+    RelativeLayout reIndGone;
     private ArrayList<NewIndentBean.OrderListListBean> list;
     private IndentListAdapter indentListAdapter;
     private String msg;
@@ -136,10 +142,15 @@ public class IndentFragment extends BaseFragment implements IndentContract.View,
     @Override
     public void indentRean(NewIndentBean newIndentBean) {
         List<NewIndentBean.OrderListListBean> order_lists = newIndentBean.getOrder_listList();
-        if (order_lists != null) {
+        if (order_lists != null&& order_lists.size()>0) {
+            reIndGone.setVisibility(View.VISIBLE);
+            reNoData.setVisibility(View.GONE);
             list.clear();
             list.addAll(order_lists);
             indentListAdapter.notifyDataSetChanged();
+        }else {
+            reIndGone.setVisibility(View.GONE);
+            reNoData.setVisibility(View.VISIBLE);
         }
     }
 

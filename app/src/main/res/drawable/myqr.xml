@@ -3,7 +3,7 @@
     >
     <solid android:color="@color/newnew_bg" />
     <corners
-        android:radius="@dimen/dp_13"
+        android:radius="@dimen/dp_20"
         ></corners>
 
 

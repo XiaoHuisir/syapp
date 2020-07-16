@@ -6,6 +6,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,6 +39,10 @@ public class SelectAddressActivity extends BaseActivity implements SubmitListCon
     RecyclerView reSubmitList;
     @BindView(R.id.recyclerefresh)
     SwipeRefreshLayout recycleRefresh;
+    @BindView(R.id.re_no_data)
+    RelativeLayout reNoData;
+    @BindView(R.id.re_okdata)
+    RelativeLayout reOkData;
 
     private ArrayList<SubmitListBean.UserAddressLIstBean> list;
     private SubmitListAdapter submitListAdapter;
@@ -128,12 +133,15 @@ public class SelectAddressActivity extends BaseActivity implements SubmitListCon
     @Override
     public void submitlistReane(SubmitListBean submitListBean) {
         List<SubmitListBean.UserAddressLIstBean> user_addressLIst = submitListBean.getUser_addressLIst();
-        if (user_addressLIst != null) {
-//            Toast.makeText(context, "list", Toast.LENGTH_SHORT).show();
+        if (user_addressLIst != null&&user_addressLIst.size()>0) {
+            reNoData.setVisibility(View.GONE);
+            reOkData.setVisibility(View.VISIBLE);
             list.clear();
             list.addAll(user_addressLIst);
             submitListAdapter.notifyDataSetChanged();
         } else {
+            reNoData.setVisibility(View.VISIBLE);
+            reOkData.setVisibility(View.GONE);
 //            Toast.makeText(context, "请添加新地址", Toast.LENGTH_SHORT).show();
             ToastUtil toastUtil2 = new ToastUtil(context, R.layout.toast_center_horizontal, "请添加新地址！");
             toastUtil2.show();

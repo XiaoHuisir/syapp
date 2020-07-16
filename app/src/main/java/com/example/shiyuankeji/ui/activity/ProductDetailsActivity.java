@@ -36,6 +36,7 @@ import com.example.shiyuankeji.presenter.ProductDetailsPresenter;
 import com.example.shiyuankeji.ui.activity.login.LoginActivity;
 import com.example.shiyuankeji.utils.NoDoubleClickListener;
 import com.example.shiyuankeji.utils.SharedPreferencesUtil;
+import com.example.shiyuankeji.utils.ToastUtil;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -274,6 +275,12 @@ public class ProductDetailsActivity extends BaseActivity implements ProductDetai
             StateHandling();
         }else {
             Constant.token = token;
+            if (stock==0){
+                ToastUtil toastUtil = new ToastUtil(context, R.layout.toast_center_horizontal, "库存不足！");
+                toastUtil.show();
+
+                return;
+            }
             Intent intent2 = new Intent(context, ExchangeActivity.class);
             intent2.putExtra("price", price);
             intent2.putExtra("imgs", img);
