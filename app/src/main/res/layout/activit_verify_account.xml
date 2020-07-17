@@ -4,16 +4,31 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/newnew_newbg"
     tools:context=".ui.activity.VerifyAccountActivity">
-
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:background="@color/tou_ming"
+        android:layout_marginTop="@dimen/dp_100"
+        android:layout_height="@dimen/dp_30">
+        <ImageView
+            android:id="@+id/im_break_select"
+            android:layout_alignParentLeft="true"
+            android:layout_width="@dimen/dp_16"
+            android:layout_height="@dimen/dp_16"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dp_13"
+            android:src="@mipmap/backk" />
     <TextView
         android:layout_width="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="@dimen/dp_30"
-        android:text="为了你的账号安全，请完成以下操作："
+        android:text="为了你的账号安全，请完成以下操作"
         android:textColor="#151515"
-        android:textSize="@dimen/sp_21" />
+        android:textSize="@dimen/sp_17" />
+    </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -54,6 +69,9 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_50"
+        android:layout_marginLeft="@dimen/dp_13"
+        android:layout_marginRight="@dimen/dp_13"
+        android:background="@color/whites"
         android:layout_marginTop="@dimen/dp_30">
 
         <TextView
@@ -64,7 +82,7 @@
             android:layout_marginLeft="@dimen/dp_16"
             android:text="手机号"
             android:textColor="#151515"
-            android:textSize="@dimen/sp_24" />
+            android:textSize="@dimen/sp_14" />
 
         <EditText
             android:id="@+id/ed_pho"
@@ -74,21 +92,27 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/dp_16"
             android:layout_marginRight="@dimen/dp_16"
+            android:singleLine="true"
             android:layout_toRightOf="@id/t_pho"
             android:background="@null"
             android:hint="请输入手机号"
-            android:textSize="@dimen/sp_20" />
+            android:textSize="@dimen/sp_14" />
     </RelativeLayout>
 
     <View
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_marginLeft="@dimen/dp_13"
+        android:layout_marginRight="@dimen/dp_13"
         android:layout_height="@dimen/dp_1"
         android:background="#E5E5E5" />
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_50"
-        android:layout_marginTop="@dimen/dp_30">
+        android:layout_marginLeft="@dimen/dp_13"
+        android:layout_marginRight="@dimen/dp_13"
+        android:background="@color/whites"
+       >
 
         <TextView
             android:id="@+id/t_name"
@@ -98,20 +122,21 @@
             android:layout_marginLeft="@dimen/dp_16"
             android:text="验证码"
             android:textColor="#151515"
-            android:textSize="@dimen/sp_24" />
+            android:textSize="@dimen/sp_14" />
 
         <EditText
             android:id="@+id/ed_name"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/dp_16"
+            android:singleLine="true"
             android:layout_marginRight="@dimen/dp_16"
             android:layout_toLeftOf="@id/getMsgCodeTv"
             android:layout_toRightOf="@id/t_name"
             android:background="@null"
             android:hint="请输入验证码"
-            android:textSize="@dimen/sp_20" />
+            android:textSize="@dimen/sp_14" />
 
         <TextView
             android:id="@+id/getMsgCodeTv"
@@ -134,11 +159,11 @@
 
     <LinearLayout
         android:id="@+id/linear_validation"
-        android:layout_width="352dp"
+        android:layout_width="330dp"
         android:layout_height="@dimen/dp_56"
         android:layout_gravity="center"
         android:layout_marginTop="@dimen/dp_50"
-        android:background="#1B82D2"
+        android:background="@drawable/btn_blue"
         android:gravity="center"
         android:orientation="horizontal">
 
@@ -162,16 +187,16 @@
             android:layout_height="wrap_content"
             android:text="无法完成账号验证？"
             android:textColor="#9c9c9c"
-            android:textSize="@dimen/sp_19" />
+            android:textSize="@dimen/sp_14" />
 
         <TextView
             android:id="@+id/tv_service"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/dp_8"
-            android:text="去找客服"
+            android:text="找客服"
             android:textColor="#1B82D2"
-            android:textSize="@dimen/sp_19" />
+            android:textSize="@dimen/sp_14" />
 
     </LinearLayout>
 </LinearLayout>

@@ -168,8 +168,14 @@ public class PersonalCenterActivity extends BaseActivity implements MineContract
             textBank.setText(nums_);
             tv_bank_address.setText(adds_);
             tv_bank_name.setText(names_);
-            tvBankCard.setVisibility(View.GONE);
-            reBank.setVisibility(View.VISIBLE);
+            if (nums_.equals("")) {
+
+                tvBankCard.setVisibility(View.VISIBLE); //TODO
+                reBank.setVisibility(View.GONE);
+            } else {
+                tvBankCard.setVisibility(View.GONE);
+                reBank.setVisibility(View.VISIBLE);
+            }
         }
     }
 

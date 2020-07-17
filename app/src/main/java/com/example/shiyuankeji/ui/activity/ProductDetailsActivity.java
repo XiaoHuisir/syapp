@@ -9,6 +9,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.webkit.CookieManager;
 import android.webkit.WebChromeClient;
@@ -47,7 +48,7 @@ import butterknife.OnClick;
 //toItemsDetail idsa
 public class ProductDetailsActivity extends BaseActivity implements ProductDetailsContract.View, View.OnClickListener {
     private static final String TAG = "stringtimp";
-//    @BindView(R.id.lin_home)
+    //    @BindView(R.id.lin_home)
 //    LinearLayout linHome;
 //    @BindView(R.id.lin_classfy)
 //    LinearLayout linClassfy;
@@ -69,10 +70,10 @@ public class ProductDetailsActivity extends BaseActivity implements ProductDetai
     @BindView(R.id.tv_stock)
     TextView tvStock;
 
-//    @BindView(R.id.lin_call_center)
+    //    @BindView(R.id.lin_call_center)
 //    LinearLayout linCallCenter;
     @BindView(R.id.relat_string)
-    RecyclerView  reatString;
+    RecyclerView reatString;
 
     private String ids;
     private ArrayList<StringBuffer> ims;
@@ -89,7 +90,7 @@ public class ProductDetailsActivity extends BaseActivity implements ProductDetai
     private ImageView btnExchang;
     private ImageView imBeak;
     private LinearLayout linCallCenter;
-    private String msg="";
+    private String msg = "";
     //   @BindView(R.id.tv_old_integral)
 //    TextView imBeak;
 
@@ -235,25 +236,52 @@ public class ProductDetailsActivity extends BaseActivity implements ProductDetai
 
 
         if (msg.equals("001")) {
-            new AlertDialog.Builder(this).setTitle("登录后才可购买，是否前往登录!")
-                    .setPositiveButton("是", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            Intent intent = new Intent();
-                            SharedPreferencesUtil.deleteToken(MyApp.mApp);
-                            intent.setClass(context, LoginActivity.class);
-                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                            startActivity(intent);
-                            finish();
-                        }
-                    }).setNegativeButton("否", new DialogInterface.OnClickListener() {
+//            new AlertDialog.Builder(this).setTitle("登录后才可购买，是否前往登录!")
+//                    .setPositiveButton("是", new DialogInterface.OnClickListener() {
+//                        @Override
+//                        public void onClick(DialogInterface dialog, int which) {
+//                            Intent intent = new Intent();
+//                            SharedPreferencesUtil.deleteToken(MyApp.mApp);
+//                            intent.setClass(context, LoginActivity.class);
+//                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+//                            startActivity(intent);
+//                            finish();
+//                        }
+//                    }).setNegativeButton("否", new DialogInterface.OnClickListener() {
+//                @Override
+//                public void onClick(DialogInterface dialog, int which) {
+//                    return;
+//
+//                }
+//            }).create().show();
+            LayoutInflater inflater = getLayoutInflater();
+            //引入自定义好的对话框.xml布局
+            View layout = inflater.inflate(R.layout.login_sk_verfiy, null);
+            //实列提示对话框对象，并将加载的试图对象设置给对话框对象
+            final AlertDialog alertDialog = new AlertDialog.Builder(this).setView(layout).show();
+            final TextView yes = layout.findViewById(R.id.tv_ok);
+            final TextView no = layout.findViewById(R.id.tv_no);
+            final TextView tvTilte = layout.findViewById(R.id.tv_tilte);
+            tvTilte.setText("登录后才可购买，是否前往登录!");
+            yes.setOnClickListener(new View.OnClickListener() {  //是
                 @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    return;
+                public void onClick(View v) {
+                    alertDialog.dismiss();
+                    Intent intent = new Intent();
+                    SharedPreferencesUtil.deleteToken(MyApp.mApp);
+                    intent.setClass(context, LoginActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
+                    finish();
+                }
+            });
+            no.setOnClickListener(new View.OnClickListener() {  //否
+                @Override
+                public void onClick(View v) {
+                    alertDialog.dismiss();
 
                 }
-            }).create().show();
-
+            });
         } else {
 //            Constant.token = token;
 //            Intent intent2 = new Intent(context, ExchangeActivity.class);
@@ -273,11 +301,11 @@ public class ProductDetailsActivity extends BaseActivity implements ProductDetai
         msg = loginTokenBean.getMsg();
         if (msg.equals("001")) {
             StateHandling();
-        }else {
+        } else {
             Constant.token = token;
-            if (stock==0){
-                ToastUtil toastUtil = new ToastUtil(context, R.layout.toast_center_horizontal, "库存不足！");
-                toastUtil.show();
+            if (stock == 0) {
+                Toast.makeText(context, "库存不足！", Toast.LENGTH_SHORT).show();
+
 
                 return;
             }
@@ -341,7 +369,7 @@ public class ProductDetailsActivity extends BaseActivity implements ProductDetai
         temp = sulimg.split(delimeter);
         for (int i = 0; i < temp.length; i++) {
 
-            Log.d(TAG, "onCreate: "+temp[i]);
+            Log.d(TAG, "onCreate: " + temp[i]);
             String s = temp.toString();
             strings.addAll(Collections.singleton(temp[i]));
         }

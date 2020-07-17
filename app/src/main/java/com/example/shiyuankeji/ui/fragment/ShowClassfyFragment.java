@@ -105,8 +105,8 @@ public class ShowClassfyFragment extends BaseFragment implements ClassListifyCon
                 reClassGone.setVisibility(View.GONE);
             }
         } else {
-            ToastUtil toastUtil2 = new ToastUtil(context, R.layout.toast_center_horizontal, "分类列表请求失败！");
-            toastUtil2.show();
+//            ToastUtil toastUtil2 = new ToastUtil(context, R.layout.toast_center_horizontal, "分类列表请求失败！");
+//            toastUtil2.show();
 
         }
     }

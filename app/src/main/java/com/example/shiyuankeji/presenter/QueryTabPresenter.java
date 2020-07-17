@@ -2,6 +2,7 @@ package com.example.shiyuankeji.presenter;
 
 import com.example.shiyuankeji.app.Constant;
 import com.example.shiyuankeji.base.BasePresenter;
+import com.example.shiyuankeji.bean.PhoneBean;
 import com.example.shiyuankeji.bean.QueryTabBean;
 import com.example.shiyuankeji.bean.SmsSendBean;
 import com.example.shiyuankeji.interfaces.contract.QueryTabContract;
@@ -79,6 +80,29 @@ public class QueryTabPresenter extends BasePresenter<QueryTabContract.View> impl
                             public void onError(Throwable t) {
                                 super.onError(t);
 //                        Log.d(TAG, "onError: " + t);
+                            }
+                        })
+
+        );
+    }
+
+    @Override
+    public void phoneget(String phone) {
+        addSubscribe(HttpUtils.getMyServer(Constant.BaseUrl).PhoneApi(phone)
+                        .compose(RxUtils.<PhoneBean>rxScheduler())
+                        .subscribeWith(new CommonSubscriber<PhoneBean>(mView) {
+                            @Override
+                            public void onNext(PhoneBean phoneBean) {
+                                if (phoneBean != null) {
+                                    if (mView != null) {
+                                        mView.phoneReaner(phoneBean);
+                                    }
+                                }
+                            }
+
+                            @Override
+                            public void onError(Throwable t) {
+//                        Log.d("tag", "onError: " + t);
                             }
                         })
 

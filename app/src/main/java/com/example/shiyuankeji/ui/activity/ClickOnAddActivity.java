@@ -152,9 +152,9 @@ public class ClickOnAddActivity extends BaseActivity implements BankIdentityCont
             try {
                 String s = IDCard.IDCardValidate(returnValue);  //验证身份证号 (工具类：IDCard)
                 if (s.equals("")) {
-//                    Toast.makeText(context, "保存成功！", Toast.LENGTH_SHORT).show();
-                    ToastUtil toastUtil2 = new ToastUtil(context, R.layout.ok_toast_center_horizontal, "保存成功：" );
-                    toastUtil2.show();
+                    Toast.makeText(context, "保存成功！", Toast.LENGTH_SHORT).show();
+//                    ToastUtil toastUtil2 = new ToastUtil(context, R.layout.ok_toast_center_horizontal, "保存成功：" );
+//                    toastUtil2.show();
 //                    Intent intent = new Intent();
 //                    intent.putExtra("value", returnValue);
 //                    setResult(type, intent);
@@ -163,9 +163,9 @@ public class ClickOnAddActivity extends BaseActivity implements BankIdentityCont
                     linearSave.setVisibility(View.VISIBLE);
                     textUpdate.setVisibility(View.GONE);
                     editable();
-//                    Toast.makeText(context, "保存失败：" + s, Toast.LENGTH_SHORT).show();
-                    ToastUtil toastUtil2 = new ToastUtil(context, R.layout.toast_center_horizontal, "保存失败：" + s);
-                    toastUtil2.show();
+                    Toast.makeText(context, "保存失败!" + s, Toast.LENGTH_SHORT).show();
+//                    ToastUtil toastUtil2 = new ToastUtil(context, R.layout.toast_center_horizontal, "保存失败：" + s);
+//                    toastUtil2.show();
                     Intent intent = new Intent();
                     intent.putExtra("value", identityNum);
                     setResult(type, intent);

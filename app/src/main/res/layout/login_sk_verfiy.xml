@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:layout_marginLeft="@dimen/dp_20"
+    android:layout_marginRight="@dimen/dp_20"
+    android:background="@drawable/address_bkg"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/dp_10"
+
+    >
+    <TextView
+        android:id="@+id/tv_tilte"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/dp_20"
+        android:layout_marginLeft="@dimen/dp_20"
+        android:layout_marginRight="@dimen/dp_20"
+        android:text="xx"
+        android:textColor="@color/gray_g"
+        android:textSize="@dimen/sp_17" />
+
+
+
+
+
+    <LinearLayout
+        android:id="@+id/relative_update"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="@dimen/dp_25">
+
+        <TextView
+            android:id="@+id/tv_no"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="否"
+            android:padding="@dimen/dp_10"
+            android:layout_marginRight="@dimen/dp_100"
+            android:textColor="@color/gray_g"
+            android:textSize="@dimen/sp_15" />
+        <TextView
+            android:id="@+id/tv_ok"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:padding="@dimen/dp_10"
+            android:text="是"
+            android:textColor="@color/col_blue"
+            android:textSize="@dimen/sp_15" />
+    </LinearLayout>
+
+
+
+
+</LinearLayout>

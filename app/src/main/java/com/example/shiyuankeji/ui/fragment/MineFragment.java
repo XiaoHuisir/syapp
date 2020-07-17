@@ -1,10 +1,15 @@
 package com.example.shiyuankeji.ui.fragment;
 
+import android.Manifest;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -307,23 +312,52 @@ public class MineFragment extends BaseFragment implements MineContract.View {
                 if (UtilsClicktime.isFastDoubleClick()) {
                     return;
                 }
-                new AlertDialog.Builder(getActivity()).setTitle("是否退出账号")
-                        .setPositiveButton("是", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                SharedPreferencesUtil.deleteToken(MyApp.mApp);//删除token
-                                Intent intent2 = new Intent();
-                                intent2.setClass(context, LoginActivity.class);
-                                intent2.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                                startActivity(intent2);
-                                getActivity().finish();
-                            }
-                        }).setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                LayoutInflater inflater = getLayoutInflater();
+                //引入自定义好的对话框.xml布局
+                View layout = inflater.inflate(R.layout.login_sk_verfiy, null);
+                //实列提示对话框对象，并将加载的试图对象设置给对话框对象
+                final AlertDialog alertDialog = new AlertDialog.Builder(context).setView(layout).show();
+                final TextView yes = layout.findViewById(R.id.tv_ok);
+                final TextView no = layout.findViewById(R.id.tv_no);
+                final TextView tvTilte = layout.findViewById(R.id.tv_tilte);
+                tvTilte.setText("是否确认退出账号");
+                yes.setOnClickListener(new View.OnClickListener() {  //是
                     @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        return;
+                    public void onClick(View v) {
+                        alertDialog.dismiss();
+                        SharedPreferencesUtil.deleteToken(MyApp.mApp);//删除token
+                        Intent intent2 = new Intent();
+                        intent2.setClass(context, LoginActivity.class);
+                        intent2.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(intent2);
+                        getActivity().finish();
                     }
-                }).create().show();
+                });
+                no.setOnClickListener(new View.OnClickListener() {  //否
+                    @Override
+                    public void onClick(View v) {
+                        alertDialog.dismiss();
+
+                    }
+                });
+                //----------
+//                new AlertDialog.Builder(getActivity()).setTitle("是否退出账号")
+//                        .setPositiveButton("是", new DialogInterface.OnClickListener() {
+//                            @Override
+//                            public void onClick(DialogInterface dialog, int which) {
+//                                SharedPreferencesUtil.deleteToken(MyApp.mApp);//删除token
+//                                Intent intent2 = new Intent();
+//                                intent2.setClass(context, LoginActivity.class);
+//                                intent2.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+//                                startActivity(intent2);
+//                                getActivity().finish();
+//                            }
+//                        }).setNegativeButton("取消", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+//                        return;
+//                    }
+//                }).create().show();
 
                 break;
         }

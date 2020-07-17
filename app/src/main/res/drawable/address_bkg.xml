@@ -3,7 +3,7 @@
     >
     <solid android:color="@color/whites" />
     <corners
-        android:radius="@dimen/dp_60"
+        android:radius="@dimen/dp_100"
         ></corners>
 
 

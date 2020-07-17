@@ -88,9 +88,9 @@ public class ClassifyFragment extends BaseFragment implements ClassifyContract.V
             }
             Constant.CLASS_BOOLEAN = false;
         } else {
-//            Toast.makeText(context, "失败", Toast.LENGTH_SHORT).show();
-            ToastUtil toastUtil2 = new ToastUtil(context, R.layout.toast_center_horizontal, "失败！");
-            toastUtil2.show();
+            Toast.makeText(context, "失败", Toast.LENGTH_SHORT).show();
+//            ToastUtil toastUtil2 = new ToastUtil(context, R.layout.toast_center_horizontal, "失败！");
+//            toastUtil2.show();
         }
     }
 

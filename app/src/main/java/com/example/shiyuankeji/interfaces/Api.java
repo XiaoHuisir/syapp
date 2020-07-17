@@ -17,6 +17,7 @@ import com.example.shiyuankeji.bean.LoginTokenBean;
 import com.example.shiyuankeji.bean.LoginsBean;
 import com.example.shiyuankeji.bean.MineBean;
 import com.example.shiyuankeji.bean.NewIndentBean;
+import com.example.shiyuankeji.bean.PhoneBean;
 import com.example.shiyuankeji.bean.ProductDetailsBean;
 import com.example.shiyuankeji.bean.QueryEarningsBean;
 import com.example.shiyuankeji.bean.QueryIntegralBean;
@@ -58,7 +59,7 @@ public interface Api {
     //注册
     @POST("addUser")
     @FormUrlEncoded
-    Flowable<AddUserBean> registerApi(@Field("user_name") String mobile,@Field("verifyCode") String verify, @Field("password") String password);
+    Flowable<AddUserBean> registerApi(@Field("user_name") String mobile, @Field("verifyCode") String verify, @Field("password") String password);
 
     //    修改密码   http://192.168.124.14:8080/updatePassword?password=456789
     @POST("updatePassword")
@@ -198,19 +199,25 @@ public interface Api {
     @POST("smsSend")
     @FormUrlEncoded
     Flowable<SmsSendBean> smsSendApi(@Field("phone") String outtradeno);
-//    校验验证码
+
+    //    校验验证码
     @POST("isVerifyCode")
     @FormUrlEncoded
-    Flowable<SmsSendBean> isVerifyCodeApi(@Field("phone") String outtradeno,@Field("verifyCode") String outr);
+    Flowable<SmsSendBean> isVerifyCodeApi(@Field("phone") String outtradeno, @Field("verifyCode") String outr);
 
-//我的收益
-@POST("queryEarnings")
-Flowable<QueryEarningsBean> queryEarningsApi(@Header("token") String tokens);
-//我的收益详情
+    //我的收益
+    @POST("queryEarnings")
+    Flowable<QueryEarningsBean> queryEarningsApi(@Header("token") String tokens);
+
+    //我的收益详情
     @POST("queryDetail")
     @FormUrlEncoded
     Flowable<YieDetailsBean> querydetailApi(@Header("token") String tokens, @Field("order_num") String order);
 
+    //获取手机号
+    @POST("queryPhone")
+    @FormUrlEncoded
+    Flowable<PhoneBean> PhoneApi(@Field("user_name") String phone);
 
 //    {
 //    "id": 34,

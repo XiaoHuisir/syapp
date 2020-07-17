@@ -159,14 +159,18 @@ public class IineItemActivity extends BaseActivity implements LineItemConreact.V
 
     private void initOrderState(int order_state) {
         if (order_state == Constant.ORDER_STATE_0) {
-            tvOrderState.setText("订单待确认");
+            tvOrderState.setText("未支付");
         } else if (order_state == Constant.ORDER_STATE_1) {
-            tvOrderState.setText("待发货");
+            tvOrderState.setText("订单待确认");
         } else if (order_state == Constant.ORDER_STATE_2) {
-            tvOrderState.setText("待收货");
+            tvOrderState.setText("待发货");
         } else if (order_state == Constant.ORDER_STATE_3) {
-            tvOrderState.setText("兑换完成");
-        } else {
+            tvOrderState.setText("待收货");
+        } else if (order_state==Constant.ORDER_STATE_4){
+            tvOrderState.setText("完成");
+        } else if (order_state==Constant.ORDER_STATE_5){
+            tvOrderState.setText("数据异常");
+        }else {
             tvOrderState.setText("积分不够");
         }
     }

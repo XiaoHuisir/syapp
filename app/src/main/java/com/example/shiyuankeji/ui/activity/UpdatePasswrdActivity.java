@@ -17,6 +17,7 @@ import com.example.shiyuankeji.interfaces.contract.UpdatePwdContract;
 import com.example.shiyuankeji.presenter.UpdatePwdPresenter;
 import com.example.shiyuankeji.utils.SharedPreferencesUtil;
 import com.example.shiyuankeji.utils.ToastUtil;
+import com.example.shiyuankeji.utils.UtilsClicktime;
 import com.example.shiyuankeji.utils.Validator;
 
 import butterknife.BindView;
@@ -30,7 +31,7 @@ public class UpdatePasswrdActivity extends BaseActivity implements UpdatePwdCont
     EditText edNew_pwd;
     private String pw_ = "";
     private String new_pwd = "";
-    private String pho_="";
+    private String pho_ = "";
 
     @Override
     protected IBasePresenter getPresenter() {
@@ -56,7 +57,7 @@ public class UpdatePasswrdActivity extends BaseActivity implements UpdatePwdCont
 //            edNew_pwd.setText(pw_);
 //        }
 //        if (Constant.DYNAMIC_PRICE == 123){
-            pho_ = getIntent().getStringExtra("pho_");
+        pho_ = getIntent().getStringExtra("pho_");
 //        }
     }
 
@@ -65,17 +66,29 @@ public class UpdatePasswrdActivity extends BaseActivity implements UpdatePwdCont
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.lin_reset:
-                new_pwd = edNew_pwd.getText().toString();
-                if (TextUtils.isEmpty(new_pwd)) {
-                    Toast.makeText(context, "请输入最少6位最多12位的数字加字母组合的密码", Toast.LENGTH_SHORT).show();
-                    if (Validator.isPwd(new_pwd) == false) {
-//                    tvPwd01.setText("请输入最少6位最多12位的数字加字母组合的密码");
-                        Toast.makeText(context, "请输入最少6位最多12位的数字加字母组合的密码", Toast.LENGTH_SHORT).show();
-
-                    }
+                if (UtilsClicktime.isFastDoubleClick()) {
                     return;
                 }
-                ((UpdatePwdPresenter) mPresenter).updatepwds(pho_,new_pwd);
+                new_pwd = edNew_pwd.getText().toString();
+                if (TextUtils.isEmpty(new_pwd)) {
+                    Toast.makeText(context, "密码不能为空！", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                    if (!Validator.isPwd(new_pwd) == true) {
+//                    tvPwd01.setText("请输入最少6位最多12位的数字加字母组合的密码");
+                        Toast.makeText(context, "请输入最少6位最多12位的数字加字母组合的密码", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                if (Validator.shuziss(new_pwd) == true) {
+                    Toast.makeText(context, "请输入最少6位最多12位的数字加字母组合的密码", Toast.LENGTH_SHORT).show();
+//                    ToastUtil toastUtil2 = new ToastUtil(context, R.layout.toast_center_horizontal, "请输入最少6位最多12位的数字加字母组合的密码");
+//                    toastUtil2.show();
+                    return;
+                }
+                if (Validator.isPwd(new_pwd) == true) {
+                    ((UpdatePwdPresenter) mPresenter).updatepwds(pho_, new_pwd);
+                }
                 break;
         }
     }
@@ -86,7 +99,8 @@ public class UpdatePasswrdActivity extends BaseActivity implements UpdatePwdCont
         String msg = updatePwdtBean.getMsg();
         if (status == 200) {
             if (msg.equals("1")) { //修改成功
-                new ToastUtil(context,R.layout.ok_toast_center_horizontal,"密码修改成功").show();
+                Toast.makeText(context,"密码修改成功",Toast.LENGTH_SHORT).show();
+//                new ToastUtil(context, R.layout.ok_toast_center_horizontal, "密码修改成功").show();
                 String tokens = updatePwdtBean.getData().getToken();
                 SharedPreferencesUtil.addUserToken(context, tokens);// 添加保存token TODO
                 Constant.token = tokens;
@@ -95,7 +109,8 @@ public class UpdatePasswrdActivity extends BaseActivity implements UpdatePwdCont
                 startActivity(intent);
                 finish();
             } else {
-                new ToastUtil(context,R.layout.toast_center_horizontal,"密码修改失败").show();
+                Toast.makeText(context,"密码修改失败",Toast.LENGTH_SHORT).show();
+//                new ToastUtil(context, R.layout.toast_center_horizontal, "密码修改失败").show();
             }
 
         }

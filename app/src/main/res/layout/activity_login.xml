@@ -13,6 +13,15 @@
         android:layout_height="@dimen/dp_233"
         android:layout_alignParentTop="true"
         android:background="@mipmap/bg_long" />
+    <ImageView
+        android:id="@+id/lins_break"
+        android:layout_width="@dimen/dp_17"
+        android:layout_height="@dimen/dp_17"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="@dimen/dp_26"
+        android:layout_marginTop="@dimen/dp_50"
+        android:src="@mipmap/closes" />
     <!--<TextView-->
     <!--android:id="@+id/tv_addhousing"-->
     <!--android:layout_width="wrap_content"-->
@@ -126,7 +135,7 @@
                 android:layout_marginLeft="@dimen/dp_13"
                 android:layout_marginTop="@dimen/dp_25"
                 android:layout_toRightOf="@id/im1"
-                android:text="用户名"
+                android:text="用户名/手机号"
                 android:textColor="@color/black"
                 android:textSize="@dimen/dp_12" />
 
@@ -147,10 +156,10 @@
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-
+                    android:singleLine="true"
                     android:layout_marginRight="@dimen/dp_16"
                     android:background="@null"
-                    android:hint="请输入您的手机号码"
+                    android:hint="请输入您的手机号/用户名"
                     android:textSize="@dimen/sp_14" />
             </RelativeLayout>
 
@@ -192,6 +201,8 @@
                 android:layout_marginLeft="@dimen/dp_13"
                 android:layout_marginTop="@dimen/dp_25"
                 android:layout_toRightOf="@id/im2"
+                android:textColor="@color/black"
+                android:textSize="@dimen/dp_12"
                 android:text="密码" />
 
             <RelativeLayout

@@ -212,9 +212,9 @@ public class Submit0rdersActivity extends BaseActivity implements SubmitContract
 //                        if(courseInfoBean != null){
 //                            ZhuGeUtil.getmInstance().addEvent(ZGEventNameConfig.FINISH_BUY_COURSE,"课程标题",courseInfoBean.getCourse_name());
 //                        }
-//                        Toast.makeText(Submit0rdersActivity.this, "支付成功", Toast.LENGTH_SHORT).show();
-                        ToastUtil toastUtil2 = new ToastUtil(context, R.layout.ok_toast_center_horizontal, "支付成功！");
-                        toastUtil2.show();
+                        Toast.makeText(Submit0rdersActivity.this, "支付成功", Toast.LENGTH_SHORT).show();
+//                        ToastUtil toastUtil2 = new ToastUtil(context, R.layout.ok_toast_center_horizontal, "支付成功！");
+//                        toastUtil2.show();
                         Intent intent2 = new Intent();
                         intent2.setClass(context, MainActivity.class);
                         intent2.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -223,9 +223,9 @@ public class Submit0rdersActivity extends BaseActivity implements SubmitContract
                         finish();
                     } else {
                         // 该笔订单真实的支付结果，需要依赖服务端的异步通知。
-//                        Toast.makeText(Submit0rdersActivity.this, "支付失败", Toast.LENGTH_SHORT).show();
-                        ToastUtil toastUtil2 = new ToastUtil(context, R.layout.toast_center_horizontal, "支付失败！");
-                        toastUtil2.show();
+                        Toast.makeText(Submit0rdersActivity.this, "支付失败", Toast.LENGTH_SHORT).show();
+//                        ToastUtil toastUtil2 = new ToastUtil(context, R.layout.toast_center_horizontal, "支付失败！");
+//                        toastUtil2.show();
                         finish();
                     }
                     break;
@@ -385,8 +385,9 @@ public class Submit0rdersActivity extends BaseActivity implements SubmitContract
                     }
                 } else {
 //                    new ToastUtil(context, R.layout.toast_center_horizontal, "请选择收货地址").show();
-                    ToastUtil toastUtil2 = new ToastUtil(context, R.layout.putong_toast_center_horizontal, "请选择收货地址！");
-                    toastUtil2.show();
+//                    ToastUtil toastUtil2 = new ToastUtil(context, R.layout.putong_toast_center_horizontal, "请选择收货地址！");
+//                    toastUtil2.show();
+                    Toast.makeText(context,"请选择收货地址",Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -433,11 +434,11 @@ public class Submit0rdersActivity extends BaseActivity implements SubmitContract
         if (submitBean.getUser_address().getId() != Constant.IS_ID) {
             SharedPreferencesUtil.setDeliveryAddress(context, true); //保存有、无 地址状态
             reOn.setVisibility(View.GONE);
-            Toast.makeText(context, "有地址", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(context, "有地址", Toast.LENGTH_SHORT).show();
         } else {
             SharedPreferencesUtil.setDeliveryAddress(context, false);
             reSiteOk.setVisibility(View.GONE);
-            Toast.makeText(context, "无地址", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(context, "无地址", Toast.LENGTH_SHORT).show();
         }
 //        items
         SubmitBean.ItemsBean items = submitBean.getItems();
@@ -510,14 +511,15 @@ public class Submit0rdersActivity extends BaseActivity implements SubmitContract
                     aliPay(data);
                 }
             } else if (order_state==206){
-                ToastUtil toastUtil = new ToastUtil(context, R.layout.toast_center_horizontal, "库存不足！");
-                toastUtil.show();
+                Toast.makeText(context,"库存不足！",Toast.LENGTH_SHORT).show();
+//                ToastUtil toastUtil = new ToastUtil(context, R.layout.toast_center_horizontal, "库存不足！");
+//                toastUtil.show();
             }else if (order_state==204){
                 LayoutInflater inflater = getLayoutInflater();
                 //引入自定义好的对话框.xml布局
                 View layout = inflater.inflate(R.layout.is_submit_layout, null);
                 //实列提示对话框对象，并将加载的试图对象设置给对话框对象
-                final AlertDialog alertDialog = new AlertDialog.Builder(this).setTitle("").setView(layout).show();
+                final AlertDialog alertDialog = new AlertDialog.Builder(this).setView(layout).show();
                 final RelativeLayout yes = layout.findViewById(R.id.relative_update);
                 final RelativeLayout no = layout.findViewById(R.id.relative_cancel);
                 yes.setOnClickListener(new View.OnClickListener() {  //是
@@ -525,6 +527,9 @@ public class Submit0rdersActivity extends BaseActivity implements SubmitContract
                     public void onClick(View v) {
                         alertDialog.dismiss();
 //                        Toast.makeText(context, addOrderistBean.getMsg(), Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent();
+                        intent.setClass(context, WebCallCenterActivity.class);
+                        startActivity(intent);
                     }
                 });
                 no.setOnClickListener(new View.OnClickListener() {  //否

@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/newnew_newbg"
     android:orientation="vertical"
     tools:context=".ui.activity.UpdatePasswrdActivity">
 
@@ -10,14 +11,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/dp_16"
-        android:layout_marginTop="@dimen/dp_30"
+        android:layout_marginTop="@dimen/dp_100"
         android:text="请重新设置密码："
         android:textColor="#151515"
-        android:textSize="@dimen/sp_19" />
+        android:textSize="@dimen/sp_16" />
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_50"
+        android:layout_marginLeft="@dimen/dp_13"
+        android:layout_marginRight="@dimen/dp_13"
+        android:background="@color/whites"
         android:layout_marginTop="@dimen/dp_50">
 
         <TextView
@@ -28,7 +32,7 @@
             android:layout_marginLeft="@dimen/dp_16"
             android:text="新密码"
             android:textColor="#151515"
-            android:textSize="24sp" />
+            android:textSize="14sp" />
 
         <EditText
             android:id="@+id/ed_new_pwd"
@@ -38,26 +42,27 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/dp_16"
             android:layout_marginRight="@dimen/dp_16"
+            android:singleLine="true"
             android:layout_toRightOf="@id/tv_new"
             android:background="@null"
             android:hint="请输入新密码"
-            android:textSize="24sp" />
+            android:textSize="14sp" />
     </RelativeLayout>
 
     <LinearLayout
         android:id="@+id/lin_reset"
-        android:layout_width="@dimen/dp_352"
-        android:background="@color/col_blue"
+        android:layout_width="@dimen/dp_330"
         android:layout_height="@dimen/dp_50"
-        android:gravity="center"
         android:layout_gravity="center"
-        android:layout_marginTop="@dimen/dp_50">
+        android:layout_marginTop="@dimen/dp_50"
+        android:background="@drawable/btn_blue"
+        android:gravity="center">
 
         <TextView
-            android:text="重置密码"
-            android:textColor="@color/white"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="重置密码"
+            android:textColor="@color/white"
             android:textSize="@dimen/sp_24" />
     </LinearLayout>
 </LinearLayout>

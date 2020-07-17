@@ -14,6 +14,7 @@ import android.support.v7.widget.CardView;
 import android.telephony.TelephonyManager;
 import android.text.InputType;
 import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -55,6 +56,8 @@ public class LoginActivity extends BaseActivity implements LoginsContract.Views 
     EditText edPw;
     @BindView(R.id.re)
     RelativeLayout re;
+    @BindView(R.id.lins_break)
+    ImageView linsBreak;
 //    @BindView(R.id.btn_login)
 //    LinearLayout btnLogin;
     @BindView(R.id.btn_show)
@@ -151,7 +154,7 @@ public class LoginActivity extends BaseActivity implements LoginsContract.Views 
     }
 
 
-    @OnClick({ R.id.btn_show, R.id.ed_pw, R.id.ed_phone, R.id.wxlogin})
+    @OnClick({ R.id.btn_show, R.id.ed_pw, R.id.ed_phone, R.id.wxlogin,R.id.lins_break})
     public void onViewClicked(View view) {
         switch (view.getId()) {
 //            case R.id.tv_register: //去注册
@@ -160,6 +163,9 @@ public class LoginActivity extends BaseActivity implements LoginsContract.Views 
 //                intent.putExtra("type_", REGISTER);
 //                startActivityForResult(intent, REGISTER);
 //                break;
+            case R.id.lins_break:
+                finish();
+                break;
             case R.id.wxlogin://微信登录
                 loginWX();
                 Toast.makeText(context, "欢迎使用微信三方登录", Toast.LENGTH_SHORT).show();
@@ -236,25 +242,58 @@ public class LoginActivity extends BaseActivity implements LoginsContract.Views 
             pwdss = data.getData3();
 
             if (pwdss.equals("123456")) {
-                new AlertDialog.Builder(this).setTitle("为默认密码，请修改密码,并且同意权限，否则无法登录")
-                        .setPositiveButton("是", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                int permissionCheck = ContextCompat.checkSelfPermission(LoginActivity.this, Manifest.permission.READ_PHONE_STATE);
-                                if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
-                                    ActivityCompat.requestPermissions(LoginActivity.this, new String[]
-                                            {Manifest.permission.READ_PHONE_STATE
-                                            }, REQUEST_READ_PHONE_STATE);
-                                } else {
-                                    sms(); //电话权限
-                                }
-                            }
-                        }).setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                LayoutInflater inflater = getLayoutInflater();
+                //引入自定义好的对话框.xml布局
+                View layout = inflater.inflate(R.layout.login_sk_verfiy, null);
+                //实列提示对话框对象，并将加载的试图对象设置给对话框对象
+                final AlertDialog alertDialog = new AlertDialog.Builder(this).setView(layout).show();
+                final TextView yes = layout.findViewById(R.id.tv_ok);
+                final TextView no = layout.findViewById(R.id.tv_no);
+                final TextView tvTilte = layout.findViewById(R.id.tv_tilte);
+                tvTilte.setText("您的密码为默认密码，为了您的账号安全；请修改密码。");
+                yes.setOnClickListener(new View.OnClickListener() {  //是
                     @Override
-                    public void onClick(DialogInterface dialog, int which) {
+                    public void onClick(View v) {
+                        alertDialog.dismiss();
+                        skverfiytishi();
+//                        Toast.makeText(context, addOrderistBean.getMsg(), Toast.LENGTH_SHORT).show();
+//                        int permissionCheck = ContextCompat.checkSelfPermission(LoginActivity.this, Manifest.permission.READ_PHONE_STATE);
+//                        if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
+//                            ActivityCompat.requestPermissions(LoginActivity.this, new String[]
+//                                    {Manifest.permission.READ_PHONE_STATE
+//                                    }, REQUEST_READ_PHONE_STATE);
+//                        } else {
+//                            sms(); //电话权限
+//                        }
+                    }
+                });
+                no.setOnClickListener(new View.OnClickListener() {  //否
+                    @Override
+                    public void onClick(View v) {
+                        alertDialog.dismiss();
 
                     }
-                }).create().show();
+                });
+                //-------------
+//                new AlertDialog.Builder(this).setTitle("为默认密码，请修改密码,并且同意权限，否则无法登录")
+//                        .setPositiveButton("是", new DialogInterface.OnClickListener() {
+//                            @Override
+//                            public void onClick(DialogInterface dialog, int which) {
+//                                int permissionCheck = ContextCompat.checkSelfPermission(LoginActivity.this, Manifest.permission.READ_PHONE_STATE);
+//                                if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
+//                                    ActivityCompat.requestPermissions(LoginActivity.this, new String[]
+//                                            {Manifest.permission.READ_PHONE_STATE
+//                                            }, REQUEST_READ_PHONE_STATE);
+//                                } else {
+//                                    sms(); //电话权限
+//                                }
+//                            }
+//                        }).setNegativeButton("取消", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+//
+//                    }
+//                }).create().show();
 
             } else {
                 SharedPreferencesUtil.addUserToken(context, data.getToken());// 添加保存token TODO
@@ -263,15 +302,52 @@ public class LoginActivity extends BaseActivity implements LoginsContract.Views 
                 intent.setClass(this, MainActivity.class);
                 startActivity(intent);
                 finish();
-                ToastUtil toastUtil2 = new ToastUtil(context, R.layout.ok_toast_center_horizontal, "登录成功！");
-                toastUtil2.show();
+                Toast.makeText(context, "登录成功！", Toast.LENGTH_SHORT).show();
+//                ToastUtil toastUtil2 = new ToastUtil(context, R.layout.ok_toast_center_horizontal, "登录成功！");
+//                toastUtil2.show();
             }
         } else {
-            ToastUtil toastUtil2 = new ToastUtil(context, R.layout.toast_center_horizontal, "登录失败！");
-            toastUtil2.show();
+            Toast.makeText(context, "用户名或密码不正确！", Toast.LENGTH_SHORT).show();
+//            ToastUtil toastUtil2 = new ToastUtil(context, R.layout.toast_center_horizontal, "登录失败！");
+//            toastUtil2.show();
         }
 
 
+    }
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    private void skverfiytishi() {
+        LayoutInflater inflater = getLayoutInflater();
+        //引入自定义好的对话框.xml布局
+        View layout = inflater.inflate(R.layout.login_sk_verfiy, null);
+        //实列提示对话框对象，并将加载的试图对象设置给对话框对象
+        final AlertDialog alertDialog = new AlertDialog.Builder(this).setView(layout).show();
+        final TextView yes = layout.findViewById(R.id.tv_ok);
+        final TextView no = layout.findViewById(R.id.tv_no);
+        final TextView tvTilte = layout.findViewById(R.id.tv_tilte);
+        tvTilte.setText("请您同意权限，否则无法修改密码。");
+        yes.setOnClickListener(new View.OnClickListener() {  //是
+            @Override
+            public void onClick(View v) {
+                alertDialog.dismiss();
+
+//                        Toast.makeText(context, addOrderistBean.getMsg(), Toast.LENGTH_SHORT).show();
+                int permissionCheck = ContextCompat.checkSelfPermission(LoginActivity.this, Manifest.permission.READ_PHONE_STATE);
+                if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.requestPermissions(LoginActivity.this, new String[]
+                            {Manifest.permission.READ_PHONE_STATE
+                            }, REQUEST_READ_PHONE_STATE);
+                } else {
+                    sms(); //电话权限
+                }
+            }
+        });
+        no.setOnClickListener(new View.OnClickListener() {  //否
+            @Override
+            public void onClick(View v) {
+                alertDialog.dismiss();
+
+            }
+        });
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -308,14 +384,19 @@ public class LoginActivity extends BaseActivity implements LoginsContract.Views 
         String line1Number = tm.getLine1Number(); //本机手机号
         Intent intent = new Intent();
         if (line1Number==null){
-            ToastUtil toastUtil2 = new ToastUtil(context, R.layout.toast_center_horizontal, "无SD卡无法登录！");
-            toastUtil2.show();
+            Toast.makeText(context, "无SD卡无法登录！", Toast.LENGTH_SHORT).show();
+//            ToastUtil toastUtil2 = new ToastUtil(context, R.layout.toast_center_horizontal, "无SD卡无法登录！");
+//            toastUtil2.show();
             return;
         }
         if (line1Number.equals("") || line1Number.equals("+86") || !line1Number.equals("+86" + pho) ) {
-            Toast.makeText(this, "匹配失败(获取失败！)" + line1Number, Toast.LENGTH_SHORT).show();
+//            Toast.makeText(this, "匹配失败(获取失败！)" + line1Number, Toast.LENGTH_SHORT).show();
             //匹配失败 跳转到校验界面
             intent.setClass(this, VerifyAccountActivity.class);
+            //TODO mobile
+            if (mobile!=null){
+                SharedPreferencesUtil.addPhone(context,mobile); //保存手机号
+            }
         } else {
             //匹配成功 (修改密码)
             intent.setClass(this, UpdatePasswrdActivity.class);

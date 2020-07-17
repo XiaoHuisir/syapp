@@ -166,4 +166,40 @@ public class SharedPreferencesUtil {
     public static boolean getDeliveryAddress(Context context) {
         return context.getSharedPreferences("isaddress", Context.MODE_PRIVATE).getBoolean("okaddress", false);
     }
+
+
+     /**
+     * 添加用户名/手机号
+     *
+     * @param context
+     * @param phone
+     */
+    public static void addPhone(Context context, String phone) {
+        editor = context.getSharedPreferences("phone", Context.MODE_PRIVATE).edit();
+        editor.putString("phone", phone);
+        editor.commit();
+    }
+
+
+    /**
+     * 获取用户名/手机号
+     *
+     * @param context
+     * @return
+     */
+    public static String getPhones(Context context) {
+        return context.getSharedPreferences("phone", Context.MODE_PRIVATE).getString("phone", "");
+    }
+
+
+    /**
+     * 删除phone
+     *
+     * @param context
+     */
+    public static void deletePhone(Context context) {
+        editor = context.getSharedPreferences("phone", Context.MODE_PRIVATE).edit();
+        editor.remove("phone");
+        editor.commit();
+    }
 }

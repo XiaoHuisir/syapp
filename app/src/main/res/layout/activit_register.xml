@@ -271,9 +271,20 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@null"
+                    android:layout_marginRight="@dimen/dp_4"
+                    android:layout_toLeftOf="@+id/btn_show"
                     android:hint="请输入6-16为数字加字母的密码"
                     android:password="true"
                     android:textSize="14sp" />
+                <ImageView
+                    android:id="@+id/btn_show"
+                    android:layout_width="@dimen/dp_20"
+                    android:layout_height="@dimen/dp_20"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/dp_13"
+                    android:background="@drawable/btn_main_hide" />
+
             </RelativeLayout>
 
             <View
