@@ -5,6 +5,15 @@ import java.util.List;
 public class HomeBean {
     private List<MainListBannerBean> mainList_banner;
     private List<MainListTitleBean> mainList_title;
+    private List<CateListBean>  cateList;
+
+    public List<CateListBean> getCateList() {
+        return cateList;
+    }
+
+    public void setCateList(List<CateListBean> cateList) {
+        this.cateList = cateList;
+    }
 
     public List<MainListBannerBean> getMainList_banner() {
         return mainList_banner;
@@ -21,7 +30,82 @@ public class HomeBean {
     public void setMainList_title(List<MainListTitleBean> mainList_title) {
         this.mainList_title = mainList_title;
     }
+public  static  class  CateListBean{
 
+    /**
+     * id : 1
+     * cateid : 1
+     * name : 手机
+     * img : http://cdn.knowfate.com.cn/app/cates/AIhealth.png
+     * weight : 1.0
+     * isshow : 1
+     * itemsList : []
+     */
+
+    private int id;
+    private int cateid;
+    private String name;
+    private String img;
+    private double weight;
+    private int isshow;
+    private List<?> itemsList;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getCateid() {
+        return cateid;
+    }
+
+    public void setCateid(int cateid) {
+        this.cateid = cateid;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
+
+    public double getWeight() {
+        return weight;
+    }
+
+    public void setWeight(double weight) {
+        this.weight = weight;
+    }
+
+    public int getIsshow() {
+        return isshow;
+    }
+
+    public void setIsshow(int isshow) {
+        this.isshow = isshow;
+    }
+
+    public List<?> getItemsList() {
+        return itemsList;
+    }
+
+    public void setItemsList(List<?> itemsList) {
+        this.itemsList = itemsList;
+    }
+}
     public static class MainListBannerBean {
         /**
          * id : 5

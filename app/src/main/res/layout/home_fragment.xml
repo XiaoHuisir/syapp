@@ -147,192 +147,196 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/ln2"
-                    android:background="@color/new_bag">
 
-                    <LinearLayout
-                        android:id="@+id/li1"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentTop="true"
-                        android:layout_marginTop="@dimen/dp_13"
-                        android:orientation="horizontal">
+                    android:background="@color/tou_ming">
+                        <android.support.v7.widget.RecyclerView
+                            android:id="@+id/re_home_classtiy"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                    <!--<LinearLayout-->
+                        <!--android:id="@+id/li1"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_alignParentTop="true"-->
+                        <!--android:layout_marginTop="@dimen/dp_13"-->
+                        <!--android:orientation="horizontal">-->
 
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:orientation="vertical">
+                        <!--<LinearLayout-->
+                            <!--android:layout_width="0dp"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:layout_weight="1"-->
+                            <!--android:gravity="center"-->
+                            <!--android:orientation="vertical">-->
 
-                            <ImageView
-                                android:layout_width="@dimen/dp_46"
-                                android:layout_height="@dimen/dp_48"
-                                android:src="@mipmap/phone" />
+                            <!--<ImageView-->
+                                <!--android:layout_width="@dimen/dp_46"-->
+                                <!--android:layout_height="@dimen/dp_48"-->
+                                <!--android:src="@mipmap/phone" />-->
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/dp_1"
-                                android:text="手机"
-                                android:textColor="#5a5a5a"
-                                android:textSize="12sp" />
-                        </LinearLayout>
+                            <!--<TextView-->
+                                <!--android:layout_width="wrap_content"-->
+                                <!--android:layout_height="wrap_content"-->
+                                <!--android:layout_marginTop="@dimen/dp_1"-->
+                                <!--android:text="手机"-->
+                                <!--android:textColor="#5a5a5a"-->
+                                <!--android:textSize="12sp" />-->
+                        <!--</LinearLayout>-->
 
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:orientation="vertical">
+                        <!--<LinearLayout-->
+                            <!--android:layout_width="0dp"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:layout_weight="1"-->
+                            <!--android:gravity="center"-->
+                            <!--android:orientation="vertical">-->
 
-                            <ImageView
-                                android:layout_width="@dimen/dp_46"
-                                android:layout_height="@dimen/dp_48"
-                                android:src="@mipmap/jiqiren" />
+                            <!--<ImageView-->
+                                <!--android:layout_width="@dimen/dp_46"-->
+                                <!--android:layout_height="@dimen/dp_48"-->
+                                <!--android:src="@mipmap/jiqiren" />-->
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/dp_1"
-                                android:text="机器人"
-                                android:textColor="#5a5a5a"
-                                android:textSize="12sp" />
-                        </LinearLayout>
+                            <!--<TextView-->
+                                <!--android:layout_width="wrap_content"-->
+                                <!--android:layout_height="wrap_content"-->
+                                <!--android:layout_marginTop="@dimen/dp_1"-->
+                                <!--android:text="机器人"-->
+                                <!--android:textColor="#5a5a5a"-->
+                                <!--android:textSize="12sp" />-->
+                        <!--</LinearLayout>-->
 
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:orientation="vertical">
+                        <!--<LinearLayout-->
+                            <!--android:layout_width="0dp"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:layout_weight="1"-->
+                            <!--android:gravity="center"-->
+                            <!--android:orientation="vertical">-->
 
-                            <ImageView
-                                android:layout_width="@dimen/dp_46"
-                                android:layout_height="@dimen/dp_48"
-                                android:src="@mipmap/jiyinjiance" />
+                            <!--<ImageView-->
+                                <!--android:layout_width="@dimen/dp_46"-->
+                                <!--android:layout_height="@dimen/dp_48"-->
+                                <!--android:src="@mipmap/jiyinjiance" />-->
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/dp_1"
-                                android:text="基因检测"
-                                android:textColor="#5a5a5a"
-                                android:textSize="12sp" />
-                        </LinearLayout>
+                            <!--<TextView-->
+                                <!--android:layout_width="wrap_content"-->
+                                <!--android:layout_height="wrap_content"-->
+                                <!--android:layout_marginTop="@dimen/dp_1"-->
+                                <!--android:text="基因检测"-->
+                                <!--android:textColor="#5a5a5a"-->
+                                <!--android:textSize="12sp" />-->
+                        <!--</LinearLayout>-->
 
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:orientation="vertical">
+                        <!--<LinearLayout-->
+                            <!--android:layout_width="0dp"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:layout_weight="1"-->
+                            <!--android:gravity="center"-->
+                            <!--android:orientation="vertical">-->
 
-                            <ImageView
-                                android:layout_width="@dimen/dp_46"
-                                android:layout_height="@dimen/dp_48"
-                                android:src="@mipmap/aistudy" />
+                            <!--<ImageView-->
+                                <!--android:layout_width="@dimen/dp_46"-->
+                                <!--android:layout_height="@dimen/dp_48"-->
+                                <!--android:src="@mipmap/aistudy" />-->
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/dp_1"
-                                android:text="AI学习"
-                                android:textColor="#5a5a5a"
-                                android:textSize="12sp" />
-                        </LinearLayout>
-                    </LinearLayout>
+                            <!--<TextView-->
+                                <!--android:layout_width="wrap_content"-->
+                                <!--android:layout_height="wrap_content"-->
+                                <!--android:layout_marginTop="@dimen/dp_1"-->
+                                <!--android:text="AI学习"-->
+                                <!--android:textColor="#5a5a5a"-->
+                                <!--android:textSize="12sp" />-->
+                        <!--</LinearLayout>-->
+                    <!--</LinearLayout>-->
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/li1"
-                        android:layout_marginTop="@dimen/dp_13"
-                        android:orientation="horizontal">
+                    <!--<LinearLayout-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_below="@id/li1"-->
+                        <!--android:layout_marginTop="@dimen/dp_13"-->
+                        <!--android:orientation="horizontal">-->
 
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:orientation="vertical">
+                        <!--<LinearLayout-->
+                            <!--android:layout_width="0dp"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:layout_weight="1"-->
+                            <!--android:gravity="center"-->
+                            <!--android:orientation="vertical">-->
 
-                            <ImageView
-                                android:layout_width="@dimen/dp_46"
-                                android:layout_height="@dimen/dp_48"
-                                android:src="@mipmap/aihome" />
+                            <!--<ImageView-->
+                                <!--android:layout_width="@dimen/dp_46"-->
+                                <!--android:layout_height="@dimen/dp_48"-->
+                                <!--android:src="@mipmap/aihome" />-->
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/dp_1"
-                                android:text="AI家居"
-                                android:textColor="#5a5a5a"
-                                android:textSize="12sp" />
-                        </LinearLayout>
+                            <!--<TextView-->
+                                <!--android:layout_width="wrap_content"-->
+                                <!--android:layout_height="wrap_content"-->
+                                <!--android:layout_marginTop="@dimen/dp_1"-->
+                                <!--android:text="AI家居"-->
+                                <!--android:textColor="#5a5a5a"-->
+                                <!--android:textSize="12sp" />-->
+                        <!--</LinearLayout>-->
 
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:orientation="vertical">
+                        <!--<LinearLayout-->
+                            <!--android:layout_width="0dp"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:layout_weight="1"-->
+                            <!--android:gravity="center"-->
+                            <!--android:orientation="vertical">-->
 
-                            <ImageView
-                                android:layout_width="@dimen/dp_46"
-                                android:layout_height="@dimen/dp_48"
-                                android:src="@mipmap/aiheaith" />
+                            <!--<ImageView-->
+                                <!--android:layout_width="@dimen/dp_46"-->
+                                <!--android:layout_height="@dimen/dp_48"-->
+                                <!--android:src="@mipmap/aiheaith" />-->
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/dp_1"
-                                android:text="AI健康"
-                                android:textColor="#5a5a5a"
-                                android:textSize="12sp" />
-                        </LinearLayout>
+                            <!--<TextView-->
+                                <!--android:layout_width="wrap_content"-->
+                                <!--android:layout_height="wrap_content"-->
+                                <!--android:layout_marginTop="@dimen/dp_1"-->
+                                <!--android:text="AI健康"-->
+                                <!--android:textColor="#5a5a5a"-->
+                                <!--android:textSize="12sp" />-->
+                        <!--</LinearLayout>-->
 
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:orientation="vertical">
+                        <!--<LinearLayout-->
+                            <!--android:layout_width="0dp"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:layout_weight="1"-->
+                            <!--android:gravity="center"-->
+                            <!--android:orientation="vertical">-->
 
-                            <ImageView
-                                android:layout_width="@dimen/dp_46"
-                                android:layout_height="@dimen/dp_48"
-                                android:src="@mipmap/aikids" />
+                            <!--<ImageView-->
+                                <!--android:layout_width="@dimen/dp_46"-->
+                                <!--android:layout_height="@dimen/dp_48"-->
+                                <!--android:src="@mipmap/aikids" />-->
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/dp_1"
-                                android:text="AI儿童"
-                                android:textColor="#5a5a5a"
-                                android:textSize="12sp" />
-                        </LinearLayout>
+                            <!--<TextView-->
+                                <!--android:layout_width="wrap_content"-->
+                                <!--android:layout_height="wrap_content"-->
+                                <!--android:layout_marginTop="@dimen/dp_1"-->
+                                <!--android:text="AI儿童"-->
+                                <!--android:textColor="#5a5a5a"-->
+                                <!--android:textSize="12sp" />-->
+                        <!--</LinearLayout>-->
 
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:orientation="vertical">
+                        <!--<LinearLayout-->
+                            <!--android:layout_width="0dp"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:layout_weight="1"-->
+                            <!--android:gravity="center"-->
+                            <!--android:orientation="vertical">-->
 
-                            <ImageView
-                                android:layout_width="@dimen/dp_46"
-                                android:layout_height="@dimen/dp_48"
-                                android:src="@mipmap/aishuma" />
+                            <!--<ImageView-->
+                                <!--android:layout_width="@dimen/dp_46"-->
+                                <!--android:layout_height="@dimen/dp_48"-->
+                                <!--android:src="@mipmap/aishuma" />-->
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/dp_1"
-                                android:text="AI数码"
-                                android:textColor="#5a5a5a"
-                                android:textSize="12sp" />
-                        </LinearLayout>
-                    </LinearLayout>
+                            <!--<TextView-->
+                                <!--android:layout_width="wrap_content"-->
+                                <!--android:layout_height="wrap_content"-->
+                                <!--android:layout_marginTop="@dimen/dp_1"-->
+                                <!--android:text="AI数码"-->
+                                <!--android:textColor="#5a5a5a"-->
+                                <!--android:textSize="12sp" />-->
+                        <!--</LinearLayout>-->
+                    <!--</LinearLayout>-->
                 </RelativeLayout>
 
 

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Color;
 
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -18,6 +19,7 @@ import com.bumptech.glide.Glide;
 import com.example.shiyuankeji.MainActivity;
 import com.example.shiyuankeji.R;
 import com.example.shiyuankeji.adapter.HomeAdapter;
+import com.example.shiyuankeji.adapter.Homeclassadapter;
 import com.example.shiyuankeji.app.Constant;
 import com.example.shiyuankeji.app.MyApp;
 import com.example.shiyuankeji.base.BaseFragment;
@@ -40,7 +42,7 @@ import java.util.List;
 import butterknife.BindView;
 
 //toIndex
-public class HomeFragment extends BaseFragment implements HomeCotract.View {
+public class HomeFragment extends BaseFragment implements HomeCotract.View, Homeclassadapter.HomeClassClick {
     @BindView(R.id.ban)
     Banner ban;
     @BindView(R.id.hot_recyler)
@@ -53,6 +55,8 @@ public class HomeFragment extends BaseFragment implements HomeCotract.View {
     RelativeLayout reNoData;
     @BindView(R.id.re_gone)
     RelativeLayout reGone;
+    @BindView(R.id.re_home_classtiy)
+    RecyclerView reHomeClasstiy;
 
 
     private HomeAdapter homeAdapter;
@@ -64,6 +68,8 @@ public class HomeFragment extends BaseFragment implements HomeCotract.View {
     public static final int ONE_TYPE_ = 1;
     public static final int TWO_TYPE_ = 2;
     private SwipeRefreshLayout.OnRefreshListener listener;
+    private ArrayList<HomeBean.CateListBean> cateListbean;
+    private Homeclassadapter homeclassadapter;
 
     @Override
     protected IBasePresenter getPresenter() {
@@ -85,6 +91,11 @@ public class HomeFragment extends BaseFragment implements HomeCotract.View {
         listTetle = new ArrayList<>();
         homeAdapter = new HomeAdapter(listTetle, context);
         hotRecyler.setAdapter(homeAdapter);
+        reHomeClasstiy.setLayoutManager(new GridLayoutManager(context,4));
+        cateListbean = new ArrayList<>();
+        homeclassadapter = new Homeclassadapter(cateListbean);
+        homeclassadapter.homeclassClick=this;
+        reHomeClasstiy.setAdapter(homeclassadapter);
         //刷新
 //        refress();  //效果一 简单刷新
         newrefres(); //效果二  自动刷新
@@ -169,6 +180,17 @@ public class HomeFragment extends BaseFragment implements HomeCotract.View {
 
     @Override
     public void homeReturn(HomeBean result) {
+        if (result==null){
+            return;
+        }
+        if (result.getCateList().size()<=0&&result.getCateList()==null){
+            return;
+        }
+//        分类展示
+        List<HomeBean.CateListBean> cateList = result.getCateList();
+        cateListbean.clear();
+        cateListbean.addAll(cateList);
+        homeclassadapter.notifyDataSetChanged();
         // 让页面返回顶部
         scrView.post(new Runnable() {
             @Override
@@ -243,7 +265,7 @@ public class HomeFragment extends BaseFragment implements HomeCotract.View {
                     startActivity(intent);
                 }
                 if (type2 == TWO_TYPE_) {  // 分类
-                    Constant.IDS_CLASSFY = ids2; //TODO ??
+                    Constant.IDS_CLASSFY = ids2;
                     Constant.CLASS_BOOLEAN=true;
                     Intent intent = new Intent();
                     intent.setClass(getActivity(), MainActivity.class);
@@ -256,6 +278,26 @@ public class HomeFragment extends BaseFragment implements HomeCotract.View {
                 }
             }
         });
+    }
+    //分类展示回调
+    @Override
+    public void cliaasclick(HomeBean.CateListBean listBean) {
+        if (listBean==null){
+            return;
+        }
+        if (listBean.getCateid()<0){
+            return;
+        }
+        int cateid = listBean.getCateid();
+        Constant.IDS_CLASSFY = String.valueOf(cateid);
+        Constant.CLASS_BOOLEAN=true;
+        Intent intent = new Intent();
+        intent.setClass(getActivity(), MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.putExtra("id", Constant.TWO_TYPE_2);
+        startActivityForResult(intent, Constant.TWO_TYPE_2);
+        startActivity(intent);
+
     }
 
     //自定义的图片加载器

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/reclasstiy"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/tou_ming"
+    android:paddingBottom="@dimen/dp_12">
+
+    <ImageView
+        android:id="@+id/image_tilte"
+        android:layout_width="@dimen/dp_46"
+        android:layout_height="@dimen/dp_48"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/dp_12"
+        android:src="@mipmap/phone" />
+
+    <!--<LinearLayout-->
+        <!--android:layout_width="@dimen/dp_65"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_below="@id/image_tilte"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:layout_marginTop="@dimen/dp_1"-->
+        <!--android:gravity="center">-->
+
+        <TextView
+            android:id="@+id/tv_tilte"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/image_tilte"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/dp_1"
+            android:ellipsize="end"
+            android:maxLength="5"
+            android:maxLines="1"
+            android:text="手机"
+            android:textColor="#5a5a5a"
+            android:textSize="12sp" />
+    <!--</LinearLayout>-->
+
+</RelativeLayout>

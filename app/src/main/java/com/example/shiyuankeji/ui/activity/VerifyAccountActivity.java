@@ -46,6 +46,8 @@ public class VerifyAccountActivity extends BaseActivity implements QueryTabContr
     TextView getmsgCodeTv;
     @BindView(R.id.im_break_select)
     ImageView im_break_select;
+    @BindView(R.id.tv_p)
+    TextView tvP;
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
@@ -257,7 +259,8 @@ public class VerifyAccountActivity extends BaseActivity implements QueryTabContr
         if (smsSendBean != null) {
 
             if (smsSendBean.getStatus() == 200) {
-                new ToastUtil(context, R.layout.toast_center_horizontal, smsSendBean.getMsg()).show();
+                Toast.makeText(context,smsSendBean.getMsg(),Toast.LENGTH_SHORT).show();
+//                new ToastUtil(context, R.layout.toast_center_horizontal, smsSendBean.getMsg()).show();
                 Intent intent = new Intent();
 //                Constant.DYNAMIC_PRICE = 0;
                 intent.setClass(context, UpdatePasswrdActivity.class);
@@ -318,6 +321,8 @@ public class VerifyAccountActivity extends BaseActivity implements QueryTabContr
         dataphone = phoneBean.getData();
         if (dataphone != null && !dataphone.equals("")) {
             edPho.setText(dataphone);
+            String maskNumber = dataphone.substring(0,3)+"****"+dataphone.substring(7,dataphone.length());
+            tvP.setText(maskNumber);
         }
     }
 }
