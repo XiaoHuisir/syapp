@@ -45,10 +45,17 @@ public class HomeListAdpater extends RecyclerView.Adapter<HomeListAdpater.ViewHo
             //img
             Glide.with(context).load(list.getImg()).into(viewHolder.imImg);
             viewHolder.textName.setText(list.getName()); //src_price_code  code_price
-            viewHolder.textPrice.setText(String.valueOf(list.getSrc_price_code()));
-            viewHolder.textSrcPrice.setText(String.valueOf(list.getCode_price()));
-            viewHolder.textPrice.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
+            int src_price_code = list.getSrc_price_code();
+            int code_price = list.getCode_price();
+            if (!String.valueOf(src_price_code).equals(String.valueOf(code_price))){
+                viewHolder.textPrice.setText(String.valueOf(list.getSrc_price_code()));
+                viewHolder.textSrcPrice.setText(String.valueOf(list.getCode_price()));
+                viewHolder.textPrice.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
 
+            }else {
+                viewHolder.textPrice.setVisibility(View.GONE);
+                viewHolder.textSrcPrice.setText(String.valueOf(list.getCode_price()));
+            }
 
             viewHolder.linearItem.setOnClickListener(new NoDoubleClickListener() {
                 @Override

@@ -348,8 +348,13 @@ public class ProductDetailsActivity extends BaseActivity implements ProductDetai
         String sulimg = result.getImges();
         Glide.with(context).load(img).into(imHead);
         tvTelet.setText(name);
+        if (String.valueOf(price).equals(String.valueOf(src_price))) {
+            tvOldIntegral.setVisibility(View.GONE);
+        } else {
+            tvOldIntegral.setText(String.valueOf(src_price));
+        }
         tvPrice.setText(String.valueOf(price));
-        tvOldIntegral.setText(String.valueOf(src_price));
+
         tvFreight.setText("运费：" + String.valueOf(freight));
         tvStock.setText("库存：" + String.valueOf(stock));
 

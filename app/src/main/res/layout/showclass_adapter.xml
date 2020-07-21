@@ -52,7 +52,7 @@
                 android:layout_marginTop="@dimen/dp_6"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:text="111"
+                android:text="1"
                 android:textColor="#1f1f1f"
                 android:textSize="13sp" />
 
@@ -68,7 +68,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentBottom="true"
-                    android:text="1"
+                    android:text="0"
                     android:textColor="#fd5002"
                     android:textSize="@dimen/sp_15" />
 
@@ -79,7 +79,7 @@
                     android:layout_alignParentBottom="true"
                     android:layout_marginLeft="7dp"
                     android:layout_toRightOf="@id/tv_ji"
-                    android:text="50"
+                    android:text="0"
                     android:layout_marginTop="@dimen/dp_3"
                     android:textColor="#aaaaaa"
                     android:textSize="@dimen/sp_12" />
