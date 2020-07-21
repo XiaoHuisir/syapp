@@ -67,8 +67,8 @@
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="@dimen/dp_16"
-                android:text="身份证号"
-                android:textColor="#64333333"
+                android:text="身份证号："
+                android:textColor="@color/black"
                 android:textSize="@dimen/sp_17" />
 
             <EditText
@@ -105,8 +105,8 @@
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="@dimen/dp_16"
-                    android:text="开户姓名"
-                    android:textColor="#64333333"
+                    android:text="开户姓名："
+                    android:textColor="@color/black"
                     android:textSize="@dimen/sp_17" />
 
                 <EditText
@@ -141,8 +141,8 @@
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="@dimen/dp_16"
-                    android:text="银行卡号"
-                    android:textColor="#64333333"
+                    android:text="银行卡号："
+                    android:textColor="@color/black"
                     android:textSize="@dimen/sp_17" />
 
                 <EditText
@@ -177,8 +177,8 @@
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="@dimen/dp_16"
-                    android:text="开户银行"
-                    android:textColor="#64333333"
+                    android:text="开户银行："
+                    android:textColor="@color/black"
                     android:textSize="@dimen/sp_17" />
 
                 <EditText

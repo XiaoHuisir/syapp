@@ -88,6 +88,7 @@
                 android:background="@color/line_gray" />
 
             <RelativeLayout
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp_66">
 
@@ -111,9 +112,21 @@
                     android:text="XXX"
                     android:textColor="#a0a0a0"
                     android:textSize="@dimen/sp_14" />
+                <TextView
+                    android:id="@+id/tv_add_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/dp_13"
+                    android:text="点击添加"
+                    android:textColor="@color/col_blue"
+                    android:visibility="gone"
+                    android:textSize="@dimen/sp_14" />
             </RelativeLayout>
 
             <View
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp_1"
                 android:layout_marginLeft="@dimen/dp_14"
@@ -215,7 +228,7 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_toLeftOf="@id/image_1"
-                        android:text="0000"
+                        android:text=""
                         android:layout_marginRight="@dimen/dp_12"
                         android:textColor="#a0a0a0"
                         android:textSize="@dimen/sp_14" />

@@ -19,6 +19,7 @@ import com.example.shiyuankeji.interfaces.contract.BankIdentityContract;
 import com.example.shiyuankeji.presenter.BankIdentityPresenter;
 import com.example.shiyuankeji.utils.IDCard;
 import com.example.shiyuankeji.utils.ToastUtil;
+import com.example.shiyuankeji.utils.UtilsClicktime;
 import com.example.shiyuankeji.utils.Validator;
 
 import java.text.ParseException;
@@ -86,6 +87,16 @@ public class ClickOnAddActivity extends BaseActivity implements BankIdentityCont
             txtTlite.setText("身份证号");
             linearBankCard.setVisibility(View.GONE);
             edIDnumber.setText(identityNum);
+            if (identityNum.length() <= 0 && !identityNum.equals("")) {
+                linearSave.setVisibility(View.VISIBLE);
+                textUpdate.setVisibility(View.GONE);
+                editable();
+            } else {
+                linearSave.setVisibility(View.GONE);
+                textUpdate.setVisibility(View.VISIBLE);
+                oneditable();
+                saves();
+            }
         }
         if (type == 20) {
             txtTlite.setText("银行信息");
@@ -93,7 +104,19 @@ public class ClickOnAddActivity extends BaseActivity implements BankIdentityCont
             edAccountName.setText(bank_names_);
             edCreditCardNumbers.setText(bank_nums_);
             edDepositBank.setText(bank_addres_);
+            if (bank_nums_.length() <= 0 && !bank_nums_.equals("")) {
+                linearSave.setVisibility(View.VISIBLE);
+                textUpdate.setVisibility(View.GONE);
+                editable();
+            } else {
+
+                linearSave.setVisibility(View.GONE);
+                textUpdate.setVisibility(View.VISIBLE);
+                oneditable();
+                saves();
+            }
         }
+
 
     }
 
@@ -111,12 +134,18 @@ public class ClickOnAddActivity extends BaseActivity implements BankIdentityCont
                 finish();
                 break;
             case R.id.linear_save: //保存
+                if (UtilsClicktime.isFastDoubleClick()) {
+                    return;
+                }
                 linearSave.setVisibility(View.GONE);
                 textUpdate.setVisibility(View.VISIBLE);
                 oneditable();
                 saves();
                 break;
             case R.id.text_update: //修改
+                if (UtilsClicktime.isFastDoubleClick()) {
+                    return;
+                }
                 linearSave.setVisibility(View.VISIBLE);
                 textUpdate.setVisibility(View.GONE);
                 editable();

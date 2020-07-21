@@ -88,7 +88,7 @@ public class MyQRActivity extends BaseActivity implements ScancodeContract.View 
 
         if (EasyPermissions.hasPermissions(MyQRActivity.this, permissions)) {
             //已经打开权限
-            goPhotoAlbum();
+//            goPhotoAlbum();
         } else {
             //没有打开相关权限、申请权限
             EasyPermissions.requestPermissions(MyQRActivity.this, "需要获取您的相册、照相使用权限", 1, permissions);
@@ -126,6 +126,7 @@ public class MyQRActivity extends BaseActivity implements ScancodeContract.View 
                     screenShot = getScreenShot();
                     imbug.setImageBitmap(screenShot);
                     saveScreenShot(screenShot);
+//                    goPhotoAlbum(); //打开相机
                     break;
         }
 
@@ -147,7 +148,7 @@ public class MyQRActivity extends BaseActivity implements ScancodeContract.View 
             Intent intent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
             Uri uri = Uri.fromFile(file);intent.setData(uri);
             sendBroadcast(intent);//这个广播的目的就是更新图库，发了这个广播进入相册就可以找到你保存的图片了！
-            Toast.makeText(context,"生成成功！",Toast.LENGTH_SHORT).show();
+            Toast.makeText(context,"海报生成成功，已保存到相册",Toast.LENGTH_SHORT).show();
 //            ToastUtil toastUtil2 = new ToastUtil(context, R.layout.ok_toast_center_horizontal, "生成成功！");
 //            toastUtil2.show();
         } catch(Exception e) {
