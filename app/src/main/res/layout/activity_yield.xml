@@ -53,6 +53,7 @@
         <!--android:background="@color/gray" />-->
 
     <RelativeLayout
+        android:id="@+id/re_have"
         android:layout_below="@+id/rell"
         android:layout_width="match_parent"
         android:layout_alignParentLeft="true"
@@ -125,7 +126,7 @@
                                 android:id="@+id/tv_zong"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="0000"
+                                android:text="0"
                                 android:layout_marginTop="@dimen/dp_13"
                                 android:textStyle="bold"
                                 android:textColor="@color/newnew_bg"
@@ -147,5 +148,37 @@
                 </LinearLayout>
             </ScrollView>
         </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+    </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/re_no_data"
+            android:layout_below="@+id/vi1"
+            android:background="@color/tou_ming"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="@dimen/dp_20"
+            android:visibility="gone"
+            >
+
+            <ImageView
+                android:id="@+id/im_no"
+                android:layout_width="@dimen/dp_261"
+                android:layout_height="@dimen/dp_261"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/dp_141"
+                android:src="@drawable/pic" />
+
+            <TextView
+                android:id="@+id/tv_no"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/im_no"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/dp_20"
+                android:text="暂无收益"
+                android:textColor="#969696"
+                android:textSize="@dimen/sp_20" />
+
     </RelativeLayout>
 </RelativeLayout>

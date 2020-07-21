@@ -72,6 +72,7 @@
                 android:layout_marginLeft="13dp"
                 android:layout_toLeftOf="@id/im1"
                 android:layout_toRightOf="@+id/t1"
+                android:singleLine="true"
                 android:background="@null"
                 android:hint="请填写收货人姓名"
                 android:textColor="#333"
@@ -118,6 +119,7 @@
                 android:layout_toRightOf="@+id/t2"
                 android:layout_toLeftOf="@+id/im2"
                 android:layout_centerVertical="true"
+                android:singleLine="true"
                 android:hint="请填写收货人手机号"
                 android:textColor="#333"
                 android:textSize="14sp" />
@@ -201,6 +203,7 @@
                 android:layout_marginLeft="17dp"
                 android:background="@null"
                 android:ellipsize="end"
+                android:singleLine="true"
                 android:gravity="center_vertical"
                 android:hint="街道、楼牌号等"
                 android:maxLines="1"

@@ -194,9 +194,9 @@ public class SelectAddressActivity extends BaseActivity implements SubmitListCon
         startActivity(intent);
         finish();
         } else {
-//            Toast.makeText(context, "个人中心", Toast.LENGTH_LONG).show();
-            ToastUtil toastUtil2 = new ToastUtil(context, R.layout.putong_toast_center_horizontal, "个人中心！");
-            toastUtil2.show();
+////            Toast.makeText(context, "个人中心", Toast.LENGTH_LONG).show();
+//            ToastUtil toastUtil2 = new ToastUtil(context, R.layout.putong_toast_center_horizontal, "个人中心！");
+//            toastUtil2.show();
         }
     }
 }

@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/new_bag"
+    android:background="@color/newnew_newbg"
     android:orientation="vertical"
     tools:context=".ui.activity.SynergicXingActivity">
 
@@ -57,6 +57,7 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
+                android:paddingBottom="@dimen/dp_13"
                 android:layout_height="wrap_content">
 
                 <android.support.v7.widget.RecyclerView

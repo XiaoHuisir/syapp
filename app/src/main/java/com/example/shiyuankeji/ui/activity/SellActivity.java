@@ -77,6 +77,10 @@ public class SellActivity extends BaseActivity implements SynergiContract.View, 
     @Override
     public void synergicRean(SynergicBean synergicBean) {
         if (synergicBean != null) {
+            SynergicBean.InTeamVL1Bean inTeamVL1 = synergicBean.getInTeamVL1();
+            if (inTeamVL1==null){
+                return;
+            }
             int id = synergicBean.getInTeamVL1().getId();
             if (id == 0) {
                 tvPlace.setVisibility(View.GONE);
@@ -126,7 +130,7 @@ public class SellActivity extends BaseActivity implements SynergiContract.View, 
                 } else {//无合作数据
 //                    onShuju.setVisibility(View.VISIBLE);
 //                    scrollShow.setVisibility(View.GONE);
-//                return;
+                return;
                 }
             }
 

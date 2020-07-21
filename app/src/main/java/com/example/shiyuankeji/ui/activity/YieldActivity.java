@@ -36,6 +36,10 @@ public class YieldActivity extends BaseActivity implements QueryEarningsContract
     TextView tvNow;
     @BindView(R.id.tv_zong)
     TextView tvZong;
+    @BindView(R.id.re_no_data)
+    RelativeLayout reNoData;
+    @BindView(R.id.re_have)
+    RelativeLayout reHave;
     private ArrayList<QueryEarningsBean.ShareInfoVoBean> listyieid;
     private YieldAdapter yieldAdapter;
 
@@ -79,12 +83,18 @@ public class YieldActivity extends BaseActivity implements QueryEarningsContract
     public void earningsRean(QueryEarningsBean queryEarningsBean) {
         if (queryEarningsBean != null) {
             List<QueryEarningsBean.ShareInfoVoBean> shareInfoVo = queryEarningsBean.getShareInfoVo();
-            listyieid.addAll(shareInfoVo);
+            if (shareInfoVo.size()>0&&shareInfoVo!=null){
+                reNoData.setVisibility(View.GONE);
+                reHave.setVisibility(View.VISIBLE);
+                listyieid.addAll(shareInfoVo);
+                yieldAdapter.notifyDataSetChanged();
+                tvNow.setText(String.valueOf(queryEarningsBean.getTotalprice()));
+                tvZong.setText(String.valueOf(queryEarningsBean.getProfit()));
+            }else {
+                reNoData.setVisibility(View.VISIBLE);
+                reHave.setVisibility(View.GONE);
+            }
 
-            yieldAdapter.notifyDataSetChanged();
-
-            tvNow.setText(String.valueOf(queryEarningsBean.getTotalprice()));
-            tvZong.setText(String.valueOf(queryEarningsBean.getProfit()));
         }
     }
 

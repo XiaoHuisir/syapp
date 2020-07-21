@@ -305,8 +305,9 @@ public class MyScanCodeActivity extends BaseActivity implements JoinContract.Vie
             @Override
             public void onError(Throwable throwable) {
                 String s = throwable.toString();
-                ToastUtil toastUtil2 = new ToastUtil(context, R.layout.toast_center_horizontal, "扫描错误信息：" + s);
-                toastUtil2.show();
+                Toast.makeText(context,"扫描错误信息：" + s,Toast.LENGTH_SHORT).show();
+//                ToastUtil toastUtil2 = new ToastUtil(context, R.layout.toast_center_horizontal, "扫描错误信息：" + s);
+//                toastUtil2.show();
             }
 
             @Override
@@ -423,16 +424,18 @@ public class MyScanCodeActivity extends BaseActivity implements JoinContract.Vie
 //                Toast toast = Toast.makeText(context, "成功：" + joinBean.getMsg(), Toast.LENGTH_SHORT);
 //                toast.setGravity(Gravity.CENTER, 0, 0);
 //                toast.show();
-                ToastUtil toastUtil2 = new ToastUtil(context, R.layout.ok_toast_center_horizontal,  "成功：" + joinBean.getMsg());
-                toastUtil2.show();
+                Toast.makeText(context,"成功：" + joinBean.getMsg(),Toast.LENGTH_SHORT).show();
+//                ToastUtil toastUtil2 = new ToastUtil(context, R.layout.ok_toast_center_horizontal,  "成功：" + joinBean.getMsg());
+//                toastUtil2.show();
                 intent.setClass(context, SynergicActivity.class);
                 finish();
             } else {//加入失败、已加入其他组
 //                Toast toast = Toast.makeText(context, joinBean.getMsg(), Toast.LENGTH_SHORT);
 //                toast.setGravity(Gravity.CENTER, 0, 0);
 //                toast.show();
-                ToastUtil toastUtil2 = new ToastUtil(context, R.layout.toast_center_horizontal,  "失败：" + joinBean.getMsg());
-                toastUtil2.show();
+                Toast.makeText(context,"失败：" + joinBean.getMsg(),Toast.LENGTH_SHORT).show();
+//                ToastUtil toastUtil2 = new ToastUtil(context, R.layout.toast_center_horizontal,  "失败：" + joinBean.getMsg());
+//                toastUtil2.show();
                 intent.setClass(context, SynergicActivity.class);
                 finish();
             }

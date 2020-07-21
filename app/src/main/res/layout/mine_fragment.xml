@@ -64,7 +64,7 @@
                 android:layout_marginLeft="@dimen/dp_14"
                 android:layout_toRightOf="@id/im_SUF"
 
-                android:text="SF33333222"
+                android:text=""
                 android:textColor="@color/white"
                 android:textSize="20sp" />
 
@@ -76,7 +76,7 @@
                 android:layout_marginLeft="@dimen/dp_14"
                 android:layout_marginTop="@dimen/dp_4"
                 android:layout_toRightOf="@id/im_SUF"
-                android:text="李四"
+                android:text=""
                 android:textColor="#b4d2ff"
                 android:textSize="14sp" />
             <!--<TextView-->
@@ -141,7 +141,7 @@
                     android:id="@+id/tv_score"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="55000"
+                    android:text="0"
                     android:textColor="@color/black"
                     android:textSize="12sp" />
 
@@ -173,7 +173,7 @@
                     android:id="@+id/tv_score4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="550"
+                    android:text="0"
                     android:textColor="@color/black"
                     android:textSize="12sp" />
 
@@ -205,7 +205,7 @@
                     android:id="@+id/tv_score2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="50"
+                    android:text="0"
                     android:textColor="@color/black"
                     android:textSize="14sp" />
 
@@ -237,7 +237,7 @@
                     android:id="@+id/tv_score3_1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="00"
+                    android:text="0"
                     android:textColor="@color/black"
                     android:textSize="12sp" />
 

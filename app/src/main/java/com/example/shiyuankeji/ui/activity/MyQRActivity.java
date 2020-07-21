@@ -147,15 +147,15 @@ public class MyQRActivity extends BaseActivity implements ScancodeContract.View 
             Intent intent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
             Uri uri = Uri.fromFile(file);intent.setData(uri);
             sendBroadcast(intent);//这个广播的目的就是更新图库，发了这个广播进入相册就可以找到你保存的图片了！
-
-            ToastUtil toastUtil2 = new ToastUtil(context, R.layout.ok_toast_center_horizontal, "生成成功！");
-            toastUtil2.show();
+            Toast.makeText(context,"生成成功！",Toast.LENGTH_SHORT).show();
+//            ToastUtil toastUtil2 = new ToastUtil(context, R.layout.ok_toast_center_horizontal, "生成成功！");
+//            toastUtil2.show();
         } catch(Exception e) {
 //            Toast.makeText(this, "exception:" + e,
 //                    Toast.LENGTH_SHORT).show();
-            ToastUtil toastUtil2 = new ToastUtil(context, R.layout.toast_center_horizontal, "生成失败！");
-            toastUtil2.show();
-
+//            ToastUtil toastUtil2 = new ToastUtil(context, R.layout.toast_center_horizontal, "生成失败！");
+//            toastUtil2.show();
+            Toast.makeText(context,"生成失败！",Toast.LENGTH_SHORT).show();
         }
     }
 

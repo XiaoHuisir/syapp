@@ -9,7 +9,7 @@ import java.io.File;
  * Created by zhanghui on 20-3-30.
  */
 public class Constant {
-    //    public static final String BaseUrl = "http://192.168.124.13:8080/"; //识缘  （局域网）  TODO  张文端
+//        public static final String BaseUrl = "http://192.168.124.16:8080/"; //识缘  （局域网）  TODO  张文端
 //        public static final String BaseUrl = "http://192.168.124.14:8080/"; //识缘  （局域网）  TODO  李聪
 //    public static final String BaseUrl = "http://api.mb.knowfate.com.cn/shiyuanshop-0.0.1-SNAPSHOT/"; //识缘 （服务器）
     public static final String BaseUrl = "http://api.mb.knowfate.com.cn:8080/shiyuanshop-0.0.1-SNAPSHOT/"; //new 识缘 （服务器）

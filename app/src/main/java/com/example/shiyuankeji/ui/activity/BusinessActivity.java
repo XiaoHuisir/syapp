@@ -81,6 +81,10 @@ public class BusinessActivity extends BaseActivity implements SynergiContract.Vi
     @Override
     public void synergicRean(SynergicBean synergicBean) {
         if (synergicBean != null) {
+            SynergicBean.InTeamVL1Bean inTeamVL1 = synergicBean.getInTeamVL1();
+            if (inTeamVL1==null){
+                return;
+            }
             int id = synergicBean.getInTeamVL1().getId();
             if (id == 0) {
                 tvPlace.setVisibility(View.GONE);

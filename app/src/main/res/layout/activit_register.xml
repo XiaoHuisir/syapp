@@ -207,6 +207,7 @@
                     android:layout_marginRight="@dimen/dp_16"
                     android:layout_toLeftOf="@id/getMsgCodeTv"
                     android:background="@null"
+                    android:singleLine="true"
                     android:hint="请输入验证码"
                     android:textSize="@dimen/sp_14" />
 
