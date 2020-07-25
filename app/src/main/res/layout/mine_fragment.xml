@@ -164,6 +164,7 @@
             <LinearLayout
                 android:id="@+id/lin_donate"
                 android:layout_width="0dp"
+                android:visibility="gone"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
@@ -181,7 +182,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp_9"
-                    android:text="赠送积分"
+                    android:text="识缘股"
                     android:textColor="@color/black"
                     android:textSize="11sp" />
 
@@ -192,9 +193,35 @@
                 android:layout_height="@dimen/dp_30"
                 android:layout_gravity="center_vertical"
                 android:background="@color/line_gray" />
+            <LinearLayout
+                android:visibility="gone"
+                android:id="@+id/lin_cash"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
 
+                <TextView
+                    android:id="@+id/tv_tixianmoney"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_9"
+                    android:text="收益积分"
+                    android:textColor="@color/black"
+                    android:textSize="11sp" />
+
+            </LinearLayout>
             <LinearLayout
                 android:id="@+id/lin_stock"
+
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -213,7 +240,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp_9"
-                    android:text="识缘股"
+                    android:text="赠送积分"
                     android:textColor="@color/black"
                     android:textSize="11sp" />
 
@@ -222,9 +249,10 @@
             <View
                 android:layout_width="1dp"
                 android:layout_height="@dimen/dp_30"
+                android:visibility="gone"
                 android:layout_gravity="center_vertical"
                 android:background="@color/line_gray" />
-
+<!--周分红(股)/现改为收益积分-->
             <LinearLayout
                 android:id="@+id/lin_fh"
                 android:layout_width="0dp"
@@ -245,7 +273,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp_9"
-                    android:text="周分红(股)"
+                    android:text="收益积分"
                     android:textColor="@color/black"
                     android:textSize="11sp" />
 
@@ -560,6 +588,7 @@
 
                     <RelativeLayout
                         android:id="@+id/re_CQ"
+                        android:visibility="gone"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/dp_46">
 

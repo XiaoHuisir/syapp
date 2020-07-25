@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.example.shiyuankeji.app.Constant;
 import com.example.shiyuankeji.base.BasePresenter;
+import com.example.shiyuankeji.bean.CashBean;
 import com.example.shiyuankeji.bean.QueryIntegralBean;
 import com.example.shiyuankeji.bean.QueryLastWeekStockBean;
 import com.example.shiyuankeji.bean.QueryMinuteStockBean;
@@ -112,6 +113,31 @@ public class IntegraIBetailsPresenter extends BasePresenter<IntegralDetailsContr
                         Log.d(TAG, "onError: " + t);
                     }
                 })
+
+        );
+    }
+
+    @Override
+    public void cashs(int score) {
+        addSubscribe(HttpUtils.getMyServer(Constant.BaseUrl).cashApi(Constant.token,score)
+                        .compose(RxUtils.<CashBean>rxScheduler())
+                        .subscribeWith(new CommonSubscriber<CashBean>(mView) {
+                            @Override
+                            public void onNext(CashBean cashBean) {
+                                if (cashBean
+                                        != null) {
+                                    if (mView != null) {
+                                        mView.cashRean(cashBean);
+                                    }
+                                }
+                            }
+
+                            @Override
+                            public void onError(Throwable t) {
+                                super.onError(t);
+//                        Log.d(TAG, "onError: " + t);
+                            }
+                        })
 
         );
     }

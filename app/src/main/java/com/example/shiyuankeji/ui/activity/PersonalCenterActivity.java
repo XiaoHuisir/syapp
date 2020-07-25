@@ -204,17 +204,18 @@ public class PersonalCenterActivity extends BaseActivity implements MineContract
 
     @Override
     public void mineReand(MineBean mineBean) {
+
         if (mineBean != null) {
             tvUsername.setText(mineBean.getUser_name());
-            String name = mineBean.getName();
-            if (name.length() > 0 && !name.equals("")) {
-                tvAddName.setVisibility(View.GONE);
-                tvNames.setVisibility(View.VISIBLE);
-                tvNames.setText(name);
-            } else {
-                tvAddName.setVisibility(View.VISIBLE);
-                tvNames.setVisibility(View.GONE);
-            }
+//            String name = mineBean.getName();
+//            if (name.length() > 0 && !name.equals("")&&name!=null) {
+//                tvAddName.setVisibility(View.GONE);
+//                tvNames.setVisibility(View.VISIBLE);
+//                tvNames.setText(name);
+//            } else {
+//                tvAddName.setVisibility(View.VISIBLE);
+//                tvNames.setVisibility(View.GONE);
+//            }
             tvPhonenumber.setText(mineBean.getPhone_number());
             identityNum = mineBean.getIdentity_num();//身份证号
             bank_num = mineBean.getBank_num();  // 银行卡号

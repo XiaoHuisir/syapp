@@ -102,23 +102,23 @@ public class YiedetailsAdapter extends BaseAdapter {
             tqian.setText(String.valueOf(list.getTotalprice()));
             tvCreatetime.setText(list.getCreatetime());
         } else if (sharetype == 18) {
-            tname.setText("商务合作人分成（中）");
+            tname.setText("中");
             tqian.setText(String.valueOf(list.getTotalprice()));
             tvCreatetime.setText(list.getCreatetime());
         } else if (sharetype == 19) {
-            tname.setText("商务合作人分成（北）");
+            tname.setText("北");
             tqian.setText(String.valueOf(list.getTotalprice()));
             tvCreatetime.setText(list.getCreatetime());
         } else if (sharetype == 20) {
-            tname.setText("商务合作人分成（西）");
+            tname.setText("西");
             tqian.setText(String.valueOf(list.getTotalprice()));
             tvCreatetime.setText(list.getCreatetime());
         } else if (sharetype == 21) {
-            tname.setText("商务合作人分成（南）");
+            tname.setText("南");
             tqian.setText(String.valueOf(list.getTotalprice()));
             tvCreatetime.setText(list.getCreatetime());
         } else if (sharetype == 22) {
-            tname.setText("商务合作人分成（东）");
+            tname.setText("东");
             tqian.setText(String.valueOf(list.getTotalprice()));
             tvCreatetime.setText(list.getCreatetime());
         } else if (sharetype == 23) {
@@ -138,23 +138,23 @@ public class YiedetailsAdapter extends BaseAdapter {
             tqian.setText(String.valueOf(list.getTotalprice()));
             tvCreatetime.setText(list.getCreatetime());
         }else if (sharetype == 27){
-            tname.setText("代理分成(中)");
+            tname.setText("中部");
             tqian.setText(String.valueOf(list.getTotalprice()));
             tvCreatetime.setText(list.getCreatetime());
         }else if (sharetype == 28){
-            tname.setText("代理分成(北)");
+            tname.setText("北部");
             tqian.setText(String.valueOf(list.getTotalprice()));
             tvCreatetime.setText(list.getCreatetime());
         }else if (sharetype == 29){
-            tname.setText("代理分成(西)");
+            tname.setText("西部");
             tqian.setText(String.valueOf(list.getTotalprice()));
             tvCreatetime.setText(list.getCreatetime());
         }else if (sharetype == 30){
-            tname.setText("代理分成(南)");
+            tname.setText("南部");
             tqian.setText(String.valueOf(list.getTotalprice()));
             tvCreatetime.setText(list.getCreatetime());
         }else if (sharetype == 31){
-            tname.setText("代理分成(东)");
+            tname.setText("东部");
             tqian.setText(String.valueOf(list.getTotalprice()));
             tvCreatetime.setText(list.getCreatetime());
         }else if (sharetype == 32) {

@@ -167,8 +167,14 @@ public class ClickOnAddActivity extends BaseActivity implements BankIdentityCont
     private void editable() {
         edIDnumber.setFocusable(true);
         edIDnumber.setFocusableInTouchMode(true);
-        edAccountName.setFocusable(true);
-        edAccountName.setFocusableInTouchMode(true);
+        String edaccountname = edAccountName.getText().toString();
+        if (edaccountname.equals("")) {
+            edAccountName.setFocusable(true);
+            edAccountName.setFocusableInTouchMode(true);
+        }else {
+            edAccountName.setFocusable(false);
+            edAccountName.setFocusableInTouchMode(false);
+        }
         edCreditCardNumbers.setFocusable(true);
         edCreditCardNumbers.setFocusableInTouchMode(true);
         edDepositBank.setFocusable(true);

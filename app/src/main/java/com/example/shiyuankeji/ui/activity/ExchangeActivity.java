@@ -116,12 +116,12 @@ public class ExchangeActivity extends Activity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.cancel:
-
+                Constant.DYNAMIC_DIGITAL=1;
                 finish();
                 break;
             case R.id.im_add: //++
 
-                if (Constant.DYNAMIC_DIGITAL < buynums + 1 && Constant.DYNAMIC_DIGITAL < stock) {
+                if (Constant.DYNAMIC_DIGITAL <= buynums -1 && Constant.DYNAMIC_DIGITAL < stock) {
                     Constant.DYNAMIC_DIGITAL++;
                     tvShu.setText("兑换数量：" + String.valueOf(Constant.DYNAMIC_DIGITAL));
                     textShuRAM.setText(String.valueOf(Constant.DYNAMIC_DIGITAL));

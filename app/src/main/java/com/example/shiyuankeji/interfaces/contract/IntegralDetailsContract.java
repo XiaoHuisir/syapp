@@ -1,5 +1,6 @@
 package com.example.shiyuankeji.interfaces.contract;
 
+import com.example.shiyuankeji.bean.CashBean;
 import com.example.shiyuankeji.bean.QueryIntegralBean;
 import com.example.shiyuankeji.bean.QueryLastWeekStockBean;
 import com.example.shiyuankeji.bean.QueryMinuteStockBean;
@@ -16,6 +17,7 @@ public interface IntegralDetailsContract {
         void queryMinuteStockRrean(QueryMinuteStockBean queryMinuteStockBean);
 
         void queryLastWeekStockRrean(QueryLastWeekStockBean queryLastWeekStockBean);
+        void  cashRean(CashBean cashBean);
     }
 
     interface Presenter extends IBasePresenter<View> {
@@ -26,5 +28,6 @@ public interface IntegralDetailsContract {
         void queryMinuteStocks();
 
         void queryLastWeekStocks();
+        void   cashs(int score);
     }
 }

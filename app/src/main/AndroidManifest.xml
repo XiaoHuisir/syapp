@@ -168,6 +168,8 @@ android.permission.ACCESS_WIFI_STATE-->
         <activity android:name=".ui.activity.YieldActivity"/>
         <!--我的收益详情-->
         <activity android:name=".ui.activity.YiedetailsActivity"/>
+        <!--提现（收益积分）-->
+        <activity android:name=".ui.activity.CashAcitivity"/>
     </application>
 
     <!--友盟统计配置Appkey与Channel-->

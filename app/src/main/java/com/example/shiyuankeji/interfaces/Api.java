@@ -7,6 +7,7 @@ import com.example.shiyuankeji.bean.AddUserBean;
 import com.example.shiyuankeji.bean.AliPayBean;
 import com.example.shiyuankeji.bean.AnddressBean;
 import com.example.shiyuankeji.bean.BankBean;
+import com.example.shiyuankeji.bean.CashBean;
 import com.example.shiyuankeji.bean.ClassBean;
 import com.example.shiyuankeji.bean.ClassListBean;
 import com.example.shiyuankeji.bean.HomeBean;
@@ -218,6 +219,12 @@ public interface Api {
     @POST("queryPhone")
     @FormUrlEncoded
     Flowable<PhoneBean> PhoneApi(@Field("user_name") String phone);
+
+    //提现
+    @POST("updateType3")
+    @FormUrlEncoded
+    Flowable<CashBean> cashApi(@Header("token") String tokens, @Field("score3") int order);
+
 
 //    {
 //    "id": 34,

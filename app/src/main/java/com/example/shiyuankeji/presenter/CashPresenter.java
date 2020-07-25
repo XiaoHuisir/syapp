@@ -1,30 +1,26 @@
 package com.example.shiyuankeji.presenter;
 
-import android.util.Log;
-
 import com.example.shiyuankeji.app.Constant;
 import com.example.shiyuankeji.base.BasePresenter;
+import com.example.shiyuankeji.bean.CashBean;
 import com.example.shiyuankeji.bean.ClassBean;
-import com.example.shiyuankeji.interfaces.contract.ClassifyContract;
+import com.example.shiyuankeji.interfaces.contract.CashContract;
 import com.example.shiyuankeji.utils.CommonSubscriber;
 import com.example.shiyuankeji.utils.HttpUtils;
 import com.example.shiyuankeji.utils.RxUtils;
 
-
-public class ClassifyPresenter extends BasePresenter<ClassifyContract.View> implements ClassifyContract.Presenter {
-    private static final String TAG = "tag";
-
+public class CashPresenter extends BasePresenter<CashContract.View> implements CashContract.Presenter {
     @Override
-    public void classify() {
-        addSubscribe(HttpUtils.getMyServer(Constant.BaseUrl).clasify()
-                .compose(RxUtils.<ClassBean>rxScheduler())
-                .subscribeWith(new CommonSubscriber<ClassBean>(mView) {
+    public void cashs(int score) {
+        addSubscribe(HttpUtils.getMyServer(Constant.BaseUrl).cashApi(Constant.token,score)
+                .compose(RxUtils.<CashBean>rxScheduler())
+                .subscribeWith(new CommonSubscriber<CashBean>(mView) {
                     @Override
-                    public void onNext(ClassBean classBean) {
-                        if (classBean
+                    public void onNext(CashBean cashBean) {
+                        if (cashBean
                                 != null) {
                             if (mView != null) {
-                                mView.classifyReturn(classBean);
+                                mView.cashRean(cashBean);
                             }
                         }
                     }
@@ -38,7 +34,4 @@ public class ClassifyPresenter extends BasePresenter<ClassifyContract.View> impl
 
         );
     }
-
-
-
 }

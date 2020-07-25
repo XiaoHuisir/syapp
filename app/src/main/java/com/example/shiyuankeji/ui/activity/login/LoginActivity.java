@@ -164,6 +164,11 @@ public class LoginActivity extends BaseActivity implements LoginsContract.Views 
 //                startActivityForResult(intent, REGISTER);
 //                break;
             case R.id.lins_break:
+                Intent intent = new Intent();
+                intent.setClass(context, MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);//设置栈顶模式
+                intent.putExtra("id", Constant.ONE_TYPE_1);
+                startActivityForResult(intent, Constant.ONE_TYPE_1);
                 finish();
                 break;
             case R.id.wxlogin://微信登录

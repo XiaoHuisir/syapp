@@ -31,6 +31,7 @@ import com.example.shiyuankeji.interfaces.contract.SubmitContract;
 import com.example.shiyuankeji.presenter.SubmitPresenter;
 import com.example.shiyuankeji.utils.NoDoubleClickListener;
 import com.example.shiyuankeji.utils.SharedPreferencesUtil;
+import com.example.shiyuankeji.utils.SubmitNoDoubleClickListener;
 import com.example.shiyuankeji.utils.ToastUtil;
 import com.example.shiyuankeji.widgets.alipay.util.PayResult;
 
@@ -365,7 +366,7 @@ public class Submit0rdersActivity extends BaseActivity implements SubmitContract
         reSiteOk = findViewById(R.id.re_site_ok);
         reOn = findViewById(R.id.re_on);
         btnExchangOn = findViewById(R.id.btn_exchangOn);
-        btnExchangOn.setOnClickListener(new NoDoubleClickListener() {
+        btnExchangOn.setOnClickListener(new SubmitNoDoubleClickListener() {
             @Override
             protected void onNoDoubleClick(View v) {
                 if (SharedPreferencesUtil.getDeliveryAddress(context) == true) {
@@ -379,9 +380,9 @@ public class Submit0rdersActivity extends BaseActivity implements SubmitContract
                         Toast.makeText(context, "积分支付", Toast.LENGTH_SHORT).show();
                         jifezhifu();
                     } else {
-//                        Toast.makeText(context, "请选择支付方式", Toast.LENGTH_SHORT).show();
-                        ToastUtil toastUtil2 = new ToastUtil(context, R.layout.putong_toast_center_horizontal, "请选择支付方式！");
-                        toastUtil2.show();
+                        Toast.makeText(context, "请选择支付方式", Toast.LENGTH_SHORT).show();
+//                        ToastUtil toastUtil2 = new ToastUtil(context, R.layout.putong_toast_center_horizontal, "请选择支付方式！");
+//                        toastUtil2.show();
                     }
                 } else {
 //                    new ToastUtil(context, R.layout.toast_center_horizontal, "请选择收货地址").show();

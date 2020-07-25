@@ -5,16 +5,19 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.shiyuankeji.MainActivity;
 import com.example.shiyuankeji.R;
@@ -25,8 +28,10 @@ import com.example.shiyuankeji.bean.LoginTokenBean;
 import com.example.shiyuankeji.bean.MineBean;
 import com.example.shiyuankeji.interfaces.IBasePresenter;
 import com.example.shiyuankeji.interfaces.contract.MineContract;
+import com.example.shiyuankeji.presenter.HomePresenter;
 import com.example.shiyuankeji.presenter.MinePresenter;
 import com.example.shiyuankeji.ui.activity.BusinessActivity;
+import com.example.shiyuankeji.ui.activity.CashAcitivity;
 import com.example.shiyuankeji.ui.activity.DetailsActivity;
 import com.example.shiyuankeji.ui.activity.MyQRActivity;
 import com.example.shiyuankeji.ui.activity.MyScanCodeActivity;
@@ -38,6 +43,7 @@ import com.example.shiyuankeji.ui.activity.WebCallCenterActivity;
 import com.example.shiyuankeji.ui.activity.YieldActivity;
 import com.example.shiyuankeji.ui.activity.login.LoginActivity;
 import com.example.shiyuankeji.utils.SharedPreferencesUtil;
+import com.example.shiyuankeji.utils.ToastUtil;
 import com.example.shiyuankeji.utils.UtilsClicktime;
 
 
@@ -89,6 +95,10 @@ public class MineFragment extends BaseFragment implements MineContract.View {
     ImageView imSaoMa;
     @BindView(R.id.tv_uname)
     TextView tvUname;
+    @BindView(R.id.lin_cash)
+    LinearLayout linCash;
+    @BindView(R.id.tv_tixianmoney)
+    TextView tvTiXianMoney;
 
     private String phone_number;
     private String name;
@@ -117,10 +127,52 @@ public class MineFragment extends BaseFragment implements MineContract.View {
     protected void initView() {
         //countDown();//我的模块登录状态初始化处理（判断是否登录） 带秒数的
 //        StateHandling();//我的模块登录状态初始化处理（判断是否登录） 不带秒数的
-        refress();
+//        refress(); //手动刷新
+        newrefres(); //自动刷新
     }
 
+    private void newrefres() {
+        //设置刷新球颜色
+        swipeRefres.setColorSchemeColors(Color.BLUE, Color.RED, Color.YELLOW);
+        swipeRefres.setProgressBackgroundColorSchemeColor(Color.parseColor("#ffffff"));//#BBFFFF
+        ViewTreeObserver obeser = swipeRefres.getViewTreeObserver();
+        obeser.addOnWindowFocusChangeListener(new ViewTreeObserver.OnWindowFocusChangeListener() {
+            @Override
+            public void onWindowFocusChanged(boolean hasFocus) {
+                swipeRefres.setRefreshing(true);
+//                Toast.makeText(context, "刷新", Toast.LENGTH_SHORT).show();
+//                ToastUtil toastUtil2 = new ToastUtil(context, R.layout.ok_toast_center_horizontal, "登录成功！");
+//                toastUtil2.show();
+                ((MinePresenter) mPresenter).mines();
+//                Log.i("11getMeasuredHeight",mSwipeRefreshLayout.getMeasuredHeight()+"");
+                swipeRefres.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (swipeRefres != null) {
+                            swipeRefres.setRefreshing(false);
+//                            scrView.fullScroll(View.FOCUS_UP);
+                        }
+                    }
+                }, 2000);
+            }
+        });
+        swipeRefres.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                ((MinePresenter) mPresenter).mines();
 
+                swipeRefres.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (swipeRefres != null) {
+                            swipeRefres.setRefreshing(false);
+//                            scrView.fullScroll(View.FOCUS_UP);
+                        }
+                    }
+                }, 2000);
+            }
+        });
+    }
     private void refress() {
         swipeRefres.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -183,10 +235,17 @@ public class MineFragment extends BaseFragment implements MineContract.View {
     @OnClick({R.id.lin_synergic, R.id.lin_business, R.id.re_yield,
             R.id.lin_sales_unit, R.id.re_CQ, R.id.re_QR, R.id.im_sao_ma, R.id.lin_shop,
             R.id.lin_donate, R.id.lin_stock, R.id.lin_fh, R.id.re_personage, R.id.re_ID,
-            R.id.re_site, R.id.re_exit})
+            R.id.re_site, R.id.re_exit,R.id.lin_cash})
     public void onViewClicked(View view) {
         Intent intent03 = new Intent();
         switch (view.getId()) {
+            case R.id.lin_cash: //提现（收益积分）
+                if (UtilsClicktime.isFastDoubleClick()) {
+                    return;
+                }
+                intent03.setClass(context, CashAcitivity.class);
+                startActivity(intent03);
+                break;
             case R.id.re_yield://我的收益
                 if (UtilsClicktime.isFastDoubleClick()) {
                     return;
@@ -247,30 +306,30 @@ public class MineFragment extends BaseFragment implements MineContract.View {
                 intent03.putExtra("score_", score);
                 startActivity(intent03);
                 break;
-            case R.id.lin_donate: //赠送积分（详情）
-                if (UtilsClicktime.isFastDoubleClick()) {
-                    return;
-                }
-                intent03.setClass(context, DetailsActivity.class);
-                intent03.putExtra("jifen", "赠送积分");
-                intent03.putExtra("score4_", score4);
-                startActivity(intent03);
-                break;
-            case R.id.lin_stock: //识缘股（详情）
+            case R.id.lin_donate: //识缘股（详情）
                 if (UtilsClicktime.isFastDoubleClick()) {
                     return;
                 }
                 intent03.setClass(context, DetailsActivity.class);
                 intent03.putExtra("jifen", "识缘股");
-                intent03.putExtra("score2_", score2);
+                intent03.putExtra("score4_", score4);
                 startActivity(intent03);
                 break;
-            case R.id.lin_fh:  //周分红(股)（详情）
+            case R.id.lin_stock: //识缘股（详情）/现为赠送积分
                 if (UtilsClicktime.isFastDoubleClick()) {
                     return;
                 }
                 intent03.setClass(context, DetailsActivity.class);
-                intent03.putExtra("jifen", "周分红");
+                intent03.putExtra("jifen", "赠送积分");
+                intent03.putExtra("score2_", score2);
+                startActivity(intent03);
+                break;
+            case R.id.lin_fh:  //周分红(股)（详情）/现改为收益积分
+                if (UtilsClicktime.isFastDoubleClick()) {
+                    return;
+                }
+                intent03.setClass(context, DetailsActivity.class);
+                intent03.putExtra("jifen", "收益积分");
                 intent03.putExtra("score3_1_", score3_1);
                 startActivity(intent03);
                 break;
@@ -321,6 +380,8 @@ public class MineFragment extends BaseFragment implements MineContract.View {
                 final TextView no = layout.findViewById(R.id.tv_no);
                 final TextView tvTilte = layout.findViewById(R.id.tv_tilte);
                 tvTilte.setText("是否确认退出账号");
+                yes.setText("退出");
+                no.setText("取消");
                 yes.setOnClickListener(new View.OnClickListener() {  //是
                     @Override
                     public void onClick(View v) {
@@ -398,14 +459,14 @@ public class MineFragment extends BaseFragment implements MineContract.View {
             tvUserName.setText(user_name);
             tvUname.setText(name);
             tvScore.setText(String.valueOf(mineBean.getScore()));
-            tvScore4.setText(String.valueOf(mineBean.getScore4()));
             tvScore2.setText(String.valueOf(mineBean.getScore2()));
-            tvScore3_1.setText(String.valueOf(mineBean.getScore3_1()));
+
             score = String.valueOf(mineBean.getScore());
             score2 = String.valueOf(mineBean.getScore2());
+            tvScore4.setText(score2);
             score4 = String.valueOf(mineBean.getScore4());
             score3_1 = String.valueOf(mineBean.getScore3());
-
+            tvScore3_1.setText(score3_1);
 //invitation_code   http://192.168.124.14:8080/toRegister,shiyuanInvitationCode=15atgs
 //            invitation_code = mineBean.getInvitation_code(); //二维码
 
