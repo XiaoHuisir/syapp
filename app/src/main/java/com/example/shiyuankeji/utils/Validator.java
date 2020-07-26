@@ -8,7 +8,7 @@ public class Validator {
     /**
      * 正则表达式: 验证数字 且长度为 5-21 之间
      */
-    public static final String REGEX_SHUZI = "^([1-9])(\\d{15}|\\d{18})$";
+    public static final String REGEX_SHUZI = "[0-9]{6,23}";
 
     public  static  final  String SHU_ZI="[0-9]{1,16}";
     /**

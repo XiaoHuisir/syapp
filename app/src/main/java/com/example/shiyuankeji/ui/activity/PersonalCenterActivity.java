@@ -167,7 +167,7 @@ public class PersonalCenterActivity extends BaseActivity implements MineContract
         if (requestCode == ID_NUMBER) {
             String idnumber = data.getStringExtra("value");
             if (!TextUtils.isEmpty(idnumber)) {
-                String show_id = idnumber.substring(0, 3) + "********" + idnumber.substring(12);
+                String show_id = idnumber.substring(0, 3) + "*****" + idnumber.substring(idnumber.length()-4);
                 textIndent.setText(show_id);
                 identity_numName = idnumber;
                 tvIDnumber.setVisibility(View.GONE);
@@ -183,7 +183,7 @@ public class PersonalCenterActivity extends BaseActivity implements MineContract
             String adds_ = data.getStringExtra("adds_");
             if (!TextUtils.isEmpty(nums_)) {
 
-            String show_id = nums_.substring(0, 3) + "********" + nums_.substring(12);
+            String show_id = nums_.substring(0, 3) + "***" + nums_.substring(nums_.length()-3);
             textBank.setText(show_id);
             bank_Card=nums_;
             tv_bank_address.setText(adds_);
@@ -229,7 +229,7 @@ public class PersonalCenterActivity extends BaseActivity implements MineContract
             if (!identityNum.equals(ins)) {
                 tvIDnumber.setVisibility(View.GONE);
                 reIndent.setVisibility(View.VISIBLE);
-                String show_id1 = identityNum.substring(0, 3) + "********" + identityNum.substring(12);
+                String show_id1 = identityNum.substring(0, 3) + "*****" + identityNum.substring(identityNum.length()-4);
                 textIndent.setText(show_id1);
 
                 identity_numName = identityNum;
@@ -240,7 +240,7 @@ public class PersonalCenterActivity extends BaseActivity implements MineContract
             if (!bank_num.equals(ins)) {
                 tvBankCard.setVisibility(View.GONE);
                 reBank.setVisibility(View.VISIBLE);
-                String show_id1 = bank_num.substring(0, 3) + "********" + bank_num.substring(12);
+                String show_id1 = bank_num.substring(0, 3) + "***" + bank_num.substring(bank_num.length()-3);
                 textBank.setText(show_id1);
                 bank_Card=bank_num;
                 tv_bank_address.setText(bank_address);
