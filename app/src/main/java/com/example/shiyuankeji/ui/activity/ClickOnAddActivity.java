@@ -298,7 +298,7 @@ public class ClickOnAddActivity extends BaseActivity implements BankIdentityCont
     @Override
     public void BankRrean(BankBean bankBean) {
         String bank_address = bankBean.getBank_address();
-        String bank_name = bankBean.getBank_name();
+        String bank_name = bankBean.getName();
         String bank_num = bankBean.getBank_num();
         Toast.makeText(context, "保存成功！", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent();

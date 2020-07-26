@@ -181,11 +181,14 @@ public class PersonalCenterActivity extends BaseActivity implements MineContract
             String names_ = data.getStringExtra("names_");
             String nums_ = data.getStringExtra("nums_");
             String adds_ = data.getStringExtra("adds_");
+            if (!TextUtils.isEmpty(nums_)) {
+
             String show_id = nums_.substring(0, 3) + "********" + nums_.substring(12);
             textBank.setText(show_id);
             bank_Card=nums_;
             tv_bank_address.setText(adds_);
             tv_bank_name.setText(names_);
+            }
             if (nums_.equals("")) {
 
                 tvBankCard.setVisibility(View.VISIBLE); //TODO
@@ -220,7 +223,7 @@ public class PersonalCenterActivity extends BaseActivity implements MineContract
             identityNum = mineBean.getIdentity_num();//身份证号
             bank_num = mineBean.getBank_num();  // 银行卡号
             bank_address = mineBean.getBank_address();     //开户地址
-            bank_name = mineBean.getBank_name();    //开户姓名
+            bank_name = mineBean.getName();    //开户姓名
 
 //初始化
             if (!identityNum.equals(ins)) {

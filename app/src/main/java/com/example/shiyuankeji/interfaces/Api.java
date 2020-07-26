@@ -145,7 +145,7 @@ public interface Api {
     //银行卡号修改
     @POST("update_bank")
     @FormUrlEncoded
-    Flowable<BankBean> updatebankApi(@Header("token") String tokens, @Field("bank_name") String bankname, @Field("bank_num") String banknum, @Field("bank_address") String bankaddress);
+    Flowable<BankBean> updatebankApi(@Header("token") String tokens, @Field("name") String bankname, @Field("bank_num") String banknum, @Field("bank_address") String bankaddress);
 
 
     //IntegralDetails

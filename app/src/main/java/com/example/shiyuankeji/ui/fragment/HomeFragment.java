@@ -143,7 +143,7 @@ public class HomeFragment extends BaseFragment implements HomeCotract.View, Home
             @Override
             public void onWindowFocusChanged(boolean hasFocus) {
                 swipeRefres.setRefreshing(true);
-                Toast.makeText(context, "刷新", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(context, "刷新", Toast.LENGTH_SHORT).show();
 //                ToastUtil toastUtil2 = new ToastUtil(context, R.layout.ok_toast_center_horizontal, "登录成功！");
 //                toastUtil2.show();
                 ((HomePresenter) mPresenter).home();
