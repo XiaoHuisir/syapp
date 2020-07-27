@@ -26,6 +26,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/v1"
         android:layout_toRightOf="@+id/v2"
+        android:paddingBottom="@dimen/dp_8"
         android:background="@drawable/mine_bgg"
         android:orientation="vertical">
 

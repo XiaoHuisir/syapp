@@ -25,7 +25,7 @@
     <android.support.v7.widget.CardView
         android:layout_below="@id/vone"
         android:layout_width="@dimen/dp_160"
-        android:layout_height="207dp"
+        android:layout_height="wrap_content"
         android:layout_toRightOf="@id/vtwo"
         app:cardBackgroundColor="@color/tou_ming"
         app:cardCornerRadius="@dimen/dp_2"
@@ -35,6 +35,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/white"
+            android:paddingBottom="@dimen/dp_8"
             android:orientation="vertical">
 
             <ImageView

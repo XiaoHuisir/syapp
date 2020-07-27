@@ -33,7 +33,7 @@
             android:layout_marginLeft="@dimen/dp_10"
             android:layout_marginTop="@dimen/dp_10"
             android:text="0-0-0"
-            android:textColor="#9f9f9f"
+            android:textColor="#6e6e6e"
             android:textSize="@dimen/sp_13" />
 
         <TextView

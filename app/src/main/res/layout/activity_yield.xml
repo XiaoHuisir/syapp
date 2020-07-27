@@ -62,11 +62,12 @@
         android:layout_marginRight="@dimen/dp_13"
         android:layout_alignParentRight="true"
         android:layout_height="wrap_content">
-
-        <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/smartRef"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <ScrollView
+                android:id="@+id/scroll_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:scrollbars="none">
@@ -147,7 +148,7 @@
                     </RelativeLayout>
                 </LinearLayout>
             </ScrollView>
-        </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+        </android.support.v4.widget.SwipeRefreshLayout>
     </RelativeLayout>
 
         <RelativeLayout
