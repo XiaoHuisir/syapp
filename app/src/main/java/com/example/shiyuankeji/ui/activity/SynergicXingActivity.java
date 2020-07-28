@@ -9,6 +9,7 @@ import android.widget.TextView;
 import com.example.shiyuankeji.R;
 import com.example.shiyuankeji.adapter.SynXingAdapter;
 import com.example.shiyuankeji.base.BaseActivity;
+import com.example.shiyuankeji.bean.JoinBean;
 import com.example.shiyuankeji.bean.SynergicBean;
 import com.example.shiyuankeji.interfaces.IBasePresenter;
 import com.example.shiyuankeji.interfaces.contract.SynergiContract;
@@ -73,6 +74,16 @@ public class SynergicXingActivity extends BaseActivity implements SynergiContrac
         datalist.clear();
         datalist.addAll(data);
         synXingAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void isjoinRrean(JoinBean joinBean) {
+
+    }
+
+    @Override
+    public void joinRrean(JoinBean joinBean) {
+
     }
 
 

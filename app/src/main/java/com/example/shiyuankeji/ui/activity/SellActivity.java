@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.example.shiyuankeji.R;
 import com.example.shiyuankeji.adapter.SellAdapter;
 import com.example.shiyuankeji.base.BaseActivity;
+import com.example.shiyuankeji.bean.JoinBean;
 import com.example.shiyuankeji.bean.SynergicBean;
 import com.example.shiyuankeji.interfaces.IBasePresenter;
 import com.example.shiyuankeji.interfaces.contract.SynergiContract;
@@ -144,6 +145,16 @@ public class SellActivity extends BaseActivity implements SynergiContract.View, 
 
     @Override
     public void synergicxingRean(SynergicBean synergicBean) {
+
+    }
+
+    @Override
+    public void isjoinRrean(JoinBean joinBean) {
+
+    }
+
+    @Override
+    public void joinRrean(JoinBean joinBean) {
 
     }
 

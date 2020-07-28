@@ -33,6 +33,7 @@ import com.example.shiyuankeji.presenter.MinePresenter;
 import com.example.shiyuankeji.ui.activity.BusinessActivity;
 import com.example.shiyuankeji.ui.activity.CashAcitivity;
 import com.example.shiyuankeji.ui.activity.DetailsActivity;
+import com.example.shiyuankeji.ui.activity.MyInxtendActivity;
 import com.example.shiyuankeji.ui.activity.MyQRActivity;
 import com.example.shiyuankeji.ui.activity.MyScanCodeActivity;
 import com.example.shiyuankeji.ui.activity.PersonalCenterActivity;
@@ -99,6 +100,10 @@ public class MineFragment extends BaseFragment implements MineContract.View {
     LinearLayout linCash;
     @BindView(R.id.tv_tixianmoney)
     TextView tvTiXianMoney;
+    @BindView(R.id.re_extend) //new  推广海报
+    RelativeLayout reExtend;
+    @BindView(R.id.re_my_invite) //new 我的邀请码
+    RelativeLayout reMyInvitep;
 
     private String phone_number;
     private String name;
@@ -235,10 +240,27 @@ public class MineFragment extends BaseFragment implements MineContract.View {
     @OnClick({R.id.lin_synergic, R.id.lin_business, R.id.re_yield,
             R.id.lin_sales_unit, R.id.re_CQ, R.id.re_QR, R.id.im_sao_ma, R.id.lin_shop,
             R.id.lin_donate, R.id.lin_stock, R.id.lin_fh, R.id.re_personage, R.id.re_ID,
-            R.id.re_site, R.id.re_exit,R.id.lin_cash})
+            R.id.re_site, R.id.re_exit,R.id.lin_cash,R.id.re_my_invite,R.id.re_extend})
     public void onViewClicked(View view) {
         Intent intent03 = new Intent();
         switch (view.getId()) {
+            case R.id.re_my_invite: //我的邀请码
+                if (UtilsClicktime.isFastDoubleClick()) {
+                    return;
+                }
+                intent03.setClass(context, MyInxtendActivity.class);
+                startActivity(intent03);
+                break;
+            case R.id.re_extend:  //推广海报
+                if (UtilsClicktime.isFastDoubleClick()) {
+                    return;
+                }
+                intent03.setClass(context, MyQRActivity.class);
+//                intent03.putExtra("qr_", invitation_code);
+//                intent03.putExtra("user_names_", user_name);
+                startActivity(intent03);
+
+                break;
             case R.id.lin_cash: //提现（收益积分）
                 if (UtilsClicktime.isFastDoubleClick()) {
                     return;

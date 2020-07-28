@@ -170,6 +170,8 @@ android.permission.ACCESS_WIFI_STATE-->
         <activity android:name=".ui.activity.YiedetailsActivity"/>
         <!--提现（收益积分）-->
         <activity android:name=".ui.activity.CashAcitivity"/>
+        <!--我的邀请码-->
+        <activity android:name=".ui.activity.MyInxtendActivity"/>
     </application>
 
     <!--友盟统计配置Appkey与Channel-->

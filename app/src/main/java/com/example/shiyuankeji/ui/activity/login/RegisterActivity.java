@@ -340,7 +340,9 @@ public class RegisterActivity extends BaseActivity implements RegisterContract.V
                             @Override
                             public void run() {
                                 sending = false;
+                                if (getmsgCodeTv!=null){
                                 getmsgCodeTv.setText("获取验证码");
+                                }
                             }
                         });
                     }

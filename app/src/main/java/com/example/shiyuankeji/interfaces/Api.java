@@ -12,6 +12,7 @@ import com.example.shiyuankeji.bean.ClassBean;
 import com.example.shiyuankeji.bean.ClassListBean;
 import com.example.shiyuankeji.bean.HomeBean;
 import com.example.shiyuankeji.bean.IdentityBean;
+import com.example.shiyuankeji.bean.InxtendBean;
 import com.example.shiyuankeji.bean.JoinBean;
 import com.example.shiyuankeji.bean.LineItemBean;
 import com.example.shiyuankeji.bean.LoginTokenBean;
@@ -224,7 +225,10 @@ public interface Api {
     @POST("updateType3")
     @FormUrlEncoded
     Flowable<CashBean> cashApi(@Header("token") String tokens, @Field("score3") int order);
-
+   //new  邀请码  getInvitationCode
+   //提现
+   @POST("getInvitationCode")
+   Flowable<InxtendBean> inxtendApi(@Header("token") String tokens);
 
 //    {
 //    "id": 34,

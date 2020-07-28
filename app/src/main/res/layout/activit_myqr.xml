@@ -50,7 +50,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
-                android:text="我的二维码"
+                android:text="推广海报"
                 android:textColor="#010000"
                 android:textSize="@dimen/sp_15" />
         </RelativeLayout>

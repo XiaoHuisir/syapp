@@ -83,7 +83,7 @@ public class MyQRActivity extends BaseActivity implements ScancodeContract.View 
     @Override
     protected void initView() {
 //        String qr_ = getIntent().getStringExtra("qr_");
-        String user_names = getIntent().getStringExtra("user_names_");
+//        String user_names = getIntent().getStringExtra("user_names_");
 //        txtUserName.setText("用户名：" + user_names);
 
         if (EasyPermissions.hasPermissions(MyQRActivity.this, permissions)) {

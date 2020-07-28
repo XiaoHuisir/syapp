@@ -71,7 +71,7 @@ public class YieldActivity extends BaseActivity implements QueryEarningsContract
 
     @Override
     protected void initView() {
-       newrefres(true); //自动刷新
+       newrefres(indxler); //自动刷新
         reeYield.setHasFixedSize(true);
         reeYield.setNestedScrollingEnabled(false);
         listyieid = new ArrayList<>();
@@ -104,12 +104,12 @@ public class YieldActivity extends BaseActivity implements QueryEarningsContract
                 tvNow.setText(String.valueOf(queryEarningsBean.getTotalprice()));
                 tvZong.setText(String.valueOf(queryEarningsBean.getProfit()));
                 indxler=true;
-                newrefres(true); //自动刷新
+                newrefres(indxler); //自动刷新
             }else {
                 reNoData.setVisibility(View.VISIBLE);
                 reHave.setVisibility(View.GONE);
                 indxler=false;
-                newrefres(false); //自动刷新
+                newrefres(indxler);
             }
 
         }

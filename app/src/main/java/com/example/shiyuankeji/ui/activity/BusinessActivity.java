@@ -12,6 +12,7 @@ import android.widget.Toast;
 import com.example.shiyuankeji.R;
 import com.example.shiyuankeji.adapter.BusinessAdapter;
 import com.example.shiyuankeji.base.BaseActivity;
+import com.example.shiyuankeji.bean.JoinBean;
 import com.example.shiyuankeji.bean.SynergicBean;
 import com.example.shiyuankeji.interfaces.IBasePresenter;
 import com.example.shiyuankeji.interfaces.contract.SynergiContract;
@@ -143,6 +144,16 @@ public class BusinessActivity extends BaseActivity implements SynergiContract.Vi
 
     @Override
     public void synergicxingRean(SynergicBean synergicBean) {
+
+    }
+
+    @Override
+    public void isjoinRrean(JoinBean joinBean) {
+
+    }
+
+    @Override
+    public void joinRrean(JoinBean joinBean) {
 
     }
 

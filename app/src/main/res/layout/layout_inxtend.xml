@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:layout_marginLeft="@dimen/dp_20"
+    android:layout_marginRight="@dimen/dp_20"
+    android:background="@drawable/address_bkg"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/dp_20">
+
+
+    <RelativeLayout
+        android:id="@+id/rela_one"
+        android:layout_alignParentTop="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/address_bkg">
+        <!-- android:background="@drawable/backf_bgg"-->
+        <LinearLayout
+            android:id="@+id/im_back"
+            android:layout_width="wrap_content"
+            android:layout_alignParentTop="true"
+            android:padding="@dimen/dp_3"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/dp_4"
+            android:layout_marginTop="@dimen/dp_4"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_width="@dimen/dp_17"
+                android:layout_height="@dimen/dp_17"
+                android:src="@mipmap/closes" />
+        </LinearLayout>
+        <TextView
+            android:id="@+id/tv_tilte"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/dp_45"
+            android:paddingBottom="@dimen/sp_20"
+            android:text="xx"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp_19" />
+
+        <RelativeLayout
+            android:id="@+id/re_la"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_40"
+            android:layout_below="@+id/tv_tilte"
+            android:layout_marginTop="@dimen/dp_8">
+
+            <View
+                android:id="@+id/v1"
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:background="@color/tou_ming" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/dp_13"
+                android:layout_toLeftOf="@id/v1"
+                android:background="@drawable/cash_bg">
+
+                <EditText
+                    android:id="@+id/ed_edu"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/dp_6"
+                    android:background="@null"
+                    android:singleLine="true"
+                    android:hint="请输入邀请码"
+                    android:textSize="@dimen/sp_15" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/btn_cash"
+                android:layout_width="@dimen/dp_80"
+                android:layout_height="@dimen/dp_30"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/dp_13"
+                android:layout_marginLeft="@dimen/dp_20"
+                android:layout_alignParentRight="true"
+                android:layout_toRightOf="@+id/t1"
+                android:background="@drawable/btn_blue"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="确定"
+                    android:textColor="@color/white"
+                    android:textSize="16sp" />
+            </LinearLayout>
+        </RelativeLayout>
+
+
+
+    </RelativeLayout>
+</RelativeLayout>

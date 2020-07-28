@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/newnew_newbg"
+    tools:context=".ui.activity.MyInxtendActivity">
+
+    <RelativeLayout
+        android:id="@+id/re1"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="@dimen/dp_32"
+        android:background="@color/tou_ming">
+
+        <LinearLayout
+            android:id="@+id/lin_back"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/dp_13"
+            android:layout_alignParentLeft="true"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="10dp">
+
+            <ImageView
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:scaleType="centerInside"
+                android:src="@mipmap/backk" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="我的邀请码"
+            android:textColor="#010000"
+            android:textSize="@dimen/sp_15" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/lin_myindxtend"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/re1"
+        android:layout_marginTop="@dimen/dp_150"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_inxtend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:textColor="@color/red"
+            android:textIsSelectable="true"
+            android:textSize="@dimen/dp_25" />
+
+        <LinearLayout
+            android:id="@+id/lin_btn_inxtend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_50"
+            android:background="@drawable/btn_bluess"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="复制邀请码"
+                android:padding="@dimen/dp_10"
+                android:textColor="@color/whites"
+                android:textSize="@dimen/sp_19" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/re_no_data"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/re1"
+        android:background="@color/newnew_newbg"
+        android:paddingBottom="@dimen/dp_20"
+
+        >
+
+        <ImageView
+            android:id="@+id/im_no"
+            android:layout_width="@dimen/dp_261"
+            android:layout_height="@dimen/dp_261"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/dp_141"
+            android:src="@drawable/pic" />
+
+        <TextView
+            android:id="@+id/tv_no"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/im_no"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/dp_20"
+            android:text="暂无邀请码"
+            android:textColor="#969696"
+            android:textSize="@dimen/sp_20" />
+    </RelativeLayout>
+
+</RelativeLayout>
