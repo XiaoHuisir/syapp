@@ -194,7 +194,10 @@ public class SynergicActivity extends BaseActivity implements SynergiContract.Vi
 //    "level": 1,
 //    "affiliated_userid": 8,
 //    "people_num": 4,
-            if (id == 1) {
+            if (id == 0) {
+                Toast.makeText(context, "邀请码错误", Toast.LENGTH_SHORT).show();
+                money();
+            }else  {
                 String nick_name = joinBean.getNick_name(); //合作团名称
                 int people_num = joinBean.getPeople_num();//团人数
                 new AlertDialog.Builder(this).setTitle(nick_name + "  " + "当前人数：" + people_num + "人")
@@ -210,9 +213,6 @@ public class SynergicActivity extends BaseActivity implements SynergiContract.Vi
                         finish();
                     }
                 }).create().show();
-            }else  {
-                Toast.makeText(context, "邀请码错误", Toast.LENGTH_SHORT).show();
-                money();
 
             }
         }
