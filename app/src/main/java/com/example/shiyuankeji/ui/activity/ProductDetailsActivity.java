@@ -141,6 +141,9 @@ public class ProductDetailsActivity extends BaseActivity implements ProductDetai
         webview.setWebChromeClient(new WebChromeClient() {
             @Override
             public void onProgressChanged(WebView view, int newProgress) {
+                if (webProgressBar==null){
+                    return;
+                }
                 webProgressBar.setProgress(newProgress);//设置进度值
                 if (newProgress == 100) {
                     webProgressBar.setVisibility(View.GONE);//加载完网页进度条消失
@@ -420,8 +423,9 @@ public class ProductDetailsActivity extends BaseActivity implements ProductDetai
             Log.d(TAG, "onCreate: " + temp[i]);
             String s = temp.toString();
             strings.addAll(Collections.singleton(temp[i]));
+            webStringAdapter.notifyDataSetChanged();
         }
-        webStringAdapter.notifyDataSetChanged();
+
 
     }
 
@@ -541,7 +545,6 @@ public class ProductDetailsActivity extends BaseActivity implements ProductDetai
 //        listimage.add(s);
 //
 //    }
-
     private void failedings() {
 //        Toast.makeText(context, "商品详情请求失败", Toast.LENGTH_SHORT).show();
     }
