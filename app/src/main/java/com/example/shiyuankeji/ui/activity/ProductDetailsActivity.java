@@ -419,13 +419,10 @@ public class ProductDetailsActivity extends BaseActivity implements ProductDetai
         String delimeter = ",";
         temp = sulimg.split(delimeter);
         for (int i = 0; i < temp.length; i++) {
-
-            Log.d(TAG, "onCreate: " + temp[i]);
-            String s = temp.toString();
             strings.addAll(Collections.singleton(temp[i]));
-            webStringAdapter.notifyDataSetChanged();
-        }
+        webStringAdapter.notifyDataSetChanged();
 
+        }
 
     }
 
