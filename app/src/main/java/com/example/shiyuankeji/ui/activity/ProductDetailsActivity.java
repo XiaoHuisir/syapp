@@ -19,6 +19,7 @@ import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -74,7 +75,10 @@ public class ProductDetailsActivity extends BaseActivity implements ProductDetai
 //    LinearLayout linCallCenter;
     @BindView(R.id.relat_string)
     RecyclerView reatString;
-
+    @BindView(R.id.web_progressBar)
+    ProgressBar webProgressBar;
+    @BindView(R.id.webview)
+    WebView webview;
     private String ids;
     private ArrayList<StringBuffer> ims;
     private String img;
@@ -113,7 +117,46 @@ public class ProductDetailsActivity extends BaseActivity implements ProductDetai
         tvOldIntegral.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG); //中间横线
 
         initFindviewById();
+        initWeb();
+    }
 
+    private void initWeb() {
+        //webview图片自适应。
+        WebSettings webSettings = webview.getSettings();
+        webSettings.setJavaScriptEnabled(true);
+        webSettings.setJavaScriptCanOpenWindowsAutomatically(true);
+        webSettings.setUseWideViewPort(true);//关键点
+        webSettings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
+        webSettings.setDisplayZoomControls(false);
+        webSettings.setAllowFileAccess(true); // 允许访问文件
+        webSettings.setBuiltInZoomControls(true); // 设置显示缩放按钮
+        webSettings.setSupportZoom(true); // 支持缩放
+        webSettings.setLoadWithOverviewMode(true);
+        webview.setWebViewClient(new WebViewClient() {
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                return super.shouldOverrideUrlLoading(view, url);
+            }
+        });
+        webview.setWebChromeClient(new WebChromeClient() {
+            @Override
+            public void onProgressChanged(WebView view, int newProgress) {
+                webProgressBar.setProgress(newProgress);//设置进度值
+                if (newProgress == 100) {
+                    webProgressBar.setVisibility(View.GONE);//加载完网页进度条消失
+                } else {
+                    webProgressBar.setVisibility(View.VISIBLE);//开始加载网页时显示进度条
+                    webProgressBar.setProgress(newProgress);//设置进度值
+                }
+            }
+
+            @Override
+            public void onReceivedTitle(WebView view, String title) {
+                super.onReceivedTitle(view, title);
+//                navTitle.setText(title);
+            }
+        });
+        webview.loadUrl("https://v.qq.com/txp/iframe/player.html?vid=y0329ujo9mi");
     }
 
     private void initFindviewById() {

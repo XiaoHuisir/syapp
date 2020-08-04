@@ -75,9 +75,9 @@
                         android:layout_height="wrap_content"
                         android:layout_alignBottom="@+id/tv_price"
                         android:layout_marginLeft="14dp"
+                        android:layout_marginBottom="@dimen/dp_2"
                         android:layout_toRightOf="@id/tv_price"
                         android:text="0"
-                        android:layout_marginBottom="@dimen/dp_2"
                         android:textColor="#aaaaaa"
                         android:textSize="@dimen/sp_15" />
 
@@ -132,9 +132,9 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="商品详情"
                         android:layout_marginLeft="@dimen/dp_6"
                         android:layout_marginRight="@dimen/dp_6"
+                        android:text="商品详情"
                         android:textColor="#a0a0a0"
                         android:textSize="10sp" />
 
@@ -147,19 +147,39 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-
                     android:background="@color/whites"
                     android:orientation="vertical">
 
+                    <RelativeLayout
+                        android:id="@+id/re_web"
+                        android:visibility="gone"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp_200">
+
+                        <ProgressBar
+                            android:id="@+id/web_progressBar"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:layout_alignParentTop="true"
+                            android:progressDrawable="@drawable/progressbar_web"
+                            android:visibility="gone" />
+
+                        <WebView
+                            android:id="@+id/webview"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
+                    </RelativeLayout>
 
                     <!--<WebView-->
-                        <!--android:id="@+id/web_xiang"-->
-                        <!--android:layout_width="match_parent"-->
-                        <!--android:layout_height="wrap_content" />-->
+                    <!--android:id="@+id/web_xiang"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content" />-->
                     <android.support.v7.widget.RecyclerView
                         android:id="@+id/relat_string"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/re_web" />
                 </RelativeLayout>
             </LinearLayout>
         </ScrollView>
@@ -220,8 +240,8 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="首页"
                         android:layout_marginTop="@dimen/dp_4"
+                        android:text="首页"
                         android:textColor="@color/black"
                         android:textSize="10sp" />
                 </LinearLayout>
@@ -242,8 +262,8 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="分类"
                         android:layout_marginTop="@dimen/dp_4"
+                        android:text="分类"
                         android:textColor="@color/black"
                         android:textSize="10sp" />
                 </LinearLayout>
@@ -265,32 +285,33 @@
                         android:id="@+id/tv_call_center"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="客服"
                         android:layout_marginTop="@dimen/dp_4"
+                        android:text="客服"
                         android:textColor="@color/black"
                         android:textSize="10sp" />
                 </LinearLayout>
             </LinearLayout>
+
             <ImageView
                 android:id="@+id/btn_exchang"
                 android:layout_width="@dimen/dp_80"
-                android:src="@drawable/lijiduihuan"
+                android:layout_height="@dimen/dp_27"
                 android:layout_alignParentRight="true"
-                android:scaleType="centerCrop"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="@dimen/dp_13"
-                android:layout_height="@dimen/dp_27" />
+                android:scaleType="centerCrop"
+                android:src="@drawable/lijiduihuan" />
             <!--<Button-->
-                <!--android:id="@+id/btn_exchang"-->
-                <!--android:layout_width="@dimen/dp_80"-->
-                <!--android:layout_height="@dimen/dp_27"-->
-                <!--android:layout_alignParentRight="true"-->
-                <!--android:layout_centerVertical="true"-->
-                <!--android:layout_marginRight="@dimen/dp_13"-->
-                <!--android:background="@drawable/btn_blue"-->
-                <!--android:text="立即兑换"-->
-                <!--android:textColor="@color/white"-->
-                <!--android:textSize="@dimen/sp_13" />-->
+            <!--android:id="@+id/btn_exchang"-->
+            <!--android:layout_width="@dimen/dp_80"-->
+            <!--android:layout_height="@dimen/dp_27"-->
+            <!--android:layout_alignParentRight="true"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:layout_marginRight="@dimen/dp_13"-->
+            <!--android:background="@drawable/btn_blue"-->
+            <!--android:text="立即兑换"-->
+            <!--android:textColor="@color/white"-->
+            <!--android:textSize="@dimen/sp_13" />-->
         </RelativeLayout>
     </android.support.constraint.ConstraintLayout>
 </RelativeLayout>

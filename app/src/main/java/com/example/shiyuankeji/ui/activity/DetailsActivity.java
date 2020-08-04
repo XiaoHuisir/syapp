@@ -125,8 +125,8 @@ public class DetailsActivity extends BaseActivity implements IntegralDetailsCont
             queryLastWeekStockAdatper = new QueryLastWeekStockAdatper(list_queryLastWeekStock);
             reQueryLastWeekStock.setAdapter(queryLastWeekStockAdatper);
         } else if (jifen.equals("赠送积分")) {
-            tvTilte.setText("赠送积分");
-            tvTilteName.setText("赠送积分:" + score2);
+            tvTilte.setText("重消积分");
+            tvTilteName.setText("重消积分:" + score2);
             reQueryStock.setVisibility(View.VISIBLE);
             reQueryStock.setLayoutManager(new LinearLayoutManager(context));
             queryStockAdapter = new QueryStockAdapter(list_queryStock);
