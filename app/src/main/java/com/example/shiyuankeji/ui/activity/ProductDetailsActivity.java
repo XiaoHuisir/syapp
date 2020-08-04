@@ -89,6 +89,7 @@ public class ProductDetailsActivity extends BaseActivity implements ProductDetai
     private int stock;
     private ArrayList<String> strings;
     private WebStringAdapter webStringAdapter;
+
     private LinearLayout linHome;
     private LinearLayout linClassfy;
     private ImageView btnExchang;

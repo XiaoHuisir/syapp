@@ -43,6 +43,7 @@ public class WebStringAdapter extends BaseAdapter {
 //        Glide.with(mContext).load(o1).apply(options).into(imag);
 
         Picasso.with(mContext)
+
                 .load(o1)
                 .placeholder(R.drawable.no_banner)
                 .error(R.drawable.no_banner)
