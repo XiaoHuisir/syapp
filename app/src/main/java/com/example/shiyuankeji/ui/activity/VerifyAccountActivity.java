@@ -106,13 +106,13 @@ public class VerifyAccountActivity extends BaseActivity implements QueryTabContr
                 break;
             case R.id.getMsgCodeTv:  //验证码
                 if (edPho.getText().length() == 0) {
-                    Toast.makeText(context,"请输入正确手机号！",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context,R.string.import_correct_pho_string,Toast.LENGTH_SHORT).show();
 //                    ToastUtil toastUtil2 = new ToastUtil(context, R.layout.toast_center_horizontal, "请输入正确手机号！");
 //                    toastUtil2.show();
                     return;
                 }
                 if (!NetUtil.checkNet(context)) {
-                    Toast.makeText(context,"当前网络不可用,请检查网络设置！",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context,R.string.regoster_no_wifi_string,Toast.LENGTH_SHORT).show();
 //                    ToastUtil toastUtil2 = new ToastUtil(context, R.layout.toast_center_horizontal, "当前网络不可用,请检查网络设置！");
 //                    toastUtil2.show();
                     return;
@@ -156,7 +156,7 @@ public class VerifyAccountActivity extends BaseActivity implements QueryTabContr
                             @Override
                             public void run() {
                                 sending = false;
-                                getmsgCodeTv.setText("获取验证码");
+                                getmsgCodeTv.setText(R.string.regoster_code_string);
                             }
                         });
                     }
@@ -244,7 +244,7 @@ public class VerifyAccountActivity extends BaseActivity implements QueryTabContr
 //                new ToastUtil(context, R.layout.ok_toast_center_horizontal, "发送短息成功").show();
 //                ToastUtil toastUtil2 = new ToastUtil(context, R.layout.ok_toast_center_horizontal, "发送短息成功！");
 //                toastUtil2.show();
-                Toast.makeText(context, "发送短息成功！", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, R.string.send_correct_string, Toast.LENGTH_SHORT).show();
             } else {
                 return;
 //                new ToastUtil(context, R.layout.toast_center_horizontal, smsSendBean.getErrorMsg()).show();
@@ -276,7 +276,7 @@ public class VerifyAccountActivity extends BaseActivity implements QueryTabContr
                 final TextView yes = layout.findViewById(R.id.tv_ok);
                 final TextView no = layout.findViewById(R.id.tv_no);
                 final TextView tvTilte = layout.findViewById(R.id.tv_tilte);
-                tvTilte.setText("账号验证失败！请重新填写，或找客服。");
+                tvTilte.setText(R.string.no_the_verification_string);
                 yes.setOnClickListener(new View.OnClickListener() {  //是
                     @Override
                     public void onClick(View v) {

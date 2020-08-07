@@ -122,12 +122,12 @@ public class LoginActivity extends BaseActivity implements LoginsContract.Views 
                 Constant.mobiles = mobile;
                 Constant.passwords = password;
                 if (TextUtils.isEmpty(mobile) || TextUtils.isEmpty(password)) {
-                    Toast.makeText(context, "请输入用户名和密码", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, R.string.user_and_pwd, Toast.LENGTH_SHORT).show();
                     if (!TextUtils.isEmpty(mobile) && TextUtils.isEmpty(password)) {
-                        Toast.makeText(context, "请输入密码", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, R.string.login_pwd_string, Toast.LENGTH_SHORT).show();
                     }
                     if (TextUtils.isEmpty(mobile) && !TextUtils.isEmpty(password)) {
-                        Toast.makeText(context, "请输入用户名", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, R.string.login_user_string, Toast.LENGTH_SHORT).show();
                     }
                     return;
                 }
@@ -255,7 +255,7 @@ public class LoginActivity extends BaseActivity implements LoginsContract.Views 
                 final TextView yes = layout.findViewById(R.id.tv_ok);
                 final TextView no = layout.findViewById(R.id.tv_no);
                 final TextView tvTilte = layout.findViewById(R.id.tv_tilte);
-                tvTilte.setText("您的密码为默认密码，为了您的账号安全；请修改密码。");
+                tvTilte.setText(R.string.login_up_pwd_string);
                 yes.setOnClickListener(new View.OnClickListener() {  //是
                     @Override
                     public void onClick(View v) {
@@ -307,12 +307,12 @@ public class LoginActivity extends BaseActivity implements LoginsContract.Views 
                 intent.setClass(this, MainActivity.class);
                 startActivity(intent);
                 finish();
-                Toast.makeText(context, "登录成功！", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, R.string.login_ok_string, Toast.LENGTH_SHORT).show();
 //                ToastUtil toastUtil2 = new ToastUtil(context, R.layout.ok_toast_center_horizontal, "登录成功！");
 //                toastUtil2.show();
             }
         } else {
-            Toast.makeText(context, "用户名或密码不正确！", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, R.string.login_user_pwd_no_string, Toast.LENGTH_SHORT).show();
 //            ToastUtil toastUtil2 = new ToastUtil(context, R.layout.toast_center_horizontal, "登录失败！");
 //            toastUtil2.show();
         }
@@ -329,7 +329,7 @@ public class LoginActivity extends BaseActivity implements LoginsContract.Views 
         final TextView yes = layout.findViewById(R.id.tv_ok);
         final TextView no = layout.findViewById(R.id.tv_no);
         final TextView tvTilte = layout.findViewById(R.id.tv_tilte);
-        tvTilte.setText("请您同意权限，否则无法修改密码。");
+        tvTilte.setText(R.string.login_jurisdiction_ok_string);
         yes.setOnClickListener(new View.OnClickListener() {  //是
             @Override
             public void onClick(View v) {
@@ -389,7 +389,7 @@ public class LoginActivity extends BaseActivity implements LoginsContract.Views 
         String line1Number = tm.getLine1Number(); //本机手机号
         Intent intent = new Intent();
         if (line1Number==null){
-            Toast.makeText(context, "无SD卡无法登录！", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, R.string.login_no_sd_string, Toast.LENGTH_SHORT).show();
 //            ToastUtil toastUtil2 = new ToastUtil(context, R.layout.toast_center_horizontal, "无SD卡无法登录！");
 //            toastUtil2.show();
             return;

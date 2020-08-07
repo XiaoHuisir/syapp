@@ -54,7 +54,7 @@ public class MyInxtendActivity extends BaseActivity implements InxtendContract.V
             case R.id.lin_btn_inxtend:
                 ClipboardManager cm = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
                 cm.setText(tvInxtend.getText().toString());
-                Toast.makeText(context,"复制成功",Toast.LENGTH_SHORT).show();
+                Toast.makeText(context,R.string.copy_string,Toast.LENGTH_SHORT).show();
                 break;
         }
     }

@@ -84,7 +84,7 @@ public class ClickOnAddActivity extends BaseActivity implements BankIdentityCont
         //开户地址
         bank_addres_ = intent.getStringExtra("bank_addres_");
         if (type == 10) {
-            txtTlite.setText("身份证号");
+            txtTlite.setText(R.string.click_id_number_string);
             linearBankCard.setVisibility(View.GONE);
             edIDnumber.setText(identityNum);
             if (identityNum.length() <= 0 && !identityNum.equals("")) {
@@ -99,7 +99,7 @@ public class ClickOnAddActivity extends BaseActivity implements BankIdentityCont
             }
         }
         if (type == 20) {
-            txtTlite.setText("银行信息");
+            txtTlite.setText(R.string.click_bank_string);
             relativeIDnumber.setVisibility(View.GONE);
             edAccountName.setText(bank_names_);
             edCreditCardNumbers.setText(bank_nums_);
@@ -187,7 +187,7 @@ public class ClickOnAddActivity extends BaseActivity implements BankIdentityCont
             try {
                 String s = IDCard.IDCardValidate(returnValue);  //验证身份证号 (工具类：IDCard)
                 if (s.equals("")) {
-                    Toast.makeText(context, "保存成功！", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, R.string.click_save_ok_string, Toast.LENGTH_SHORT).show();
 //                    ToastUtil toastUtil2 = new ToastUtil(context, R.layout.ok_toast_center_horizontal, "保存成功：" );
 //                    toastUtil2.show();
 //                    Intent intent = new Intent();
@@ -198,7 +198,7 @@ public class ClickOnAddActivity extends BaseActivity implements BankIdentityCont
                     linearSave.setVisibility(View.VISIBLE);
                     textUpdate.setVisibility(View.GONE);
                     editable();
-                    Toast.makeText(context, "保存失败!" + s, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, R.string.click_save_no_string + s, Toast.LENGTH_SHORT).show();
 //                    ToastUtil toastUtil2 = new ToastUtil(context, R.layout.toast_center_horizontal, "保存失败：" + s);
 //                    toastUtil2.show();
                     Intent intent = new Intent();
@@ -226,7 +226,7 @@ public class ClickOnAddActivity extends BaseActivity implements BankIdentityCont
                 boolean b = IDCard.checkBankCard(nums);  //验证银行卡号
                 boolean isshuzi = Validator.isshuzi(nums);
                 if (isshuzi == false) {
-                    Toast.makeText(context, "请输入正确的银行卡号！", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, R.string.click_bank_no_string, Toast.LENGTH_SHORT).show();
 //                Intent intent = new Intent();
 //                intent.putExtra("names_", names);
 //                intent.putExtra("nums_", nums);
@@ -270,7 +270,7 @@ public class ClickOnAddActivity extends BaseActivity implements BankIdentityCont
                 linearSave.setVisibility(View.VISIBLE);
                 textUpdate.setVisibility(View.GONE);
                 editable();
-                Toast.makeText(context, "信息不能为空", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, R.string.click_message_null_string, Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent();
                 intent.putExtra("names_", bank_names_);
                 intent.putExtra("nums_", bank_nums_);
@@ -288,7 +288,7 @@ public class ClickOnAddActivity extends BaseActivity implements BankIdentityCont
         if (identityBean != null) {
             String identity_num = identityBean.getIdentity_num();
             String bank_name = identityBean.getBank_name();
-            Toast.makeText(context, "保存成功！", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, R.string.click_save_ok_string, Toast.LENGTH_SHORT).show();
             Intent intent = new Intent();
             intent.putExtra("value", identity_num);
             setResult(type, intent);
@@ -300,7 +300,7 @@ public class ClickOnAddActivity extends BaseActivity implements BankIdentityCont
         String bank_address = bankBean.getBank_address();
         String bank_name = bankBean.getName();
         String bank_num = bankBean.getBank_num();
-        Toast.makeText(context, "保存成功！", Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, R.string.click_save_ok_string, Toast.LENGTH_SHORT).show();
         Intent intent = new Intent();
         intent.putExtra("names_", bank_name);
         intent.putExtra("nums_", bank_num);

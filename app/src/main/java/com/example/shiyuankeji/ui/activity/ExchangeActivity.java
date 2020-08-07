@@ -127,7 +127,7 @@ public class ExchangeActivity extends Activity {
                     textShuRAM.setText(String.valueOf(Constant.DYNAMIC_DIGITAL));
 
                 } else {
-                    Toast.makeText(this, "以是峰值", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, R.string.details_peak_string, Toast.LENGTH_SHORT).show();
 
                 }
                 break;
@@ -140,7 +140,7 @@ public class ExchangeActivity extends Activity {
 
                 } else {
 
-                    Toast.makeText(this, "以是最低 峰值", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, R.string.details_low_peak_string, Toast.LENGTH_SHORT).show();
 
                 }
                 break;

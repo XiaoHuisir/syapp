@@ -142,7 +142,7 @@ public class SelectAddressActivity extends BaseActivity implements SubmitListCon
         } else {
             reNoData.setVisibility(View.VISIBLE);
             reOkData.setVisibility(View.GONE);
-            Toast.makeText(context, "请添加新地址", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, R.string.new_site_string, Toast.LENGTH_SHORT).show();
 //            ToastUtil toastUtil2 = new ToastUtil(context, R.layout.toast_center_horizontal, "请添加新地址！");
 //            toastUtil2.show();
         }

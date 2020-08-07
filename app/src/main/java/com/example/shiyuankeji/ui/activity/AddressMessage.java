@@ -98,11 +98,11 @@ public class AddressMessage extends BaseActivity implements AddressContract.View
 
                 if (Constant.IS_MINE_IS.equals("2")) {
                     if (Constant.CURTYPE.equals("编辑")) {
-                        tvTilet.setText("修改收货地址");
+                        tvTilet.setText(R.string.addre_up_site_string);
 //                        Toast.makeText(context, "编辑001124545", Toast.LENGTH_SHORT).show();
                         biajineirong(getname, getphone, getaddress, edstreets);
                     } else if (Constant.CURTYPE.equals("添加")) {
-                        tvTilet.setText("添加收货地址");
+                        tvTilet.setText(R.string.addre_add_site_string);
 //                        Toast.makeText(context, "添加收货地址0000000", Toast.LENGTH_SHORT).show();
                         biajineirong(getname, getphone, getaddress, edstreets);
                     }
@@ -110,11 +110,11 @@ public class AddressMessage extends BaseActivity implements AddressContract.View
 
 
                     if (Constant.CURTYPE.equals("编辑")) {
-                        tvTilet.setText("修改收货地址");
+                        tvTilet.setText(R.string.addre_up_site_string);
 //                        Toast.makeText(context, "编辑001124545", Toast.LENGTH_SHORT).show();
                         biajineirong(getname, getphone, getaddress, edstreets);
                     } else if (Constant.CURTYPE.equals("添加")) {
-                        tvTilet.setText("添加收货地址");
+                        tvTilet.setText(R.string.addre_add_site_string);
 //                        Toast.makeText(context, "添加收货地址0000000", Toast.LENGTH_SHORT).show();
                         biajineirong(getname, getphone, getaddress, edstreets);
                     }
@@ -129,25 +129,25 @@ public class AddressMessage extends BaseActivity implements AddressContract.View
 
     private void biajineirong(final String getname, final String getphone, final String getaddress, String edstreets) {
         if (TextUtils.isEmpty(getname) || TextUtils.isEmpty(getphone) || TextUtils.isEmpty(getaddress)) {
-            Toast.makeText(context, "请输入姓名和手机号、地址", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, R.string.addre_pho_site_string, Toast.LENGTH_SHORT).show();
             if (!TextUtils.isEmpty(getname) && TextUtils.isEmpty(getphone)) {
-                Toast.makeText(context, "请输入手机号", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, R.string.regoster_pho_string, Toast.LENGTH_SHORT).show();
 
             }
 
             if (TextUtils.isEmpty(getname) && !TextUtils.isEmpty(getphone)) {
-                Toast.makeText(context, "请输入姓名", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, R.string.addre_name_string, Toast.LENGTH_SHORT).show();
 
             }
 
             return;
         }
         if (Validator.isChinese(getname) == false) {
-            Toast.makeText(context, "请输入正确的姓名格式", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, R.string.addre_name_format_string, Toast.LENGTH_SHORT).show();
             return;
         }
         if (Validator.newisMobile(getphone) == false) {
-            Toast.makeText(context, "请输入正确的手机号格式", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, R.string.addre_pho_format_string, Toast.LENGTH_SHORT).show();
             return;
         }
         LayoutInflater inflater = getLayoutInflater();
@@ -249,10 +249,10 @@ public class AddressMessage extends BaseActivity implements AddressContract.View
 //        inxdlers = getIntent().getBooleanExtra("is_mine_is", true);
 //        imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);//软键盘
         if (Constant.CURTYPE.equals("编辑")) {
-            tvTilet.setText("修改收货地址");
+            tvTilet.setText(R.string.addre_up_site_string);
 
         } else if (Constant.CURTYPE.equals("添加")) {
-            tvTilet.setText("添加收货地址");
+            tvTilet.setText(R.string.addre_add_site_string);
 
         }
         intent = getIntent();
@@ -363,7 +363,7 @@ public class AddressMessage extends BaseActivity implements AddressContract.View
         } else {
             SharedPreferencesUtil.setDeliveryAddress(context, true); //保存有、无 地址状态
             upid = anddressBean.getId();
-            Toast.makeText(context, "修改成功", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, R.string.addre_up_ok_string, Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(context, Submit0rdersActivity.class);
             if (is_appid == true) {
                 intent.putExtra("type_id", id_s);
@@ -435,7 +435,7 @@ public class AddressMessage extends BaseActivity implements AddressContract.View
             finish();
         }
 
-        Toast.makeText(context, "添加成功", Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, R.string.addre_add_ok_string, Toast.LENGTH_SHORT).show();
 
     }
 

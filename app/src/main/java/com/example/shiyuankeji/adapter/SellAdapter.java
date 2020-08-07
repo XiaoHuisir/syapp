@@ -32,7 +32,7 @@ public class SellAdapter extends BaseAdapter {
         if (lists.getId() == 0) {
             tvnon.setVisibility(View.VISIBLE);
             tvname.setVisibility(View.GONE);
-            tvnon.setText("你还没拥有销售单元，请继续努力！");
+            tvnon.setText(R.string.sell_string);
         } else {
             tvname.setText(lists.getNick_name());
 

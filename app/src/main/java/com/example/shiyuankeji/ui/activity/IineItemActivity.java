@@ -130,13 +130,13 @@ public class IineItemActivity extends BaseActivity implements LineItemConreact.V
                 tvOrderPrice.setText(lineItemBean.getOrder_list().getPaymentPrice() + ""); //TODO
                 tzhuangtai.setText("元");
             } else if (inxdler == 3) {
-                tvWay.setText("支付方式：积分支付");
+                tvWay.setText(R.string.lineltem_integral_string);
                 tvItemName.setText(lineItemBean.getItems().getName());
                 tvItemPrice.setText(lineItemBean.getItems().getCode_price() + "积分");
                 tvNum.setText("X" + lineItemBean.getOrder_list().getNum());
                 tvItemFreight.setText(lineItemBean.getOrder_list().getFreight() + "积分");
                 tvOrderPrice.setText(lineItemBean.getOrder_list().getPayPoints() + ""); //TODO
-                tzhuangtai.setText("积分");
+                tzhuangtai.setText(R.string.lineltem_integral);
             } else if (inxdler == 4) {
                 //TODO  支付宝+积分
 
@@ -159,17 +159,17 @@ public class IineItemActivity extends BaseActivity implements LineItemConreact.V
 
     private void initOrderState(int order_state) {
         if (order_state == Constant.ORDER_STATE_0) {
-            tvOrderState.setText("未支付");
+            tvOrderState.setText(R.string.non_payment);
         } else if (order_state == Constant.ORDER_STATE_1) {
-            tvOrderState.setText("待发货");
+            tvOrderState.setText(R.string.to_send_the_goods);
         } else if (order_state == Constant.ORDER_STATE_2) {
-            tvOrderState.setText("待收货");
+            tvOrderState.setText(R.string.wait_for_receiving);
         } else if (order_state == Constant.ORDER_STATE_3) {
-            tvOrderState.setText("完成");
+            tvOrderState.setText(R.string.performance);
         } else if (order_state==Constant.ORDER_STATE_4){
-            tvOrderState.setText("数据异常");
+            tvOrderState.setText(R.string.data_exception);
         } else {
-            tvOrderState.setText("订单待确认");
+            tvOrderState.setText(R.string.order_to_be_confirmed);
         }
     }
 

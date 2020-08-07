@@ -3,6 +3,10 @@ package com.example.shiyuankeji.utils;
 import android.content.Context;
 import android.util.TypedValue;
 
+/**
+ * Created by zhanghui on 2020/8/6.
+ * 获取屏幕宽高
+ */
 public class UIUtil {
     /**
      * 获取屏幕高度(px)

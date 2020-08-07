@@ -401,9 +401,9 @@ public class MineFragment extends BaseFragment implements MineContract.View {
                 final TextView yes = layout.findViewById(R.id.tv_ok);
                 final TextView no = layout.findViewById(R.id.tv_no);
                 final TextView tvTilte = layout.findViewById(R.id.tv_tilte);
-                tvTilte.setText("是否确认退出账号");
-                yes.setText("退出");
-                no.setText("取消");
+                tvTilte.setText(R.string.do_you_want_to_log_out);
+                yes.setText(R.string.exit_string);
+                no.setText(R.string.cancel_string);
                 yes.setOnClickListener(new View.OnClickListener() {  //是
                     @Override
                     public void onClick(View v) {

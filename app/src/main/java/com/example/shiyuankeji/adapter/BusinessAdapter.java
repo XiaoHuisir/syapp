@@ -33,7 +33,7 @@ public class BusinessAdapter extends BaseAdapter {
         if (id==0){
             tvnon.setVisibility(View.VISIBLE);
             tvname.setVisibility(View.GONE);
-            tvnon.setText("你还没拥有商务拼团，请继续努力！");
+            tvnon.setText(R.string.business);
         }else {
         tvname.setText(lists.getNick_name());
             linearbtn.setTag(mDatas.get(positon));

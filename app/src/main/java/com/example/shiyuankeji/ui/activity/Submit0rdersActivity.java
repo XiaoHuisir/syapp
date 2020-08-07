@@ -213,7 +213,7 @@ public class Submit0rdersActivity extends BaseActivity implements SubmitContract
 //                        if(courseInfoBean != null){
 //                            ZhuGeUtil.getmInstance().addEvent(ZGEventNameConfig.FINISH_BUY_COURSE,"课程标题",courseInfoBean.getCourse_name());
 //                        }
-                        Toast.makeText(Submit0rdersActivity.this, "支付成功", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Submit0rdersActivity.this, R.string.payment_success_string, Toast.LENGTH_SHORT).show();
 //                        ToastUtil toastUtil2 = new ToastUtil(context, R.layout.ok_toast_center_horizontal, "支付成功！");
 //                        toastUtil2.show();
                         Intent intent2 = new Intent();
@@ -224,7 +224,7 @@ public class Submit0rdersActivity extends BaseActivity implements SubmitContract
                         finish();
                     } else {
                         // 该笔订单真实的支付结果，需要依赖服务端的异步通知。
-                        Toast.makeText(Submit0rdersActivity.this, "支付失败", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Submit0rdersActivity.this, R.string.no_payment_success_string, Toast.LENGTH_SHORT).show();
 //                        ToastUtil toastUtil2 = new ToastUtil(context, R.layout.toast_center_horizontal, "支付失败！");
 //                        toastUtil2.show();
                         finish();
@@ -371,16 +371,16 @@ public class Submit0rdersActivity extends BaseActivity implements SubmitContract
             protected void onNoDoubleClick(View v) {
                 if (SharedPreferencesUtil.getDeliveryAddress(context) == true) {
                     if (aliCheck.isChecked()) {
-                        Toast.makeText(context, "支付宝支付", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, R.string.alipay_string, Toast.LENGTH_SHORT).show();
                         getAliPayResult();
                     } else if (wechatCheck.isChecked()) {
-                        Toast.makeText(context, "微信支付", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, R.string.wx_string, Toast.LENGTH_SHORT).show();
 //                    weChatPay();
                     } else if (jifenCheck.isChecked()) {
-                        Toast.makeText(context, "积分支付", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, R.string.integral_string, Toast.LENGTH_SHORT).show();
                         jifezhifu();
                     } else {
-                        Toast.makeText(context, "请选择支付方式", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, R.string.selet_way_string, Toast.LENGTH_SHORT).show();
 //                        ToastUtil toastUtil2 = new ToastUtil(context, R.layout.putong_toast_center_horizontal, "请选择支付方式！");
 //                        toastUtil2.show();
                     }
@@ -388,7 +388,7 @@ public class Submit0rdersActivity extends BaseActivity implements SubmitContract
 //                    new ToastUtil(context, R.layout.toast_center_horizontal, "请选择收货地址").show();
 //                    ToastUtil toastUtil2 = new ToastUtil(context, R.layout.putong_toast_center_horizontal, "请选择收货地址！");
 //                    toastUtil2.show();
-                    Toast.makeText(context,"请选择收货地址",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context,R.string.selet_site_string,Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -512,7 +512,7 @@ public class Submit0rdersActivity extends BaseActivity implements SubmitContract
                     aliPay(data);
                 }
             } else if (order_state==206){
-                Toast.makeText(context,"库存不足！",Toast.LENGTH_SHORT).show();
+                Toast.makeText(context,R.string.understock_string,Toast.LENGTH_SHORT).show();
 //                ToastUtil toastUtil = new ToastUtil(context, R.layout.toast_center_horizontal, "库存不足！");
 //                toastUtil.show();
             }else if (order_state==204){

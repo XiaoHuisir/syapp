@@ -76,7 +76,7 @@ public class MyScanCodeActivity extends BaseActivity implements JoinContract.Vie
         boolean xiangIsBool = SharedPreferencesUtil.getXiangIsBool(context);
 
         if (isBool == false) {
-            new AlertDialog.Builder(this).setTitle("只有授权相机权限才可使用扫描功能，是否前往授权？")
+            new AlertDialog.Builder(this).setTitle(R.string.scan_string)
                     .setPositiveButton("是", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
@@ -93,7 +93,7 @@ public class MyScanCodeActivity extends BaseActivity implements JoinContract.Vie
 
         } else {
             if (xiangIsBool == false) {
-                new AlertDialog.Builder(this).setTitle("只有授权相册权限才可使用扫描功能，是否前往授权？")
+                new AlertDialog.Builder(this).setTitle(R.string.photo_album_string)
                         .setPositiveButton("是", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
@@ -126,7 +126,7 @@ public class MyScanCodeActivity extends BaseActivity implements JoinContract.Vie
             // 申请权限（储存）
 
             if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.READ_EXTERNAL_STORAGE)) {
-                new AlertDialog.Builder(MyScanCodeActivity.this).setTitle("点击相册授权才可使用扫描功能")
+                new AlertDialog.Builder(MyScanCodeActivity.this).setTitle(R.string.dianji_scan_string)
                         .setPositiveButton("是", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
@@ -160,7 +160,7 @@ public class MyScanCodeActivity extends BaseActivity implements JoinContract.Vie
             if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.CAMERA)) {
 
 
-                new AlertDialog.Builder(this).setTitle("点击相机授权才可使用扫描功能")
+                new AlertDialog.Builder(this).setTitle(R.string.dianji_photo_album_string)
                         .setPositiveButton("是", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
@@ -210,7 +210,7 @@ public class MyScanCodeActivity extends BaseActivity implements JoinContract.Vie
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
 
                 // 表示用户授权
-                Toast.makeText(this, " 允许授权", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.allow_the_authorized_string, Toast.LENGTH_SHORT).show();
 
 //                camear();
 //                same();
@@ -223,7 +223,7 @@ public class MyScanCodeActivity extends BaseActivity implements JoinContract.Vie
                 }
             } else {
                 //用户拒绝权限
-                Toast.makeText(this, " 未允许授权", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.no_allow_the_authorized_string, Toast.LENGTH_SHORT).show();
 //                same();
                 camera();
                 SharedPreferencesUtil.addIsBool(context, false);
@@ -245,7 +245,7 @@ public class MyScanCodeActivity extends BaseActivity implements JoinContract.Vie
             }else {
 
             //用户拒绝权限
-            Toast.makeText(this, " 未相册允许授权", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.no_scan_string, Toast.LENGTH_SHORT).show();
                 same();
 //            camera();
 //            SharedPreferencesUtil.addIsBool(context, false);
@@ -305,7 +305,7 @@ public class MyScanCodeActivity extends BaseActivity implements JoinContract.Vie
             @Override
             public void onError(Throwable throwable) {
                 String s = throwable.toString();
-                Toast.makeText(context,"扫描错误信息：" + s,Toast.LENGTH_SHORT).show();
+                Toast.makeText(context,R.string.scan_cuowu_string + s,Toast.LENGTH_SHORT).show();
 //                ToastUtil toastUtil2 = new ToastUtil(context, R.layout.toast_center_horizontal, "扫描错误信息：" + s);
 //                toastUtil2.show();
             }
@@ -424,7 +424,7 @@ public class MyScanCodeActivity extends BaseActivity implements JoinContract.Vie
 //                Toast toast = Toast.makeText(context, "成功：" + joinBean.getMsg(), Toast.LENGTH_SHORT);
 //                toast.setGravity(Gravity.CENTER, 0, 0);
 //                toast.show();
-                Toast.makeText(context,"成功：" + joinBean.getMsg(),Toast.LENGTH_SHORT).show();
+                Toast.makeText(context,R.string.ok_string + joinBean.getMsg(),Toast.LENGTH_SHORT).show();
 //                ToastUtil toastUtil2 = new ToastUtil(context, R.layout.ok_toast_center_horizontal,  "成功：" + joinBean.getMsg());
 //                toastUtil2.show();
                 intent.setClass(context, SynergicActivity.class);
@@ -433,7 +433,7 @@ public class MyScanCodeActivity extends BaseActivity implements JoinContract.Vie
 //                Toast toast = Toast.makeText(context, joinBean.getMsg(), Toast.LENGTH_SHORT);
 //                toast.setGravity(Gravity.CENTER, 0, 0);
 //                toast.show();
-                Toast.makeText(context,"失败：" + joinBean.getMsg(),Toast.LENGTH_SHORT).show();
+                Toast.makeText(context,R.string.no_string + joinBean.getMsg(),Toast.LENGTH_SHORT).show();
 //                ToastUtil toastUtil2 = new ToastUtil(context, R.layout.toast_center_horizontal,  "失败：" + joinBean.getMsg());
 //                toastUtil2.show();
                 intent.setClass(context, SynergicActivity.class);

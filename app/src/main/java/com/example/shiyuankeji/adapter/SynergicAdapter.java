@@ -32,7 +32,7 @@ public class SynergicAdapter extends BaseAdapter {
         if (lists.getId()==0){
             tvname.setVisibility(View.GONE);
             tvnon.setVisibility(View.VISIBLE);
-            tvnon.setText("你还没拥有初级合作组，请继续努力！");
+            tvnon.setText(R.string.synergic_string);
         }else {
 
         tvname.setText(lists.getNick_name());

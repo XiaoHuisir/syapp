@@ -157,7 +157,7 @@ public class SynergicActivity extends BaseActivity implements SynergiContract.Vi
         final EditText edEdu = alertDialog.findViewById(R.id.ed_edu);//兑换码
         final LinearLayout btnCash = alertDialog.findViewById(R.id.btn_cash);//确定
         final LinearLayout imBack = alertDialog.findViewById(R.id.im_back);//关闭
-        tvTilte.setText("未加入合作组，请输入邀请码");
+        tvTilte.setText(R.string.not_to_join_string);
         imBack.setOnClickListener(new NoDoubleClickListener() {
             @Override
             protected void onNoDoubleClick(View v) {
@@ -169,7 +169,7 @@ public class SynergicActivity extends BaseActivity implements SynergiContract.Vi
             protected void onNoDoubleClick(View v) {
                 String edjie = edEdu.getText().toString();
                 if (edjie.equals("")) {
-                    Toast.makeText(context, "请输入邀请码", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, R.string.invitation_code_string, Toast.LENGTH_SHORT).show();
                     return;
                 }
                 alertDialog.dismiss();
@@ -195,7 +195,7 @@ public class SynergicActivity extends BaseActivity implements SynergiContract.Vi
 //    "affiliated_userid": 8,
 //    "people_num": 4,
             if (id == 0) {
-                Toast.makeText(context, "邀请码错误", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, R.string.invitation_code_error_string, Toast.LENGTH_SHORT).show();
                 money();
             }else  {
                 String nick_name = joinBean.getNick_name(); //合作团名称
@@ -233,7 +233,7 @@ public class SynergicActivity extends BaseActivity implements SynergiContract.Vi
 //                Toast toast = Toast.makeText(context, "成功：" + joinBean.getMsg(), Toast.LENGTH_SHORT);
 //                toast.setGravity(Gravity.CENTER, 0, 0);
 //                toast.show();
-                Toast.makeText(context, "成功：" + joinBean.getMsg(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, R.string.ok_string + joinBean.getMsg(), Toast.LENGTH_SHORT).show();
 //                ToastUtil toastUtil2 = new ToastUtil(context, R.layout.ok_toast_center_horizontal,  "成功：" + joinBean.getMsg());
 //                toastUtil2.show();
 //                intent.setClass(context, SynergicActivity.class);
@@ -243,7 +243,7 @@ public class SynergicActivity extends BaseActivity implements SynergiContract.Vi
 //                Toast toast = Toast.makeText(context, joinBean.getMsg(), Toast.LENGTH_SHORT);
 //                toast.setGravity(Gravity.CENTER, 0, 0);
 //                toast.show();
-                Toast.makeText(context, "失败：" + joinBean.getMsg(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, R.string.no_string + joinBean.getMsg(), Toast.LENGTH_SHORT).show();
 //                ToastUtil toastUtil2 = new ToastUtil(context, R.layout.toast_center_horizontal,  "失败：" + joinBean.getMsg());
 //                toastUtil2.show();
 //                intent.setClass(context, SynergicActivity.class);

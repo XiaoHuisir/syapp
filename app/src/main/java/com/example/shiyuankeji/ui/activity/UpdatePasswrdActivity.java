@@ -71,17 +71,17 @@ public class UpdatePasswrdActivity extends BaseActivity implements UpdatePwdCont
                 }
                 new_pwd = edNew_pwd.getText().toString();
                 if (TextUtils.isEmpty(new_pwd)) {
-                    Toast.makeText(context, "密码不能为空！", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, R.string.no_pwd_null_string, Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                     if (!Validator.isPwd(new_pwd) == true) {
 //                    tvPwd01.setText("请输入最少6位最多12位的数字加字母组合的密码");
-                        Toast.makeText(context, "请输入最少6位最多12位的数字加字母组合的密码", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, R.string.regoster_ok_string, Toast.LENGTH_SHORT).show();
                         return;
                     }
                 if (Validator.shuziss(new_pwd) == true) {
-                    Toast.makeText(context, "请输入最少6位最多12位的数字加字母组合的密码", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, R.string.regoster_ok_string, Toast.LENGTH_SHORT).show();
 //                    ToastUtil toastUtil2 = new ToastUtil(context, R.layout.toast_center_horizontal, "请输入最少6位最多12位的数字加字母组合的密码");
 //                    toastUtil2.show();
                     return;
@@ -99,7 +99,7 @@ public class UpdatePasswrdActivity extends BaseActivity implements UpdatePwdCont
         String msg = updatePwdtBean.getMsg();
         if (status == 200) {
             if (msg.equals("1")) { //修改成功
-                Toast.makeText(context,"密码修改成功",Toast.LENGTH_SHORT).show();
+                Toast.makeText(context,R.string.up_pwd_ok_string,Toast.LENGTH_SHORT).show();
 //                new ToastUtil(context, R.layout.ok_toast_center_horizontal, "密码修改成功").show();
                 String tokens = updatePwdtBean.getData().getToken();
                 SharedPreferencesUtil.addUserToken(context, tokens);// 添加保存token TODO
@@ -109,7 +109,7 @@ public class UpdatePasswrdActivity extends BaseActivity implements UpdatePwdCont
                 startActivity(intent);
                 finish();
             } else {
-                Toast.makeText(context,"密码修改失败",Toast.LENGTH_SHORT).show();
+                Toast.makeText(context,R.string.up_pwd_no_string,Toast.LENGTH_SHORT).show();
 //                new ToastUtil(context, R.layout.toast_center_horizontal, "密码修改失败").show();
             }
 

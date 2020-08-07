@@ -309,7 +309,7 @@ public class ProductDetailsActivity extends BaseActivity implements ProductDetai
             final TextView yes = layout.findViewById(R.id.tv_ok);
             final TextView no = layout.findViewById(R.id.tv_no);
             final TextView tvTilte = layout.findViewById(R.id.tv_tilte);
-            tvTilte.setText("登录后才可购买，是否前往登录!");
+            tvTilte.setText(R.string.login_is_string);
             yes.setOnClickListener(new View.OnClickListener() {  //是
                 @Override
                 public void onClick(View v) {
@@ -351,7 +351,7 @@ public class ProductDetailsActivity extends BaseActivity implements ProductDetai
         } else {
             Constant.token = token;
             if (stock == 0) {
-                Toast.makeText(context, "库存不足！", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, R.string.understock_string, Toast.LENGTH_SHORT).show();
 
 
                 return;

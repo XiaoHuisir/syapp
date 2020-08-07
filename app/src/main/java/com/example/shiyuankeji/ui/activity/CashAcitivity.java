@@ -69,7 +69,7 @@ public class CashAcitivity extends BaseActivity {
         final EditText edEdu = alertDialog.findViewById(R.id.ed_edu);//金额
         final LinearLayout btnCash = alertDialog.findViewById(R.id.btn_cash);//立即提现
         final LinearLayout imBack = alertDialog.findViewById(R.id.im_back);//关闭
-        tvTilte.setText("提现金额");
+        tvTilte.setText(R.string.cash_withdrawal_amount_string);
         imBack.setOnClickListener(new NoDoubleClickListener() {
             @Override
             protected void onNoDoubleClick(View v) {
@@ -81,11 +81,11 @@ public class CashAcitivity extends BaseActivity {
             protected void onNoDoubleClick(View v) {
                 String edjie = edEdu.getText().toString();
                 if (edjie.equals("")){
-                    Toast.makeText(context,"请输入提现金额",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context,R.string.cash_import_money_string,Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if (edjie.equals("0")){
-                    Toast.makeText(context,"请输入正确的提现金额",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context,R.string.cash_import_money_ok_string,Toast.LENGTH_SHORT).show();
                     return;
                 }
                     alertDialog.dismiss();

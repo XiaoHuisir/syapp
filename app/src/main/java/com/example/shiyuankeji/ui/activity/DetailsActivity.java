@@ -111,21 +111,21 @@ public class DetailsActivity extends BaseActivity implements IntegralDetailsCont
         String score2 = getIntent().getStringExtra("score2_");
         String score3_1 = getIntent().getStringExtra("score3_1_");
         if (jifen.equals("购物积分")) {
-            tvTilte.setText("购物积分");
+            tvTilte.setText(R.string.details_shopping_points_string);
             tvTilteName.setText("购物积分:" + score);
             reQueryIntegral.setVisibility(View.VISIBLE);
             reQueryIntegral.setLayoutManager(new LinearLayoutManager(context));
             queryintegralAdapter = new QueryintegralAdapter(list_queryIntegral);
             reQueryIntegral.setAdapter(queryintegralAdapter);
         } else if (jifen.equals("识缘股")) {
-            tvTilte.setText("识缘股");
+            tvTilte.setText(R.string.details_stock_string);
             tvTilteName.setText("识缘股:" + score4);
             reQueryLastWeekStock.setVisibility(View.VISIBLE);
             reQueryLastWeekStock.setLayoutManager(new LinearLayoutManager(context));
             queryLastWeekStockAdatper = new QueryLastWeekStockAdatper(list_queryLastWeekStock);
             reQueryLastWeekStock.setAdapter(queryLastWeekStockAdatper);
         } else if (jifen.equals("赠送积分")) {
-            tvTilte.setText("重消积分");
+            tvTilte.setText(R.string.details_heavy_away_string);
             tvTilteName.setText("重消积分:" + score2);
             reQueryStock.setVisibility(View.VISIBLE);
             reQueryStock.setLayoutManager(new LinearLayoutManager(context));
@@ -133,7 +133,7 @@ public class DetailsActivity extends BaseActivity implements IntegralDetailsCont
             reQueryStock.setAdapter(queryStockAdapter);
         } else if (jifen.equals("收益积分")) {
             btnCash.setVisibility(View.VISIBLE);
-            tvTilte.setText("收益积分");
+            tvTilte.setText(R.string.details_earnings_string);
             tvTilteName.setText("收益积分:" + score3_1);
             reQueryMinuteStock.setVisibility(View.VISIBLE);
             reQueryMinuteStock.setLayoutManager(new LinearLayoutManager(context));
@@ -218,7 +218,7 @@ public class DetailsActivity extends BaseActivity implements IntegralDetailsCont
         final EditText edEdu = alertDialog.findViewById(R.id.ed_edu);//金额
         final LinearLayout btnCash = alertDialog.findViewById(R.id.btn_cash);//立即提现
         final LinearLayout imBack = alertDialog.findViewById(R.id.im_back);//关闭
-        tvTilte.setText("提现金额");
+        tvTilte.setText(R.string.cash_withdrawal_amount_string);
         imBack.setOnClickListener(new NoDoubleClickListener() {
             @Override
             protected void onNoDoubleClick(View v) {
@@ -231,11 +231,11 @@ public class DetailsActivity extends BaseActivity implements IntegralDetailsCont
                 String edjie = edEdu.getText().toString();
 
                 if (edjie.equals("")) {
-                    Toast.makeText(context, "请输入提现金额", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, R.string.cash_import_money_string, Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if (edjie.equals("0")) {
-                    Toast.makeText(context, "请输入正确的提现金额", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, R.string.cash_import_money_ok_string, Toast.LENGTH_SHORT).show();
                     return;
                 }
                 alertDialog.dismiss();

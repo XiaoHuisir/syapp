@@ -46,17 +46,17 @@ public class IndentListAdapter extends RecyclerView.Adapter<IndentListAdapter.Vi
 //      -  order_state //订单状态
         int order_state = orderListsBean.getOrder_state(); //订单状态
         if (order_state == Constant.ORDER_STATE_0) {
-            viewHolder.txtOrderStatus.setText("未支付");
+            viewHolder.txtOrderStatus.setText(R.string.non_payment);
         } else if (order_state == Constant.ORDER_STATE_1) {
-            viewHolder.txtOrderStatus.setText("待发货");
+            viewHolder.txtOrderStatus.setText(R.string.to_send_the_goods);
         } else if (order_state == Constant.ORDER_STATE_2) {
-            viewHolder.txtOrderStatus.setText("待收货");
+            viewHolder.txtOrderStatus.setText(R.string.wait_for_receiving);
         } else if (order_state == Constant.ORDER_STATE_3) {
-            viewHolder.txtOrderStatus.setText("完成");
+            viewHolder.txtOrderStatus.setText(R.string.performance);
         } else if (order_state == Constant.ORDER_STATE_4) {
-            viewHolder.txtOrderStatus.setText("数据异常");
+            viewHolder.txtOrderStatus.setText(R.string.data_exception);
         } else {
-            viewHolder.txtOrderStatus.setText("订单待确认");
+            viewHolder.txtOrderStatus.setText(R.string.order_to_be_confirmed);
         }
 
         viewHolder.mTvOdd.setText("订单号:" + orderListsBean.getOrder_num());//订单号
