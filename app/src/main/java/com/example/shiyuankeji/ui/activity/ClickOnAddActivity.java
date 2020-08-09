@@ -198,7 +198,7 @@ public class ClickOnAddActivity extends BaseActivity implements BankIdentityCont
                     linearSave.setVisibility(View.VISIBLE);
                     textUpdate.setVisibility(View.GONE);
                     editable();
-                    Toast.makeText(context, R.string.click_save_no_string + s, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, R.string.click_save_no_string , Toast.LENGTH_SHORT).show();
 //                    ToastUtil toastUtil2 = new ToastUtil(context, R.layout.toast_center_horizontal, "保存失败：" + s);
 //                    toastUtil2.show();
                     Intent intent = new Intent();

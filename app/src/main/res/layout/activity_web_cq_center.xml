@@ -36,7 +36,7 @@
             android:layout_toRightOf="@id/btn_navi_back"
             android:ellipsize="end"
             android:maxLines="1"
-            android:text="客服"
+            android:text="公司资质"
             android:textColor="@color/whites"
             android:textSize="18sp" />
 

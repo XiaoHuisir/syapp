@@ -2,6 +2,7 @@ package com.example.shiyuankeji.ui.activity;
 
 
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -72,6 +73,7 @@ public class DetailsActivity extends BaseActivity implements IntegralDetailsCont
     SwipeRefreshLayout swipeRefres;
     @BindView(R.id.scrView)
     ScrollView scrView;
+    public boolean inxdler = false;
     private String jifen;
     private QueryintegralAdapter queryintegralAdapter;
     private QueryLastWeekStockAdatper queryLastWeekStockAdatper;
@@ -96,6 +98,7 @@ public class DetailsActivity extends BaseActivity implements IntegralDetailsCont
 
     @Override
     protected void initView() {
+
 //        jifen
         reQueryIntegral.setHasFixedSize(true);
         reQueryIntegral.setNestedScrollingEnabled(false);
@@ -106,6 +109,7 @@ public class DetailsActivity extends BaseActivity implements IntegralDetailsCont
         reQueryMinuteStock.setHasFixedSize(true);
         reQueryMinuteStock.setNestedScrollingEnabled(false);
         jifen = getIntent().getStringExtra("jifen");
+        newshuxin(jifen, inxdler);
         String score = getIntent().getStringExtra("score_");
         String score4 = getIntent().getStringExtra("score4_");
         String score2 = getIntent().getStringExtra("score2_");
@@ -142,10 +146,10 @@ public class DetailsActivity extends BaseActivity implements IntegralDetailsCont
 
             initFindViewById(); //提现
         }
-        newshuxin(jifen);
+
     }
 
-    private void newshuxin(final String jifen) {
+    private void newshuxin(final String jifen, final Boolean inxd) {
         //设置刷新球颜色
         swipeRefres.setColorSchemeColors(Color.BLUE, Color.RED, Color.YELLOW);
         swipeRefres.setProgressBackgroundColorSchemeColor(Color.parseColor("#ffffff"));//#BBFFFF
@@ -153,15 +157,17 @@ public class DetailsActivity extends BaseActivity implements IntegralDetailsCont
         obeser.addOnWindowFocusChangeListener(new ViewTreeObserver.OnWindowFocusChangeListener() {
             @Override
             public void onWindowFocusChanged(boolean hasFocus) {
-                swipeRefres.setRefreshing(true);
+
 //                Toast.makeText(context, "刷新", Toast.LENGTH_SHORT).show();
                 if (jifen.equals("购物积分")) {
+                    swipeRefres.setRefreshing(true);
                     ((IntegraIBetailsPresenter) mPresenter).queryIntegrals();
-                }else if (jifen.equals("赠送积分")) {
+                } else if (jifen.equals("赠送积分")) {
+                    swipeRefres.setRefreshing(true);
                     ((IntegraIBetailsPresenter) mPresenter).queryStocks();
-                }else if (jifen.equals("收益积分")) {
-
-                ((IntegraIBetailsPresenter) mPresenter).queryMinuteStocks();
+                } else if (jifen.equals("收益积分")) {
+                    swipeRefres.setRefreshing(inxd);
+                    ((IntegraIBetailsPresenter) mPresenter).queryMinuteStocks();
                 }
 
                 swipeRefres.postDelayed(new Runnable() {
@@ -180,9 +186,9 @@ public class DetailsActivity extends BaseActivity implements IntegralDetailsCont
             public void onRefresh() {
                 if (jifen.equals("购物积分")) {
                     ((IntegraIBetailsPresenter) mPresenter).queryIntegrals();
-                }else if (jifen.equals("赠送积分")) {
+                } else if (jifen.equals("赠送积分")) {
                     ((IntegraIBetailsPresenter) mPresenter).queryStocks();
-                }else if (jifen.equals("收益积分")) {
+                } else if (jifen.equals("收益积分")) {
                     ((IntegraIBetailsPresenter) mPresenter).queryMinuteStocks();
                 }
 
@@ -241,13 +247,14 @@ public class DetailsActivity extends BaseActivity implements IntegralDetailsCont
                 alertDialog.dismiss();
                 jine = edjie;
                 qian();
+                newshuxin("收益积分", inxdler);//自动刷新
             }
         });
 
     }
 
     private void qian() {
-        LayoutInflater inflater = getLayoutInflater();
+        final LayoutInflater inflater = getLayoutInflater();
         //引入自定义好的对话框.xml布局
         View layout = inflater.inflate(R.layout.money_state, null);
         //实列提示对话框对象，并将加载的试图对象设置给对话框对象
@@ -257,7 +264,7 @@ public class DetailsActivity extends BaseActivity implements IntegralDetailsCont
         TextView txtqiang = alertDialog.findViewById(R.id.txt_qiang);
         int i = Integer.parseInt(jine);
         final int i1 = i * 100;
-        txtqiang.setText("是否确认提现金额为：" + i1 + "元");
+        txtqiang.setText("是否确认提现金额为：" + i1 + "积分");
         tvno.setOnClickListener(new NoDoubleClickListener() { //取消
             @Override
             protected void onNoDoubleClick(View v) {
@@ -271,10 +278,13 @@ public class DetailsActivity extends BaseActivity implements IntegralDetailsCont
                 ((IntegraIBetailsPresenter) mPresenter).cashs(i1);
 
                 alertDialog.dismiss();
+                inxdler=true;
+                newshuxin("收益积分", inxdler);//自动刷新
             }
         });
 
     }
+
     private void newrefres() {
         //设置刷新球颜色
         swipeRefres.setColorSchemeColors(Color.BLUE, Color.RED, Color.YELLOW);
@@ -317,6 +327,7 @@ public class DetailsActivity extends BaseActivity implements IntegralDetailsCont
             }
         });
     }
+
     @Override
     protected void initData() {
         if (jifen.equals("购物积分")) {
@@ -375,7 +386,38 @@ public class DetailsActivity extends BaseActivity implements IntegralDetailsCont
         if (cashBean == null || cashBean.getData() == null) {
             return;
         }
-        newrefres();//刷新
+//        newrefres();//刷新
+
+        newshuxin("收益积分", inxdler);//自动刷新
+        int status = cashBean.getStatus();
+        if (status == 204) {
+            LayoutInflater inflater = getLayoutInflater();
+            //引入自定义好的对话框.xml布局
+            View layout = inflater.inflate(R.layout.money_state, null);
+            //实列提示对话框对象，并将加载的试图对象设置给对话框对象
+            final AlertDialog alertDialog = new AlertDialog.Builder(context).setView(layout).show();
+            TextView tvok = alertDialog.findViewById(R.id.tv_ok);
+            TextView tvno = alertDialog.findViewById(R.id.tv_no);
+            TextView txtqiang = alertDialog.findViewById(R.id.txt_qiang);
+            txtqiang.setText("无法提现，请完善银行卡信息。");
+            tvok.setOnClickListener(new NoDoubleClickListener() {
+                @Override
+                protected void onNoDoubleClick(View v) {
+                    Intent intent = new Intent();
+                    intent.setClass(context, PersonalCenterActivity.class);
+                    startActivity(intent);
+                    alertDialog.dismiss();
+                    finish();
+                }
+            });
+            tvno.setOnClickListener(new NoDoubleClickListener() {
+                @Override
+                protected void onNoDoubleClick(View v) {
+                    alertDialog.dismiss();
+                }
+            });
+        }
+
         Toast.makeText(context, cashBean.getMsg(), Toast.LENGTH_SHORT).show();
     }
 

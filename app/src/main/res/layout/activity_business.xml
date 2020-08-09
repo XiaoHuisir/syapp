@@ -54,7 +54,7 @@
                     android:layout_marginTop="@dimen/dp_24"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="我所在的商务拼团："
+                    android:text="我所在的商务零售拼团："
                     android:layout_marginLeft="@dimen/dp_13"
                     android:textColor="@color/newnew_bg"
                     android:textSize="@dimen/sp_15" />
@@ -74,7 +74,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/dp_13"
                     android:layout_marginTop="@dimen/dp_8"
-                    android:text="你还没有加入任何一个商务拼团，请请继续努力！"
+                    android:text="你还没有加入任何一个商务零售拼团，请请继续努力！"
                     android:textColor="#aaaaaa"
                     android:textSize="@dimen/sp_16"
                     android:visibility="gone" />
@@ -94,7 +94,7 @@
                     android:layout_marginTop="@dimen/dp_24"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="我的商务拼团："
+                    android:text="我的商务零售拼团："
                     android:layout_marginLeft="@dimen/dp_13"
                     android:textColor="@color/newnew_bg"
                     android:textSize="@dimen/sp_15" />
@@ -113,7 +113,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/dp_8"
                         android:layout_alignParentTop="true"
-                        android:text="你还没拥有商务拼团，请继续努力！"
+                        android:text="你还没拥有商务零售拼团，请继续努力！"
                         android:textColor="#aaaaaa"
                         android:layout_marginLeft="@dimen/dp_13"
                         android:textSize="@dimen/sp_16"

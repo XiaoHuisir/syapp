@@ -172,6 +172,12 @@ android.permission.ACCESS_WIFI_STATE-->
         <activity android:name=".ui.activity.CashAcitivity"/>
         <!--我的邀请码-->
         <activity android:name=".ui.activity.MyInxtendActivity"/>
+        <!--公司资质-->
+        <activity android:name=".ui.activity.WebCQActivity"/>
+        <!--纳税专区-->
+        <activity android:name=".ui.activity.RatepayingActivity"/>
+        <!--设置-->
+        <activity android:name=".ui.activity.SetActivity"/>
     </application>
 
     <!--友盟统计配置Appkey与Channel-->

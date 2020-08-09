@@ -27,6 +27,7 @@ public class MineBean {
      * team_id : null
      * invitation_code : 192.168.124.14,toRegister,shiyuanInvitationCode,15atgs
      * team : null
+     * deduct:35.0
      */
 
     private int id;
@@ -52,6 +53,15 @@ public class MineBean {
     private Object team_id;
     private String invitation_code;
     private Object team;
+    private double deduct;
+
+    public double getDeduct() {
+        return deduct;
+    }
+
+    public void setDeduct(double deduct) {
+        this.deduct = deduct;
+    }
 
     public int getId() {
         return id;

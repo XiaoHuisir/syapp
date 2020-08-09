@@ -16,6 +16,7 @@ import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,9 +38,12 @@ import com.example.shiyuankeji.ui.activity.MyInxtendActivity;
 import com.example.shiyuankeji.ui.activity.MyQRActivity;
 import com.example.shiyuankeji.ui.activity.MyScanCodeActivity;
 import com.example.shiyuankeji.ui.activity.PersonalCenterActivity;
+import com.example.shiyuankeji.ui.activity.RatepayingActivity;
 import com.example.shiyuankeji.ui.activity.SelectAddressActivity;
 import com.example.shiyuankeji.ui.activity.SellActivity;
+import com.example.shiyuankeji.ui.activity.SetActivity;
 import com.example.shiyuankeji.ui.activity.SynergicActivity;
+import com.example.shiyuankeji.ui.activity.WebCQActivity;
 import com.example.shiyuankeji.ui.activity.WebCallCenterActivity;
 import com.example.shiyuankeji.ui.activity.YieldActivity;
 import com.example.shiyuankeji.ui.activity.login.LoginActivity;
@@ -104,6 +108,12 @@ public class MineFragment extends BaseFragment implements MineContract.View {
     RelativeLayout reExtend;
     @BindView(R.id.re_my_invite) //new 我的邀请码
     RelativeLayout reMyInvitep;
+    @BindView(R.id.re_ratepaying) //new 我的邀请码
+    RelativeLayout reRatepaying; //纳税专区
+    @BindView(R.id.scroll_view)
+    ScrollView scroll;
+    @BindView(R.id.im_set)
+    ImageView imSet;
 
     private String phone_number;
     private String name;
@@ -115,6 +125,7 @@ public class MineFragment extends BaseFragment implements MineContract.View {
     private String score2 = "";
     private String score3_1 = "";
     private String msg;
+    private String deducts="";
     //    private String invitation_code = ""; //二维码
 
     @Override
@@ -134,6 +145,7 @@ public class MineFragment extends BaseFragment implements MineContract.View {
 //        StateHandling();//我的模块登录状态初始化处理（判断是否登录） 不带秒数的
 //        refress(); //手动刷新
         newrefres(); //自动刷新
+        swipeRefres.setNestedScrollingEnabled(false);
     }
 
     private void newrefres() {
@@ -144,7 +156,7 @@ public class MineFragment extends BaseFragment implements MineContract.View {
         obeser.addOnWindowFocusChangeListener(new ViewTreeObserver.OnWindowFocusChangeListener() {
             @Override
             public void onWindowFocusChanged(boolean hasFocus) {
-                swipeRefres.setRefreshing(true);
+                swipeRefres.setRefreshing(false);
 //                Toast.makeText(context, "刷新", Toast.LENGTH_SHORT).show();
 //                ToastUtil toastUtil2 = new ToastUtil(context, R.layout.ok_toast_center_horizontal, "登录成功！");
 //                toastUtil2.show();
@@ -237,13 +249,26 @@ public class MineFragment extends BaseFragment implements MineContract.View {
     }
 
 
-    @OnClick({R.id.lin_synergic, R.id.lin_business, R.id.re_yield,
+    @OnClick({R.id.lin_synergic, R.id.lin_business, R.id.re_yield,R.id.re_ratepaying,R.id.im_set,
             R.id.lin_sales_unit, R.id.re_CQ, R.id.re_QR, R.id.im_sao_ma, R.id.lin_shop,
             R.id.lin_donate, R.id.lin_stock, R.id.lin_fh, R.id.re_personage, R.id.re_ID,
             R.id.re_site, R.id.re_exit,R.id.lin_cash,R.id.re_my_invite,R.id.re_extend})
     public void onViewClicked(View view) {
         Intent intent03 = new Intent();
         switch (view.getId()) {
+            case R.id.im_set:  //设置
+                if (UtilsClicktime.isFastDoubleClick()){return;}
+                intent03.setClass(context, SetActivity.class);
+                startActivity(intent03);
+                break;
+            case R.id.re_ratepaying: //纳税专区
+                    if (UtilsClicktime.isFastDoubleClick()){
+                        return;
+                    }
+                    intent03.setClass(context, RatepayingActivity.class);
+                    intent03.putExtra("deducts_s",deducts);
+                    startActivity(intent03);
+                break;
             case R.id.re_my_invite: //我的邀请码
                 if (UtilsClicktime.isFastDoubleClick()) {
                     return;
@@ -300,7 +325,7 @@ public class MineFragment extends BaseFragment implements MineContract.View {
                 if (UtilsClicktime.isFastDoubleClick()) {
                     return;
                 }
-                intent03.setClass(context, WebCallCenterActivity.class);
+                intent03.setClass(context, WebCQActivity.class);
                 startActivity(intent03);
                 break;
             case R.id.re_QR: //我的二维码
@@ -491,7 +516,8 @@ public class MineFragment extends BaseFragment implements MineContract.View {
             tvScore3_1.setText(score3_1);
 //invitation_code   http://192.168.124.14:8080/toRegister,shiyuanInvitationCode=15atgs
 //            invitation_code = mineBean.getInvitation_code(); //二维码
-
+            double deduct = mineBean.getDeduct();
+            deducts = String.valueOf(deduct);
 
         }
     }

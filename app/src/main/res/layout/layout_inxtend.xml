@@ -41,7 +41,7 @@
             android:paddingBottom="@dimen/sp_20"
             android:text="xx"
             android:textColor="@color/black"
-            android:textSize="@dimen/sp_19" />
+            android:textSize="@dimen/sp_15" />
 
         <RelativeLayout
             android:id="@+id/re_la"

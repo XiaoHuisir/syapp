@@ -3,9 +3,9 @@
 
     <!-- TODO: Remove or change this placeholder text -->
 
-    <string name="business">你还没拥有商务拼团，请继续努力！</string>
-    <string name="sell_string">你还没拥有销售单元，请继续努力！</string>
-    <string name="synergic_string">你还没拥有初级合作组，请继续努力！</string>
+    <string name="business">你还没拥有商务零售拼团，请继续努力！</string>
+    <string name="sell_string">你还没拥有商务批发单元，请继续努力！</string>
+    <string name="synergic_string">你还没拥有商务消费小组，请继续努力！</string>
     <string name="non_payment">未支付</string>
     <string name="to_send_the_goods">待发货</string>
     <string name="wait_for_receiving">待收货</string>
@@ -77,7 +77,7 @@
     <string name="integral_string">积分支付</string>
     <string name="selet_way_string">请选择支付方式</string>
     <string name="selet_site_string">请选择收货地址</string>
-    <string name="not_to_join_string">未加入合作组，请输入邀请码</string>
+    <string name="not_to_join_string">未加入商务消费小组，请输入邀请码</string>
     <string name="invitation_code_string">请输入邀请码</string>
     <string name="invitation_code_error_string">邀请码错误</string>
     <string name="no_pwd_null_string">密码不能为空！</string>

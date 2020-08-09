@@ -27,6 +27,7 @@ import com.example.shiyuankeji.bean.QueryLastWeekStockBean;
 import com.example.shiyuankeji.bean.QueryMinuteStockBean;
 import com.example.shiyuankeji.bean.QueryStockBean;
 import com.example.shiyuankeji.bean.QueryTabBean;
+import com.example.shiyuankeji.bean.RatepayingBean;
 import com.example.shiyuankeji.bean.ScanCodeBean;
 import com.example.shiyuankeji.bean.SmsSendBean;
 import com.example.shiyuankeji.bean.SubmitBean;
@@ -226,9 +227,12 @@ public interface Api {
     @FormUrlEncoded
     Flowable<CashBean> cashApi(@Header("token") String tokens, @Field("score3") int order);
    //new  邀请码  getInvitationCode
-   //提现
    @POST("getInvitationCode")
    Flowable<InxtendBean> inxtendApi(@Header("token") String tokens);
+
+   //new  纳税专区  queryPractical
+   @POST("queryPractical")
+   Flowable<RatepayingBean> rateApi(@Header("token") String tokens);
 
 //    {
 //    "id": 34,

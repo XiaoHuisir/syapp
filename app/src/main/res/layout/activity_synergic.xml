@@ -58,7 +58,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/dp_13"
                     android:layout_marginTop="@dimen/dp_24"
-                    android:text="我所在的初级合作组："
+                    android:text="我所在的商务消费小组："
                     android:textColor="@color/newnew_bg"
                     android:textSize="@dimen/sp_15" />
 
@@ -78,7 +78,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/dp_13"
                     android:layout_marginTop="@dimen/dp_8"
-                    android:text="你还没有加入任何一个初级合作组，请扫描邀请码加入！"
+                    android:text="你还没有加入任何一个商务消费小组，请扫描邀请码加入！"
                     android:textColor="#aaaaaa"
                     android:textSize="@dimen/sp_16"
                     android:visibility="gone" />
@@ -99,7 +99,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/dp_13"
                     android:layout_marginTop="@dimen/dp_24"
-                    android:text="我所拥有的初级合作组："
+                    android:text="我所拥有的商务消费小组："
                     android:textColor="@color/newnew_bg"
                     android:textSize="@dimen/sp_15" />
 
@@ -119,7 +119,7 @@
                         android:layout_alignParentTop="true"
                         android:layout_marginLeft="@dimen/dp_13"
                         android:layout_marginTop="@dimen/dp_8"
-                        android:text="你还没拥有初级合作组，请继续努力！"
+                        android:text="你还没拥有商务消费小组，请继续努力！"
                         android:textColor="#aaaaaa"
                         android:textSize="@dimen/sp_16"
                         android:visibility="gone" />
