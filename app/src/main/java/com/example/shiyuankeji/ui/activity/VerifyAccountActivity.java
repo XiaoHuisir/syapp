@@ -135,7 +135,7 @@ public class VerifyAccountActivity extends BaseActivity implements QueryTabContr
         @Override
         public void run() {
             sending = true;
-            for (int i = 60; i >= 0; i--) {
+            for (int i = 120; i >= 0; i--) {
                 if (sending) {
                     final int finalI = i;
                     VerifyAccountActivity.this.runOnUiThread(new Runnable() {

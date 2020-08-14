@@ -38,7 +38,7 @@
             android:layout_gravity="center"
             android:background="@color/whites"
             android:scaleType="centerCrop"
-            android:src="@color/col_blue" />
+            android:src="@drawable/no_banner" />
 
         <LinearLayout
             android:layout_width="match_parent"

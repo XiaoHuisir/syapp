@@ -540,6 +540,14 @@ public class Submit0rdersActivity extends BaseActivity implements SubmitContract
 
                     }
                 });
+            }else {
+                Toast.makeText(context, addOrderistBean.getMsg(), Toast.LENGTH_SHORT).show();
+                Intent intent2 = new Intent();
+                intent2.setClass(context, MainActivity.class);
+                intent2.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent2.putExtra("id", Constant.TWO_TYPE_3);
+                startActivityForResult(intent2, Constant.TWO_TYPE_3);
+                finish();
             }
         }
     }

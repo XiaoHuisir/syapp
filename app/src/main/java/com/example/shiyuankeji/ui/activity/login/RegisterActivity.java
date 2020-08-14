@@ -319,7 +319,7 @@ public class RegisterActivity extends BaseActivity implements RegisterContract.V
         @Override
         public void run() {
             sending = true;
-            for (int i = 60; i >= 0; i--) {
+            for (int i = 120; i >= 0; i--) {
                 if (sending) {
                     final int finalI = i;
                     RegisterActivity.this.runOnUiThread(new Runnable() {

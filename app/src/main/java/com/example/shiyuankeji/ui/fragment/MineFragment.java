@@ -43,6 +43,7 @@ import com.example.shiyuankeji.ui.activity.SelectAddressActivity;
 import com.example.shiyuankeji.ui.activity.SellActivity;
 import com.example.shiyuankeji.ui.activity.SetActivity;
 import com.example.shiyuankeji.ui.activity.SynergicActivity;
+import com.example.shiyuankeji.ui.activity.TestingCenterActivity;
 import com.example.shiyuankeji.ui.activity.WebCQActivity;
 import com.example.shiyuankeji.ui.activity.WebCallCenterActivity;
 import com.example.shiyuankeji.ui.activity.YieldActivity;
@@ -114,6 +115,8 @@ public class MineFragment extends BaseFragment implements MineContract.View {
     ScrollView scroll;
     @BindView(R.id.im_set)
     ImageView imSet;
+    @BindView(R.id.re_testing_center)
+    RelativeLayout reTetingCenter;
 
     private String phone_number;
     private String name;
@@ -250,12 +253,17 @@ public class MineFragment extends BaseFragment implements MineContract.View {
 
 
     @OnClick({R.id.lin_synergic, R.id.lin_business, R.id.re_yield,R.id.re_ratepaying,R.id.im_set,
-            R.id.lin_sales_unit, R.id.re_CQ, R.id.re_QR, R.id.im_sao_ma, R.id.lin_shop,
+            R.id.lin_sales_unit, R.id.re_CQ, R.id.re_QR, R.id.im_sao_ma, R.id.lin_shop,R.id.re_testing_center,
             R.id.lin_donate, R.id.lin_stock, R.id.lin_fh, R.id.re_personage, R.id.re_ID,
             R.id.re_site, R.id.re_exit,R.id.lin_cash,R.id.re_my_invite,R.id.re_extend})
     public void onViewClicked(View view) {
         Intent intent03 = new Intent();
         switch (view.getId()) {
+            case R.id.re_testing_center: //智慧检测中心
+                if (UtilsClicktime.isFastDoubleClick())return;
+                intent03.setClass(context, TestingCenterActivity.class);
+                startActivity(intent03);
+                break;
             case R.id.im_set:  //设置
                 if (UtilsClicktime.isFastDoubleClick()){return;}
                 intent03.setClass(context, SetActivity.class);
