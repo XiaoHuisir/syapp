@@ -54,6 +54,7 @@ public class WebCQActivity extends BaseActivity {
         webview.setWebChromeClient(new WebChromeClient() {
             @Override
             public void onProgressChanged(WebView view, int newProgress) {
+               if (webProgressBar==null)return;
                 webProgressBar.setProgress(newProgress);//设置进度值
                 if (newProgress == 100) {
                     webProgressBar.setVisibility(View.GONE);//加载完网页进度条消失
