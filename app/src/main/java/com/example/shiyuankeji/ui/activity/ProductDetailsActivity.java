@@ -20,6 +20,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,6 +42,7 @@ import com.example.shiyuankeji.utils.SharedPreferencesUtil;
 import com.example.shiyuankeji.utils.ToastUtil;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 
 import butterknife.BindView;
@@ -79,6 +81,8 @@ public class ProductDetailsActivity extends BaseActivity implements ProductDetai
     ProgressBar webProgressBar;
     @BindView(R.id.webview)
     WebView webview;
+    @BindView(R.id.re_web)
+    RelativeLayout reWeb;
     private String ids;
     private ArrayList<StringBuffer> ims;
     private String img;
@@ -99,6 +103,7 @@ public class ProductDetailsActivity extends BaseActivity implements ProductDetai
     //   @BindView(R.id.tv_old_integral)
 //    TextView imBeak;
 
+
     @Override
     protected IBasePresenter getPresenter() {
         return new ProductDetailsPresenter();
@@ -118,10 +123,10 @@ public class ProductDetailsActivity extends BaseActivity implements ProductDetai
         tvOldIntegral.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG); //中间横线
 
         initFindviewById();
-        initWeb();
+
     }
 
-    private void initWeb() {
+    private void initWeb(String mp) {
         //webview图片自适应。
         WebSettings webSettings = webview.getSettings();
         webSettings.setJavaScriptEnabled(true);
@@ -142,7 +147,7 @@ public class ProductDetailsActivity extends BaseActivity implements ProductDetai
         webview.setWebChromeClient(new WebChromeClient() {
             @Override
             public void onProgressChanged(WebView view, int newProgress) {
-                if (webProgressBar==null){
+                if (webProgressBar == null) {
                     return;
                 }
                 webProgressBar.setProgress(newProgress);//设置进度值
@@ -160,7 +165,7 @@ public class ProductDetailsActivity extends BaseActivity implements ProductDetai
 //                navTitle.setText(title);
             }
         });
-        webview.loadUrl("https://v.qq.com/txp/iframe/player.html?vid=y0329ujo9mi");
+        webview.loadUrl(mp);
     }
 
     private void initFindviewById() {
@@ -419,9 +424,20 @@ public class ProductDetailsActivity extends BaseActivity implements ProductDetai
         String[] temp;
         String delimeter = ",";
         temp = sulimg.split(delimeter);
+        String videos = temp[0];
+        if (videos != null) {
+            boolean contains = videos.contains(Constant.CONTAINS);
+            boolean iframe = videos.contains(Constant.IFRAME);
+            if (contains == true||iframe==true) {
+                reWeb.setVisibility(View.VISIBLE);
+                initWeb(videos);
+            }else {
+                reWeb.setVisibility(View.GONE);
+            }
+        }
         for (int i = 0; i < temp.length; i++) {
             strings.addAll(Collections.singleton(temp[i]));
-        webStringAdapter.notifyDataSetChanged();
+            webStringAdapter.notifyDataSetChanged();
 
         }
 
@@ -521,7 +537,7 @@ public class ProductDetailsActivity extends BaseActivity implements ProductDetai
 //
 //    }
 
-//    private void xiangqing(String result) {
+    //    private void xiangqing(String result) {
 //
 //
 //

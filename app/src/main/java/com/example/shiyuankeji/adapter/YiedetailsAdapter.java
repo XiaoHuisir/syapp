@@ -217,7 +217,48 @@ public class YiedetailsAdapter extends BaseAdapter {
             tname.setText("间级单元责任人（现分）");
             tqian.setText(String.valueOf(list.getTotalprice()));
             tvCreatetime.setText(list.getCreatetime());
-        }else {
+        } else if (sharetype == 47) {
+            tname.setText("本-月奖金");
+            tqian.setText(String.valueOf(list.getTotalprice()));
+            tvCreatetime.setText(list.getCreatetime());
+        } else if (sharetype == 48) {
+            tname.setText("上-月奖金");
+            tqian.setText(String.valueOf(list.getTotalprice()));
+            tvCreatetime.setText(list.getCreatetime());
+        } else if (sharetype == 49) {
+            tname.setText("间-月奖金");
+            tqian.setText(String.valueOf(list.getTotalprice()));
+            tvCreatetime.setText(list.getCreatetime());
+        } else if (sharetype == 50) {
+            tname.setText("本-季奖金");
+            tqian.setText(String.valueOf(list.getTotalprice()));
+            tvCreatetime.setText(list.getCreatetime());
+        } else if (sharetype == 51) {
+            tname.setText("上-季奖金");
+            tqian.setText(String.valueOf(list.getTotalprice()));
+            tvCreatetime.setText(list.getCreatetime());
+        } else if (sharetype == 52) {
+            tname.setText("间-季奖金");
+            tqian.setText(String.valueOf(list.getTotalprice()));
+            tvCreatetime.setText(list.getCreatetime());
+        } else if (sharetype == 53) {
+            tname.setText("本-年奖金");
+            tqian.setText(String.valueOf(list.getTotalprice()));
+            tvCreatetime.setText(list.getCreatetime());
+        } else if (sharetype == 54) {
+            tname.setText("上-年奖金");
+            tqian.setText(String.valueOf(list.getTotalprice()));
+            tvCreatetime.setText(list.getCreatetime());
+        } else if (sharetype == 55) {
+            tname.setText("间-年奖金");
+            tqian.setText(String.valueOf(list.getTotalprice()));
+            tvCreatetime.setText(list.getCreatetime());
+        } else if (sharetype == 56) {
+            tname.setText("A级现-奖金");
+            tqian.setText(String.valueOf(list.getTotalprice()));
+            tvCreatetime.setText(list.getCreatetime());
+        }
+        else {
             le_.setVisibility(View.GONE);
         }
 

@@ -4,6 +4,7 @@ import android.text.TextUtils;
 import android.util.Log;
 
 
+import com.example.shiyuankeji.app.Constant;
 import com.example.shiyuankeji.interfaces.IBaseView;
 
 import io.reactivex.subscribers.ResourceSubscriber;
@@ -44,6 +45,11 @@ public abstract class CommonSubscriber<T> extends ResourceSubscriber<T> {
             mView.showError(errorMsg);
         }else{
             mView.showError();
+        }
+        //检测服务器是否中断(后加的不属于框架中的)
+        InterceptorUtil.InterceptorCallback callBack = InterceptorUtil.getInstance().getCallBack();
+        if (callBack != null) {
+            callBack.on401();
         }
 
     }

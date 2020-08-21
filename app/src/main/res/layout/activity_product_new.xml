@@ -153,8 +153,7 @@
                     <RelativeLayout
                         android:id="@+id/re_web"
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/dp_200"
-                        android:visibility="gone">
+                        android:layout_height="@dimen/dp_200">
 
                         <ProgressBar
                             android:id="@+id/web_progressBar"
@@ -177,10 +176,11 @@
                     <!--android:layout_height="wrap_content" />-->
 
 
-                        <android.support.v7.widget.RecyclerView
-                            android:id="@+id/relat_string"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent" />
+                    <android.support.v7.widget.RecyclerView
+                        android:layout_below="@+id/re_web"
+                        android:id="@+id/relat_string"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
                 </RelativeLayout>
             </LinearLayout>
         </ScrollView>

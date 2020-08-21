@@ -2,6 +2,7 @@ package com.example.shiyuankeji.adapter;
 
 import android.graphics.drawable.Drawable;
 import android.support.annotation.Nullable;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
@@ -14,6 +15,7 @@ import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.Target;
 import com.example.shiyuankeji.R;
+import com.example.shiyuankeji.app.Constant;
 import com.example.shiyuankeji.base.BaseAdapter;
 import com.example.shiyuankeji.utils.UIUtil;
 import com.squareup.picasso.Picasso;
@@ -32,7 +34,8 @@ public class WebStringAdapter extends BaseAdapter {
 
     @Override
     protected void bindData(BaseViewHolder holder, int positon, Object o) {
-        String o1 = (String) mDatas.get(positon);
+
+        String im = (String) mDatas.get(positon);
 
         final ImageView imag = (ImageView) holder.getView(R.id.image_string);
         final LinearLayout lin = (LinearLayout) holder.getView(R.id.lin);
@@ -52,13 +55,19 @@ public class WebStringAdapter extends BaseAdapter {
         params.rightMargin = (int) UIUtil.dp2px(mContext, padding);
         imag.setLayoutParams(params);
         imag.setImageResource(R.drawable.no_banner);
-
+        //判断是否存在视频
+        boolean indxler = im.contains(Constant.CONTAINS);
+        boolean iframe = im.contains(Constant.IFRAME);
+        if (indxler==true||iframe==true){
+            imag.setVisibility(View.GONE);
+        }else {
+       imag.setVisibility(View.VISIBLE);
         Picasso.with(mContext)
-                .load(o1)
+                .load(im)
                 .placeholder(R.drawable.no_banner)
                 .error(R.drawable.no_banner)
                 .into(imag);
-
+        }
     }
 //        Glide.with(mContext).load(o1).into(imag);
 //        RequestOptions options = new RequestOptions()

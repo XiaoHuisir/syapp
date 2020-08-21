@@ -9,10 +9,11 @@ import java.io.File;
  * Created by zhanghui on 20-3-30.
  */
 public class Constant {
-//        public static final String BaseUrl = "http://192.168.124.16:8080/"; //识缘  （局域网）  TODO  张文端
+//    public static final String BaseUrl = "http://192.168.124.16:8080/"; //识缘  （局域网）  TODO  张文端
 //        public static final String BaseUrl = "http://192.168.124.17:8080/"; //识缘  （局域网）  TODO  李聪
 //    public static final String BaseUrl = "http://api.mb.knowfate.com.cn/shiyuanshop-0.0.1-SNAPSHOT/"; //识缘 （服务器）
-    public static final String BaseUrl = "http://api.mb.knowfate.com.cn:8080/shiyuanshop-0.0.1-SNAPSHOT/"; //new 识缘 （服务器）
+//    public static final String BaseUrl = "http://api.mb.knowfate.com.cn:8080/shiyuanshop-0.0.1-SNAPSHOT/"; //new 识缘 （服务器）
+    public static final String BaseUrl = "https://api.mb.knowfate.com.cn:8080/"; //new 识缘 （ssl 服务器）
 
 
     //    public static final String URl = "http://123.206.58.124:8025/index/user/login";
@@ -56,7 +57,7 @@ public class Constant {
     public static final int STUDY_TYPE_3 = 3; //
 
     public static final int ONE_CODE = 10000;
-    public  static  String  IDS_CLASSFY="";
+    public static String IDS_CLASSFY = "";
     public static String CURTYPE = "";
     public static String MINE = "";
     public static final String STUD_TYPE_0 = "0";
@@ -82,11 +83,15 @@ public class Constant {
     public static int IDSAS = 0;
     public static int ZONG_JIA = 0;
     public static int NUM = 0;
-
+    public static final String CONTAINS = ".mp4";
+    public static final String IFRAME = "iframe";
     public static boolean IS_MINE = false;
     public static String IS_MINE_IS = "";
 
     public static boolean INXDLER = false;
     public static boolean CLASS_BOOLEAN = false;
+
+    //判断服务器是否异常
+    public  static  boolean SWEVER_SIDE=false;
 
 }

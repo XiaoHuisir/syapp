@@ -19,6 +19,7 @@
     <string name="login_ok_string">登录成功！</string>
     <string name="login_user_pwd_no_string">用户名或密码不正确！</string>
     <string name="login_jurisdiction_ok_string">请您同意权限，否则无法修改密码。</string>
+    <string name="serve_no">服务器维护中，请稍后重试</string>
     <string name="login_no_sd_string">无SD卡无法登录！</string>
     <string name="regoster_pho_null_string">手机号、密码和验证码不能为空！</string>
     <string name="regoster_pho_string">请输入手机号</string>

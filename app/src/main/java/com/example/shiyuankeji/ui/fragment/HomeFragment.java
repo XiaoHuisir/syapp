@@ -1,5 +1,6 @@
 package com.example.shiyuankeji.ui.fragment;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -8,11 +9,13 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -28,6 +31,7 @@ import com.example.shiyuankeji.interfaces.IBasePresenter;
 import com.example.shiyuankeji.interfaces.contract.HomeCotract;
 import com.example.shiyuankeji.presenter.HomePresenter;
 import com.example.shiyuankeji.ui.activity.ProductDetailsActivity;
+import com.example.shiyuankeji.utils.InterceptorUtil;
 import com.example.shiyuankeji.utils.SharedPreferencesUtil;
 import com.example.shiyuankeji.utils.ToastUtil;
 import com.youth.banner.Banner;
@@ -99,6 +103,32 @@ public class HomeFragment extends BaseFragment implements HomeCotract.View, Home
         //刷新
 //        refress();  //效果一 简单刷新
         newrefres(); //效果二  自动刷新
+        //检测服务器是否断链
+        InterceptorUtil.getInstance().registerCallBack(new InterceptorUtil.InterceptorCallback() {
+            @Override
+            public void on401() {
+                LayoutInflater inflater = getLayoutInflater();
+                //引入自定义好的对话框.xml布局
+                View layout = inflater.inflate(R.layout.login_sk_verfiy, null);
+                //实列提示对话框对象，并将加载的试图对象设置给对话框对象
+                final AlertDialog alertDialog = new AlertDialog.Builder(context).setView(layout).show();
+                final TextView yes = layout.findViewById(R.id.tv_ok);
+                final TextView no = layout.findViewById(R.id.tv_no);
+                final TextView tvTilte = layout.findViewById(R.id.tv_tilte);
+                tvTilte.setText(R.string.serve_no);
+                yes.setText(R.string.confirm);
+                no.setVisibility(View.GONE);
+                yes.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+//                        ((HomePresenter) mPresenter).home();
+                        alertDialog.dismiss();
+                        getActivity().finish();
+                    }
+                });
+
+            }
+        });
     }
 
     private void refress() {

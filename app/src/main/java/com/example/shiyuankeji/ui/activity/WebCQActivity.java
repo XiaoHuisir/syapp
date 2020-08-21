@@ -70,7 +70,7 @@ public class WebCQActivity extends BaseActivity {
 //                navTitle.setText(title);
             }
         });
-        webview.loadUrl("http://api.mb.knowfate.com.cn:8080/shiyuanshop-0.0.1-SNAPSHOT/toQualification");
+        webview.loadUrl("http://bc.knowfate.com.cn/aboutus.html");
     }
     @OnClick(R.id.btn_navi_back)
     public void onViewClicked() {

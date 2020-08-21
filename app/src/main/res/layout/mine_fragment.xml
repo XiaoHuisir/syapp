@@ -562,6 +562,7 @@
                         android:background="@color/line_gray" />
 
                     <RelativeLayout
+                        android:visibility="gone"
                         android:id="@+id/re_testing_center"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/dp_46">
@@ -595,6 +596,7 @@
                     </RelativeLayout>
 
                     <View
+                        android:visibility="gone"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/dp_1"
                         android:background="@color/line_gray" />

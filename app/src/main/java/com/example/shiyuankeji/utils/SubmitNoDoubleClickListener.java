@@ -9,7 +9,7 @@ import java.util.Calendar;
  */
 public abstract class SubmitNoDoubleClickListener implements View.OnClickListener{
 
-    public static final int MIN_CLICK_DELAY_TIME = 3000;//这里设置不能超过多长时间
+    public static final int MIN_CLICK_DELAY_TIME = 2000;//这里设置不能超过多长时间
 
     private long lastClickTime = 0;
 
