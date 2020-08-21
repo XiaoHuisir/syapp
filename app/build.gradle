@@ -131,4 +131,6 @@ dependencies {
 
 //picasso 加载大图
     implementation 'com.squareup.picasso:picasso:2.5.2'
+//    视频播放器
+    implementation 'cn.jzvd:jiaozivideoplayer:6.2.9'
 }

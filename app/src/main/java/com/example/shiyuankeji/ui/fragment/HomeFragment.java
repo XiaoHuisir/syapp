@@ -104,31 +104,31 @@ public class HomeFragment extends BaseFragment implements HomeCotract.View, Home
 //        refress();  //效果一 简单刷新
         newrefres(); //效果二  自动刷新
         //检测服务器是否断链
-        InterceptorUtil.getInstance().registerCallBack(new InterceptorUtil.InterceptorCallback() {
-            @Override
-            public void on401() {
-                LayoutInflater inflater = getLayoutInflater();
-                //引入自定义好的对话框.xml布局
-                View layout = inflater.inflate(R.layout.login_sk_verfiy, null);
-                //实列提示对话框对象，并将加载的试图对象设置给对话框对象
-                final AlertDialog alertDialog = new AlertDialog.Builder(context).setView(layout).show();
-                final TextView yes = layout.findViewById(R.id.tv_ok);
-                final TextView no = layout.findViewById(R.id.tv_no);
-                final TextView tvTilte = layout.findViewById(R.id.tv_tilte);
-                tvTilte.setText(R.string.serve_no);
-                yes.setText(R.string.confirm);
-                no.setVisibility(View.GONE);
-                yes.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-//                        ((HomePresenter) mPresenter).home();
-                        alertDialog.dismiss();
-                        getActivity().finish();
-                    }
-                });
-
-            }
-        });
+//        InterceptorUtil.getInstance().registerCallBack(new InterceptorUtil.InterceptorCallback() {
+//            @Override
+//            public void on401() {
+//                LayoutInflater inflater = getLayoutInflater();
+//                //引入自定义好的对话框.xml布局
+//                View layout = inflater.inflate(R.layout.login_sk_verfiy, null);
+//                //实列提示对话框对象，并将加载的试图对象设置给对话框对象
+//                final AlertDialog alertDialog = new AlertDialog.Builder(context).setView(layout).show();
+//                final TextView yes = layout.findViewById(R.id.tv_ok);
+//                final TextView no = layout.findViewById(R.id.tv_no);
+//                final TextView tvTilte = layout.findViewById(R.id.tv_tilte);
+//                tvTilte.setText(R.string.serve_no);
+//                yes.setText(R.string.confirm);
+//                no.setVisibility(View.GONE);
+//                yes.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+////                        ((HomePresenter) mPresenter).home();
+//                        alertDialog.dismiss();
+//                        getActivity().finish();
+//                    }
+//                });
+//
+//            }
+//        });
     }
 
     private void refress() {

@@ -21,6 +21,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -72,7 +73,8 @@ public class ProductDetailsActivity extends BaseActivity implements ProductDetai
     TextView tvFreight;
     @BindView(R.id.tv_stock)
     TextView tvStock;
-
+    @BindView(R.id.scrolls)
+    ScrollView scrollss;
     //    @BindView(R.id.lin_call_center)
 //    LinearLayout linCallCenter;
     @BindView(R.id.relat_string)
@@ -116,7 +118,7 @@ public class ProductDetailsActivity extends BaseActivity implements ProductDetai
 
     @Override
     protected void initView() {
-
+        scrollss.fullScroll(View.FOCUS_UP);
         reatString.setHasFixedSize(true);
         reatString.setNestedScrollingEnabled(false);
         ids = getIntent().getStringExtra("idsa");

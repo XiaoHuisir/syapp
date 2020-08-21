@@ -47,10 +47,10 @@ public abstract class CommonSubscriber<T> extends ResourceSubscriber<T> {
             mView.showError();
         }
         //检测服务器是否中断(后加的不属于框架中的)
-        InterceptorUtil.InterceptorCallback callBack = InterceptorUtil.getInstance().getCallBack();
-        if (callBack != null) {
-            callBack.on401();
-        }
+//        InterceptorUtil.InterceptorCallback callBack = InterceptorUtil.getInstance().getCallBack();
+//        if (callBack != null) {
+//            callBack.on401();
+//        }
 
     }
 

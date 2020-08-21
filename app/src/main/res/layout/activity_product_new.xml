@@ -33,6 +33,7 @@
         android:orientation="vertical">
 
         <ScrollView
+            android:id="@+id/scrolls"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/new_bag"
@@ -152,6 +153,7 @@
 
                     <RelativeLayout
                         android:id="@+id/re_web"
+                        android:visibility="gone"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/dp_200">
 
@@ -175,12 +177,18 @@
                     <!--android:layout_width="match_parent"-->
                     <!--android:layout_height="wrap_content" />-->
 
-
-                    <android.support.v7.widget.RecyclerView
-                        android:layout_below="@+id/re_web"
-                        android:id="@+id/relat_string"
+                    <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/re_web">
+
+                        <android.support.v7.widget.RecyclerView
+                            android:id="@+id/relat_string"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentTop="true" />
+                    </RelativeLayout>
+
                 </RelativeLayout>
             </LinearLayout>
         </ScrollView>
