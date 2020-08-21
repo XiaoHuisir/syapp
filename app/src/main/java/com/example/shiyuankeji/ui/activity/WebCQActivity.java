@@ -73,6 +73,7 @@ public class WebCQActivity extends BaseActivity {
         webview.loadUrl("http://bc.knowfate.com.cn/aboutus.html");
     }
     @OnClick(R.id.btn_navi_back)
+
     public void onViewClicked() {
         finish();
     }
