@@ -78,28 +78,29 @@
                         android:layout_alignParentTop="true"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="@dimen/dp_112"
-                        android:src="@drawable/pic" />
+                        android:src="@drawable/new_pic" />
+
+                    <!--<TextView-->
+                        <!--android:id="@+id/tv_no"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_below="@id/im_no"-->
+                        <!--android:layout_centerHorizontal="true"-->
+                        <!--android:layout_marginTop="@dimen/dp_10"-->
+                        <!--android:text="暂无地址"-->
+                        <!--android:visibility="gone"-->
+                        <!--android:textColor="@color/black"-->
+                        <!--android:textSize="@dimen/sp_16" />-->
 
                     <TextView
-                        android:id="@+id/tv_no"
+                        android:id="@+id/text_add_dizhi"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/im_no"
                         android:layout_centerHorizontal="true"
-                        android:layout_marginTop="@dimen/dp_20"
-                        android:text="暂无地址"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/sp_16" />
-
-                    <TextView
-
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/tv_no"
-                        android:layout_centerHorizontal="true"
                         android:layout_marginTop="@dimen/dp_8"
                         android:text="请添加地址"
-                        android:textColor="#969696"
+                        android:textColor="@color/newnew_bg"
                         android:textSize="@dimen/sp_16" />
 
                 </RelativeLayout>

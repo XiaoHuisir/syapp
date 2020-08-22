@@ -18,6 +18,7 @@ import com.example.shiyuankeji.bean.SubmitListBean;
 import com.example.shiyuankeji.interfaces.IBasePresenter;
 import com.example.shiyuankeji.interfaces.contract.SubmitListContract;
 import com.example.shiyuankeji.presenter.SubmitListPresenter;
+import com.example.shiyuankeji.utils.NoDoubleClickListener;
 import com.example.shiyuankeji.utils.SharedPreferencesUtil;
 import com.example.shiyuankeji.utils.ToastUtil;
 import com.example.shiyuankeji.utils.UtilsClicktime;
@@ -43,13 +44,13 @@ public class SelectAddressActivity extends BaseActivity implements SubmitListCon
     RelativeLayout reNoData;
     @BindView(R.id.re_okdata)
     RelativeLayout reOkData;
-
+    @BindView(R.id.text_add_dizhi)
+    TextView textAddDiZhi;
     private ArrayList<SubmitListBean.UserAddressLIstBean> list;
     private SubmitListAdapter submitListAdapter;
     private int typeid_;
     private int num_;
     private String mines = "";
-
 
 
     @Override
@@ -111,7 +112,7 @@ public class SelectAddressActivity extends BaseActivity implements SubmitListCon
 //                finish();
 //                break;
             case R.id.tv_add_site:
-                if (UtilsClicktime.isFastDoubleClick()){
+                if (UtilsClicktime.isFastDoubleClick()) {
                     return;
                 }
                 Intent intent = new Intent();
@@ -133,7 +134,7 @@ public class SelectAddressActivity extends BaseActivity implements SubmitListCon
     @Override
     public void submitlistReane(SubmitListBean submitListBean) {
         List<SubmitListBean.UserAddressLIstBean> user_addressLIst = submitListBean.getUser_addressLIst();
-        if (user_addressLIst != null&&user_addressLIst.size()>0) {
+        if (user_addressLIst != null && user_addressLIst.size() > 0) {
             reNoData.setVisibility(View.GONE);
             reOkData.setVisibility(View.VISIBLE);
             list.clear();
@@ -145,6 +146,20 @@ public class SelectAddressActivity extends BaseActivity implements SubmitListCon
             Toast.makeText(context, R.string.new_site_string, Toast.LENGTH_SHORT).show();
 //            ToastUtil toastUtil2 = new ToastUtil(context, R.layout.toast_center_horizontal, "请添加新地址！");
 //            toastUtil2.show();
+            textAddDiZhi.setOnClickListener(new NoDoubleClickListener() {
+                @Override
+                protected void onNoDoubleClick(View v) {
+                    Intent intent = new Intent();
+                    intent.setClass(context, AddressMessage.class);
+                    Constant.CURTYPE = "添加";
+                    intent.putExtra("id_s", typeid_);
+                    intent.putExtra("nu_m", num_);
+//                intent.putExtra("is_mine_is", Constant.IS_MINE_IS);
+//                Constant.IS_MINE_IS=true;
+                    startActivity(intent);
+                    finish();
+                }
+            });
         }
     }
 
@@ -158,41 +173,41 @@ public class SelectAddressActivity extends BaseActivity implements SubmitListCon
     @Override
     public void addressclick(SubmitListBean.UserAddressLIstBean listSubmit) {
 
-            int is_default = listSubmit.getIs_default();
-            Intent intent = new Intent();
-            intent.setClass(context, AddressMessage.class);
-            intent.putExtra("add_ress", listSubmit.getAddress());
-            intent.putExtra("names", listSubmit.getName());
-            intent.putExtra("id_dizhi", listSubmit.getId());
-            intent.putExtra("is_defaults", is_default); //判断是否设置成默认收货地址
-            intent.putExtra("phone", listSubmit.getPhone());
-            intent.putExtra("id_s", typeid_);
-            intent.putExtra("nu_m", num_);
+        int is_default = listSubmit.getIs_default();
+        Intent intent = new Intent();
+        intent.setClass(context, AddressMessage.class);
+        intent.putExtra("add_ress", listSubmit.getAddress());
+        intent.putExtra("names", listSubmit.getName());
+        intent.putExtra("id_dizhi", listSubmit.getId());
+        intent.putExtra("is_defaults", is_default); //判断是否设置成默认收货地址
+        intent.putExtra("phone", listSubmit.getPhone());
+        intent.putExtra("id_s", typeid_);
+        intent.putExtra("nu_m", num_);
 //        intent.putExtra("is_mine_is", Constant.IS_MINE_IS);
-            Constant.CURTYPE = "编辑";
-            startActivity(intent);
-            finish();
+        Constant.CURTYPE = "编辑";
+        startActivity(intent);
+        finish();
 
     }
 
     //submitlistadapter Submit0rders 回调方法
     @Override
     public void Submit0rdersclick(SubmitListBean.UserAddressLIstBean listSubmit) {
-        if (Constant.IS_MINE==false) {
+        if (Constant.IS_MINE == false) {
             SharedPreferencesUtil.setDeliveryAddress(context, true); //保存有、无 地址状态
 //            Toast.makeText(context,"-----------",Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent();
-        intent.setClass(context, Submit0rdersActivity.class);
-        intent.putExtra("getaddress", listSubmit.getAddress());
-        intent.putExtra("getname", listSubmit.getName());
-        intent.putExtra("getphone", listSubmit.getPhone());
-        intent.putExtra("indx_0", 100);
-        intent.putExtra("type_id", typeid_);
-        intent.putExtra("onid",String.valueOf(listSubmit.getId()));
-            Constant.INXDLER=true;
-        intent.putExtra("num", num_);
-        startActivity(intent);
-        finish();
+            Intent intent = new Intent();
+            intent.setClass(context, Submit0rdersActivity.class);
+            intent.putExtra("getaddress", listSubmit.getAddress());
+            intent.putExtra("getname", listSubmit.getName());
+            intent.putExtra("getphone", listSubmit.getPhone());
+            intent.putExtra("indx_0", 100);
+            intent.putExtra("type_id", typeid_);
+            intent.putExtra("onid", String.valueOf(listSubmit.getId()));
+            Constant.INXDLER = true;
+            intent.putExtra("num", num_);
+            startActivity(intent);
+            finish();
         } else {
 ////            Toast.makeText(context, "个人中心", Toast.LENGTH_LONG).show();
 //            ToastUtil toastUtil2 = new ToastUtil(context, R.layout.putong_toast_center_horizontal, "个人中心！");
