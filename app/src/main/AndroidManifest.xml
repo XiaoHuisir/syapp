@@ -122,7 +122,11 @@ android.permission.ACCESS_WIFI_STATE-->
         <activity
             android:name="com.example.shiyuankeji.widgets.wxapi.WXEntryActivity"
             android:exported="true" />
-        <activity android:name="com.example.shiyuankeji.ui.activity.ProductDetailsActivity" />
+        <!--商品详情-->
+        <activity android:name="com.example.shiyuankeji.ui.activity.ProductDetailsActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:screenOrientation="portrait"
+            />
         <!--提交订单-->
         <activity android:name="com.example.shiyuankeji.ui.activity.Submit0rdersActivity" />
         <!--（有）选中收货地址-->

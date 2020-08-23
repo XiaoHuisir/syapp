@@ -153,23 +153,45 @@
 
                     <RelativeLayout
                         android:id="@+id/re_web"
-                        android:visibility="gone"
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/dp_200">
+                        android:layout_height="@dimen/dp_200"
+                        android:layout_alignParentTop="true"
+                        android:visibility="gone">
 
-                        <ProgressBar
-                            android:id="@+id/web_progressBar"
-                            style="?android:attr/progressBarStyleHorizontal"
+                        <RelativeLayout
+                            android:id="@+id/relative_jcvideo"
                             android:layout_width="match_parent"
-                            android:layout_height="2dp"
+                            android:layout_height="match_parent"
                             android:layout_alignParentTop="true"
-                            android:progressDrawable="@drawable/progressbar_web"
-                            android:visibility="gone" />
+                            android:visibility="gone">
 
-                        <WebView
-                            android:id="@+id/webview"
+                            <fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard
+                                android:id="@+id/videocontroller"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent" />
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/relatice_web"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent" />
+                            android:layout_height="match_parent"
+                            android:visibility="gone">
+
+
+                            <ProgressBar
+                                android:id="@+id/web_progressBar"
+                                style="?android:attr/progressBarStyleHorizontal"
+                                android:layout_width="match_parent"
+                                android:layout_height="2dp"
+                                android:layout_alignParentTop="true"
+                                android:progressDrawable="@drawable/progressbar_web"
+                                android:visibility="gone" />
+
+                            <WebView
+                                android:id="@+id/webview"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent" />
+                        </RelativeLayout>
                     </RelativeLayout>
 
                     <!--<WebView-->

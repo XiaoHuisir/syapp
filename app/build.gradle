@@ -133,4 +133,6 @@ dependencies {
     implementation 'com.squareup.picasso:picasso:2.5.2'
 //    视频播放器
     implementation 'cn.jzvd:jiaozivideoplayer:6.2.9'
+//    节操视频播放器
+    implementation 'fm.jiecao:jiecaovideoplayer:5.5'
 }

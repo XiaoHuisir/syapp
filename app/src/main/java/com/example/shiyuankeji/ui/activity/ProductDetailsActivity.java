@@ -48,6 +48,8 @@ import java.util.Collections;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer;
+import fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard;
 
 //toItemsDetail idsa
 public class ProductDetailsActivity extends BaseActivity implements ProductDetailsContract.View, View.OnClickListener {
@@ -85,6 +87,12 @@ public class ProductDetailsActivity extends BaseActivity implements ProductDetai
     WebView webview;
     @BindView(R.id.re_web)
     RelativeLayout reWeb;
+    @BindView(R.id.relative_jcvideo)
+    RelativeLayout relativeJcvideo;
+    @BindView(R.id.relatice_web)
+    RelativeLayout relaticWeb;
+    @BindView(R.id.videocontroller)
+    JCVideoPlayerStandard videocontroller;
     private String ids;
     private ArrayList<StringBuffer> ims;
     private String img;
@@ -170,6 +178,24 @@ public class ProductDetailsActivity extends BaseActivity implements ProductDetai
         webview.loadUrl(mp);
     }
 
+private  void  initJcvideo(String video){
+
+    videocontroller.setUp(video,videocontroller.SCREEN_LAYOUT_NORMAL,"");
+}
+
+    @Override
+    public void onBackPressed() {
+        if (JCVideoPlayer.backPress()){
+            return;
+        }
+        super.onBackPressed();
+    }
+    @Override
+    public void onPause() {
+        super.onPause();
+        JCVideoPlayer.releaseAllVideos();
+    }
+
     private void initFindviewById() {
         linHome = findViewById(R.id.lin_home);
         linClassfy = findViewById(R.id.lin_classfy);
@@ -207,9 +233,10 @@ public class ProductDetailsActivity extends BaseActivity implements ProductDetai
 
             }
         });
-        imBeak.setOnClickListener(new NoDoubleClickListener() {
+        imBeak.setOnClickListener(new View.OnClickListener() {
             @Override
-            protected void onNoDoubleClick(View v) {
+            public void onClick(View v) {
+                JCVideoPlayer.releaseAllVideos();
                 finish();
             }
         });
@@ -427,12 +454,26 @@ public class ProductDetailsActivity extends BaseActivity implements ProductDetai
         String delimeter = ",";
         temp = sulimg.split(delimeter);
         String videos = temp[0];
+//           @BindView(R.id.relative_jcvideo)
+//    RelativeLayout relativeJcvideo;
+//    @BindView(R.id.relatice_web)
+//    RelativeLayout relaticWeb;
+//    @BindView(R.id.videocontroller)
+//    JCVideoPlayer videocontroller;
         if (videos != null) {
             boolean contains = videos.contains(Constant.CONTAINS);
-            boolean iframe = videos.contains(Constant.IFRAME);
-            if (contains == true||iframe==true) {
+            boolean iframe = videos.contains(Constant.IFRAME);//
+            if (iframe==true) {
                 reWeb.setVisibility(View.VISIBLE);
+                relaticWeb.setVisibility(View.VISIBLE);
+                relativeJcvideo.setVisibility(View.GONE);
                 initWeb(videos);
+            }else if (contains == true){
+                reWeb.setVisibility(View.VISIBLE);
+                relativeJcvideo.setVisibility(View.VISIBLE);
+                relaticWeb.setVisibility(View.GONE);
+                initJcvideo(videos);
+
             }else {
                 reWeb.setVisibility(View.GONE);
             }
