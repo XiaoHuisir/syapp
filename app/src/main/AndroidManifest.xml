@@ -184,6 +184,8 @@ android.permission.ACCESS_WIFI_STATE-->
         <activity android:name=".ui.activity.SetActivity"/>
         <!--智慧检测中心-->
         <activity android:name=".ui.activity.TestingCenterActivity"/>
+        <!--商品详情大图-->
+        <activity android:name=".ui.activity.PhotoAcitity"/>
     </application>
 
     <!--友盟统计配置Appkey与Channel-->

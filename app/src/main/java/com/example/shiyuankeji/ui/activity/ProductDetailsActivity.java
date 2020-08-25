@@ -52,7 +52,7 @@ import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer;
 import fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard;
 
 //toItemsDetail idsa
-public class ProductDetailsActivity extends BaseActivity implements ProductDetailsContract.View, View.OnClickListener {
+public class ProductDetailsActivity extends BaseActivity implements ProductDetailsContract.View, View.OnClickListener, WebStringAdapter.WebClickItem {
     private static final String TAG = "stringtimp";
     //    @BindView(R.id.lin_home)
 //    LinearLayout linHome;
@@ -449,6 +449,7 @@ private  void  initJcvideo(String video){
         strings = new ArrayList<>();
         reatString.setLayoutManager(new LinearLayoutManager(context));
         webStringAdapter = new WebStringAdapter(strings);
+        webStringAdapter.webClickItem=this;
         reatString.setAdapter(webStringAdapter);
         String[] temp;
         String delimeter = ",";
@@ -615,5 +616,14 @@ private  void  initJcvideo(String video){
 
             }
         });
+    }
+
+    @Override
+    public void webclickitem(String items) {
+        if (items==null)return;
+        Intent intent = new Intent();
+        intent.setClass(context,PhotoAcitity.class);
+        intent.putExtra("photo",items);
+        startActivity(intent);
     }
 }

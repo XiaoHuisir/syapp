@@ -12,6 +12,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.shiyuankeji.base.BaseActivity;
 import com.example.shiyuankeji.interfaces.IBasePresenter;
@@ -294,5 +295,22 @@ public class MainActivity extends BaseActivity {
                 break;
         }
     }
+    /**
+     * 连续按两次返回键，退出应用
+     */
+    private long exitTime = 0;
 
+    @Override
+    public void onBackPressed() {
+        doubleBackQuit();
+    }
+
+    private void doubleBackQuit() {
+        if (System.currentTimeMillis() - exitTime > 2000) {
+            Toast.makeText(getApplicationContext(), "再按一次退出程序", Toast.LENGTH_SHORT).show();
+            exitTime = System.currentTimeMillis();
+        } else {
+            finish();
+        }
+    }
 }

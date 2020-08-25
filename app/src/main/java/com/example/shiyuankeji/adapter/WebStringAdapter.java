@@ -23,6 +23,8 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 
 public class WebStringAdapter extends BaseAdapter {
+    public  WebClickItem webClickItem;
+
     public WebStringAdapter(ArrayList<String> mDatas) {
         super(mDatas);
     }
@@ -34,7 +36,6 @@ public class WebStringAdapter extends BaseAdapter {
 
     @Override
     protected void bindData(BaseViewHolder holder, int positon, Object o) {
-
         String im = (String) mDatas.get(positon);
 
         final ImageView imag = (ImageView) holder.getView(R.id.image_string);
@@ -49,7 +50,7 @@ public class WebStringAdapter extends BaseAdapter {
         float scale = 9f / 16f;
         //根据图片宽度和比例计算图片高度
         int imageHeight = (int) (imageWidth / scale);
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams( imageWidth,imageHeight);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(imageWidth, imageHeight);
         //设置左右边距
         params.leftMargin = (int) UIUtil.dp2px(mContext, padding);
         params.rightMargin = (int) UIUtil.dp2px(mContext, padding);
@@ -58,16 +59,27 @@ public class WebStringAdapter extends BaseAdapter {
         //判断是否存在视频
         boolean indxler = im.contains(Constant.CONTAINS);
         boolean iframe = im.contains(Constant.IFRAME);
-        if (indxler==true||iframe==true){
+        if (indxler == true || iframe == true) {
             imag.setVisibility(View.GONE);
-        }else {
-       imag.setVisibility(View.VISIBLE);
-        Picasso.with(mContext)
-                .load(im)
-                .placeholder(R.drawable.no_banner)
-                .error(R.drawable.no_banner)
-                .into(imag);
+        } else {
+            imag.setVisibility(View.VISIBLE);
+            Picasso.with(mContext)
+                    .load(im)
+                    .placeholder(R.drawable.no_banner)
+                    .error(R.drawable.no_banner)
+                    .into(imag);
         }
+        imag.setTag(mDatas.get(positon));
+        imag.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String tag = (String) v.getTag();
+                if (tag != null) {
+
+                    webClickItem.webclickitem(tag);
+                }
+            }
+        });
     }
 //        Glide.with(mContext).load(o1).into(imag);
 //        RequestOptions options = new RequestOptions()
@@ -78,4 +90,8 @@ public class WebStringAdapter extends BaseAdapter {
 //                .diskCacheStrategy(DiskCacheStrategy.NONE); //缓存
 //        Glide.with(mContext).load(o1).apply(options).into(imag);
 
+    public interface WebClickItem {
+        void webclickitem(String items);
+
+    }
 }

@@ -135,4 +135,10 @@ dependencies {
     implementation 'cn.jzvd:jiaozivideoplayer:6.2.9'
 //    节操视频播放器
     implementation 'fm.jiecao:jiecaovideoplayer:5.5'
+
+//    放大缩小图片
+    implementation 'com.bm.photoview:library:1.4.1'
+//    粒子效果
+    implementation 'me.samlss:bloom:1.0.0'
+
 }
