@@ -10,6 +10,7 @@ import com.example.shiyuankeji.bean.BankBean;
 import com.example.shiyuankeji.bean.CashBean;
 import com.example.shiyuankeji.bean.ClassBean;
 import com.example.shiyuankeji.bean.ClassListBean;
+import com.example.shiyuankeji.bean.CostBean;
 import com.example.shiyuankeji.bean.HomeBean;
 import com.example.shiyuankeji.bean.IdentityBean;
 import com.example.shiyuankeji.bean.InxtendBean;
@@ -233,6 +234,9 @@ public interface Api {
    //new  纳税专区  queryPractical
    @POST("queryPractical")
    Flowable<RatepayingBean> rateApi(@Header("token") String tokens);
+   //提现金额说明
+    @POST("PostMessage")
+    Flowable<CostBean> costApi(@Header("token") String  tokens);
 
 //    {
 //    "id": 34,

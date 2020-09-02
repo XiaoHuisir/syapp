@@ -41,6 +41,9 @@ import com.example.shiyuankeji.ui.activity.login.LoginActivity;
 import com.example.shiyuankeji.utils.NoDoubleClickListener;
 import com.example.shiyuankeji.utils.SharedPreferencesUtil;
 import com.example.shiyuankeji.utils.ToastUtil;
+import com.example.shiyuankeji.utils.UIUtil;
+import com.example.shiyuankeji.utils.ZoomImageView;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -621,9 +624,9 @@ private  void  initJcvideo(String video){
     @Override
     public void webclickitem(String items) {
         if (items==null)return;
-        Intent intent = new Intent();
-        intent.setClass(context,PhotoAcitity.class);
-        intent.putExtra("photo",items);
-        startActivity(intent);
+//        Intent intent = new Intent();
+//        intent.setClass(context,PhotoAcitity.class);
+//        intent.putExtra("photo",items);
+//        startActivity(intent);
     }
 }

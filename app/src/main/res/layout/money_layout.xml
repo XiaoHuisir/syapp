@@ -121,7 +121,7 @@
             android:layout_marginLeft="@dimen/dp_13"
             android:layout_marginTop="@dimen/dp_18"
             android:layout_marginRight="@dimen/dp_13"
-            android:text="提现金额需要大于100积分，且是100积分的倍数，同时提现将扣15%的手续费。"
+            android:text="提现金额需要大于100积分,且是100积分的倍数,同时提箱将扣除5%的手续费。"
             android:textColor="@color/main_gray"
             android:textSize="@dimen/sp_13" />
     </RelativeLayout>

@@ -25,6 +25,7 @@ import com.example.shiyuankeji.adapter.QueryStockAdapter;
 import com.example.shiyuankeji.adapter.QueryintegralAdapter;
 import com.example.shiyuankeji.base.BaseActivity;
 import com.example.shiyuankeji.bean.CashBean;
+import com.example.shiyuankeji.bean.CostBean;
 import com.example.shiyuankeji.bean.QueryIntegralBean;
 import com.example.shiyuankeji.bean.QueryLastWeekStockBean;
 import com.example.shiyuankeji.bean.QueryMinuteStockBean;
@@ -85,6 +86,7 @@ public class DetailsActivity extends BaseActivity implements IntegralDetailsCont
     public ArrayList<QueryLastWeekStockBean.UserAddLogListBean> list_queryLastWeekStock = new ArrayList<>();
 
     private String jine = "";
+    private String mmsg = "";
 
     @Override
     protected IBasePresenter getPresenter() {
@@ -225,6 +227,8 @@ public class DetailsActivity extends BaseActivity implements IntegralDetailsCont
         final LinearLayout btnCash = alertDialog.findViewById(R.id.btn_cash);//立即提现
         final LinearLayout imBack = alertDialog.findViewById(R.id.im_back);//关闭
         tvTilte.setText(R.string.cash_withdrawal_amount_string);
+        TextView tv = alertDialog.findViewById(R.id.tv_1);
+        tv.setText(mmsg);
         imBack.setOnClickListener(new NoDoubleClickListener() {
             @Override
             protected void onNoDoubleClick(View v) {
@@ -338,6 +342,7 @@ public class DetailsActivity extends BaseActivity implements IntegralDetailsCont
             ((IntegraIBetailsPresenter) mPresenter).queryStocks();
         } else if (jifen.equals("收益积分")) {
             ((IntegraIBetailsPresenter) mPresenter).queryMinuteStocks();
+            ((IntegraIBetailsPresenter) mPresenter).costs();
         }
     }
 
@@ -419,6 +424,13 @@ public class DetailsActivity extends BaseActivity implements IntegralDetailsCont
         }
 
         Toast.makeText(context, cashBean.getMsg(), Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void costRean(CostBean costBean) {
+        if (costBean==null||costBean.getMsg()==null)return;
+        String msg = costBean.getMsg();
+        mmsg=msg;
     }
 
 //    @OnClick({R.id.lin_wbeak, R.id.lin_WD, R.id.tv_record})

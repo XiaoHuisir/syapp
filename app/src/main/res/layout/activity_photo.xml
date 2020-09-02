@@ -2,10 +2,15 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:background="@color/black"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".ui.activity.PhotoAcitity">
-    <com.bm.library.PhotoView
+    <com.example.shiyuankeji.utils.ZoomImageView
         android:id="@+id/photoview"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" />
     <ImageView
