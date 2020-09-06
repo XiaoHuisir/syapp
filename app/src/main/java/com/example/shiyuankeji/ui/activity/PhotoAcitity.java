@@ -8,7 +8,11 @@ import android.widget.LinearLayout;
 
 import com.bm.library.PhotoView;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.Priority;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.shiyuankeji.R;
+import com.example.shiyuankeji.utils.GlideRoundTransform;
 import com.example.shiyuankeji.utils.UIUtil;
 import com.example.shiyuankeji.utils.ZoomImageView;
 import com.squareup.picasso.Picasso;
@@ -37,12 +41,21 @@ public class PhotoAcitity extends Activity {
         if (photo==null)return;
 //        photoview.enable();
 //        photoview.setAdjustViewBounds(true);
-//        Glide.with(this).load(photo).into(photoview);
+//        photoview.setImageResource(R.drawable.no_banner);
 
-        photoview.setImageResource(R.drawable.no_banner);
+//        Glide.with(this).load(photo).into(photoview);
+//        RequestOptions options = new RequestOptions()
+//                .centerCrop()
+//                .placeholder(R.drawable.no_banner) //预加载图片
+//                .error(R.drawable.no_banner) //加载失败图片
+//                .priority(Priority.HIGH) //优先级
+//                .diskCacheStrategy(DiskCacheStrategy.NONE) //缓存
+//                .transform(new GlideRoundTransform(3)); //圆角
+//        Glide.with(this).load(photo).apply(options).into(photoview);
+
         Picasso.with(this)
                 .load(photo)
-                .placeholder(R.drawable.no_banner)
+//                .placeholder(R.drawable.no_banner)
                 .error(R.drawable.no_banner)
                 .into(photoview);
     }

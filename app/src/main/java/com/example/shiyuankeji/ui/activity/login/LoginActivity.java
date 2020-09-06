@@ -33,6 +33,7 @@ import com.example.shiyuankeji.bean.LoginsBean;
 import com.example.shiyuankeji.interfaces.IBasePresenter;
 import com.example.shiyuankeji.interfaces.contract.LoginsContract;
 import com.example.shiyuankeji.presenter.login.LoginsPresenter;
+import com.example.shiyuankeji.ui.activity.AlterLoginPwdActivity;
 import com.example.shiyuankeji.ui.activity.UpdatePasswrdActivity;
 import com.example.shiyuankeji.ui.activity.VerifyAccountActivity;
 import com.example.shiyuankeji.utils.CardUtils;
@@ -79,6 +80,7 @@ public class LoginActivity extends BaseActivity implements LoginsContract.Views 
     private String pwdss = "";
     private LinearLayout btnLogin;
     private TextView tvRegister;
+    private TextView tvForgetPwd;
 
 
     @Override
@@ -109,6 +111,16 @@ public class LoginActivity extends BaseActivity implements LoginsContract.Views 
     }
 
     private void initFindViewById() {
+        tvForgetPwd = findViewById(R.id.tv_forget_pwd);
+        tvForgetPwd.setOnClickListener(new NoDoubleClickListener() { //忘记密码
+            @Override
+            protected void onNoDoubleClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(context, AlterLoginPwdActivity.class);
+                intent.putExtra("forgepwd","忘记密码");
+                startActivity(intent);
+            }
+        });
         btnLogin = findViewById(R.id.btn_login);
         btnLogin.setOnClickListener(new NoDoubleClickListener() { //登录
             @Override

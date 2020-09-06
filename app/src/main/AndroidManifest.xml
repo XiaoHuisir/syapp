@@ -186,6 +186,8 @@ android.permission.ACCESS_WIFI_STATE-->
         <activity android:name=".ui.activity.TestingCenterActivity"/>
         <!--商品详情大图-->
         <activity android:name=".ui.activity.PhotoAcitity"/>
+        <!--修改登录密码/忘记登录密码-->
+        <activity android:name=".ui.activity.AlterLoginPwdActivity"/>
     </application>
 
     <!--友盟统计配置Appkey与Channel-->

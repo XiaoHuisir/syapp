@@ -33,6 +33,8 @@ public class SetActivity extends BaseActivity {
     RelativeLayout reID;
     @BindView(R.id.re_exit)
     RelativeLayout reExit;
+    @BindView(R.id.re_alter_pwd)
+    RelativeLayout reAlterPwd;
     @BindView(R.id.scrollview)
     ScrollView scrollview;
 
@@ -47,10 +49,19 @@ public class SetActivity extends BaseActivity {
     }
 
 
-
-    @OnClick({R.id.im_wbeak, R.id.re_site, R.id.re_ID, R.id.re_exit})
+    @OnClick({R.id.im_wbeak, R.id.re_site, R.id.re_ID, R.id.re_exit, R.id.re_alter_pwd})
     public void onViewClicked(View view) {
         switch (view.getId()) {
+            case R.id.re_alter_pwd://修改密码
+                if (UtilsClicktime.isFastDoubleClick()) {
+                    return;
+                }
+                Intent intentalter = new Intent();
+                intentalter.setClass(context, AlterLoginPwdActivity.class);
+                intentalter.putExtra("forgepwd","修改密码");
+                startActivity(intentalter);
+
+                break;
             case R.id.im_wbeak:
                 finish();
                 break;

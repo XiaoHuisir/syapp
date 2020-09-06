@@ -624,9 +624,9 @@ private  void  initJcvideo(String video){
     @Override
     public void webclickitem(String items) {
         if (items==null)return;
-//        Intent intent = new Intent();
-//        intent.setClass(context,PhotoAcitity.class);
-//        intent.putExtra("photo",items);
-//        startActivity(intent);
+        Intent intent = new Intent();
+        intent.setClass(context,PhotoAcitity.class);
+        intent.putExtra("photo",items);
+        startActivity(intent);
     }
 }

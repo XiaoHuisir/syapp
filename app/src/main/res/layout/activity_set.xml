@@ -140,6 +140,38 @@
                     android:layout_marginLeft="@dimen/dp_13"
                     android:layout_marginRight="@dimen/dp_13"
                     android:background="@color/line_gray" />
+                <RelativeLayout
+                    android:id="@+id/re_alter_pwd"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_46">
+
+                    <ImageView
+                        android:id="@+id/iig5"
+                        android:layout_width="@dimen/dp_23"
+                        android:layout_height="@dimen/dp_23"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/dp_13"
+                        android:src="@mipmap/gerenxinxi" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/dp_13"
+                        android:layout_toRightOf="@+id/iig5"
+                        android:text="修改登录密码"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/sp_13" />
+
+                    <ImageView
+                        android:layout_width="6dp"
+                        android:layout_height="@dimen/dp_11"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/dp_13"
+                        android:src="@mipmap/jinru" />
+                </RelativeLayout>
             </LinearLayout>
                 <RelativeLayout
                     android:id="@+id/re_exit"

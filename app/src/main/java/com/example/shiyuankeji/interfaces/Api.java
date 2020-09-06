@@ -5,6 +5,7 @@ import com.example.shiyuankeji.bean.AddOrderistBean;
 import com.example.shiyuankeji.bean.AddRBean;
 import com.example.shiyuankeji.bean.AddUserBean;
 import com.example.shiyuankeji.bean.AliPayBean;
+import com.example.shiyuankeji.bean.AlterBean;
 import com.example.shiyuankeji.bean.AnddressBean;
 import com.example.shiyuankeji.bean.BankBean;
 import com.example.shiyuankeji.bean.CashBean;
@@ -237,6 +238,10 @@ public interface Api {
    //提现金额说明
     @POST("PostMessage")
     Flowable<CostBean> costApi(@Header("token") String  tokens);
+//    忘记密码|修改密码
+    @POST("amendPassword")
+    @FormUrlEncoded
+    Flowable<AlterBean> alterApi(@Field("phone_number") String phone, @Field("password") String pwd, @Field("verifyCode") String code);
 
 //    {
 //    "id": 34,
