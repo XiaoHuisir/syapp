@@ -90,6 +90,7 @@
     <string name="do_you_want_to_log_out">是否确认退出账号</string>
     <string name="exit_string">退出</string>
     <string name="cancel_string">取消</string>
+    <string name="check_the_details">查看明细</string>
     <!--//////-->
     <string name="mine_fragment">mine</string>
     <string name="home_fragment">home</string>

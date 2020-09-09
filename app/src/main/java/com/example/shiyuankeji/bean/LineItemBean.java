@@ -432,6 +432,9 @@ public class LineItemBean {
          * create_time : 2020-06-12
          * payment_time : 2020-06-22T14:58:41.000+0000
          * freight :1
+         * logistics : 韵达快递
+         * logistics_num : 1233122132
+         *  link:http : //www.baidu.com
          */
 
         private int id;
@@ -449,6 +452,33 @@ public class LineItemBean {
         private String create_time;
         private String payment_time;
         private  int  freight;
+        private  String  logistics;
+        private  String  logistics_num;
+        private  String  link;
+
+        public String getLink() {
+            return link;
+        }
+
+        public void setLink(String link) {
+            this.link = link;
+        }
+
+        public String getLogistics() {
+            return logistics;
+        }
+
+        public void setLogistics(String logistics) {
+            this.logistics = logistics;
+        }
+
+        public String getLogistics_num() {
+            return logistics_num;
+        }
+
+        public void setLogistics_num(String logistics_num) {
+            this.logistics_num = logistics_num;
+        }
 
         public int getFreight() {
             return freight;

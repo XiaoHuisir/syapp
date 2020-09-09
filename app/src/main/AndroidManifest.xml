@@ -188,6 +188,12 @@ android.permission.ACCESS_WIFI_STATE-->
         <activity android:name=".ui.activity.PhotoAcitity"/>
         <!--修改登录密码/忘记登录密码-->
         <activity android:name=".ui.activity.AlterLoginPwdActivity"/>
+        <!--查看明细-->
+        <activity android:name=".ui.activity.CheckTheDetailsActivity"/>
+        <!--发放详情-->
+        <activity android:name=".ui.activity.GrantDetailsActivity"/>
+        <!--已发放（查看更多）-->
+        <activity android:name=".ui.activity.SeeMoreActivity"/>
     </application>
 
     <!--友盟统计配置Appkey与Channel-->

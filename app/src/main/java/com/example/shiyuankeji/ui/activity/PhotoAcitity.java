@@ -24,8 +24,8 @@ import butterknife.OnClick;
 public class PhotoAcitity extends Activity {
     @BindView(R.id.photoview)
     ZoomImageView photoview;
-    @BindView(R.id.im_photo_beak)
-    ImageView imPhotoBeak;
+//    @BindView(R.id.im_photo_beak)
+//    ImageView imPhotoBeak;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,8 +60,8 @@ public class PhotoAcitity extends Activity {
                 .into(photoview);
     }
 
-    @OnClick(R.id.im_photo_beak)
-    public void onViewClicked() {
-        finish();
-    }
+//    @OnClick(R.id.im_photo_beak)
+//    public void onViewClicked() {
+//        finish();
+//    }
 }

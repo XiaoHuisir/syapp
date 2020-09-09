@@ -1,10 +1,16 @@
 package com.example.shiyuankeji.ui.activity;
 
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.content.Intent;
+import android.text.Html;
 import android.view.View;
+import android.webkit.WebView;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.Priority;
@@ -18,6 +24,7 @@ import com.example.shiyuankeji.interfaces.IBasePresenter;
 import com.example.shiyuankeji.interfaces.contract.LineItemConreact;
 import com.example.shiyuankeji.presenter.LineItemPresenter;
 import com.example.shiyuankeji.utils.GlideRoundTransform;
+import com.example.shiyuankeji.utils.NoDoubleClickListener;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -55,13 +62,21 @@ public class IineItemActivity extends BaseActivity implements LineItemConreact.V
     TextView tvWay;
     @BindView(R.id.t1)
     TextView tzhuangtai;
+    @BindView(R.id.tv_express)
+    TextView tvExpress;
+    @BindView(R.id.tv_fuzhi)
+    TextView tvFuzhi;
+    @BindView(R.id.tv_kuandi_name)
+    TextView tvKuandiName;
+    @BindView(R.id.btn_chaxun)
+    Button btnChaXun;
     private String indent_id;
 
     @Override
     protected void initView() {
         Intent intent = getIntent();
         indent_id = intent.getStringExtra("indent_id");
-
+        tvFuzhi.setText(Html.fromHtml("<u>"+"复制单号"+"</u>"));
     }
 
     @Override
@@ -92,7 +107,7 @@ public class IineItemActivity extends BaseActivity implements LineItemConreact.V
 
 
     @Override
-    public void lineitemReant(LineItemBean lineItemBean) {
+    public void lineitemReant(final LineItemBean lineItemBean) {
         if (lineItemBean != null) {
             // order_state //订单状态
             int order_state = lineItemBean.getOrder_list().getOrder_state();
@@ -101,9 +116,41 @@ public class IineItemActivity extends BaseActivity implements LineItemConreact.V
             tvOrderNum.setText("订单号：" + lineItemBean.getOrder_list().getOrder_num());
             txtName.setText("收货人：" + lineItemBean.getUser_address().getName());
             tvUserPhone.setText(lineItemBean.getUser_address().getPhone());
-            tvUserAdd.setText(lineItemBean.getUser_address().getAddress());
+            tvUserAdd.setText("收货地址:" + lineItemBean.getUser_address().getAddress());
+            String logistics = lineItemBean.getOrder_list().getLogistics();
+            if (logistics != null && !logistics.equals("")) {
 
+                tvKuandiName.setText(logistics);
+            } else {
+                tvKuandiName.setText("快递公司:暂无物流信息");
 
+            }
+            final String link = lineItemBean.getOrder_list().getLink();
+            String logistics_num = lineItemBean.getOrder_list().getLogistics_num();
+            if (logistics_num != null && !logistics_num.equals("")) {
+                tvExpress.setText(logistics_num);
+                tvFuzhi.setOnClickListener(new NoDoubleClickListener() {//复制快递编号
+                    @Override
+                    protected void onNoDoubleClick(View v) {
+                        ClipboardManager cm = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+                        cm.setText(lineItemBean.getOrder_list().getLogistics_num());
+                        Toast.makeText(context, R.string.copy_string, Toast.LENGTH_SHORT).show();
+                    }
+                });
+            } else {
+                tvExpress.setText("快递编号:暂无物流信息");
+            }
+            if (!link.equals("") && link != null) {
+                btnChaXun.setOnClickListener(new NoDoubleClickListener() {//快递查询
+                    @Override
+                    protected void onNoDoubleClick(View v) {
+                        WebView webView = new WebView(context);
+                        webView.loadUrl(link);
+                    }
+                });
+            } else {
+                return;
+            }
             RequestOptions options = new RequestOptions()
                     .centerCrop()
                     .placeholder(R.drawable.no_banner) //预加载图片
@@ -166,7 +213,7 @@ public class IineItemActivity extends BaseActivity implements LineItemConreact.V
             tvOrderState.setText(R.string.wait_for_receiving);
         } else if (order_state == Constant.ORDER_STATE_3) {
             tvOrderState.setText(R.string.performance);
-        } else if (order_state==Constant.ORDER_STATE_4){
+        } else if (order_state == Constant.ORDER_STATE_4) {
             tvOrderState.setText(R.string.data_exception);
         } else {
             tvOrderState.setText(R.string.order_to_be_confirmed);

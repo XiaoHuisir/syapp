@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <!--<TextView-->
+        <!--android:id="@+id/tv_time"-->
+        <!--android:textSize="@dimen/sp_15"-->
+        <!--android:text="time"-->
+        <!--android:padding="@dimen/dp_10"-->
+        <!--android:layout_alignParentLeft="true"-->
+        <!--android:layout_marginLeft="@dimen/dp_13"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content" />-->
+    <!--<TextView-->
+        <!--android:id="@+id/tv_price"-->
+        <!--android:textSize="@dimen/sp_15"-->
+        <!--android:text="0"-->
+       <!--android:layout_alignParentRight="true"-->
+        <!--android:layout_marginRight="@dimen/dp_13"-->
+        <!--android:padding="@dimen/dp_10"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content" />-->
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+</RelativeLayout>

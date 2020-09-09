@@ -77,6 +77,101 @@
 
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_80"
+        android:layout_marginLeft="@dimen/dp_13"
+        android:layout_marginTop="@dimen/dp_7"
+        android:layout_marginRight="@dimen/dp_13"
+        android:background="@drawable/mine_bgg"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="@dimen/dp_0"
+            android:layout_weight="1"
+            android:layout_height="match_parent">
+
+        </LinearLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_40">
+            <TextView
+                android:id="@+id/tv_1"
+                android:text="快递公司："
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp_13"
+                android:paddingTop="@dimen/dp_6"
+                android:layout_centerVertical="true"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="@dimen/dp_13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/tv_kuandi_name"
+                android:text="快递"
+                android:layout_alignBottom="@+id/tv_1"
+                android:layout_toRightOf="@+id/tv_1"
+                android:textSize="@dimen/sp_13"
+                android:paddingTop="@dimen/dp_6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <Button
+                android:id="@+id/btn_chaxun"
+                android:layout_width="@dimen/dp_60"
+                android:layout_height="@dimen/sp_25"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginRight="@dimen/dp_13"
+                android:layout_marginBottom="5dp"
+                android:background="@color/newnew_bg"
+                android:text="快递查询"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp_13" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_40">
+            <TextView
+                android:id="@+id/tv_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_13"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:textColor="@color/black"
+                android:paddingBottom="@dimen/dp_5"
+                android:text="快递单号："
+                android:textSize="@dimen/sp_13" />
+            <TextView
+                android:id="@+id/tv_express"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+              android:layout_toRightOf="@+id/tv_2"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/tv_fuzhi"
+                android:ellipsize="end"
+                android:paddingBottom="@dimen/dp_5"
+                android:maxLines="1"
+                android:text="单号"
+                android:textSize="@dimen/sp_13" />
+            <TextView
+                android:id="@+id/tv_fuzhi"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/dp_13"
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="复制单号"
+                android:textColor="@color/newnew_bg"
+                android:textSize="@dimen/sp_13" />
+        </RelativeLayout>
+
+
+
+
+
+
+    </LinearLayout>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -159,8 +254,8 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/re_site_k"
             android:layout_marginTop="7dp"
-            android:paddingBottom="@dimen/dp_27"
-            android:background="@drawable/mine_bgg">
+            android:background="@drawable/mine_bgg"
+            android:paddingBottom="@dimen/dp_27">
 
             <ImageView
                 android:id="@+id/im_item_img"
@@ -237,7 +332,7 @@
                 android:id="@+id/tv_leave_word"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-              android:layout_alignBottom="@+id/tv_order_price"
+                android:layout_alignBottom="@+id/tv_order_price"
                 android:layout_toLeftOf="@id/tv_order_price"
                 android:text="合计："
                 android:textColor="@color/black"
@@ -248,8 +343,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
-                android:layout_marginRight="@dimen/dp_4"
                 android:layout_alignBottom="@+id/t1"
+                android:layout_marginRight="@dimen/dp_4"
                 android:layout_toLeftOf="@+id/t1"
                 android:text="00"
                 android:textColor="@color/red"
@@ -259,9 +354,9 @@
                 android:id="@+id/t1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_item_freight"
                 android:layout_alignParentRight="true"
                 android:layout_marginTop="@dimen/dp_20"
-                android:layout_below="@+id/tv_item_freight"
                 android:layout_marginRight="@dimen/dp_13"
                 android:text="积分"
                 android:textColor="@color/red"
@@ -271,13 +366,13 @@
                 android:id="@+id/tv_way"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/tabbg"
-                android:textSize="@dimen/sp_15"
-                android:layout_marginTop="@dimen/dp_20"
                 android:layout_below="@+id/t1"
-                android:layout_marginRight="@dimen/dp_13"
                 android:layout_alignParentRight="true"
-                android:text="方式：xxx" />
+                android:layout_marginTop="@dimen/dp_20"
+                android:layout_marginRight="@dimen/dp_13"
+                android:text="方式：xxx"
+                android:textColor="@color/tabbg"
+                android:textSize="@dimen/sp_15" />
         </RelativeLayout>
     </RelativeLayout>
 

@@ -9,9 +9,11 @@ import com.example.shiyuankeji.bean.AlterBean;
 import com.example.shiyuankeji.bean.AnddressBean;
 import com.example.shiyuankeji.bean.BankBean;
 import com.example.shiyuankeji.bean.CashBean;
+import com.example.shiyuankeji.bean.CheckDetailsBean;
 import com.example.shiyuankeji.bean.ClassBean;
 import com.example.shiyuankeji.bean.ClassListBean;
 import com.example.shiyuankeji.bean.CostBean;
+import com.example.shiyuankeji.bean.GrantDetailsBean;
 import com.example.shiyuankeji.bean.HomeBean;
 import com.example.shiyuankeji.bean.IdentityBean;
 import com.example.shiyuankeji.bean.InxtendBean;
@@ -31,6 +33,7 @@ import com.example.shiyuankeji.bean.QueryStockBean;
 import com.example.shiyuankeji.bean.QueryTabBean;
 import com.example.shiyuankeji.bean.RatepayingBean;
 import com.example.shiyuankeji.bean.ScanCodeBean;
+import com.example.shiyuankeji.bean.SeeMoreBean;
 import com.example.shiyuankeji.bean.SmsSendBean;
 import com.example.shiyuankeji.bean.SubmitBean;
 import com.example.shiyuankeji.bean.SubmitListBean;
@@ -228,21 +231,36 @@ public interface Api {
     @POST("updateType3")
     @FormUrlEncoded
     Flowable<CashBean> cashApi(@Header("token") String tokens, @Field("score3") int order);
-   //new  邀请码  getInvitationCode
-   @POST("getInvitationCode")
-   Flowable<InxtendBean> inxtendApi(@Header("token") String tokens);
 
-   //new  纳税专区  queryPractical
-   @POST("queryPractical")
-   Flowable<RatepayingBean> rateApi(@Header("token") String tokens);
-   //提现金额说明
+    //new  邀请码  getInvitationCode
+    @POST("getInvitationCode")
+    Flowable<InxtendBean> inxtendApi(@Header("token") String tokens);
+
+    //new  纳税专区  queryPractical
+    @POST("queryPractical")
+    Flowable<RatepayingBean> rateApi(@Header("token") String tokens);
+
+    //提现金额说明
     @POST("PostMessage")
-    Flowable<CostBean> costApi(@Header("token") String  tokens);
-//    忘记密码|修改密码
+    Flowable<CostBean> costApi(@Header("token") String tokens);
+
+    //    忘记密码|修改密码
     @POST("amendPassword")
     @FormUrlEncoded
     Flowable<AlterBean> alterApi(@Field("phone_number") String phone, @Field("password") String pwd, @Field("verifyCode") String code);
 
+    // 收入明细
+    @POST("queryTotalPrice")
+    Flowable<CheckDetailsBean> checkdetailsApi(@Header("token") String tokens);
+
+    //    收入明细详情
+    @POST("queryDayTotalPrice")
+    @FormUrlEncoded
+    Flowable<GrantDetailsBean> grantdetailsApi(@Header("token") String tokens, @Field("createtime") String createtime);
+
+    //    已发放（查看更多）
+    @POST("queryMonthTotal")
+    Flowable<SeeMoreBean> seemoreApi(@Header("token") String tokens);
 //    {
 //    "id": 34,
 //    "nick_name": "N号初级合作组",

@@ -48,6 +48,14 @@
             android:textColor="@color/newnew_bg"
             android:textSize="@dimen/sp_16" />
     </RelativeLayout>
-
+<View
+    android:layout_below="@+id/le_"
+    android:layout_width="wrap_content"
+    android:layout_marginLeft="@dimen/dp_10"
+    android:layout_marginRight="@dimen/dp_13"
+    android:layout_alignParentLeft="true"
+    android:background="#f0f0f0"
+    android:layout_alignParentRight="true"
+    android:layout_height="@dimen/dp_1"/>
 
 </RelativeLayout>

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.LinearLayout;
@@ -22,6 +23,7 @@ import com.example.shiyuankeji.interfaces.IBasePresenter;
 import com.example.shiyuankeji.interfaces.contract.QueryEarningsContract;
 import com.example.shiyuankeji.presenter.HomePresenter;
 import com.example.shiyuankeji.presenter.QueryEarningsPresenter;
+import com.example.shiyuankeji.utils.UtilsClicktime;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 
 import java.util.ArrayList;
@@ -50,6 +52,10 @@ public class YieldActivity extends BaseActivity implements QueryEarningsContract
     SwipeRefreshLayout smartRefs;
     @BindView(R.id.scroll_view)
     ScrollView  scrollView;
+    @BindView(R.id.tv_the_details)
+    TextView tvDetails;
+    @BindView(R.id.lin_details)
+    LinearLayout linDetails;
     private boolean indxler =false;
     private ArrayList<QueryEarningsBean.ShareInfoVoBean> listyieid;
     private YieldAdapter yieldAdapter;
@@ -74,6 +80,7 @@ public class YieldActivity extends BaseActivity implements QueryEarningsContract
        newrefres(indxler); //自动刷新
         reeYield.setHasFixedSize(true);
         reeYield.setNestedScrollingEnabled(false);
+        tvDetails.setText(Html.fromHtml("<u>"+"查看明细"+"</u>"));
         listyieid = new ArrayList<>();
         reeYield.setLayoutManager(new LinearLayoutManager(context));//管理器
         //适配器
@@ -82,11 +89,19 @@ public class YieldActivity extends BaseActivity implements QueryEarningsContract
         reeYield.setAdapter(yieldAdapter);
     }
 
-    @OnClick({R.id.rell})
+    @OnClick({R.id.rell,R.id.lin_details})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.rell:
                 finish();
+                break;
+            case R.id.lin_details://查看明细
+                if (UtilsClicktime.isFastDoubleClick()) {
+                    return;
+                }
+                Intent intent = new Intent();
+                intent.setClass(context,CheckTheDetailsActivity.class);
+                startActivity(intent);
                 break;
         }
     }
