@@ -49,6 +49,7 @@ public class SubmitBean {
          * listing_Time : null
          * offshelf_Time : null
          * cate : {"id":8,"cateid":4,"name":"追风马4g儿童手表","weight":6,"isshow":1,"itemsList":null}
+         * identifying:1
          */
 
         private int id;
@@ -74,6 +75,15 @@ public class SubmitBean {
         private CateBean cate;
         private  int  rmb_price;
         private  int  src_price_rmb;
+        private int identifying;
+
+        public int getIdentifying() {
+            return identifying;
+        }
+
+        public void setIdentifying(int identifying) {
+            this.identifying = identifying;
+        }
 
         public int getRmb_price() {
             return rmb_price;

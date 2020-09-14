@@ -34,6 +34,7 @@ import com.example.shiyuankeji.presenter.MinePresenter;
 import com.example.shiyuankeji.ui.activity.BusinessActivity;
 import com.example.shiyuankeji.ui.activity.CashAcitivity;
 import com.example.shiyuankeji.ui.activity.DetailsActivity;
+import com.example.shiyuankeji.ui.activity.ExperienceActivity;
 import com.example.shiyuankeji.ui.activity.MyInxtendActivity;
 import com.example.shiyuankeji.ui.activity.MyQRActivity;
 import com.example.shiyuankeji.ui.activity.MyScanCodeActivity;
@@ -106,17 +107,21 @@ public class MineFragment extends BaseFragment implements MineContract.View {
     @BindView(R.id.tv_tixianmoney)
     TextView tvTiXianMoney;
     @BindView(R.id.re_extend) //new  推广海报
-    RelativeLayout reExtend;
+            RelativeLayout reExtend;
     @BindView(R.id.re_my_invite) //new 我的邀请码
-    RelativeLayout reMyInvitep;
+            RelativeLayout reMyInvitep;
     @BindView(R.id.re_ratepaying) //new 我的邀请码
-    RelativeLayout reRatepaying; //纳税专区
+            RelativeLayout reRatepaying; //纳税专区
     @BindView(R.id.scroll_view)
     ScrollView scroll;
     @BindView(R.id.im_set)
     ImageView imSet;
     @BindView(R.id.re_testing_center)
     RelativeLayout reTetingCenter;
+    @BindView(R.id.lin_experience)
+    LinearLayout linExperience;
+    @BindView(R.id.tv_experience)
+    TextView tvExperience;
 
     private String phone_number;
     private String name;
@@ -128,7 +133,7 @@ public class MineFragment extends BaseFragment implements MineContract.View {
     private String score2 = "";
     private String score3_1 = "";
     private String msg;
-    private String deducts="";
+    private String deducts = "";
     //    private String invitation_code = ""; //二维码
 
     @Override
@@ -193,6 +198,7 @@ public class MineFragment extends BaseFragment implements MineContract.View {
             }
         });
     }
+
     private void refress() {
         swipeRefres.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -252,30 +258,37 @@ public class MineFragment extends BaseFragment implements MineContract.View {
     }
 
 
-    @OnClick({R.id.lin_synergic, R.id.lin_business, R.id.re_yield,R.id.re_ratepaying,R.id.im_set,
-            R.id.lin_sales_unit, R.id.re_CQ, R.id.re_QR, R.id.im_sao_ma, R.id.lin_shop,R.id.re_testing_center,
+    @OnClick({R.id.lin_synergic, R.id.lin_business, R.id.re_yield, R.id.re_ratepaying, R.id.im_set, R.id.lin_experience,
+            R.id.lin_sales_unit, R.id.re_CQ, R.id.re_QR, R.id.im_sao_ma, R.id.lin_shop, R.id.re_testing_center,
             R.id.lin_donate, R.id.lin_stock, R.id.lin_fh, R.id.re_personage, R.id.re_ID,
-            R.id.re_site, R.id.re_exit,R.id.lin_cash,R.id.re_my_invite,R.id.re_extend})
+            R.id.re_site, R.id.re_exit, R.id.lin_cash, R.id.re_my_invite, R.id.re_extend})
     public void onViewClicked(View view) {
         Intent intent03 = new Intent();
         switch (view.getId()) {
+            case R.id.lin_experience://体验积分
+                intent03.setClass(context, ExperienceActivity.class);
+                intent03.putExtra("experience",score4);
+                startActivity(intent03);
+                break;
             case R.id.re_testing_center: //智慧检测中心
-                if (UtilsClicktime.isFastDoubleClick())return;
+                if (UtilsClicktime.isFastDoubleClick()) return;
                 intent03.setClass(context, TestingCenterActivity.class);
                 startActivity(intent03);
                 break;
             case R.id.im_set:  //设置
-                if (UtilsClicktime.isFastDoubleClick()){return;}
+                if (UtilsClicktime.isFastDoubleClick()) {
+                    return;
+                }
                 intent03.setClass(context, SetActivity.class);
                 startActivity(intent03);
                 break;
             case R.id.re_ratepaying: //纳税专区
-                    if (UtilsClicktime.isFastDoubleClick()){
-                        return;
-                    }
-                    intent03.setClass(context, RatepayingActivity.class);
-                    intent03.putExtra("deducts_s",deducts);
-                    startActivity(intent03);
+                if (UtilsClicktime.isFastDoubleClick()) {
+                    return;
+                }
+                intent03.setClass(context, RatepayingActivity.class);
+                intent03.putExtra("deducts_s", deducts);
+                startActivity(intent03);
                 break;
             case R.id.re_my_invite: //我的邀请码
                 if (UtilsClicktime.isFastDoubleClick()) {
@@ -490,15 +503,15 @@ public class MineFragment extends BaseFragment implements MineContract.View {
 //            StateHandling();
             SharedPreferencesUtil.deleteToken(MyApp.mApp);
             String token = SharedPreferencesUtil.getToken(MyApp.mApp);
-            SharedPreferencesUtil.addUserToken(context,token);
+            SharedPreferencesUtil.addUserToken(context, token);
             Constant.token = token;
             intent.setClass(context, LoginActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
             getActivity().finish();
-        }else {
+        } else {
             String token = SharedPreferencesUtil.getToken(MyApp.mApp);
-            SharedPreferencesUtil.addUserToken(context,token);
+            SharedPreferencesUtil.addUserToken(context, token);
             Constant.token = token;
         }
     }
@@ -522,6 +535,7 @@ public class MineFragment extends BaseFragment implements MineContract.View {
             score4 = String.valueOf(mineBean.getScore4());
             score3_1 = String.valueOf(mineBean.getScore3());
             tvScore3_1.setText(score3_1);
+            tvExperience.setText(score4);
 //invitation_code   http://192.168.124.14:8080/toRegister,shiyuanInvitationCode=15atgs
 //            invitation_code = mineBean.getInvitation_code(); //二维码
             double deduct = mineBean.getDeduct();

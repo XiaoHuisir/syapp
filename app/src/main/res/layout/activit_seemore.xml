@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/newnew_newbg"
     android:paddingBottom="@dimen/dp_13"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.activity.SeeMoreActivity">
+
     <View
         android:id="@+id/vi1"
         android:layout_width="match_parent"
@@ -28,8 +29,8 @@
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/dp_16"
-            android:padding="@dimen/dp_10"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:padding="@dimen/dp_10">
 
             <ImageView
                 android:layout_width="@dimen/dp_15"
@@ -58,24 +59,25 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/rell"
-        android:paddingBottom="@dimen/dp_13"
-        android:background="@drawable/mine_bgg"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_marginLeft="@dimen/dp_13"
         android:layout_marginTop="@dimen/dp_14"
-        android:layout_marginRight="@dimen/dp_13">
-                <RelativeLayout
-                    android:layout_alignParentTop="true"
-                    android:background="@color/tou_ming"
+        android:layout_marginRight="@dimen/dp_13"
+        android:background="@drawable/mine_bgg"
+        android:paddingBottom="@dimen/dp_13">
 
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <android.support.v7.widget.RecyclerView
-                        android:id="@+id/recycler_seemore"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:background="@color/tou_ming">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycler_seemore"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
     </RelativeLayout>
 
     <RelativeLayout

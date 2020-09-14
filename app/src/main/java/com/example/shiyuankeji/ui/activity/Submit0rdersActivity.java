@@ -54,21 +54,24 @@ public class Submit0rdersActivity extends BaseActivity implements SubmitContract
     ImageView imageView14;
     @BindView(R.id.ali_check)
     CheckBox aliCheck;
+    @BindView(R.id.ali_chexper)
+    CheckBox aliChexper;
     @BindView(R.id.ll_ali)
     LinearLayout llAli;
     @BindView(R.id.ll_jifen)
     LinearLayout llJifen;
-
+    @BindView(R.id.ll_exper_jifen)
+    LinearLayout llExperJifen;
     //    private IWXAPI api;
     private static final int SDK_PAY_FLAG = 1;
 
-//    @BindView(R.id.re_on)
+    //    @BindView(R.id.re_on)
 //    RelativeLayout reOn;
 //    @BindView(R.id.re_site_ok)
 //    RelativeLayout reSiteOk;
     @BindView(R.id.relative_on_)
     RelativeLayout relativeOn_;
-//    @BindView(R.id.btn_exchangOn)
+    //    @BindView(R.id.btn_exchangOn)
 //    Button btnExchangOn;
     @BindView(R.id.im_1)
     ImageView im_;
@@ -115,7 +118,10 @@ public class Submit0rdersActivity extends BaseActivity implements SubmitContract
     private RelativeLayout reSiteOk;
     private RelativeLayout reOn;
     private Button btnExchangOn;
-
+    //商标购买标识 1.购物积分 2.体验积分 3.混合积分
+    private final static int GOUWU = 1;
+    private final static int TIYAN = 2;
+    private final static int HUNHE = 3;
 
     @Override
     protected IBasePresenter getPresenter() {
@@ -129,22 +135,32 @@ public class Submit0rdersActivity extends BaseActivity implements SubmitContract
 
 
     //TODO
-    @OnClick({  R.id.relative_on_,  R.id.ll_wechat, R.id.ll_jifen, R.id.ll_ali})
+    @OnClick({R.id.relative_on_, R.id.ll_wechat, R.id.ll_jifen, R.id.ll_ali, R.id.ll_exper_jifen})
     public void onViewClicked(View view) {
         switch (view.getId()) {
+            case R.id.ll_exper_jifen://体验积分支付
+                aliCheck.setChecked(false);
+                jifenCheck.setChecked(false);
+                wechatCheck.setChecked(false);
+                aliChexper.setChecked(!aliChexper.isChecked());
+
+                break;
             case R.id.ll_wechat:
                 aliCheck.setChecked(false);
                 jifenCheck.setChecked(false);
+                aliChexper.setChecked(false);
                 wechatCheck.setChecked(!wechatCheck.isChecked());
                 break;
             case R.id.ll_ali:
                 wechatCheck.setChecked(false);
                 jifenCheck.setChecked(false);
+                aliChexper.setChecked(false);
                 aliCheck.setChecked(!aliCheck.isChecked());
                 break;
-            case R.id.ll_jifen:
+            case R.id.ll_jifen: //购物积分支付
                 wechatCheck.setChecked(false);
                 aliCheck.setChecked(false);
+                aliChexper.setChecked(false);
                 jifenCheck.setChecked(!jifenCheck.isChecked());
                 break;
 //            case R.id.re_site_ok: //有 地址管理
@@ -311,7 +327,8 @@ public class Submit0rdersActivity extends BaseActivity implements SubmitContract
         Thread payThread = new Thread(payRunnable);
         payThread.start();
     }
-        //TODO 积分支付
+
+    //TODO 积分支付
     private void jifezhifu() {
         if (Constant.INXDLER == false) {
 
@@ -379,6 +396,10 @@ public class Submit0rdersActivity extends BaseActivity implements SubmitContract
                     } else if (jifenCheck.isChecked()) {
                         Toast.makeText(context, R.string.integral_string, Toast.LENGTH_SHORT).show();
                         jifezhifu();
+                    } else if (aliChexper.isChecked()) {
+                        Toast.makeText(context, R.string.exper_string, Toast.LENGTH_SHORT).show();
+                        exper();
+
                     } else {
                         Toast.makeText(context, R.string.selet_way_string, Toast.LENGTH_SHORT).show();
 //                        ToastUtil toastUtil2 = new ToastUtil(context, R.layout.putong_toast_center_horizontal, "请选择支付方式！");
@@ -388,7 +409,7 @@ public class Submit0rdersActivity extends BaseActivity implements SubmitContract
 //                    new ToastUtil(context, R.layout.toast_center_horizontal, "请选择收货地址").show();
 //                    ToastUtil toastUtil2 = new ToastUtil(context, R.layout.putong_toast_center_horizontal, "请选择收货地址！");
 //                    toastUtil2.show();
-                    Toast.makeText(context,R.string.selet_site_string,Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, R.string.selet_site_string, Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -420,6 +441,29 @@ public class Submit0rdersActivity extends BaseActivity implements SubmitContract
         });
     }
 
+    private void exper() {
+        if (Constant.INXDLER == false) {
+
+
+            HashMap<String, String> maps = new HashMap<>();
+
+            maps.put("num", String.valueOf(Constant.NUM));//num
+            maps.put("order_price", String.valueOf(Constant.ZONG_JIA));//tvZong
+            maps.put("idsa", String.valueOf(Constant.IDSAS)); //商品编号idsas
+            maps.put("addressid", isid);
+            maps.put("paymentMethod", String.valueOf(526));
+            ((SubmitPresenter) mPresenter).addOrders(maps);
+        } else if (Constant.INXDLER == true) {
+            HashMap<String, String> maps = new HashMap<>();
+            maps.put("num", String.valueOf(Constant.NUM));//num
+            maps.put("order_price", String.valueOf(Constant.ZONG_JIA));//tvZong
+            maps.put("idsa", String.valueOf(Constant.IDSAS)); //商品编号idsas
+            maps.put("addressid", onid);
+            maps.put("paymentMethod", String.valueOf(526));
+            ((SubmitPresenter) mPresenter).addOrders(maps);
+        }
+    }
+
     @Override
     protected void initData() {//typeid
         ((SubmitPresenter) mPresenter).submit(typeid);
@@ -444,6 +488,18 @@ public class Submit0rdersActivity extends BaseActivity implements SubmitContract
 //        items
         SubmitBean.ItemsBean items = submitBean.getItems();
         if (items != null) {
+            int identifying = items.getIdentifying();
+            if (identifying == GOUWU) {
+                llExperJifen.setVisibility(View.GONE);
+            } else if (identifying == TIYAN) {
+                llJifen.setVisibility(View.GONE);
+
+            } else if (identifying == HUNHE) {
+                llJifen.setVisibility(View.GONE);
+                llExperJifen.setVisibility(View.GONE);
+            } else {
+                Toast.makeText(context, "暂无此支付方式", Toast.LENGTH_SHORT).show();
+            }
             String namess = items.getName(); //产品名称
             //运费
             freight = items.getFreight();
@@ -476,24 +532,25 @@ public class Submit0rdersActivity extends BaseActivity implements SubmitContract
             String address = user_address.getAddress();//用户地址
 //            tvOrderNum.setText("订单号 "+phone);
             if (indxler == true) {
-                txtName.setText("收货人："+name);
+                txtName.setText("收货人：" + name);
                 textDahao.setText(phone);
-                textDizhi.setText("收货地址："+address);
+                textDizhi.setText("收货地址：" + address);
             } else {
-                txtName.setText("收货人："+get_name);
+                txtName.setText("收货人：" + get_name);
                 textDahao.setText(get_phone);
-                textDizhi.setText("收货地址："+get_address);
+                textDizhi.setText("收货地址：" + get_address);
             }
             if (type == 100) {
-                txtName.setText("收货人："+getname);
+                txtName.setText("收货人：" + getname);
                 textDahao.setText(getphone);
-                textDizhi.setText("收货地址："+getaddress);
+                textDizhi.setText("收货地址：" + getaddress);
             }
 
 
         }
     }
-//TODO 积分不足
+
+    //TODO 积分不足
     @Override
     public void addOrderRean(AddOrderistBean addOrderistBean) {
         if (addOrderistBean != null) {
@@ -511,11 +568,11 @@ public class Submit0rdersActivity extends BaseActivity implements SubmitContract
                 if (!data.equals("") && data != null) {
                     aliPay(data);
                 }
-            } else if (order_state==206){
-                Toast.makeText(context,R.string.understock_string,Toast.LENGTH_SHORT).show();
+            } else if (order_state == 206) {
+                Toast.makeText(context, R.string.understock_string, Toast.LENGTH_SHORT).show();
 //                ToastUtil toastUtil = new ToastUtil(context, R.layout.toast_center_horizontal, "库存不足！");
 //                toastUtil.show();
-            }else if (order_state==204){
+            } else if (order_state == 204) {
                 LayoutInflater inflater = getLayoutInflater();
                 //引入自定义好的对话框.xml布局
                 View layout = inflater.inflate(R.layout.is_submit_layout, null);
@@ -540,7 +597,7 @@ public class Submit0rdersActivity extends BaseActivity implements SubmitContract
 
                     }
                 });
-            }else {
+            } else {
                 Toast.makeText(context, addOrderistBean.getMsg(), Toast.LENGTH_SHORT).show();
                 Intent intent2 = new Intent();
                 intent2.setClass(context, MainActivity.class);

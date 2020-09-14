@@ -26,7 +26,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @NonNull
     @Override
-    public RecyclerViewAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         RecyclerViewAdapter.ViewHolder viewHolder = null;
         if (viewHolder == null) {
             View itemView = LayoutInflater.from(context).inflate(R.layout.item_recyclerview_text, viewGroup, false);
@@ -50,6 +50,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public int getItemCount() {
         return list == null ? 0 : list.size();
     }
+
     /**
      * 判断position对应的Item是否是组的第一项
      *
@@ -57,19 +58,24 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
      * @return
      */
     public boolean isItemHeader(int position) {
-        if (position == 0) {
+        if (position == 0||position-1==0) {
             return true;
         } else {
-            String lastGroupName = list.get(position - 1).getMonthTatalPrice();
             String currentGroupName = list.get(position).getMonthTatalPrice();
-            //判断上一个数据的组别和下一个数据的组别是否一致，如果不一致则是不同组，也就是为第一项（头部）
-            if (lastGroupName.equals(currentGroupName)) {
-                return false;
-            } else {
+            String lastGroupName = list.get(position - 1).getMonthTatalPrice();
+            if (lastGroupName != null ||currentGroupName != null) {
+                //判断上一个数据的组别和下一个数据的组别是否一致，如果不一致则是不同组，也就是为第一项（头部）
+                if (lastGroupName.equals(currentGroupName)) {
+                    return false;
+                } else {
+                    return true;
+                }
+            }else {
                 return true;
             }
         }
     }
+
     /**
      * 获取position对应的Item组名
      *
@@ -84,9 +90,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         TextView tvTiem;
         TextView tvPrice;
         RecyclerView recycler;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-         recycler = itemView.findViewById(R.id.recycler);
+            recycler = itemView.findViewById(R.id.recycler);
 //            tvTiem = itemView.findViewById(R.id.tv_time);
 //            tvPrice = itemView.findViewById(R.id.tv_price);
         }

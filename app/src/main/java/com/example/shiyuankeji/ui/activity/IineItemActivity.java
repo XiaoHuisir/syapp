@@ -76,7 +76,7 @@ public class IineItemActivity extends BaseActivity implements LineItemConreact.V
     protected void initView() {
         Intent intent = getIntent();
         indent_id = intent.getStringExtra("indent_id");
-        tvFuzhi.setText(Html.fromHtml("<u>"+"复制单号"+"</u>"));
+        tvFuzhi.setText(Html.fromHtml("<u>" + "复制单号" + "</u>"));
     }
 
     @Override
@@ -114,15 +114,15 @@ public class IineItemActivity extends BaseActivity implements LineItemConreact.V
             initOrderState(order_state);
 
             tvOrderNum.setText("订单号：" + lineItemBean.getOrder_list().getOrder_num());
-            txtName.setText("收货人：" + lineItemBean.getUser_address().getName());
+            txtName.setText(lineItemBean.getUser_address().getName());
             tvUserPhone.setText(lineItemBean.getUser_address().getPhone());
-            tvUserAdd.setText("收货地址:" + lineItemBean.getUser_address().getAddress());
+            tvUserAdd.setText(lineItemBean.getUser_address().getAddress());
             String logistics = lineItemBean.getOrder_list().getLogistics();
             if (logistics != null && !logistics.equals("")) {
 
                 tvKuandiName.setText(logistics);
             } else {
-                tvKuandiName.setText("快递公司:暂无物流信息");
+                tvKuandiName.setText("暂无物流信息");
 
             }
             final String link = lineItemBean.getOrder_list().getLink();
@@ -138,7 +138,7 @@ public class IineItemActivity extends BaseActivity implements LineItemConreact.V
                     }
                 });
             } else {
-                tvExpress.setText("快递编号:暂无物流信息");
+                tvExpress.setText("暂无物流信息");
             }
             if (!link.equals("") && link != null) {
                 btnChaXun.setOnClickListener(new NoDoubleClickListener() {//快递查询
@@ -149,7 +149,7 @@ public class IineItemActivity extends BaseActivity implements LineItemConreact.V
                     }
                 });
             } else {
-                return;
+
             }
             RequestOptions options = new RequestOptions()
                     .centerCrop()
@@ -190,6 +190,14 @@ public class IineItemActivity extends BaseActivity implements LineItemConreact.V
             } else if (inxdler == 5) {
                 //TODO  .微信+积分
 
+            } else if (inxdler == 526) {
+                tvWay.setText(R.string.lineltem_exper);
+                tvItemName.setText(lineItemBean.getItems().getName());
+                tvItemPrice.setText(lineItemBean.getItems().getCode_price() + "积分");
+                tvNum.setText("X" + lineItemBean.getOrder_list().getNum());
+                tvItemFreight.setText(lineItemBean.getOrder_list().getFreight() + "积分");
+                tvOrderPrice.setText(lineItemBean.getOrder_list().getPayexperience() + ""); //TODO
+                tzhuangtai.setText(R.string.lineltem_integral);
             } else if (inxdler == 0) {
                 tvWay.setText("支付方式：默认值订单没有支付");
                 tvItemName.setText(lineItemBean.getItems().getName());

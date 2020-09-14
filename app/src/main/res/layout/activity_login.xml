@@ -204,7 +204,16 @@
                 android:textColor="@color/black"
                 android:textSize="@dimen/dp_12"
                 android:text="密码" />
+            <ImageView
+                android:id="@+id/btn_show"
+                android:layout_width="@dimen/dp_20"
+                android:layout_height="@dimen/dp_20"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@+id/tt2"
+                android:layout_marginLeft="@dimen/dp_13"
+                android:layout_marginTop="@dimen/dp_28"
 
+                android:background="@drawable/btn_main_hide" />
             <RelativeLayout
                 android:id="@+id/re"
                 android:layout_width="match_parent"
@@ -214,21 +223,15 @@
                 android:layout_marginTop="@dimen/dp_14"
                 android:layout_toRightOf="@id/im2">
 
-                <ImageView
-                    android:id="@+id/btn_show"
-                    android:layout_width="@dimen/dp_20"
-                    android:layout_height="@dimen/dp_20"
-                    android:layout_alignParentLeft="true"
-                    android:layout_centerVertical="true"
-                    android:background="@drawable/btn_main_hide" />
+
                 <EditText
                     android:id="@+id/ed_pw"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_centerVertical="true"
                     android:layout_marginRight="@dimen/dp_4"
-                    android:layout_marginLeft="@dimen/dp_10"
-                   android:layout_toRightOf="@id/btn_show"
+
+                    android:layout_alignParentLeft="true"
                     android:layout_toLeftOf="@+id/tv_forget_pwd"
                     android:background="@null"
                     android:hint="请输入密码"
@@ -244,11 +247,10 @@
                     android:layout_centerVertical="true"
                     android:layout_marginRight="@dimen/dp_13"
                     android:layout_width="wrap_content"
-                    android:textSize="@dimen/sp_12"
+                    android:textSize="@dimen/sp_13"
                     android:text="忘记密码"
                     android:padding="@dimen/dp_2"
-                    android:textColor="@color/newnew_bg"
-                    android:background="@drawable/getmsgcodetv_bg"
+                    android:textColor="@color/ban_touming"
                     android:layout_height="wrap_content" />
             </RelativeLayout>
 

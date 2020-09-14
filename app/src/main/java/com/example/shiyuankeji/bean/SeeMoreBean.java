@@ -4,6 +4,7 @@ import java.util.List;
 
 public class SeeMoreBean {
 
+
     private List<GrantShareInfoVoBean> grantShareInfoVo;
 
     public List<GrantShareInfoVoBean> getGrantShareInfoVo() {
@@ -16,10 +17,10 @@ public class SeeMoreBean {
 
     public static class GrantShareInfoVoBean {
         /**
-         * totalprice : 5000
-         * createtime : 2019-10
-         * grantShareInfoVo2 : [{"create":"2019-10-02","monthTotal":"5000"}]
-         * monthTatalPrice : 2019-10   (总:5000)
+         * totalprice : 5328
+         * createtime : 2020-09
+         * grantShareInfoVo2 : [{"create":"2020-09-10","monthTotal":"1087"},{"create":"2020-09-10","monthTotal":"2067"},{"create":"2020-09-10","monthTotal":"1087"},{"create":"2020-09-10","monthTotal":"1087"}]
+         * monthTatalPrice : 2020-09   总计:5328
          */
 
         private String totalprice;
@@ -61,8 +62,8 @@ public class SeeMoreBean {
 
         public static class GrantShareInfoVo2Bean {
             /**
-             * create : 2019-10-02
-             * monthTotal : 5000
+             * create : 2020-09-10
+             * monthTotal : 1087
              */
 
             private String create;

@@ -13,6 +13,7 @@ import com.example.shiyuankeji.bean.CheckDetailsBean;
 import com.example.shiyuankeji.bean.ClassBean;
 import com.example.shiyuankeji.bean.ClassListBean;
 import com.example.shiyuankeji.bean.CostBean;
+import com.example.shiyuankeji.bean.ExperienceBean;
 import com.example.shiyuankeji.bean.GrantDetailsBean;
 import com.example.shiyuankeji.bean.HomeBean;
 import com.example.shiyuankeji.bean.IdentityBean;
@@ -261,6 +262,10 @@ public interface Api {
     //    已发放（查看更多）
     @POST("queryMonthTotal")
     Flowable<SeeMoreBean> seemoreApi(@Header("token") String tokens);
+
+    //    体验积分
+    @POST("queryExperienceScore")
+    Flowable<ExperienceBean> experienceApi(@Header("token") String tokens);
 //    {
 //    "id": 34,
 //    "nick_name": "N号初级合作组",

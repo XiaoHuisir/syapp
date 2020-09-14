@@ -455,6 +455,24 @@ public class LineItemBean {
         private  String  logistics;
         private  String  logistics_num;
         private  String  link;
+        private  int  payexperience;
+        private  int  experience;
+
+        public int getPayexperience() {
+            return payexperience;
+        }
+
+        public void setPayexperience(int payexperience) {
+            this.payexperience = payexperience;
+        }
+
+        public int getExperience() {
+            return experience;
+        }
+
+        public void setExperience(int experience) {
+            this.experience = experience;
+        }
 
         public String getLink() {
             return link;

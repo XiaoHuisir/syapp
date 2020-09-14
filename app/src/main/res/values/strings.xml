@@ -52,7 +52,8 @@
     <string name="details_earnings_string">收益积分</string>
     <string name="details_peak_string">以是峰值</string>
     <string name="details_low_peak_string">以是最低峰值</string>
-    <string name="lineltem_integral_string">支付方式：积分支付</string>
+    <string name="lineltem_integral_string">支付方式：购物积分支付</string>
+    <string name="lineltem_exper">支付方式：体验积分支付</string>
     <string name="lineltem_integral">积分</string>
     <string name="copy_string">复制成功</string>
     <string name="xiangjiquanxian_string">海报生成成功，已保存到相册</string>
@@ -75,7 +76,8 @@
     <string name="no_payment_success_string">支付失败</string>
     <string name="alipay_string">支付宝支付</string>
     <string name="wx_string">微信支付</string>
-    <string name="integral_string">积分支付</string>
+    <string name="integral_string">购物积分支付</string>
+    <string name="exper_string">体验积分支付</string>
     <string name="selet_way_string">请选择支付方式</string>
     <string name="selet_site_string">请选择收货地址</string>
     <string name="not_to_join_string">未加入商务消费小组，请输入邀请码</string>

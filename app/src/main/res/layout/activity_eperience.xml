@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.activity.ExperienceActivity"
+    android:background="@color/new_bag"
+    android:layout_height="match_parent">
+    <View
+        android:id="@+id/vi1"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_117"
+        android:layout_alignParentTop="true"
+        android:background="@mipmap/bg_new_bg" />
+    <RelativeLayout
+        android:id="@+id/lin_wbeak"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="@dimen/dp_42"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/tou_ming"
+        >
+
+        <ImageView
+            android:id="@+id/im_wbeak"
+            android:layout_width="@dimen/dp_15"
+            android:layout_marginLeft="@dimen/dp_16"
+            android:layout_height="@dimen/dp_15"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:src="@mipmap/backknew" />
+
+        <TextView
+            android:id="@+id/tv_tilte"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="体验积分"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp_15" />
+    </RelativeLayout>
+
+    <!--<View-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="@dimen/dp_0_1"-->
+    <!--android:background="@color/white" />-->
+
+    <RelativeLayout
+        android:id="@+id/ree"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="@dimen/dp_16"
+        android:layout_marginRight="@dimen/dp_16"
+        android:layout_marginTop="@dimen/dp_14"
+        android:paddingBottom="@dimen/dp_24"
+        android:layout_below="@+id/lin_wbeak"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/mine_bgg">
+        <TextView
+            android:id="@+id/t11"
+            android:layout_width="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp_11"
+            android:text="积分总数"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="@dimen/dp_13"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="@dimen/dp_13"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/tv_tilte_name"
+            android:layout_below="@+id/t11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="@dimen/dp_9"
+            android:layout_marginLeft="@dimen/dp_13"
+            android:text="xx"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp_20" />
+        <LinearLayout
+            android:id="@+id/btn_cash"
+            android:visibility="gone"
+            android:layout_width="@dimen/dp_80"
+            android:layout_height="@dimen/dp_30"
+            android:layout_alignBottom="@+id/tv_tilte_name"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="@dimen/dp_8"
+            android:layout_marginRight="@dimen/dp_20"
+            android:background="@drawable/btn_blue"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="提现"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+        </LinearLayout>
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/swipeRefresh"
+            android:layout_below="@+id/tv_tilte_name"
+            android:layout_marginTop="@dimen/dp_27"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ScrollView
+                android:id="@+id/scrView"
+                android:scrollbars="none"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <!--android.support.v4.widget.SwipeRefreshLayout-->
+
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/recycler_experience"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </RelativeLayout>
+            </ScrollView>
+        </android.support.v4.widget.SwipeRefreshLayout>
+    </RelativeLayout>
+
+</RelativeLayout>

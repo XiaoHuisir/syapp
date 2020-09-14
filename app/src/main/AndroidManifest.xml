@@ -194,6 +194,8 @@ android.permission.ACCESS_WIFI_STATE-->
         <activity android:name=".ui.activity.GrantDetailsActivity"/>
         <!--已发放（查看更多）-->
         <activity android:name=".ui.activity.SeeMoreActivity"/>
+        <!--体验积分-->
+        <activity android:name=".ui.activity.ExperienceActivity"/>
     </application>
 
     <!--友盟统计配置Appkey与Channel-->

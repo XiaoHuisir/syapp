@@ -55,8 +55,11 @@
 
             <LinearLayout
                 android:id="@+id/lin_xinxi"
-                android:background="@color/whites"
+                android:layout_marginTop="@dimen/dp_8"
+                android:background="@drawable/mine_bgg"
                 android:layout_width="match_parent"
+                android:layout_marginLeft="@dimen/dp_13"
+                android:layout_marginRight="@dimen/dp_13"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
@@ -179,8 +182,8 @@
                     android:layout_width="match_parent"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentRight="true"
-                    android:layout_marginLeft="@dimen/dp_20"
-                    android:layout_marginRight="@dimen/dp_20"
+                    android:layout_marginLeft="@dimen/dp_13"
+                    android:layout_marginRight="@dimen/dp_13"
                     android:layout_height="@dimen/dp_47"
                     android:layout_marginTop="@dimen/dp_10"
                     android:background="@drawable/mine_bgg">
